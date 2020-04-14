@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\CoopGame.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{FEDF774C-08DE-4B2C-876D-3EBC2F67E2E4}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\CoopGame.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\CoopGameEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{35B163B5-3FF5-41A2-85BF-9BF8F02A92A5}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\CoopGame">
+      <UniqueIdentifier>{3E660E25-ECFF-435A-A0D2-ECCF38B696E4}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\CoopGame\CoopGame.Build.cs">
+      <Filter>Source\CoopGame</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\CoopGame\CoopGame.cpp">
+      <Filter>Source\CoopGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\CoopGame\CoopGame.h">
+      <Filter>Source\CoopGame</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\CoopGame\CoopGameGameModeBase.cpp">
+      <Filter>Source\CoopGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\CoopGame\CoopGameGameModeBase.h">
+      <Filter>Source\CoopGame</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
