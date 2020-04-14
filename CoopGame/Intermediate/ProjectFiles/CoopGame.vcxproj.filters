@@ -42,4 +42,22 @@
       <Filter>Source\CoopGame</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source\CoopGame\Public">
+      <UniqueIdentifier>{173c3301-96b1-43e0-940a-9152c482b1ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\CoopGame\Private">
+      <UniqueIdentifier>{3126bac9-f3f7-4026-877c-c6437861cb0d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\CoopGame\Public\SCharacter.h">
+      <Filter>Source\CoopGame\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\CoopGame\Private\SCharacter.cpp">
+      <Filter>Source\CoopGame\Private</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
