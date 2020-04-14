@@ -31,9 +31,13 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	//model movement input
+	PlayerInputComponent->BindAxis("MoveForward", this, &ASCharacter::moveForward);//binded with W key in editor representing a +1 value and with S representing -1.
+	PlayerInputComponent->BindAxis("MoveRight", this, &ASCharacter::moveRight);//binded with D key in editor representing a +1 value and with A representing -1.
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &ASCharacter::moveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ASCharacter::moveRight);
+	//camera movement input
+	PlayerInputComponent->BindAxis("LookUp", this, &ASCharacter::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis("TurnRight", this, &ASCharacter::AddControllerYawInput);
 }
 
 void ASCharacter::moveForward(float forwardValue)
