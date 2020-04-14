@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "Public/SCharacter.h"
 #include "SCharacter.h"
 
 // Sets default values
@@ -30,5 +31,18 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+
+	PlayerInputComponent->BindAxis("MoveForward", this, &ASCharacter::moveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ASCharacter::moveRight);
+}
+
+void ASCharacter::moveForward(float forwardValue)
+{
+	AddMovementInput(GetActorForwardVector() * forwardValue);
+}
+
+void ASCharacter::moveRight(float rightValue)
+{
+	AddMovementInput(GetActorRightVector() * rightValue);
 }
 
