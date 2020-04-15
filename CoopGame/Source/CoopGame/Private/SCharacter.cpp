@@ -2,7 +2,8 @@
 
 
 #include "Public/SCharacter.h"
-#include "SCharacter.h"
+#include "Camera/CameraComponent.h"
+
 
 // Sets default values
 ASCharacter::ASCharacter()
@@ -10,6 +11,9 @@ ASCharacter::ASCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	cameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("cameraComponent"));
+	//the text macro helps to create strings for us.
+	cameraComponent->bUsePawnControlRotation = true;//set to true to be able to rotate the camera based on the viewer vision. Now lookUp and turnRight will be used to rotate the camera
 }
 
 // Called when the game starts or when spawned
