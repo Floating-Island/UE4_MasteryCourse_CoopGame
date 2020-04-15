@@ -12,12 +12,13 @@ ASCharacter::ASCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	camera = CreateDefaultSubobject<UCameraComponent>(TEXT("camera"));
-	//the text macro helps to create strings for us.
-
 	springArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("springArm"));
 	springArm->SetupAttachment(RootComponent);//root component will be the character capsule
 	springArm->bUsePawnControlRotation = true;//set to true to be able to rotate the camera based on the springArm vision. Now lookUp and turnRight will be used to rotate the camera
+
+	camera = CreateDefaultSubobject<UCameraComponent>(TEXT("camera"));
+	//the text macro helps to create strings for us.
+	camera->SetupAttachment(springArm);//the camera is now attached to the spring arm
 	
 }
 
