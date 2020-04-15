@@ -4,6 +4,7 @@
 #include "Public/SCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/PawnMovementComponent.h"
 
 
 // Sets default values
@@ -20,6 +21,8 @@ ASCharacter::ASCharacter()
 	//the text macro helps to create strings for us.
 	camera->SetupAttachment(springArm);//the camera is now attached to the spring arm
 	//collision tests inside the editor help when a wall is between the character and the camera
+
+	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;//necessary to allow the pawn to crouch
 	
 }
 
@@ -49,6 +52,10 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	//camera movement input
 	PlayerInputComponent->BindAxis("LookUp", this, &ASCharacter::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("TurnRight", this, &ASCharacter::AddControllerYawInput);
+
+	//character crouch binding
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASCharacter::beginCrouch);
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASCharacter::endCrouch);
 }
 
 void ASCharacter::moveForward(float forwardValue)
@@ -59,5 +66,15 @@ void ASCharacter::moveForward(float forwardValue)
 void ASCharacter::moveRight(float rightValue)
 {
 	AddMovementInput(GetActorRightVector() * rightValue);
+}
+
+void ASCharacter::beginCrouch()
+{
+	Crouch();
+}
+
+void ASCharacter::endCrouch()
+{
+	UnCrouch();
 }
 

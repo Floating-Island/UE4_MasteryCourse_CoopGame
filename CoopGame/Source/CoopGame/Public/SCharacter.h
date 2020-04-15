@@ -37,6 +37,11 @@ protected:
 
 	//right movement
 	void moveRight(float rightValue);
+
+	//crouching
+	void beginCrouch();
+
+	void endCrouch();
 	
 public:	
 	// Called every frame
