@@ -7,6 +7,7 @@
 #include "SCharacter.generated.h"
 
 class UCameraComponent;
+class USpringArmComponent;
 
 UCLASS()
 class COOPGAME_API ASCharacter : public ACharacter
@@ -24,8 +25,12 @@ protected:
 	//camera component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	//An instance is assigned only in the constructor and then more properties are added, but the object can't be swapped for another. Also available to blueprints
-		UCameraComponent* cameraComponent;
+		UCameraComponent* camera;
 	
+	//spring arm component
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	USpringArmComponent* springArm;//used to adapt lookUp and turnRight to a third person camera mode
+
 	
 	//forward movement
 	void moveForward(float forwardValue);//move backwards is the same but negative
