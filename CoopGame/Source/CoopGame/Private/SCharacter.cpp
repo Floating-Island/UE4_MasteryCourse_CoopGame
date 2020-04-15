@@ -19,6 +19,7 @@ ASCharacter::ASCharacter()
 	camera = CreateDefaultSubobject<UCameraComponent>(TEXT("camera"));
 	//the text macro helps to create strings for us.
 	camera->SetupAttachment(springArm);//the camera is now attached to the spring arm
+	//collision tests inside the editor help when a wall is between the character and the camera
 	
 }
 
