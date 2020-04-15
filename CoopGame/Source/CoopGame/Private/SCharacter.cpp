@@ -23,7 +23,8 @@ ASCharacter::ASCharacter()
 	//collision tests inside the editor help when a wall is between the character and the camera
 
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;//necessary to allow the pawn to crouch
-	
+
+	GetMovementComponent()->GetNavAgentPropertiesRef().bCanJump = true;//necessary to allow the pawn to jump
 }
 
 // Called when the game starts or when spawned
@@ -56,6 +57,9 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	//character crouch binding
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASCharacter::beginCrouch);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASCharacter::endCrouch);
+
+	//character jump binding
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::jump);
 }
 
 void ASCharacter::moveForward(float forwardValue)
@@ -76,5 +80,10 @@ void ASCharacter::beginCrouch()
 void ASCharacter::endCrouch()
 {
 	UnCrouch();
+}
+
+void ASCharacter::jump()
+{
+	Jump();
 }
 

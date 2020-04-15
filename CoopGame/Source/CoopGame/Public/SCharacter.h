@@ -42,6 +42,9 @@ protected:
 	void beginCrouch();
 
 	void endCrouch();
+
+	//jumping
+	void jump();
 	
 public:	
 	// Called every frame
