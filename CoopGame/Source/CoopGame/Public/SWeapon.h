@@ -23,6 +23,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* mesh;
+
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+	void fire();
 	
 public:	
 	// Called every frame
