@@ -22,7 +22,7 @@ public:
 	
 protected:
 
-	UFUNCTION(BlueprintCallable, Category = "Weapon")
+	//UFUNCTION(BlueprintCallable, Category = "Weapon") it shouldn't have this, the parent class already has it
 		virtual void fire() override;
 	
 };

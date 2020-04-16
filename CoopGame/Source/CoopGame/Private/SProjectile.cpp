@@ -19,7 +19,7 @@ ASProjectile::ASProjectile()
 	collisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
 	collisionComponent->InitSphereRadius(4.0f);
 	collisionComponent->SetCollisionProfileName("Projectile");
-	collisionComponent->OnComponentHit.AddDynamic(this, &ASProjectile::OnHit);	// set up a notification for when this component hits something blocking
+//	collisionComponent->OnComponentHit.AddDynamic(this, &ASProjectile::OnHit);	// set up a notification for when this component hits something blocking
 
 	// Players can't walk on it
 	collisionComponent->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));

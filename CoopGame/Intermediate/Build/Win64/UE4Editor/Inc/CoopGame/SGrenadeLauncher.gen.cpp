@@ -17,6 +17,8 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeLauncher() {}
 	COOPGAME_API UClass* Z_Construct_UClass_ASGrenadeLauncher();
 	COOPGAME_API UClass* Z_Construct_UClass_ASWeapon();
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	COOPGAME_API UClass* Z_Construct_UClass_ASProjectile_NoRegister();
 // End Cross Module References
 	void ASGrenadeLauncher::StaticRegisterNativesASGrenadeLauncher()
 	{
@@ -31,6 +33,11 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeLauncher() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ProjectileClass_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_ProjectileClass;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -44,6 +51,16 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeLauncher() {}
 		{ "ModuleRelativePath", "Public/SGrenadeLauncher.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASGrenadeLauncher_Statics::NewProp_ProjectileClass_MetaData[] = {
+		{ "Category", "Projectile" },
+		{ "ModuleRelativePath", "Public/SGrenadeLauncher.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ASGrenadeLauncher_Statics::NewProp_ProjectileClass = { "ProjectileClass", nullptr, (EPropertyFlags)0x0014000000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASGrenadeLauncher, ProjectileClass), Z_Construct_UClass_ASProjectile_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ASGrenadeLauncher_Statics::NewProp_ProjectileClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASGrenadeLauncher_Statics::NewProp_ProjectileClass_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASGrenadeLauncher_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGrenadeLauncher_Statics::NewProp_ProjectileClass,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASGrenadeLauncher_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ASGrenadeLauncher>::IsAbstract,
 	};
@@ -53,11 +70,11 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeLauncher() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_ASGrenadeLauncher_Statics::PropPointers,
 		nullptr,
 		ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		ARRAY_COUNT(Z_Construct_UClass_ASGrenadeLauncher_Statics::PropPointers),
 		0,
 		0x009000A0u,
 		METADATA_PARAMS(Z_Construct_UClass_ASGrenadeLauncher_Statics::Class_MetaDataParams, ARRAY_COUNT(Z_Construct_UClass_ASGrenadeLauncher_Statics::Class_MetaDataParams))
@@ -71,7 +88,7 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeLauncher() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASGrenadeLauncher, 1349943921);
+	IMPLEMENT_CLASS(ASGrenadeLauncher, 583534700);
 	template<> COOPGAME_API UClass* StaticClass<ASGrenadeLauncher>()
 	{
 		return ASGrenadeLauncher::StaticClass();

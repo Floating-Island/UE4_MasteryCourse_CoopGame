@@ -13,9 +13,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COOPGAME_SProjectile_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_12_RPC_WRAPPERS
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_12_RPC_WRAPPERS_NO_PURE_DECLS
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_12_INCLASS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_RPC_WRAPPERS
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_RPC_WRAPPERS_NO_PURE_DECLS
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASProjectile(); \
 	friend struct Z_Construct_UClass_ASProjectile_Statics; \
@@ -24,7 +24,7 @@ public: \
 	DECLARE_SERIALIZER(ASProjectile)
 
 
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_12_INCLASS \
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_INCLASS \
 private: \
 	static void StaticRegisterNativesASProjectile(); \
 	friend struct Z_Construct_UClass_ASProjectile_Statics; \
@@ -33,7 +33,7 @@ public: \
 	DECLARE_SERIALIZER(ASProjectile)
 
 
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_12_STANDARD_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ASProjectile(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASProjectile) \
@@ -46,7 +46,7 @@ private: \
 public:
 
 
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_12_ENHANCED_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASProjectile(ASProjectile&&); \
@@ -57,26 +57,31 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASProjectile); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASProjectile)
 
 
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_12_PRIVATE_PROPERTY_OFFSET
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_9_PROLOG
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_12_GENERATED_BODY_LEGACY \
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__collisionComponent() { return STRUCT_OFFSET(ASProjectile, collisionComponent); } \
+	FORCEINLINE static uint32 __PPO__ProjectileMovement() { return STRUCT_OFFSET(ASProjectile, ProjectileMovement); } \
+	FORCEINLINE static uint32 __PPO__hitImpactEffect() { return STRUCT_OFFSET(ASProjectile, hitImpactEffect); }
+
+
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_13_PROLOG
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SProjectile_h_12_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SProjectile_h_12_RPC_WRAPPERS \
-	CoopGame_Source_CoopGame_Public_SProjectile_h_12_INCLASS \
-	CoopGame_Source_CoopGame_Public_SProjectile_h_12_STANDARD_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SProjectile_h_16_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SProjectile_h_16_RPC_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_SProjectile_h_16_INCLASS \
+	CoopGame_Source_CoopGame_Public_SProjectile_h_16_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_12_GENERATED_BODY \
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SProjectile_h_12_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SProjectile_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SProjectile_h_12_INCLASS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SProjectile_h_12_ENHANCED_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SProjectile_h_16_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SProjectile_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SProjectile_h_16_INCLASS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SProjectile_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
