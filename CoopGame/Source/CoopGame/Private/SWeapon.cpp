@@ -19,7 +19,7 @@ ASWeapon::ASWeapon()
 	RootComponent = mesh;//make mesh the root components
 
 	muzzleSocket = "MuzzleSocket";
-	tracerTarget = "Target";
+	tracerTarget = "BeamEnd";
 }
 
 // Called when the game starts or when spawned
