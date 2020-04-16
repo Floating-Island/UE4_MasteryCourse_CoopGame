@@ -5,6 +5,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
+//#include "Particles/ParticleSystem.h"//used to spawn effects
 
 // Sets default values
 ASWeapon::ASWeapon()
@@ -14,6 +15,8 @@ ASWeapon::ASWeapon()
 
 	mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));//mesh instantiation
 	RootComponent = mesh;//make mesh the root components
+
+	muzzleSocket = "MuzzleSocket";
 }
 
 // Called when the game starts or when spawned
@@ -31,6 +34,12 @@ void ASWeapon::fire()
 
 	if(weaponOwner)
 	{
+		if(muzzleEffect)//only if a muzzle effect was assigned
+		{
+			UGameplayStatics::SpawnEmitterAttached(muzzleEffect, mesh, muzzleSocket);//emits the muzzle effect when firing the weapon
+		}
+
+		
 		FVector eyesLocation;//will be used as the starting point for our trace
 		FRotator eyesRotation;
 		weaponOwner->GetActorEyesViewPoint(eyesLocation, eyesRotation);//now we have the eyes's location and rotation
@@ -56,6 +65,13 @@ void ASWeapon::fire()
 
 			float damage = 20.0f;
 			UGameplayStatics::ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
+
+			if(hitImpactEffect)//if it was assigned
+			{
+				//spawn impact effect
+				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
+				//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
+			}
 		}
 
 		DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
