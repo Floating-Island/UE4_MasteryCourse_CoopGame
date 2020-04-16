@@ -23,7 +23,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	void tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance);
-	void processDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked);
+	void processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* mesh;

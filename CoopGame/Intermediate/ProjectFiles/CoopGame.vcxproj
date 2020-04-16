@@ -364,7 +364,11 @@
     <NMakeOutput>..\..\Binaries\HTML5\CoopGame-HTML5-Shipping.js</NMakeOutput>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeLauncher.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SWeapon.cpp" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeLauncher.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SWeapon.h" />
     <None Include="..\..\CoopGame.uproject" />
     <None Include="..\..\Source\CoopGame.Target.cs" />

@@ -52,7 +52,7 @@ void ASWeapon::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceD
 	}
 }
 
-void ASWeapon::processDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked)
+void ASWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked)
 {
 	if(hitBlocked)//something got hit by the trace
 	{
@@ -103,7 +103,7 @@ void ASWeapon::fire()
 		bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, ECC_Visibility, collisionParameters);
 		//ECC_Visibility is used now because everything that blocks that channel, will block the trace.
 		//That thing that blocks will be something that can be damaged
-		processDamage(weaponOwner, shotDirection, hit, hitBlocked);
+		processPointDamage(weaponOwner, shotDirection, hit, hitBlocked);
 
 
 		tracerEffectSpawn(hitBlocked, hit, traceDistance);//create beam to represent bullet trajectory 
