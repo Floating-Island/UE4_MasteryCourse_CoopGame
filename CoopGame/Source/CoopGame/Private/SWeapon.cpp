@@ -44,7 +44,7 @@ void ASWeapon::fire()
 
 		
 		FHitResult hit;//struct containing hit information
-		bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, ECC_Visibility, collisionParameters, );
+		bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, ECC_Visibility, collisionParameters);
 		//ECC_Visibility is used now because everything that blocks that channel, will block the trace.
 		//That thing that blocks will be something that can be damaged
 		if(hitBlocked)//something got hit by the trace
