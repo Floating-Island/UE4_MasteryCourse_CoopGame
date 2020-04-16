@@ -29,7 +29,7 @@ protected:
 	USkeletalMeshComponent* mesh;
 
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
-	void fire();
+	virtual void fire();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	TSubclassOf<UDamageType> typeOfDamage;
