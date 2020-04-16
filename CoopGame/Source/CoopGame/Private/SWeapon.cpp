@@ -4,6 +4,7 @@
 #include "SWeapon.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "DrawDebugHelpers.h"//used to help seeing the trace
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ASWeapon::ASWeapon()
@@ -34,8 +35,9 @@ void ASWeapon::fire()
 		FRotator eyesRotation;
 		weaponOwner->GetActorEyesViewPoint(eyesLocation, eyesRotation);//now we have the eyes's location and rotation
 
+		FVector shotDirection = eyesRotation.Vector();
 		int traceMultiplier = 10000;
-		FVector traceDistance = eyesLocation + (eyesRotation.Vector()) * traceMultiplier;//where the trace ends
+		FVector traceDistance = eyesLocation + shotDirection * traceMultiplier;//where the trace ends
 
 		FCollisionQueryParams collisionParameters;
 		collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
@@ -49,7 +51,11 @@ void ASWeapon::fire()
 		//That thing that blocks will be something that can be damaged
 		if(hitBlocked)//something got hit by the trace
 		{
-			//process damages
+			//process damage
+			AActor* hitActor;
+
+			float damage = 20.0f;
+			UGameplayStatics::ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
 		}
 
 		DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
