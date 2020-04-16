@@ -11,7 +11,7 @@ ASWeapon::ASWeapon()
 	PrimaryActorTick.bCanEverTick = true;
 
 	mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));//mesh instantiation
-	RootComponent = mesh;//make mesh the root componentsp
+	RootComponent = mesh;//make mesh the root components
 }
 
 // Called when the game starts or when spawned
