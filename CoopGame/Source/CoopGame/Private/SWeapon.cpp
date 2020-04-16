@@ -52,7 +52,7 @@ void ASWeapon::fire()
 		if(hitBlocked)//something got hit by the trace
 		{
 			//process damage
-			AActor* hitActor;
+			AActor* hitActor = hit.GetActor();
 
 			float damage = 20.0f;
 			UGameplayStatics::ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
