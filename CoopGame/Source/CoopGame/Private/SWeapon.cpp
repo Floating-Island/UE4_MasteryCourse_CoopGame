@@ -6,6 +6,8 @@
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
 //#include "Particles/ParticleSystem.h"//used to spawn effects
+//#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values
 ASWeapon::ASWeapon()
@@ -17,6 +19,7 @@ ASWeapon::ASWeapon()
 	RootComponent = mesh;//make mesh the root components
 
 	muzzleSocket = "MuzzleSocket";
+	tracerTarget = "Target";
 }
 
 // Called when the game starts or when spawned
@@ -24,6 +27,48 @@ void ASWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ASWeapon::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)
+{
+	if(tracerEffect)
+	{
+		//we want to spawn a beam effect between the muzzle socket and the trace end (or the hit impact location if it hit)
+		FVector beamStart = mesh->GetSocketLocation(muzzleSocket);
+		UParticleSystemComponent* tracerComponent = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), tracerEffect, beamStart);
+		if(tracerComponent)
+		{
+			FVector beamEnd;
+			if (hitBlocked)
+			{
+				beamEnd = hit.ImpactPoint;
+			}
+			else
+			{
+				beamEnd = traceDistance;
+			}
+			tracerComponent->SetVectorParameter(tracerTarget, beamEnd);
+		}
+	}
+}
+
+void ASWeapon::processDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked)
+{
+	if(hitBlocked)//something got hit by the trace
+	{
+		//process damage
+		AActor* hitActor = hit.GetActor();
+
+		float damage = 20.0f;
+		UGameplayStatics::ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
+
+		if(hitImpactEffect)//if it was assigned
+		{
+			//spawn impact effect
+			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
+			//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
+		}
+	}
 }
 
 void ASWeapon::fire()
@@ -58,21 +103,10 @@ void ASWeapon::fire()
 		bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, ECC_Visibility, collisionParameters);
 		//ECC_Visibility is used now because everything that blocks that channel, will block the trace.
 		//That thing that blocks will be something that can be damaged
-		if(hitBlocked)//something got hit by the trace
-		{
-			//process damage
-			AActor* hitActor = hit.GetActor();
+		processDamage(weaponOwner, shotDirection, hit, hitBlocked);
 
-			float damage = 20.0f;
-			UGameplayStatics::ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
 
-			if(hitImpactEffect)//if it was assigned
-			{
-				//spawn impact effect
-				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
-				//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
-			}
-		}
+		tracerEffectSpawn(hitBlocked, hit, traceDistance);//create beam to represent bullet trajectory 
 
 		DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
 		

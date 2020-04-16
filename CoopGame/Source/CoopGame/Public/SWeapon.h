@@ -22,6 +22,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	void tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance);
+	void processDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* mesh;
@@ -40,6 +42,12 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
 		UParticleSystem* hitImpactEffect;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//no need to edit it
+		FName tracerTarget;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
+		UParticleSystem* tracerEffect;
 	
 public:	
 	// Called every frame
