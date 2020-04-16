@@ -37,16 +37,15 @@ ASProjectile::ASProjectile()
 	ProjectileMovement->bShouldBounce = true;
 	
 
-	GetWorldTimerManager().ClearTimer(explodeTimer);
-
-	GetWorldTimerManager().SetTimer(explodeTimer, this, &ASProjectile::generateExplosion, 1.0f, false);
+	
 }
 
 // Called when the game starts or when spawned
 void ASProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	GetWorldTimerManager().ClearTimer(explodeTimer);
+	GetWorldTimerManager().SetTimer(explodeTimer, this, &ASProjectile::generateExplosion, 1.0f, false);
 }
 
 // Called every frame

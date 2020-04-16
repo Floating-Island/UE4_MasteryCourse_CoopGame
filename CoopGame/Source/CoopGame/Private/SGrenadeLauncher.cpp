@@ -14,12 +14,6 @@ ASGrenadeLauncher::ASGrenadeLauncher()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));//mesh instantiation
-	RootComponent = mesh;//make mesh the root components
-
-	muzzleSocket = "MuzzleSocket";
-	tracerTarget = "BeamEnd";
 }
 
 void ASGrenadeLauncher::fire()
