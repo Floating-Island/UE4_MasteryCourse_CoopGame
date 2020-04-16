@@ -62,6 +62,15 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::jump);
 }
 
+FVector ASCharacter::GetPawnViewLocation() const
+{
+	if(camera)
+	{
+		return camera->GetComponentLocation();
+	}
+	return Super::GetPawnViewLocation();
+}
+
 void ASCharacter::moveForward(float forwardValue)
 {
 	AddMovementInput(GetActorForwardVector() * forwardValue);
