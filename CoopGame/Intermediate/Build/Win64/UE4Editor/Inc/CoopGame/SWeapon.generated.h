@@ -13,9 +13,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COOPGAME_SWeapon_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_12_RPC_WRAPPERS
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_12_RPC_WRAPPERS_NO_PURE_DECLS
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_12_INCLASS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_14_RPC_WRAPPERS
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_14_RPC_WRAPPERS_NO_PURE_DECLS
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASWeapon(); \
 	friend struct Z_Construct_UClass_ASWeapon_Statics; \
@@ -24,7 +24,7 @@ public: \
 	DECLARE_SERIALIZER(ASWeapon)
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_12_INCLASS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_14_INCLASS \
 private: \
 	static void StaticRegisterNativesASWeapon(); \
 	friend struct Z_Construct_UClass_ASWeapon_Statics; \
@@ -33,7 +33,7 @@ public: \
 	DECLARE_SERIALIZER(ASWeapon)
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_12_STANDARD_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_14_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ASWeapon(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASWeapon) \
@@ -46,7 +46,7 @@ private: \
 public:
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_12_ENHANCED_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASWeapon(ASWeapon&&); \
@@ -57,26 +57,29 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASWeapon); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASWeapon)
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_12_PRIVATE_PROPERTY_OFFSET
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_9_PROLOG
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_12_GENERATED_BODY_LEGACY \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_14_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__mesh() { return STRUCT_OFFSET(ASWeapon, mesh); }
+
+
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_11_PROLOG
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_14_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_12_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_12_RPC_WRAPPERS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_12_INCLASS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_12_STANDARD_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_14_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_14_RPC_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_14_INCLASS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_14_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_12_GENERATED_BODY \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_12_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_12_INCLASS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_12_ENHANCED_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_14_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_14_INCLASS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

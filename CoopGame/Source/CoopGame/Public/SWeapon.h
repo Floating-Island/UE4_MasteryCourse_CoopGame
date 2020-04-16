@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "SWeapon.generated.h"
 
+class USkeletalMeshComponent;
+
 UCLASS()
 class COOPGAME_API ASWeapon : public AActor
 {
@@ -19,6 +21,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	USkeletalMeshComponent* mesh;
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
