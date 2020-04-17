@@ -18,7 +18,7 @@ void ASGrenadeLauncher::fire()
 {
 	AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon
 	
-	if (weaponOwner)
+	if (weaponOwner && ProjectileClass)
 	{
 		if (muzzleEffect)//only if a muzzle effect was assigned
 		{

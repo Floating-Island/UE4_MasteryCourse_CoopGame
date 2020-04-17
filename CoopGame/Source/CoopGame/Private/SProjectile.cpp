@@ -17,30 +17,27 @@ ASProjectile::ASProjectile()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	// Use a sphere as a simple collision representation
-	collisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
-	collisionComponent->InitSphereRadius(4.0f);
-	collisionComponent->SetCollisionProfileName("Projectile");
-//	collisionComponent->OnComponentHit.AddDynamic(this, &ASProjectile::OnHit);	// set up a notification for when this component hits something blocking
-
-	// Players can't walk on it
-	collisionComponent->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
-	collisionComponent->CanCharacterStepUpOn = ECB_No;
-
-	// Set as root component
-	RootComponent = collisionComponent;
-
+	mesh = CreateDefaultSubobject < UStaticMeshComponent>(TEXT("Mesh Component"));//creates component 
+	RootComponent = mesh;
+	
+	
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileComp"));
-	ProjectileMovement->UpdatedComponent = collisionComponent;
+	ProjectileMovement->UpdatedComponent = RootComponent;
 	ProjectileMovement->InitialSpeed = 3000.f;
 	ProjectileMovement->MaxSpeed = 3000.f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
 
-	mesh = CreateDefaultSubobject < UStaticMeshComponent>(TEXT("Mesh Component"));//creates component 
-	mesh->SetupAttachment(RootComponent);
-	
+	// Use a sphere as a simple collision representation
+	collisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
+	collisionComponent->InitSphereRadius(4.0f);
+	collisionComponent->SetCollisionProfileName("Projectile");
+	//	collisionComponent->OnComponentHit.AddDynamic(this, &ASProjectile::OnHit);	// set up a notification for when this component hits something blocking
+
+		// Players can't walk on it
+	collisionComponent->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
+	collisionComponent->CanCharacterStepUpOn = ECB_No;
 
 	
 }
