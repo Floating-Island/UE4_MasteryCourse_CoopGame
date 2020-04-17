@@ -24,7 +24,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	/** Sphere collision component */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Projectile")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
 		USphereComponent* collisionComponent;
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")//UE4 now is able to see and edit this
@@ -45,10 +45,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	void provokeRadialDamage(const FHitResult& hit);
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
 		TSubclassOf<UDamageType> damageType;
 	
-
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		float damage;
+	
 	///** called when projectile hits something */
 	//UFUNCTION()
 	//	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& hit);

@@ -86,6 +86,10 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 #endif
 		static const UE4CodeGen_Private::FNamePropertyParams NewProp_muzzleSocket;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_damage_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_damage;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_typeOfDamage_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_typeOfDamage;
@@ -151,6 +155,13 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 #endif
 	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_muzzleSocket = { "muzzleSocket", nullptr, (EPropertyFlags)0x0020080000030015, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, muzzleSocket), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_muzzleSocket_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_muzzleSocket_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_damage_MetaData[] = {
+		{ "Category", "Weapon" },
+		{ "ModuleRelativePath", "Public/SWeapon.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_damage = { "damage", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, damage), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_damage_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_damage_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_typeOfDamage_MetaData[] = {
 		{ "Category", "Weapon" },
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
@@ -171,6 +182,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_hitImpactEffect,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_muzzleEffect,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_muzzleSocket,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_damage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_typeOfDamage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_mesh,
 	};
@@ -201,7 +213,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASWeapon, 4111879011);
+	IMPLEMENT_CLASS(ASWeapon, 2375507269);
 	template<> COOPGAME_API UClass* StaticClass<ASWeapon>()
 	{
 		return ASWeapon::StaticClass();

@@ -31,6 +31,8 @@ ASWeapon::ASWeapon()
 
 	muzzleSocket = "MuzzleSocket";
 	tracerTarget = "BeamEnd";
+
+	damage = 20.0f;
 }
 
 // Called when the game starts or when spawned
@@ -70,7 +72,7 @@ void ASWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirection, FH
 		//process damage
 		AActor* hitActor = hit.GetActor();
 
-		float damage = 20.0f;
+		
 		UGameplayStatics::ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
 
 		if(hitImpactEffect)//if it was assigned

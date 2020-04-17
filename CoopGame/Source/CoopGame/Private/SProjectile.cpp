@@ -38,7 +38,7 @@ ASProjectile::ASProjectile()
 	collisionComponent->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
 	collisionComponent->CanCharacterStepUpOn = ECB_No;
 
-	
+	damage = 40.0f;
 }
 
 // Called when the game starts or when spawned
@@ -61,7 +61,6 @@ void ASProjectile::provokeRadialDamage(const FHitResult& hit)
 	//process damage
 	AActor* hitActor = hit.GetActor();
 
-	float damage = 40.0f;
 	float damageRadius = 200.0f;
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
 	UGameplayStatics::ApplyRadialDamage(this, damage, this->GetActorLocation(), damageRadius, damageType, 
