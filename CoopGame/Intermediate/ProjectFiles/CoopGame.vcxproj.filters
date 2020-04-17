@@ -70,6 +70,9 @@
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectile.h">
       <Filter>Source\CoopGame\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\CoopGame\Public\SRifle.h">
+      <Filter>Source\CoopGame\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\CoopGame\Private\SWeapon.cpp">
@@ -79,6 +82,9 @@
       <Filter>Source\CoopGame\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectile.cpp">
+      <Filter>Source\CoopGame\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CoopGame\Private\SRifle.cpp">
       <Filter>Source\CoopGame\Private</Filter>
     </ClCompile>
   </ItemGroup>

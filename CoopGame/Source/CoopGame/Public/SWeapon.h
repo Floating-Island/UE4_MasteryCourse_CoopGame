@@ -22,14 +22,10 @@ public:
 		virtual void fire();
 
 protected:
-	void tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance);
-	void processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked);
 	void muzzleFireFlash();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* mesh;
-
-
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	TSubclassOf<UDamageType> typeOfDamage;
@@ -42,13 +38,4 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
 	UParticleSystem* muzzleEffect;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
-		UParticleSystem* hitImpactEffect;
-
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//no need to edit it
-		FName tracerTarget;
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
-		UParticleSystem* tracerEffect;
 };

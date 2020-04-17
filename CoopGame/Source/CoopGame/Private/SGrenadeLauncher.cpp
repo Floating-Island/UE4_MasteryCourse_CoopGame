@@ -20,13 +20,8 @@ void ASGrenadeLauncher::fire()
 	
 	if (weaponOwner && ProjectileClass)
 	{
-		if (muzzleEffect)//only if a muzzle effect was assigned
-		{
-			UGameplayStatics::SpawnEmitterAttached(muzzleEffect, mesh, muzzleSocket);//emits the muzzle effect when firing the weapon
-		}
+		Super::muzzleFireFlash();
 		FVector muzzleLocation = mesh->GetSocketLocation(muzzleSocket);
-		FRotator muzzleRotation = mesh->GetSocketRotation(muzzleSocket);
-
 
 		FVector eyesLocation;
 		FRotator eyesRotation;
