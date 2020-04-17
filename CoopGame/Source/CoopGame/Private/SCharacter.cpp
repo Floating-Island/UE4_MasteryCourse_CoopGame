@@ -28,6 +28,7 @@ ASCharacter::ASCharacter()
 
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanJump = true;//necessary to allow the pawn to jump
 
+	//zoom properties
 	defaultFOV = camera->FieldOfView;
 
 	zoomFOV = 65.0f;
@@ -36,15 +37,34 @@ ASCharacter::ASCharacter()
 	
 	fovTransitionSpeed = 20;
 
+	//weapon socket properties
+
+	weaponSocket = "rWeaponSocket";
 
 	
+}
+
+void ASCharacter::attachWeapon()
+{
+	if(heldWeaponClass)
+	{
+		FActorSpawnParameters spawnParameters;
+		spawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		spawnParameters.Owner = this;
+		heldWeapon = GetWorld()->SpawnActor<ASWeapon>(heldWeaponClass, FVector::ZeroVector, FRotator::ZeroRotator, spawnParameters);
+		if(heldWeapon)
+		{
+			heldWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, weaponSocket);
+		}
+	}
 }
 
 // Called when the game starts or when spawned
 void ASCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	attachWeapon();
 }
 
 void ASCharacter::beginZoom()
@@ -59,9 +79,9 @@ void ASCharacter::endZoom()
 
 void ASCharacter::fire()
 {
-	if(weaponHeld)
+	if(heldWeapon)
 	{
-		weaponHeld->fire();
+		heldWeapon->fire();
 	}
 }
 

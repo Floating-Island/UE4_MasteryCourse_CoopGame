@@ -18,6 +18,7 @@ class COOPGAME_API ASCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ASCharacter();
+	void attachWeapon();
 
 protected:
 	// Called when the game starts or when spawned
@@ -63,8 +64,13 @@ protected:
 	void endZoom();
 
 	//weapon holding
-	UPROPERTY(EditDefaultsOnly, Category = "Right Hand Weapon")
-		ASWeapon* weaponHeld;
+	ASWeapon* heldWeapon;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+		TSubclassOf<ASWeapon> heldWeaponClass;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "Weapon")
+		FName weaponSocket;
 
 	void fire();
 	
