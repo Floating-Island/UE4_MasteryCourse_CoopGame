@@ -34,5 +34,7 @@ void ASGrenadeLauncher::fire()
 
 		//spawn the projectile
 		GetWorld()->SpawnActor<ASProjectile>(ProjectileClass, muzzleLocation, eyesRotation, ActorSpawnParams);
+
+		Super::recoilShakingCamera(weaponOwner);
 	}
 }

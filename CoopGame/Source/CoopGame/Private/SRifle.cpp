@@ -84,6 +84,8 @@ void ASRifle::fire()
 			DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
 		}
 
+		Super::recoilShakingCamera(weaponOwner);
+
 	}
 }
 

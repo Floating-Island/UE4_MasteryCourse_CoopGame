@@ -38,6 +38,19 @@ void ASWeapon::muzzleFireFlash()
 	}
 }
 
+void ASWeapon::recoilShakingCamera(AActor* weaponOwnerActor)
+{
+	APawn* weaponOwner = Cast<APawn>(weaponOwnerActor);
+	if(weaponOwner && recoilCameraShake)
+	{
+		APlayerController* playerController = Cast<APlayerController>(weaponOwner->GetController());
+		if(playerController)
+		{
+			playerController->ClientPlayCameraShake(recoilCameraShake);
+		}
+	}
+}
+
 void ASWeapon::fire()
 {
 	

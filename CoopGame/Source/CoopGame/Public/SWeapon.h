@@ -9,6 +9,7 @@
 class USkeletalMeshComponent;
 class UDamageType;
 class UParticleSystem;
+class UCameraShake;
 
 UCLASS()
 class COOPGAME_API ASWeapon : public AActor
@@ -38,4 +39,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
 	UParticleSystem* muzzleEffect;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")//not everything has to be exposed to blueprints
+	TSubclassOf<UCameraShake> recoilCameraShake;
+
+	void recoilShakingCamera(AActor* weaponOwnerActor);
 };
