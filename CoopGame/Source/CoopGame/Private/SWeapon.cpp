@@ -23,9 +23,6 @@ TEXT("COOP.DebugWeapons")/*command used in console*/,
 // Sets default values
 ASWeapon::ASWeapon()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
 	mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));//mesh instantiation
 	RootComponent = mesh;//make mesh the root components
 
@@ -33,13 +30,6 @@ ASWeapon::ASWeapon()
 	tracerTarget = "BeamEnd";
 
 	damage = 20.0f;
-}
-
-// Called when the game starts or when spawned
-void ASWeapon::BeginPlay()
-{
-	Super::BeginPlay();
-	
 }
 
 void ASWeapon::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)
@@ -130,11 +120,3 @@ void ASWeapon::fire()
 	
 	
 }
-
-// Called every frame
-void ASWeapon::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
