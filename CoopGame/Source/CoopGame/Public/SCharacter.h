@@ -52,6 +52,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float zoomFOV;
 
+	float targetFOV; //necessary to smooth the zooming in and zooming out.
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera", meta = (ClampMin = 0.1, ClampMax = 100))
+	float fovTransitionSpeed;
+
 	void beginZoom();
 
 	void endZoom();

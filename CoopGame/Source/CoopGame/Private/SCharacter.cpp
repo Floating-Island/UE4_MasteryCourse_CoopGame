@@ -29,6 +29,13 @@ ASCharacter::ASCharacter()
 	defaultFOV = camera->FieldOfView;
 
 	zoomFOV = 65.0f;
+
+	targetFOV = defaultFOV;//if not set, tick would target a random float number!!
+	
+	fovTransitionSpeed = 20;
+
+
+	
 }
 
 // Called when the game starts or when spawned
@@ -40,12 +47,12 @@ void ASCharacter::BeginPlay()
 
 void ASCharacter::beginZoom()
 {
-	camera->SetFieldOfView(zoomFOV);
+	targetFOV = zoomFOV;
 }
 
 void ASCharacter::endZoom()
 {
-	camera->SetFieldOfView(defaultFOV);
+	targetFOV = defaultFOV;
 }
 
 // Called every frame
@@ -53,6 +60,9 @@ void ASCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	float nextFOV = FMath::FInterpTo(camera->FieldOfView, targetFOV, DeltaTime, fovTransitionSpeed);
+
+	camera->SetFieldOfView(nextFOV);
 }
 
 // Called to bind functionality to input
