@@ -64,7 +64,8 @@ void ASProjectile::provokeRadialDamage(const FHitResult& hit)
 	float damage = 40.0f;
 	float damageRadius = 200.0f;
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
-	UGameplayStatics::ApplyRadialDamage(this, damage, this->GetActorLocation(), damageRadius, damageType, ignoredActors, this,this->GetInstigatorController(), true, ECC_Visibility);
+	UGameplayStatics::ApplyRadialDamage(this, damage, this->GetActorLocation(), damageRadius, damageType, 
+											ignoredActors, this,this->GetInstigatorController(), true, ECC_Visibility);
 
 	if (hitImpactEffect)//if it was assigned
 	{
