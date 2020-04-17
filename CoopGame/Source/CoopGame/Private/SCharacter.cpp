@@ -60,9 +60,11 @@ void ASCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	float nextFOV = FMath::FInterpTo(camera->FieldOfView, targetFOV, DeltaTime, fovTransitionSpeed);
-
-	camera->SetFieldOfView(nextFOV);
+	if(targetFOV != camera->FieldOfView)//someone pressed or released the zoom binding
+	{
+		float nextFOV = FMath::FInterpTo(camera->FieldOfView, targetFOV, DeltaTime, fovTransitionSpeed);
+		camera->SetFieldOfView(nextFOV);
+	}
 }
 
 // Called to bind functionality to input
