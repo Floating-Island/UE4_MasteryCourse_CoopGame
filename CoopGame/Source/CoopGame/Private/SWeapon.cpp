@@ -74,6 +74,14 @@ void ASWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirection, FH
 	}
 }
 
+void ASWeapon::muzzleFireFlash()
+{
+	if(muzzleEffect)//only if a muzzle effect was assigned
+	{
+		UGameplayStatics::SpawnEmitterAttached(muzzleEffect, mesh, muzzleSocket);//emits the muzzle effect when firing the weapon
+	}
+}
+
 void ASWeapon::fire()
 {
 	//first it has to trace the world from the pawn's eyes to the crosshair (at the center of the screen)
@@ -82,10 +90,7 @@ void ASWeapon::fire()
 
 	if(weaponOwner)
 	{
-		if(muzzleEffect)//only if a muzzle effect was assigned
-		{
-			UGameplayStatics::SpawnEmitterAttached(muzzleEffect, mesh, muzzleSocket);//emits the muzzle effect when firing the weapon
-		}
+		muzzleFireFlash();
 
 		
 		FVector eyesLocation;//will be used as the starting point for our trace

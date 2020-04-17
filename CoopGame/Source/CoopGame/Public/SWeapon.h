@@ -22,6 +22,7 @@ public:
 protected:
 	void tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance);
 	void processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked);
+	void muzzleFireFlash();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* mesh;
