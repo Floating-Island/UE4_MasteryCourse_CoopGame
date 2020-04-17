@@ -1,0 +1,15 @@
+C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Intermediate\Build\Win64\UE4Editor\Development\CoopGame\Definitions.CoopGame.h
+C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source\CoopGame\Public\SGrenadeProjectile.h
+C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source\CoopGame\Public\SProjectile.h
+C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Intermediate\Build\Win64\UE4Editor\Inc\CoopGame\SProjectile.generated.h
+C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Intermediate\Build\Win64\UE4Editor\Inc\CoopGame\SGrenadeProjectile.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Kismet/KismetSystemLibrary.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Engine/CollisionProfile.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CollisionProfile.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetSystemLibrary.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Sound/DialogueTypes.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DialogueTypes.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h

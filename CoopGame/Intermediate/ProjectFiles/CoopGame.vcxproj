@@ -365,10 +365,12 @@
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeLauncher.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SRifle.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SWeapon.cpp" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeLauncher.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SRifle.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SWeapon.h" />
