@@ -25,6 +25,10 @@ ASCharacter::ASCharacter()
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;//necessary to allow the pawn to crouch
 
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanJump = true;//necessary to allow the pawn to jump
+
+	defaultFOV = camera->FieldOfView;
+
+	zoomFOV = 65.0f;
 }
 
 // Called when the game starts or when spawned
@@ -32,6 +36,16 @@ void ASCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ASCharacter::beginZoom()
+{
+	camera->SetFieldOfView(zoomFOV);
+}
+
+void ASCharacter::endZoom()
+{
+	camera->SetFieldOfView(defaultFOV);
 }
 
 // Called every frame
@@ -60,6 +74,10 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	//character jump binding
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::jump);
+
+	//character zoom binding
+	PlayerInputComponent->BindAction("Zoom", IE_Pressed, this, &ASCharacter::beginZoom);
+	PlayerInputComponent->BindAction("Zoom", IE_Released, this, &ASCharacter::endZoom);
 }
 
 FVector ASCharacter::GetPawnViewLocation() const

@@ -45,6 +45,16 @@ protected:
 
 	//jumping
 	void jump();
+
+	//zooming
+	float defaultFOV;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float zoomFOV;
+
+	void beginZoom();
+
+	void endZoom();
 	
 public:	
 	// Called every frame
