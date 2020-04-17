@@ -20,8 +20,6 @@ public:
 	ASWeapon();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 	void tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance);
 	void processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked);
 
@@ -51,8 +49,4 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
 		UParticleSystem* tracerEffect;
-	
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 };
