@@ -18,12 +18,11 @@ ASProjectile::ASProjectile()
 	PrimaryActorTick.bCanEverTick = true;
 
 	mesh = CreateDefaultSubobject < UStaticMeshComponent>(TEXT("Mesh Component"));//creates component 
-	RootComponent = mesh;
 	
 	
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileComp"));
-	ProjectileMovement->UpdatedComponent = RootComponent;
+	ProjectileMovement->UpdatedComponent = mesh;
 	ProjectileMovement->InitialSpeed = 3000.f;
 	ProjectileMovement->MaxSpeed = 3000.f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
@@ -63,9 +62,9 @@ void ASProjectile::provokeRadialDamage(const FHitResult& hit)
 	AActor* hitActor = hit.GetActor();
 
 	float damage = 40.0f;
-	float damageRadius = 50.0f;
+	float damageRadius = 200.0f;
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
-	UGameplayStatics::ApplyRadialDamage(this, damage, this->GetActorLocation(), damageRadius, damageType, ignoredActors, this->GetOwner(),this->GetInstigatorController(), true, ECC_Visibility);
+	UGameplayStatics::ApplyRadialDamage(this, damage, this->GetActorLocation(), damageRadius, damageType, ignoredActors, this,this->GetInstigatorController(), true, ECC_Visibility);
 
 	if (hitImpactEffect)//if it was assigned
 	{
