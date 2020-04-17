@@ -9,6 +9,17 @@
 //#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location
 #include "Particles/ParticleSystemComponent.h"
 
+
+//debug variables:
+static int32 DebugWeaponDrawing = 0;
+FAutoConsoleVariableRef ConsoleDebugWeaponDrawing(
+TEXT("COOP.DebugWeapons")/*command used in console*/,
+	DebugWeaponDrawing /*variable that holds the value*/,
+	TEXT("Draw Debug lines for weapons") /*help information*/,
+	ECVF_Cheat /*works only when cheats are enabled*/
+);
+
+
 // Sets default values
 ASWeapon::ASWeapon()
 {
@@ -108,7 +119,10 @@ void ASWeapon::fire()
 
 		tracerEffectSpawn(hitBlocked, hit, traceDistance);//create beam to represent bullet trajectory 
 
-		DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
+		if(DebugWeaponDrawing > 0)
+		{
+			DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
+		}
 		
 	}
 	
