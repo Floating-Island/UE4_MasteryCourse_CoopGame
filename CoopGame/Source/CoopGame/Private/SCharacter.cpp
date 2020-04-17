@@ -5,7 +5,9 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
+#include "Components/InputComponent.h"
 
+#include "SWeapon.h"
 
 // Sets default values
 ASCharacter::ASCharacter()
@@ -55,6 +57,14 @@ void ASCharacter::endZoom()
 	targetFOV = defaultFOV;
 }
 
+void ASCharacter::fire()
+{
+	if(weaponHeld)
+	{
+		weaponHeld->fire();
+	}
+}
+
 // Called every frame
 void ASCharacter::Tick(float DeltaTime)
 {
@@ -90,6 +100,9 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	//character zoom binding
 	PlayerInputComponent->BindAction("Zoom", IE_Pressed, this, &ASCharacter::beginZoom);
 	PlayerInputComponent->BindAction("Zoom", IE_Released, this, &ASCharacter::endZoom);
+
+	//fire weapon binding
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASCharacter::fire);
 }
 
 FVector ASCharacter::GetPawnViewLocation() const

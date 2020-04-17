@@ -18,6 +18,8 @@ class COOPGAME_API ASWeapon : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ASWeapon();
+	UFUNCTION(BlueprintCallable, Category = "Weapon")
+		virtual void fire();
 
 protected:
 	void tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance);
@@ -27,8 +29,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* mesh;
 
-	UFUNCTION(BlueprintCallable, Category = "Weapon")
-	virtual void fire();
+
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	TSubclassOf<UDamageType> typeOfDamage;
