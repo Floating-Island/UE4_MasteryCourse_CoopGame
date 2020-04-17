@@ -8,13 +8,47 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPrimitiveComponent;
+class AActor;
+struct FVector;
+struct FHitResult;
 #ifdef COOPGAME_SProjectile_generated_h
 #error "SProjectile.generated.h already included, missing '#pragma once' in SProjectile.h"
 #endif
 #define COOPGAME_SProjectile_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_RPC_WRAPPERS
-#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_RPC_WRAPPERS_NO_PURE_DECLS
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execOnHit) \
+	{ \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_HitComp); \
+		P_GET_OBJECT(AActor,Z_Param_OtherActor); \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_OtherComp); \
+		P_GET_STRUCT(FVector,Z_Param_NormalImpulse); \
+		P_GET_STRUCT_REF(FHitResult,Z_Param_Out_hit); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->OnHit(Z_Param_HitComp,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_NormalImpulse,Z_Param_Out_hit); \
+		P_NATIVE_END; \
+	}
+
+
+#define CoopGame_Source_CoopGame_Public_SProjectile_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execOnHit) \
+	{ \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_HitComp); \
+		P_GET_OBJECT(AActor,Z_Param_OtherActor); \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_OtherComp); \
+		P_GET_STRUCT(FVector,Z_Param_NormalImpulse); \
+		P_GET_STRUCT_REF(FHitResult,Z_Param_Out_hit); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->OnHit(Z_Param_HitComp,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_NormalImpulse,Z_Param_Out_hit); \
+		P_NATIVE_END; \
+	}
+
+
 #define CoopGame_Source_CoopGame_Public_SProjectile_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASProjectile(); \
@@ -59,6 +93,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASProjectile); \
 
 #define CoopGame_Source_CoopGame_Public_SProjectile_h_16_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__collisionComponent() { return STRUCT_OFFSET(ASProjectile, collisionComponent); } \
+	FORCEINLINE static uint32 __PPO__mesh() { return STRUCT_OFFSET(ASProjectile, mesh); } \
 	FORCEINLINE static uint32 __PPO__ProjectileMovement() { return STRUCT_OFFSET(ASProjectile, ProjectileMovement); } \
 	FORCEINLINE static uint32 __PPO__hitImpactEffect() { return STRUCT_OFFSET(ASProjectile, hitImpactEffect); }
 

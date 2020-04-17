@@ -3,9 +3,11 @@
 
 #include "SProjectile.h"
 
+
 #include "Kismet/GameplayStatics.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/SphereComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "TimerManager.h"
 
@@ -35,6 +37,9 @@ ASProjectile::ASProjectile()
 	ProjectileMovement->MaxSpeed = 3000.f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
+
+	mesh = CreateDefaultSubobject < UStaticMeshComponent>(TEXT("Mesh Component"));//creates component 
+	mesh->SetupAttachment(RootComponent);
 	
 
 	
@@ -63,8 +68,7 @@ void ASProjectile::provokeRadialDamage(const FHitResult& hit)
 	float damage = 40.0f;
 	float damageRadius = 50.0f;
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
-	UGameplayStatics::ApplyRadialDamage(hitActor, damage, this->GetActorLocation(), damageRadius, damageType, ignoredActors, this,this->GetOwner()->GetOwner()->GetInstigatorController(), true, ECC_Visibility);
-	//ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
+	UGameplayStatics::ApplyRadialDamage(this, damage, this->GetActorLocation(), damageRadius, damageType, ignoredActors, this->GetOwner(),this->GetInstigatorController(), true, ECC_Visibility);
 
 	if (hitImpactEffect)//if it was assigned
 	{

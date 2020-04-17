@@ -3,9 +3,7 @@
 
 #include "SGrenadeLauncher.h"
 #include "Components/SkeletalMeshComponent.h"//used to get the muzzle socket location
-#include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
-#include "Components/PrimitiveComponent.h"
 
 #include "SProjectile.h"
 
@@ -19,26 +17,27 @@ ASGrenadeLauncher::ASGrenadeLauncher()
 void ASGrenadeLauncher::fire()
 {
 	AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon
-
+	
 	if (weaponOwner)
 	{
 		if (muzzleEffect)//only if a muzzle effect was assigned
 		{
 			UGameplayStatics::SpawnEmitterAttached(muzzleEffect, mesh, muzzleSocket);//emits the muzzle effect when firing the weapon
 		}
-		
+		FVector muzzleLocation = mesh->GetSocketLocation(muzzleSocket);
+		FRotator muzzleRotation = mesh->GetSocketRotation(muzzleSocket);
 
-		FVector MuzzleLocation = mesh->GetSocketLocation("Muzzle");
-		FRotator MuzzleRotation = mesh->GetSocketRotation("Muzzle");
+
+		FVector eyesLocation;
+		FRotator eyesRotation;
+		weaponOwner->GetActorEyesViewPoint(eyesLocation, eyesRotation);//now we have the eyes's location and rotation
 
 		//Set Spawn Collision Handling Override
 		FActorSpawnParameters ActorSpawnParams;
-		ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+		ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		ActorSpawnParams.Owner = this;;
 
-		ASProjectile* bullet;
-		// spawn the bullet at the muzzle
-		bullet = GetWorld()->SpawnActor<ASProjectile>(ProjectileClass, MuzzleLocation, MuzzleRotation, ActorSpawnParams);
-
-		
+		//spawn the projectile
+		GetWorld()->SpawnActor<ASProjectile>(ProjectileClass, muzzleLocation, eyesRotation, ActorSpawnParams);
 	}
 }

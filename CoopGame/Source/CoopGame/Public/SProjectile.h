@@ -27,6 +27,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Projectile")
 		USphereComponent* collisionComponent;
 
+	UPROPERTY(VisibleAnywhere, Category = "Components")//UE4 now is able to see and edit this
+		UStaticMeshComponent* mesh;//to be able to show it.
+
 	/** Projectile movement component */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
 		UProjectileMovementComponent* ProjectileMovement;
