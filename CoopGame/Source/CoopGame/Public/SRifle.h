@@ -36,5 +36,5 @@ public:
 	ASRifle();
 
 	void fire() override;
-	void reactAtPhysicsMaterial(FHitResult hit);
+	void reactAtPhysicsMaterial(FHitResult hit);//should be in a projectile
 };

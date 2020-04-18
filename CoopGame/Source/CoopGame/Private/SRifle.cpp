@@ -8,6 +8,8 @@
 #include "DrawDebugHelpers.h"//for debugging
 #include "PhysicalMaterials/PhysicalMaterial.h"
 
+#include "CoopGame.h"
+
 //debug variables:
 static int32 DebugRifleDrawing = 0;
 FAutoConsoleVariableRef ConsoleDebugRifleDrawing(
@@ -77,7 +79,7 @@ void ASRifle::fire()
 
 
 		FHitResult hit;//struct containing hit information
-		bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, ECC_Visibility, collisionParameters);
+		bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, COLLISION_WEAPON_CHANNEL, collisionParameters);
 		//ECC_Visibility is used now because everything that blocks that channel, will block the trace.
 		//That thing that blocks will be something that can be damaged
 		processPointDamage(weaponOwner, shotDirection, hit, hitBlocked);
