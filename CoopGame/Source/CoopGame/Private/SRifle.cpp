@@ -6,6 +6,7 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"//for debugging
+#include "PhysicalMaterials/PhysicalMaterial.h"
 
 //debug variables:
 static int32 DebugRifleDrawing = 0;
@@ -20,6 +21,10 @@ FAutoConsoleVariableRef ConsoleDebugRifleDrawing(
 ASRifle::ASRifle()
 {
 	tracerTarget = "BeamEnd";
+
+	physicalMaterialsMap.Add(SurfaceType_Default, &DefaultHitImpactEffect);
+	physicalMaterialsMap.Add(SurfaceType1, &FleshImpactEffect);
+	physicalMaterialsMap.Add(SurfaceType2, &FleshImpactEffect);
 }
 
 void ASRifle::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)
@@ -68,6 +73,7 @@ void ASRifle::fire()
 		collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
 		collisionParameters.AddIgnoredActor(this);//ignore also the weapon in the trace
 		collisionParameters.bTraceComplex = true;//traces against each individual triangle from the traced mesh. Gives the exact result of where we hit something. It's more expensive
+		collisionParameters.bReturnPhysicalMaterial = true;
 
 
 		FHitResult hit;//struct containing hit information
@@ -89,6 +95,25 @@ void ASRifle::fire()
 	}
 }
 
+void ASRifle::reactAtPhysicsMaterial(FHitResult hit)
+{
+	EPhysicalSurface surfaceHit = UPhysicalMaterial::DetermineSurfaceType(hit.PhysMaterial.Get());
+		
+	UParticleSystem* selectedHitImpactEffect = *(*(physicalMaterialsMap.Find(surfaceHit)));
+
+	if(!selectedHitImpactEffect)
+	{
+		selectedHitImpactEffect = DefaultHitImpactEffect;
+	}
+		
+	if (selectedHitImpactEffect)//if it was assigned
+	{
+		//spawn impact effect
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), selectedHitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
+		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
+	}
+}
+
 void ASRifle::processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked)
 {
 	if (hitBlocked)//something got hit by the trace
@@ -98,12 +123,7 @@ void ASRifle::processPointDamage(AActor* weaponOwner, FVector shotDirection, FHi
 
 
 		UGameplayStatics::ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
-
-		if (hitImpactEffect)//if it was assigned
-		{
-			//spawn impact effect
-			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
-			//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
-		}
+	
+		reactAtPhysicsMaterial(hit);
 	}
 }
