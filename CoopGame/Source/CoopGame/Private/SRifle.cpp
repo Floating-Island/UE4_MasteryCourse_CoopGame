@@ -25,8 +25,8 @@ ASRifle::ASRifle()
 	tracerTarget = "BeamEnd";
 
 	physicalMaterialsMap.Add(SurfaceType_Default, &DefaultHitImpactEffect);
-	physicalMaterialsMap.Add(SurfaceType1, &FleshImpactEffect);
-	physicalMaterialsMap.Add(SurfaceType2, &FleshImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_DEFAULT, &FleshImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_VULNERABLE, &FleshImpactEffect);
 }
 
 void ASRifle::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)
@@ -97,9 +97,8 @@ void ASRifle::fire()
 	}
 }
 
-void ASRifle::reactAtPhysicsMaterial(FHitResult hit)
+void ASRifle::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit)
 {
-	EPhysicalSurface surfaceHit = UPhysicalMaterial::DetermineSurfaceType(hit.PhysMaterial.Get());
 		
 	UParticleSystem* selectedHitImpactEffect = *(*(physicalMaterialsMap.Find(surfaceHit)));
 
@@ -120,12 +119,18 @@ void ASRifle::processPointDamage(AActor* weaponOwner, FVector shotDirection, FHi
 {
 	if (hitBlocked)//something got hit by the trace
 	{
-		//process damage
+		//process baseDamage
 		AActor* hitActor = hit.GetActor();
 
+		EPhysicalSurface surfaceHit = UPhysicalMaterial::DetermineSurfaceType(hit.PhysMaterial.Get());
 
-		UGameplayStatics::ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
+		float actualDamage = baseDamage;
+		if(surfaceHit == SURFACE_FLESH_VULNERABLE)
+		{
+			actualDamage += bonusDamage;
+		}
+		UGameplayStatics::ApplyPointDamage(hitActor, actualDamage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
 	
-		reactAtPhysicsMaterial(hit);
+		reactAtPhysicsMaterial(hit, surfaceHit);
 	}
 }

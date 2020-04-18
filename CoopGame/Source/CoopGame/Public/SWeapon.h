@@ -15,12 +15,12 @@ UCLASS()
 class COOPGAME_API ASWeapon : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ASWeapon();
 	UFUNCTION(BlueprintCallable, Category = "Weapon")
-		virtual void fire();
+	virtual void fire();
 
 protected:
 	void muzzleFireFlash();
@@ -32,15 +32,18 @@ protected:
 	TSubclassOf<UDamageType> typeOfDamage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	float damage;
+	float baseDamage;
 
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//no need to edit it
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	float bonusDamage;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //no need to edit it
 	FName muzzleSocket;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //secure way to expose it
 	UParticleSystem* muzzleEffect;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Weapon")//not everything has to be exposed to blueprints
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon") //not everything has to be exposed to blueprints
 	TSubclassOf<UCameraShake> recoilCameraShake;
 
 	void recoilShakingCamera(AActor* weaponOwnerActor);

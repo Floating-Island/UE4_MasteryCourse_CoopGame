@@ -27,7 +27,9 @@ ASWeapon::ASWeapon()
 
 	muzzleSocket = "MuzzleSocket";
 
-	damage = 20.0f;
+	baseDamage = 20.0f;
+
+	bonusDamage = 30.0f;
 }
 
 void ASWeapon::muzzleFireFlash()
