@@ -127,7 +127,7 @@ void EmptyLinkFunctionForGeneratedCodeSRifle() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASRifle, 4150805205);
+	IMPLEMENT_CLASS(ASRifle, 791162613);
 	template<> COOPGAME_API UClass* StaticClass<ASRifle>()
 	{
 		return ASRifle::StaticClass();
