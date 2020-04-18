@@ -7,10 +7,17 @@
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
+
+#include "CoopGame.h"
 
 // Sets default values
 ASProjectile::ASProjectile()
 {
+	physicalMaterialsMap.Add(SurfaceType_Default, &DefaultHitImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_DEFAULT, &FleshImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_VULNERABLE, &FleshImpactEffect);
+	
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -35,7 +42,9 @@ ASProjectile::ASProjectile()
 	collisionComponent->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
 	collisionComponent->CanCharacterStepUpOn = ECB_No;
 
-	damage = 40.0f;
+	baseDamage = 40.0f;
+
+	bonusDamage = 60.0f;
 }
 
 
@@ -51,5 +60,22 @@ void ASProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void ASProjectile::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit)
+{
+	UParticleSystem* selectedHitImpactEffect = *(*(physicalMaterialsMap.Find(surfaceHit)));
+
+	if (!selectedHitImpactEffect)
+	{
+		selectedHitImpactEffect = DefaultHitImpactEffect;
+	}
+
+	if (selectedHitImpactEffect)//if it was assigned
+	{
+		//spawn impact effect
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), selectedHitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
+		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
+	}
 }
 

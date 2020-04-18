@@ -32,6 +32,10 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeProjectile() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_damageRadius_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_damageRadius;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_explosionCountdown_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_explosionCountdown;
@@ -50,14 +54,22 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeProjectile() {}
 	};
 #endif
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_damageRadius_MetaData[] = {
+		{ "Category", "Explosion" },
+		{ "ModuleRelativePath", "Public/SGrenadeProjectile.h" },
+		{ "ToolTip", "timer for explosion" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_damageRadius = { "damageRadius", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASGrenadeProjectile, damageRadius), METADATA_PARAMS(Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_damageRadius_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_damageRadius_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionCountdown_MetaData[] = {
 		{ "Category", "Explosion" },
 		{ "ModuleRelativePath", "Public/SGrenadeProjectile.h" },
-		{ "ToolTip", "secure way to expose it" },
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionCountdown = { "explosionCountdown", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASGrenadeProjectile, explosionCountdown), METADATA_PARAMS(Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionCountdown_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionCountdown_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASGrenadeProjectile_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_damageRadius,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionCountdown,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASGrenadeProjectile_Statics::StaticCppClassTypeInfo = {
@@ -87,7 +99,7 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeProjectile() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASGrenadeProjectile, 1419872840);
+	IMPLEMENT_CLASS(ASGrenadeProjectile, 1170076537);
 	template<> COOPGAME_API UClass* StaticClass<ASGrenadeProjectile>()
 	{
 		return ASGrenadeProjectile::StaticClass();

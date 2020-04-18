@@ -58,7 +58,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASGrenadeProjectile); \
 
 
 #define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_15_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__explosionCountdown() { return STRUCT_OFFSET(ASGrenadeProjectile, explosionCountdown); }
+	FORCEINLINE static uint32 __PPO__explosionCountdown() { return STRUCT_OFFSET(ASGrenadeProjectile, explosionCountdown); } \
+	FORCEINLINE static uint32 __PPO__damageRadius() { return STRUCT_OFFSET(ASGrenadeProjectile, damageRadius); }
 
 
 #define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_12_PROLOG

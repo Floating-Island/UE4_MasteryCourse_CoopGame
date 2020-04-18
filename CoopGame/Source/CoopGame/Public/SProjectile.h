@@ -14,7 +14,8 @@ UCLASS()
 class COOPGAME_API ASProjectile : public AActor
 {
 	GENERATED_BODY()
-	
+private:
+	TMap<EPhysicalSurface, UParticleSystem**> physicalMaterialsMap;
 public:	
 	// Sets default values for this actor's properties
 	ASProjectile();
@@ -35,8 +36,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
 		UProjectileMovementComponent* ProjectileMovement;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")//secure way to expose it
-		UParticleSystem* hitImpactEffect;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		UParticleSystem* DefaultHitImpactEffect;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		UParticleSystem* FleshImpactEffect;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -46,8 +50,12 @@ public:
 		TSubclassOf<UDamageType> damageType;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
-		float damage;
+		float baseDamage;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		float bonusDamage;
+
+	void reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit);
 
 	///** called when projectile hits something */
 	//UFUNCTION()

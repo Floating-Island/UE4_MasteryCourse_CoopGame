@@ -28,7 +28,8 @@ void ASGrenadeLauncher::fire()
 		//Set Spawn Collision Handling Override
 		FActorSpawnParameters ActorSpawnParams;
 		ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-		ActorSpawnParams.Owner = this;;
+		ActorSpawnParams.Owner = weaponOwner;
+		ActorSpawnParams.Instigator = weaponOwner->GetInstigator();
 
 		//spawn the projectile
 		GetWorld()->SpawnActor<ASProjectile>(ProjectileClass, muzzleLocation, eyesRotation, ActorSpawnParams);
