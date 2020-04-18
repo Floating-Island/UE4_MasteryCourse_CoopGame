@@ -13,28 +13,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COOPGAME_SWeapon_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_17_RPC_WRAPPERS \
- \
-	DECLARE_FUNCTION(execfire) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->fire(); \
-		P_NATIVE_END; \
-	}
-
-
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execfire) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->fire(); \
-		P_NATIVE_END; \
-	}
-
-
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_17_RPC_WRAPPERS
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_17_RPC_WRAPPERS_NO_PURE_DECLS
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASWeapon(); \
@@ -84,7 +64,9 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASWeapon); \
 	FORCEINLINE static uint32 __PPO__bonusDamage() { return STRUCT_OFFSET(ASWeapon, bonusDamage); } \
 	FORCEINLINE static uint32 __PPO__muzzleSocket() { return STRUCT_OFFSET(ASWeapon, muzzleSocket); } \
 	FORCEINLINE static uint32 __PPO__muzzleEffect() { return STRUCT_OFFSET(ASWeapon, muzzleEffect); } \
-	FORCEINLINE static uint32 __PPO__recoilCameraShake() { return STRUCT_OFFSET(ASWeapon, recoilCameraShake); }
+	FORCEINLINE static uint32 __PPO__recoilCameraShake() { return STRUCT_OFFSET(ASWeapon, recoilCameraShake); } \
+	FORCEINLINE static uint32 __PPO__DefaultHitImpactEffect() { return STRUCT_OFFSET(ASWeapon, DefaultHitImpactEffect); } \
+	FORCEINLINE static uint32 __PPO__FleshImpactEffect() { return STRUCT_OFFSET(ASWeapon, FleshImpactEffect); }
 
 
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_14_PROLOG

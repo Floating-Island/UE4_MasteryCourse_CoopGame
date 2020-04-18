@@ -23,10 +23,11 @@ FAutoConsoleVariableRef ConsoleDebugRifleDrawing(
 ASRifle::ASRifle()
 {
 	tracerTarget = "BeamEnd";
+}
 
-	physicalMaterialsMap.Add(SurfaceType_Default, &DefaultHitImpactEffect);
-	physicalMaterialsMap.Add(SURFACE_FLESH_DEFAULT, &FleshImpactEffect);
-	physicalMaterialsMap.Add(SURFACE_FLESH_VULNERABLE, &FleshImpactEffect);
+void ASRifle::startFire()
+{
+	fire();
 }
 
 void ASRifle::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)
@@ -97,23 +98,7 @@ void ASRifle::fire()
 	}
 }
 
-void ASRifle::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit)
-{
-		
-	UParticleSystem* selectedHitImpactEffect = *(*(physicalMaterialsMap.Find(surfaceHit)));
 
-	if(!selectedHitImpactEffect)
-	{
-		selectedHitImpactEffect = DefaultHitImpactEffect;
-	}
-		
-	if (selectedHitImpactEffect)//if it was assigned
-	{
-		//spawn impact effect
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), selectedHitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
-		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
-	}
-}
 
 void ASRifle::processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked)
 {

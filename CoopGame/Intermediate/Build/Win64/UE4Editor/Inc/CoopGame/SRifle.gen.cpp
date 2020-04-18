@@ -40,14 +40,6 @@ void EmptyLinkFunctionForGeneratedCodeSRifle() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_tracerTarget_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FNamePropertyParams NewProp_tracerTarget;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FleshImpactEffect_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_FleshImpactEffect;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DefaultHitImpactEffect_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_DefaultHitImpactEffect;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -78,27 +70,9 @@ void EmptyLinkFunctionForGeneratedCodeSRifle() {}
 	};
 #endif
 	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_ASRifle_Statics::NewProp_tracerTarget = { "tracerTarget", nullptr, (EPropertyFlags)0x0020080000030015, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASRifle, tracerTarget), METADATA_PARAMS(Z_Construct_UClass_ASRifle_Statics::NewProp_tracerTarget_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASRifle_Statics::NewProp_tracerTarget_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASRifle_Statics::NewProp_FleshImpactEffect_MetaData[] = {
-		{ "Category", "Weapon" },
-		{ "ModuleRelativePath", "Public/SRifle.h" },
-		{ "ToolTip", "secure way to expose it" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASRifle_Statics::NewProp_FleshImpactEffect = { "FleshImpactEffect", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASRifle, FleshImpactEffect), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASRifle_Statics::NewProp_FleshImpactEffect_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASRifle_Statics::NewProp_FleshImpactEffect_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASRifle_Statics::NewProp_DefaultHitImpactEffect_MetaData[] = {
-		{ "Category", "Weapon" },
-		{ "ModuleRelativePath", "Public/SRifle.h" },
-		{ "ToolTip", "secure way to expose it" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASRifle_Statics::NewProp_DefaultHitImpactEffect = { "DefaultHitImpactEffect", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASRifle, DefaultHitImpactEffect), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASRifle_Statics::NewProp_DefaultHitImpactEffect_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASRifle_Statics::NewProp_DefaultHitImpactEffect_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASRifle_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASRifle_Statics::NewProp_tracerEffect,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASRifle_Statics::NewProp_tracerTarget,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASRifle_Statics::NewProp_FleshImpactEffect,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASRifle_Statics::NewProp_DefaultHitImpactEffect,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASRifle_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ASRifle>::IsAbstract,
@@ -127,7 +101,7 @@ void EmptyLinkFunctionForGeneratedCodeSRifle() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASRifle, 791162613);
+	IMPLEMENT_CLASS(ASRifle, 344086540);
 	template<> COOPGAME_API UClass* StaticClass<ASRifle>()
 	{
 		return ASRifle::StaticClass();

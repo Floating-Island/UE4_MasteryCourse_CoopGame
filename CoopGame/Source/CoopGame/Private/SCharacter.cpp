@@ -59,6 +59,22 @@ void ASCharacter::attachWeapon()
 	}
 }
 
+void ASCharacter::startFire()
+{
+	if(heldWeapon)
+	{
+		heldWeapon->startFire();
+	}
+}
+
+void ASCharacter::stopFire()
+{
+	if(heldWeapon)
+	{
+		heldWeapon->stopFire();
+	}
+}
+
 // Called when the game starts or when spawned
 void ASCharacter::BeginPlay()
 {
@@ -81,7 +97,7 @@ void ASCharacter::fire()
 {
 	if(heldWeapon)
 	{
-		heldWeapon->fire();
+		heldWeapon->startFire();
 	}
 }
 
@@ -122,7 +138,8 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAction("Zoom", IE_Released, this, &ASCharacter::endZoom);
 
 	//fire weapon binding
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASCharacter::fire);
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASCharacter::startFire);
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASCharacter::stopFire);
 }
 
 FVector ASCharacter::GetPawnViewLocation() const

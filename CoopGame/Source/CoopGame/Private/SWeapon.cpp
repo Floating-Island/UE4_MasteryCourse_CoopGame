@@ -5,9 +5,11 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"
 //#include "Particles/ParticleSystem.h"//used to spawn effects
 //#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location
 
+#include "CoopGame.h"
 
 //debug variables:
 static int32 DebugWeaponDrawing = 0;
@@ -27,9 +29,22 @@ ASWeapon::ASWeapon()
 
 	muzzleSocket = "MuzzleSocket";
 
+	physicalMaterialsMap.Add(SurfaceType_Default, &DefaultHitImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_DEFAULT, &FleshImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_VULNERABLE, &FleshImpactEffect);
+
 	baseDamage = 20.0f;
 
 	bonusDamage = 30.0f;
+}
+
+void ASWeapon::startFire()
+{
+	fire();
+}
+
+void ASWeapon::stopFire()
+{
 }
 
 void ASWeapon::muzzleFireFlash()
@@ -37,6 +52,24 @@ void ASWeapon::muzzleFireFlash()
 	if(muzzleEffect)//only if a muzzle effect was assigned
 	{
 		UGameplayStatics::SpawnEmitterAttached(muzzleEffect, mesh, muzzleSocket);//emits the muzzle effect when firing the weapon
+	}
+}
+
+void ASWeapon::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit)
+{
+
+	UParticleSystem* selectedHitImpactEffect = *(*(physicalMaterialsMap.Find(surfaceHit)));
+
+	if (!selectedHitImpactEffect)
+	{
+		selectedHitImpactEffect = DefaultHitImpactEffect;
+	}
+
+	if (selectedHitImpactEffect)//if it was assigned
+	{
+		//spawn impact effect
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), selectedHitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
+		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
 	}
 }
 

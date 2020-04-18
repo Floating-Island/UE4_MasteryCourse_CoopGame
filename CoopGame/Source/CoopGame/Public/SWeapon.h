@@ -19,8 +19,10 @@ class COOPGAME_API ASWeapon : public AActor
 public:
 	// Sets default values for this actor's properties
 	ASWeapon();
-	UFUNCTION(BlueprintCallable, Category = "Weapon")
-	virtual void fire();
+
+	virtual void startFire();
+
+	virtual void stopFire();
 
 protected:
 	void muzzleFireFlash();
@@ -45,6 +47,19 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon") //not everything has to be exposed to blueprints
 	TSubclassOf<UCameraShake> recoilCameraShake;
+
+	
+	TMap<EPhysicalSurface, UParticleSystem**> physicalMaterialsMap;//to map surface types
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
+		UParticleSystem* DefaultHitImpactEffect;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
+		UParticleSystem* FleshImpactEffect;
+
+	void reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit);//should be in a projectile
+	
+	virtual void fire();
 
 	void recoilShakingCamera(AActor* weaponOwnerActor);
 };

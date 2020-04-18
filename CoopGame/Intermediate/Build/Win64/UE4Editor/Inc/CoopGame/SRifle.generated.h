@@ -58,8 +58,6 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASRifle); \
 
 
 #define CoopGame_Source_CoopGame_Public_SRifle_h_16_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__DefaultHitImpactEffect() { return STRUCT_OFFSET(ASRifle, DefaultHitImpactEffect); } \
-	FORCEINLINE static uint32 __PPO__FleshImpactEffect() { return STRUCT_OFFSET(ASRifle, FleshImpactEffect); } \
 	FORCEINLINE static uint32 __PPO__tracerTarget() { return STRUCT_OFFSET(ASRifle, tracerTarget); } \
 	FORCEINLINE static uint32 __PPO__tracerEffect() { return STRUCT_OFFSET(ASRifle, tracerEffect); }
 

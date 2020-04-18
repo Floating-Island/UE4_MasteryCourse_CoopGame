@@ -12,6 +12,11 @@ ASGrenadeLauncher::ASGrenadeLauncher()
 {
 }
 
+void ASGrenadeLauncher::startFire()
+{
+	fire();
+}
+
 void ASGrenadeLauncher::fire()
 {
 	AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon

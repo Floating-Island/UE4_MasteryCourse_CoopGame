@@ -20,6 +20,10 @@ public:
 	ASCharacter();
 	void attachWeapon();
 
+	void startFire();
+
+	void stopFire();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
