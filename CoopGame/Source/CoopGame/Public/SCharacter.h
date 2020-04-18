@@ -75,8 +75,6 @@ protected:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Weapon")
 		FName weaponSocket;
-
-	void fire();
 	
 public:	
 	// Called every frame

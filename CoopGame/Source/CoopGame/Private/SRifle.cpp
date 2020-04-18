@@ -7,6 +7,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"//for debugging
 #include "PhysicalMaterials/PhysicalMaterial.h"
+#include "TimerManager.h"
 
 #include "CoopGame.h"
 
@@ -27,7 +28,14 @@ ASRifle::ASRifle()
 
 void ASRifle::startFire()
 {
-	fire();
+	const float firstDelay = FMath::Max(0.0f, lastFireTime + timeBetweenShots - GetWorld()->TimeSeconds);
+
+	GetWorldTimerManager().SetTimer(timeBetweenShotsTimer, this, &ASRifle::fire ,timeBetweenShots, true, firstDelay);
+}
+
+void ASRifle::stopFire()
+{
+	GetWorldTimerManager().ClearTimer(timeBetweenShotsTimer);
 }
 
 void ASRifle::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)
@@ -92,7 +100,7 @@ void ASRifle::fire()
 		{
 			DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
 		}
-
+		lastFireTime = GetWorld()->TimeSeconds;
 		Super::recoilShakingCamera(weaponOwner);
 
 	}

@@ -25,6 +25,8 @@ public:
 	virtual void stopFire();
 
 protected:
+	virtual void BeginPlay() override;
+	
 	void muzzleFireFlash();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
@@ -51,13 +53,25 @@ protected:
 	
 	TMap<EPhysicalSurface, UParticleSystem**> physicalMaterialsMap;//to map surface types
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		UParticleSystem* DefaultHitImpactEffect;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		UParticleSystem* FleshImpactEffect;
 
 	void reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit);//should be in a projectile
+
+	//fire rate timers
+	FTimerHandle timeBetweenShotsTimer;
+
+	float lastFireTime;
+
+	/*Bullets per minute*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		float fireRate;
+
+	/*Inverse of fireRate (in seconds)*/
+	float timeBetweenShots;
 	
 	virtual void fire();
 

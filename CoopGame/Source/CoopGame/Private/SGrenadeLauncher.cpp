@@ -4,6 +4,7 @@
 #include "SGrenadeLauncher.h"
 #include "Components/SkeletalMeshComponent.h"//used to get the muzzle socket location
 #include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
 
 #include "SProjectile.h"
 
@@ -14,7 +15,14 @@ ASGrenadeLauncher::ASGrenadeLauncher()
 
 void ASGrenadeLauncher::startFire()
 {
-	fire();
+	const float firstDelay = FMath::Max(0.0f, lastFireTime + timeBetweenShots - GetWorld()->TimeSeconds);
+
+	GetWorldTimerManager().SetTimer(timeBetweenShotsTimer, this, &ASGrenadeLauncher::fire, timeBetweenShots, true, firstDelay);
+}
+
+void ASGrenadeLauncher::stopFire()
+{
+	GetWorldTimerManager().ClearTimer(timeBetweenShotsTimer);
 }
 
 void ASGrenadeLauncher::fire()
@@ -39,6 +47,7 @@ void ASGrenadeLauncher::fire()
 		//spawn the projectile
 		GetWorld()->SpawnActor<ASProjectile>(ProjectileClass, muzzleLocation, eyesRotation, ActorSpawnParams);
 
+		lastFireTime = GetWorld()->TimeSeconds;
 		Super::recoilShakingCamera(weaponOwner);
 	}
 }

@@ -6,6 +6,7 @@
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
+//#include "TimerManager.h"//call it when you need to have a fire rate
 //#include "Particles/ParticleSystem.h"//used to spawn effects
 //#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location
 
@@ -36,15 +37,26 @@ ASWeapon::ASWeapon()
 	baseDamage = 20.0f;
 
 	bonusDamage = 30.0f;
+	fireRate = 60.0f;
 }
 
 void ASWeapon::startFire()
 {
-	fire();
+	//const float firstDelay = FMath::Max(0.0f, lastFireTime + timeBetweenShots - GetWorld()->TimeSeconds);
+	
+	//GetWorldTimerManager().SetTimer(timeBetweenShotsTimer, this, &ASWeapon::fire ,timeBetweenShots, true, firstDelay);//has true because we want to loop it. Replace &ASWeapon::fire with &AYourDerivedClass::fire in your class.
 }
 
 void ASWeapon::stopFire()
 {
+	//GetWorldTimerManager().ClearTimer(timeBetweenShotsTimer);
+}
+
+void ASWeapon::BeginPlay()
+{
+	Super::BeginPlay();
+
+	timeBetweenShots = 60 / fireRate;//in seconds
 }
 
 void ASWeapon::muzzleFireFlash()
@@ -88,5 +100,5 @@ void ASWeapon::recoilShakingCamera(AActor* weaponOwnerActor)
 
 void ASWeapon::fire()
 {
-	
+	//lastFireTime = GetWorld()->TimeSeconds; needed for weapon fireRate
 }

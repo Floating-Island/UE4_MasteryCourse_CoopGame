@@ -93,14 +93,6 @@ void ASCharacter::endZoom()
 	targetFOV = defaultFOV;
 }
 
-void ASCharacter::fire()
-{
-	if(heldWeapon)
-	{
-		heldWeapon->startFire();
-	}
-}
-
 // Called every frame
 void ASCharacter::Tick(float DeltaTime)
 {

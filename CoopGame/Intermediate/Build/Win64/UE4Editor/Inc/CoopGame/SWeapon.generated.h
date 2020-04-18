@@ -66,7 +66,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASWeapon); \
 	FORCEINLINE static uint32 __PPO__muzzleEffect() { return STRUCT_OFFSET(ASWeapon, muzzleEffect); } \
 	FORCEINLINE static uint32 __PPO__recoilCameraShake() { return STRUCT_OFFSET(ASWeapon, recoilCameraShake); } \
 	FORCEINLINE static uint32 __PPO__DefaultHitImpactEffect() { return STRUCT_OFFSET(ASWeapon, DefaultHitImpactEffect); } \
-	FORCEINLINE static uint32 __PPO__FleshImpactEffect() { return STRUCT_OFFSET(ASWeapon, FleshImpactEffect); }
+	FORCEINLINE static uint32 __PPO__FleshImpactEffect() { return STRUCT_OFFSET(ASWeapon, FleshImpactEffect); } \
+	FORCEINLINE static uint32 __PPO__fireRate() { return STRUCT_OFFSET(ASWeapon, fireRate); }
 
 
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_14_PROLOG
