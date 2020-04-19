@@ -27,7 +27,7 @@ ASRifle::ASRifle()
 
 void ASRifle::startFire()
 {
-	fireAtRate<ASRifle>(&ASRifle::fire);
+	fireAtRate<ASRifle, &ASRifle::fire, ASRifle>(this);
 }
 
 void ASRifle::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)

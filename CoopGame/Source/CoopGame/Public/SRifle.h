@@ -25,6 +25,7 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
 		UParticleSystem* tracerEffect;
+	
 
 	void fire() override;
 public:

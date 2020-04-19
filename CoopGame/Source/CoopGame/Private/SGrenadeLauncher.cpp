@@ -14,7 +14,7 @@ ASGrenadeLauncher::ASGrenadeLauncher()
 
 void ASGrenadeLauncher::startFire()
 {
-	fireAtRate<ASGrenadeLauncher>(&ASGrenadeLauncher::fire);
+	fireAtRate<ASGrenadeLauncher, &ASGrenadeLauncher::fire, ASGrenadeLauncher>(this);
 }
 
 void ASGrenadeLauncher::fire()

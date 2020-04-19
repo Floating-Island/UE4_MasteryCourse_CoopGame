@@ -21,7 +21,7 @@ public:
 		TSubclassOf<ASProjectile> ProjectileClass;
 
 	void startFire() override;
-	
+
 protected:
 	//UFUNCTION(BlueprintCallable, Category = "Weapon") it shouldn't have this, the parent class already has it
 		virtual void fire() override;

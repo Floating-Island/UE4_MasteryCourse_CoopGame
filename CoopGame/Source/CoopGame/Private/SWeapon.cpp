@@ -42,7 +42,7 @@ ASWeapon::ASWeapon()
 
 void ASWeapon::startFire()
 {
-	fireAtRate<ASWeapon>(&ASWeapon::fire);
+	fireAtRate<ASWeapon, &ASWeapon::fire, ASWeapon>(this);
 }
 
 void ASWeapon::stopFire()
