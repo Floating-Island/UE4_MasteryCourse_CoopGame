@@ -15,14 +15,7 @@ ASGrenadeLauncher::ASGrenadeLauncher()
 
 void ASGrenadeLauncher::startFire()
 {
-	const float firstDelay = FMath::Max(0.0f, lastFireTime + timeBetweenShots - GetWorld()->TimeSeconds);
-
-	GetWorldTimerManager().SetTimer(timeBetweenShotsTimer, this, &ASGrenadeLauncher::fire, timeBetweenShots, true, firstDelay);
-}
-
-void ASGrenadeLauncher::stopFire()
-{
-	GetWorldTimerManager().ClearTimer(timeBetweenShotsTimer);
+	fireAtRate<ASGrenadeLauncher>(&ASGrenadeLauncher::fire);
 }
 
 void ASGrenadeLauncher::fire()

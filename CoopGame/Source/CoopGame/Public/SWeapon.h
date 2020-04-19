@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "SceneOutliner/Public/SceneOutlinerDelegates.h"
 #include "GameFramework/Actor.h"
 #include "SWeapon.generated.h"
 
@@ -73,7 +74,18 @@ protected:
 	/*Inverse of fireRate (in seconds)*/
 	float timeBetweenShots;
 	
+	template< class UserClass >
+	void fireAtRate(typename FTimerDelegate::TUObjectMethodDelegate< UserClass >::FMethodPtr InTimerMethod);
+
 	virtual void fire();
 
 	void recoilShakingCamera(AActor* weaponOwnerActor);
 };
+
+template <class UserClass>
+void ASWeapon::fireAtRate(typename FTimerDelegate::TUObjectMethodDelegate<UserClass>::FMethodPtr InTimerMethod)
+{
+	const float firstDelay = FMath::Max(0.0f, lastFireTime + timeBetweenShots - GetWorld()->TimeSeconds);
+
+	GetWorldTimerManager().SetTimer(timeBetweenShotsTimer, this, InTimerMethod, timeBetweenShots, true, firstDelay);
+}

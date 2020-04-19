@@ -32,8 +32,6 @@ public:
 
 	void startFire() override;
 
-	void stopFire() override;
-
 	
 	
 };

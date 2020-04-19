@@ -28,14 +28,7 @@ ASRifle::ASRifle()
 
 void ASRifle::startFire()
 {
-	const float firstDelay = FMath::Max(0.0f, lastFireTime + timeBetweenShots - GetWorld()->TimeSeconds);
-
-	GetWorldTimerManager().SetTimer(timeBetweenShotsTimer, this, &ASRifle::fire ,timeBetweenShots, true, firstDelay);
-}
-
-void ASRifle::stopFire()
-{
-	GetWorldTimerManager().ClearTimer(timeBetweenShotsTimer);
+	fireAtRate<ASRifle>(&ASRifle::fire);
 }
 
 void ASRifle::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)

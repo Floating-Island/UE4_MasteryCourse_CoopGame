@@ -42,14 +42,12 @@ ASWeapon::ASWeapon()
 
 void ASWeapon::startFire()
 {
-	//const float firstDelay = FMath::Max(0.0f, lastFireTime + timeBetweenShots - GetWorld()->TimeSeconds);
-	
-	//GetWorldTimerManager().SetTimer(timeBetweenShotsTimer, this, &ASWeapon::fire ,timeBetweenShots, true, firstDelay);//has true because we want to loop it. Replace &ASWeapon::fire with &AYourDerivedClass::fire in your class.
+	fireAtRate<ASWeapon>(&ASWeapon::fire);
 }
 
 void ASWeapon::stopFire()
 {
-	//GetWorldTimerManager().ClearTimer(timeBetweenShotsTimer);
+	GetWorldTimerManager().ClearTimer(timeBetweenShotsTimer);
 }
 
 void ASWeapon::BeginPlay()
