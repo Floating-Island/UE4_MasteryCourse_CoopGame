@@ -20,7 +20,7 @@ private: \
 	static void StaticRegisterNativesASWeapon(); \
 	friend struct Z_Construct_UClass_ASWeapon_Statics; \
 public: \
-	DECLARE_CLASS(ASWeapon, AActor, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
+	DECLARE_CLASS(ASWeapon, AActor, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
 	DECLARE_SERIALIZER(ASWeapon)
 
 
@@ -29,7 +29,7 @@ private: \
 	static void StaticRegisterNativesASWeapon(); \
 	friend struct Z_Construct_UClass_ASWeapon_Statics; \
 public: \
-	DECLARE_CLASS(ASWeapon, AActor, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
+	DECLARE_CLASS(ASWeapon, AActor, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
 	DECLARE_SERIALIZER(ASWeapon)
 
 

@@ -12,7 +12,7 @@ class UDamageType;
 class UParticleSystem;
 class UCameraShake;
 
-UCLASS()
+UCLASS(Abstract)
 class COOPGAME_API ASWeapon : public AActor
 {
 	GENERATED_BODY()

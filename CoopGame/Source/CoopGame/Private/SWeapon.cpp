@@ -98,5 +98,4 @@ void ASWeapon::recoilShakingCamera(AActor* weaponOwnerActor)
 
 void ASWeapon::fire()
 {
-	//lastFireTime = GetWorld()->TimeSeconds; needed for weapon fireRate
 }
