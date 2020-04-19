@@ -18,16 +18,6 @@ ASTracerWeapon::ASTracerWeapon()
 	tracerTarget = "BeamEnd";
 }
 
-void ASTracerWeapon::startFire()
-{
-	fireAtRate<ASTracerWeapon, &ASTracerWeapon::fire>(this);
-}
-
-void ASTracerWeapon::fire()
-{
-	//first it has to trace the world from the pawn's eyes to the crosshair (at the center of the screen)
-}
-
 void ASTracerWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit)
 {
 		//process baseDamage

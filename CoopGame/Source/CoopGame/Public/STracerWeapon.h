@@ -28,9 +28,6 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int rangeMultiplier;
 
-	virtual void fire() override;
 public:
 	ASTracerWeapon();
-
-	virtual void startFire() override;
 };

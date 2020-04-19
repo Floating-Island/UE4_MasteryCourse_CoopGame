@@ -35,7 +35,7 @@ public: \
 
 #define CoopGame_Source_CoopGame_Public_STracerMulti_h_15_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ASTracerMulti(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	NO_API ASTracerMulti(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASTracerMulti) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ASTracerMulti); \
 DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTracerMulti); \
@@ -47,8 +47,6 @@ public:
 
 
 #define CoopGame_Source_CoopGame_Public_STracerMulti_h_15_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ASTracerMulti() { }; \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASTracerMulti(ASTracerMulti&&); \
@@ -59,7 +57,11 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTracerMulti); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASTracerMulti)
 
 
-#define CoopGame_Source_CoopGame_Public_STracerMulti_h_15_PRIVATE_PROPERTY_OFFSET
+#define CoopGame_Source_CoopGame_Public_STracerMulti_h_15_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__shots() { return STRUCT_OFFSET(ASTracerMulti, shots); } \
+	FORCEINLINE static uint32 __PPO__spreadRadiusAngle() { return STRUCT_OFFSET(ASTracerMulti, spreadRadiusAngle); }
+
+
 #define CoopGame_Source_CoopGame_Public_STracerMulti_h_12_PROLOG
 #define CoopGame_Source_CoopGame_Public_STracerMulti_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

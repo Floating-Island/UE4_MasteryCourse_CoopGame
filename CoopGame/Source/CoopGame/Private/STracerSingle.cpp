@@ -3,15 +3,16 @@
 
 #include "STracerSingle.h"
 #include "DrawDebugHelpers.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"
 
 #include "CoopGame.h"
 
 //debug variables:
 static int32 DebugTracerWeaponDrawing = 0;
 FAutoConsoleVariableRef ConsoleDebugTracerWeaponDrawing(
-	TEXT("COOP.DebugWeapons")/*command used in console*/,
+	TEXT("COOP.DebugSingleTrace")/*command used in console*/,
 	DebugTracerWeaponDrawing /*variable that holds the value*/,
-	TEXT("Draw Debug lines for weapons") /*help information*/,
+	TEXT("Draw Debug lines for single traces") /*help information*/,
 	ECVF_Cheat /*works only when cheats are enabled*/
 );
 
@@ -34,6 +35,11 @@ void ASTracerSingle::singleTraceFire(AActor* weaponOwner)
 {
 	muzzleFireFlash();
 
+	FCollisionQueryParams collisionParameters;
+	collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
+	collisionParameters.AddIgnoredActor(this);//ignore also the weapon in the trace
+	collisionParameters.bTraceComplex = true;//traces against each individual triangle from the traced mesh. Gives the exact result of where we hit something. It's more expensive
+	collisionParameters.bReturnPhysicalMaterial = true;
 
 	FVector eyesLocation;//will be used as the starting point for our trace
 	FRotator eyesRotation;
@@ -41,13 +47,6 @@ void ASTracerSingle::singleTraceFire(AActor* weaponOwner)
 
 	FVector shotDirection = eyesRotation.Vector();
 	FVector traceDistance = eyesLocation + shotDirection * rangeMultiplier;//where the trace ends
-
-	FCollisionQueryParams collisionParameters;
-	collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
-	collisionParameters.AddIgnoredActor(this);//ignore also the weapon in the trace
-	collisionParameters.bTraceComplex = true;//traces against each individual triangle from the traced mesh. Gives the exact result of where we hit something. It's more expensive
-	collisionParameters.bReturnPhysicalMaterial = true;
-
 
 	FHitResult hit;//struct containing hit information
 	bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, COLLISION_WEAPON_CHANNEL, collisionParameters);

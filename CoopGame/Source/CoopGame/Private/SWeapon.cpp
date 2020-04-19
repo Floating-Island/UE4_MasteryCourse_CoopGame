@@ -5,7 +5,6 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
-#include "PhysicalMaterials/PhysicalMaterial.h"
 //#include "TimerManager.h"//call it when you need to have a fire rate
 //#include "Particles/ParticleSystem.h"//used to spawn effects
 //#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location

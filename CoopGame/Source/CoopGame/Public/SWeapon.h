@@ -60,7 +60,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		UParticleSystem* FleshImpactEffect;
 
-	void reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit);//should be in a projectile
+	void reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit);
 
 	//fire rate timers
 	FTimerHandle timeBetweenShotsTimer;
