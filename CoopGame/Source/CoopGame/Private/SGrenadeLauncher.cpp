@@ -4,7 +4,6 @@
 #include "SGrenadeLauncher.h"
 #include "Components/SkeletalMeshComponent.h"//used to get the muzzle socket location
 #include "Kismet/GameplayStatics.h"
-#include "TimerManager.h"
 
 #include "SProjectile.h"
 

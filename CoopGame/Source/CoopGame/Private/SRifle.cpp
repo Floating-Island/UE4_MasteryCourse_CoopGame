@@ -7,7 +7,6 @@
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"//for debugging
 #include "PhysicalMaterials/PhysicalMaterial.h"
-#include "TimerManager.h"
 
 #include "CoopGame.h"
 

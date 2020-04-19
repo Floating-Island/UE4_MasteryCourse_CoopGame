@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "SceneOutliner/Public/SceneOutlinerDelegates.h"
 #include "GameFramework/Actor.h"
+#include "TimerManager.h"
 #include "SWeapon.generated.h"
 
 class USkeletalMeshComponent;
