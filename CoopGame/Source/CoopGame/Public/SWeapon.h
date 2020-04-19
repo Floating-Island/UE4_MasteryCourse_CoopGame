@@ -74,18 +74,17 @@ protected:
 	/*Inverse of fireRate (in seconds)*/
 	float timeBetweenShots;
 
-	template <typename T, void(T::* method)(), class callerObject>
-	void fireAtRate(callerObject* caller);
+	template <typename callerType, void(callerType::* method)()>
+	void fireAtRate(callerType* caller);
 
 	virtual void fire();
 
 	void recoilShakingCamera(AActor* weaponOwnerActor);
 };
 
-template <typename callerType, void(callerType::*method)(), class callerObject>
-void ASWeapon::fireAtRate(callerObject* caller)
+template <typename callerType, void( callerType::* method)()>
+void ASWeapon::fireAtRate(callerType* caller)
 {
 	const float firstDelay = FMath::Max(0.0f, lastFireTime + timeBetweenShots - GetWorld()->TimeSeconds);
-
 	GetWorldTimerManager().SetTimer(timeBetweenShotsTimer, caller, method, timeBetweenShots, true, firstDelay);
 }
