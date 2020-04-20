@@ -7,7 +7,7 @@
 #include "SHealthComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(COOP), meta=(BlueprintSpawnableComponent) )
 class COOPGAME_API USHealthComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -20,12 +20,10 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	UPROPERTY(BlueprintReadOnly, Category ="HealthComponent")
+	UPROPERTY(EditDefaultsOnly BlueprintReadOnly, Category ="HealthComponent")
 	float health;
 
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 		
 };
