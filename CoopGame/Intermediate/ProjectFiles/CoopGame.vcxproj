@@ -380,6 +380,7 @@
     <ClCompile Include="..\..\Source\CoopGame\Private\SCharacter.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeLauncher.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeProjectile.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SHealthComponent.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectileWeapon.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SRifle.cpp" />
@@ -392,6 +393,7 @@
     <ClInclude Include="..\..\Source\CoopGame\Public\SCharacter.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeLauncher.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeProjectile.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SHealthComponent.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectileWeapon.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SRifle.h" />
