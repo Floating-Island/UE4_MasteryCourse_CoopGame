@@ -115,7 +115,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(USHealthComponent); \
 
 
 #define CoopGame_Source_CoopGame_Public_SHealthComponent_h_28_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__health() { return STRUCT_OFFSET(USHealthComponent, health); }
+	FORCEINLINE static uint32 __PPO__maxHealth() { return STRUCT_OFFSET(USHealthComponent, maxHealth); }
 
 
 #define CoopGame_Source_CoopGame_Public_SHealthComponent_h_25_PROLOG
