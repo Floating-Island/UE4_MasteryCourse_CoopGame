@@ -36,5 +36,7 @@ void USHealthComponent::damageTakerHandle(AActor* DamagedActor, float Damage, co
 	currentHealth = FMath::Clamp(currentHealth - Damage, 0.0f, health);//update health clamped.
 
 	UE_LOG(LogTemp, Log, TEXT("taken %s damage. Current health: %s"), *FString::SanitizeFloat(Damage), *FString::SanitizeFloat(currentHealth));
+
+	onhealthChanged.Broadcast(this, currentHealth, Damage, DamageType, InstigatedBy, DamageCauser); 
 }
 
