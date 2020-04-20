@@ -49,6 +49,9 @@ protected:
 			class AController* InstigatedBy,
 			AActor* DamageCauser);
 
+	UPROPERTY(BlueprintReadOnly, Category = "Player")
+	bool bHasDied;
+
 	
 	//forward movement
 	void moveForward(float forwardValue);//move backwards is the same but negative

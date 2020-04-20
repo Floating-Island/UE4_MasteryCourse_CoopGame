@@ -35,6 +35,8 @@ ASCharacter::ASCharacter()
 
 	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health"));
 
+	bHasDied = false;
+
 	//zoom properties
 	defaultFOV = camera->FieldOfView;
 
@@ -154,9 +156,16 @@ FVector ASCharacter::GetPawnViewLocation() const
 void ASCharacter::onHealthChanged(USHealthComponent* trigger, float health, float healthDelta,
 									const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	if(health)
+	if(health <= 0 && !bHasDied)
 	{
 		//die motherfucker
+		bHasDied = true;
+		//we have to stop movement immediately
+		GetMovementComponent()->StopMovementImmediately();
+		//we have to stop interacting with collisions
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		//playDeathAnimation
+		
 	}
 }
 
