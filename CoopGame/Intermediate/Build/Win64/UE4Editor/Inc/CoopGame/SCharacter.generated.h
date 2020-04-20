@@ -96,6 +96,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASCharacter); \
 #define CoopGame_Source_CoopGame_Public_SCharacter_h_17_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__camera() { return STRUCT_OFFSET(ASCharacter, camera); } \
 	FORCEINLINE static uint32 __PPO__springArm() { return STRUCT_OFFSET(ASCharacter, springArm); } \
+	FORCEINLINE static uint32 __PPO__healthComp() { return STRUCT_OFFSET(ASCharacter, healthComp); } \
 	FORCEINLINE static uint32 __PPO__bHasDied() { return STRUCT_OFFSET(ASCharacter, bHasDied); } \
 	FORCEINLINE static uint32 __PPO__zoomFOV() { return STRUCT_OFFSET(ASCharacter, zoomFOV); } \
 	FORCEINLINE static uint32 __PPO__fovTransitionSpeed() { return STRUCT_OFFSET(ASCharacter, fovTransitionSpeed); } \
