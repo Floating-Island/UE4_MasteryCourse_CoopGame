@@ -165,6 +165,11 @@ void ASCharacter::onHealthChanged(USHealthComponent* trigger, float health, floa
 		//we have to stop interacting with collisions
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		//playDeathAnimation
+
+		//leave the character's body
+		DetachFromControllerPendingDestroy();
+
+		SetLifeSpan(5.0f);
 		
 	}
 }
