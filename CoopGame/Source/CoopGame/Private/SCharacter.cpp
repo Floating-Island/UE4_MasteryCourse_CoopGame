@@ -6,8 +6,10 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
 #include "Components/InputComponent.h"
+#include "Components/CapsuleComponent.h"
 
 #include "SWeapon.h"
+#include "CoopGame.h"
 
 // Sets default values
 ASCharacter::ASCharacter()
@@ -27,6 +29,8 @@ ASCharacter::ASCharacter()
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;//necessary to allow the pawn to crouch
 
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanJump = true;//necessary to allow the pawn to jump
+
+	GetCapsuleComponent()->SetCollisionResponseToChannel(COLLISION_WEAPON_CHANNEL, ECR_Ignore);
 
 	//zoom properties
 	defaultFOV = camera->FieldOfView;
