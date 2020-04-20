@@ -10,6 +10,7 @@
 
 #include "SWeapon.h"
 #include "CoopGame.h"
+#include "SHealthComponent.h"
 
 // Sets default values
 ASCharacter::ASCharacter()
@@ -31,6 +32,8 @@ ASCharacter::ASCharacter()
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanJump = true;//necessary to allow the pawn to jump
 
 	GetCapsuleComponent()->SetCollisionResponseToChannel(COLLISION_WEAPON_CHANNEL, ECR_Ignore);
+
+	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health"));
 
 	//zoom properties
 	defaultFOV = camera->FieldOfView;
@@ -85,6 +88,7 @@ void ASCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	attachWeapon();
+	healthComp->onHealthChanged.AddDynamic(this, &ASCharacter::onHealthChanged);
 }
 
 void ASCharacter::beginZoom()
@@ -145,6 +149,15 @@ FVector ASCharacter::GetPawnViewLocation() const
 		return camera->GetComponentLocation();
 	}
 	return Super::GetPawnViewLocation();
+}
+
+void ASCharacter::onHealthChanged(USHealthComponent* trigger, float health, float healthDelta,
+									const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+{
+	if(health)
+	{
+		//die motherfucker
+	}
 }
 
 void ASCharacter::moveForward(float forwardValue)

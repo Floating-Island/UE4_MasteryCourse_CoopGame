@@ -48,5 +48,5 @@ protected:
 							AActor* DamageCauser);
 public:
 	UPROPERTY(BlueprintAssignable, Category = "Events")
-	FOnHealthChangedSignature onhealthChanged;
+	FOnHealthChangedSignature onHealthChanged;
 };
