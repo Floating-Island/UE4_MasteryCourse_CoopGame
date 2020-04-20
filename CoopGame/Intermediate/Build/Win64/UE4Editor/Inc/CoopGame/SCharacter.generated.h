@@ -62,6 +62,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASCharacter); \
 	FORCEINLINE static uint32 __PPO__springArm() { return STRUCT_OFFSET(ASCharacter, springArm); } \
 	FORCEINLINE static uint32 __PPO__zoomFOV() { return STRUCT_OFFSET(ASCharacter, zoomFOV); } \
 	FORCEINLINE static uint32 __PPO__fovTransitionSpeed() { return STRUCT_OFFSET(ASCharacter, fovTransitionSpeed); } \
+	FORCEINLINE static uint32 __PPO__heldWeapon() { return STRUCT_OFFSET(ASCharacter, heldWeapon); } \
 	FORCEINLINE static uint32 __PPO__heldWeaponClass() { return STRUCT_OFFSET(ASCharacter, heldWeaponClass); } \
 	FORCEINLINE static uint32 __PPO__weaponSocket() { return STRUCT_OFFSET(ASCharacter, weaponSocket); }
 

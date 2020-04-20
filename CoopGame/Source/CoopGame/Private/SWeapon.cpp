@@ -98,6 +98,7 @@ void ASWeapon::reload()
 		else
 		{
 			ammoInMagazine += availableBackupAmmo;
+			availableBackupAmmo = 0;
 		}
 	}
 }
