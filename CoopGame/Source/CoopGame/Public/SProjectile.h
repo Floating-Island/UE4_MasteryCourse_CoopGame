@@ -42,10 +42,6 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
 		UParticleSystem* FleshImpactEffect;
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-	
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
 		TSubclassOf<UDamageType> damageType;
 	
