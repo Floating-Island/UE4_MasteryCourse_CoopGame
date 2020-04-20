@@ -25,6 +25,7 @@ protected:
 
 	float currentHealth;
 
+	UFUNCTION()//it's an event handler
 	void damageTakerHandle(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 		
 };
