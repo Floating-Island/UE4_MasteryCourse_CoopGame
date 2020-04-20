@@ -68,6 +68,7 @@ protected:
 	void endZoom();
 
 	//weapon holding
+	UPROPERTY(VisibleAnywhere, Category = "Weapon")
 	ASWeapon* heldWeapon;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")

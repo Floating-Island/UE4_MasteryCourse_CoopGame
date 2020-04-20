@@ -14,7 +14,19 @@ ASProjectileWeapon::ASProjectileWeapon()
 
 void ASProjectileWeapon::startFire()
 {
-	fireAtRate<ASProjectileWeapon, &ASProjectileWeapon::fire>(this);
+	//AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon
+	//
+	//if (weaponOwner)
+	//{
+	//	if (hasAmmoInMagazine())
+	//	{
+	//		fireAtRate<ASProjectileWeapon, &ASProjectileWeapon::fire>(this);
+	//	}
+	//	else
+	//	{
+	//		reload();
+	//	}
+	//}
 }
 
 void ASProjectileWeapon::fire()
@@ -22,9 +34,10 @@ void ASProjectileWeapon::fire()
 
 }
 
-void ASProjectileWeapon::FireSingleProjectile(AActor* weaponOwner)
+void ASProjectileWeapon::FireSingleProjectile()
 {
-	if (weaponOwner && ProjectileClass)
+	AActor* weaponOwner = GetOwner();
+	if (ProjectileClass)
 	{
 		muzzleFireFlash();
 		FVector muzzleLocation = mesh->GetSocketLocation(muzzleSocket);

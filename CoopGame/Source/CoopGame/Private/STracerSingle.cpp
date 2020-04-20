@@ -18,23 +18,35 @@ FAutoConsoleVariableRef ConsoleDebugTracerWeaponDrawing(
 
 void ASTracerSingle::fire()
 {
-	AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon
-
-	if (weaponOwner)
-	{
-		singleTraceFire(weaponOwner);
-	}
+	singleTraceFire();
+	reduceMagazineAmmo();
 }
 
 void ASTracerSingle::startFire()
 {
-	fireAtRate<ASTracerSingle, &ASTracerSingle::fire>(this);
+	AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon
+
+	if(weaponOwner)
+	{
+		if (hasAmmoInMagazine())
+		{
+			fireAtRate<ASTracerSingle, &ASTracerSingle::fire>(this);
+		}
+		else
+		{
+			reload();
+		}
+	}
+	
+	
 }
 
-void ASTracerSingle::singleTraceFire(AActor* weaponOwner)
+void ASTracerSingle::singleTraceFire()
 {
 	muzzleFireFlash();
 
+	AActor* weaponOwner = GetOwner();
+	
 	FCollisionQueryParams collisionParameters;
 	collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
 	collisionParameters.AddIgnoredActor(this);//ignore also the weapon in the trace

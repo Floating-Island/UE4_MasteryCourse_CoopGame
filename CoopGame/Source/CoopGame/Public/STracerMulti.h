@@ -24,6 +24,6 @@ protected:
 		float spreadConeHalfAngleRadius;
 
 	void fire() override;
-	void multiTraceFire(AActor* weaponOwner);
+	void multiTraceFire();
 	
 };

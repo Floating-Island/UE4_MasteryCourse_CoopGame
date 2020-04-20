@@ -24,22 +24,32 @@ ASTracerMulti::ASTracerMulti()
 
 void ASTracerMulti::startFire()
 {
-	fireAtRate<ASTracerMulti, &ASTracerMulti::fire>(this);
-}
-
-void ASTracerMulti::fire()
-{
 	AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon
 
 	if (weaponOwner)
 	{
-		multiTraceFire(weaponOwner);
-	}
+		if(hasAmmoInMagazine())
+		{
+			fireAtRate<ASTracerMulti, &ASTracerMulti::fire>(this);
+		}
+		else
+		{
+			reload();
+		}
+	}	
 }
 
-void ASTracerMulti::multiTraceFire(AActor* weaponOwner)
+void ASTracerMulti::fire()
+{
+	multiTraceFire();
+	reduceMagazineAmmo();
+}
+
+void ASTracerMulti::multiTraceFire()
 {
 	muzzleFireFlash();
+
+	AActor* weaponOwner = GetOwner();
 
 	FCollisionQueryParams collisionParameters;
 	collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing

@@ -5,12 +5,24 @@
 
 void ASGrenadeLauncher::startFire()
 {
-	fireAtRate<ASGrenadeLauncher, &ASGrenadeLauncher::fire>(this);
+	
+	AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon
+	
+	if (weaponOwner)
+	{
+		if (hasAmmoInMagazine())
+		{
+			fireAtRate<ASGrenadeLauncher, &ASGrenadeLauncher::fire>(this);
+		}
+		else
+		{
+			reload();
+		}
+	}
 }
 
 void ASGrenadeLauncher::fire()
 {
-	AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon
-
-	FireSingleProjectile(weaponOwner);
+	FireSingleProjectile();
+	reduceMagazineAmmo();
 }

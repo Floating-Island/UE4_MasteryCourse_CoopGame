@@ -15,7 +15,7 @@ class COOPGAME_API ASTracerSingle : public ASTracerWeapon
 	GENERATED_BODY()
 protected:
 	void fire() override;
-	void singleTraceFire(AActor* weaponOwner);
+	void singleTraceFire();
 public:
 	void startFire() override;
 };
