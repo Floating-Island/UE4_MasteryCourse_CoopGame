@@ -19,6 +19,7 @@ FAutoConsoleVariableRef ConsoleDebugMultiTraceDrawing(
 ASTracerMulti::ASTracerMulti()
 {
 	shots = 1;
+	spreadConeHalfAngleRadius = 0.16f;
 }
 
 void ASTracerMulti::startFire()

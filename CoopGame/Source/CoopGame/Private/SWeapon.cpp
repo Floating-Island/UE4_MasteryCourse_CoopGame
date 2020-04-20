@@ -34,19 +34,72 @@ ASWeapon::ASWeapon()
 	physicalMaterialsMap.Add(SURFACE_FLESH_VULNERABLE, &FleshImpactEffect);
 
 	baseDamage = 20.0f;
-
 	bonusDamage = 30.0f;
+	
 	fireRate = 60.0f;
+
+	ammoInMagazine = 15;
+	magazineCapacity = 20;
+	availableBackupAmmo = 30;
+	backupAmmoCapacity = 100;
+}
+
+void ASWeapon::limitAmmoToCapacitiesSet()
+{
+	if(ammoInMagazine > magazineCapacity)
+	{
+		ammoInMagazine = magazineCapacity;
+	}
+	if(availableBackupAmmo > backupAmmoCapacity)
+	{
+		availableBackupAmmo = backupAmmoCapacity;
+	}
 }
 
 void ASWeapon::startFire()
 {
 	fireAtRate<ASWeapon, &ASWeapon::fire>(this);
+	limitAmmoToCapacitiesSet();
 }
 
 void ASWeapon::stopFire()
 {
 	GetWorldTimerManager().ClearTimer(timeBetweenShotsTimer);
+}
+
+bool ASWeapon::hasAmmoInMagazine()
+{
+	if(ammoInMagazine > 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+void ASWeapon::reduceMagazineAmmo()
+{
+	if(ammoInMagazine > 0)
+	{
+		--ammoInMagazine;
+	}
+}
+
+void ASWeapon::reload()
+{
+	if(availableBackupAmmo > 0 && ammoInMagazine < magazineCapacity)
+	{
+		//start reload animation here.
+		int spaceLeftInMagazine = magazineCapacity - ammoInMagazine;
+		if(spaceLeftInMagazine < availableBackupAmmo)
+		{
+			availableBackupAmmo -= spaceLeftInMagazine;
+			ammoInMagazine += spaceLeftInMagazine;
+		}
+		else
+		{
+			ammoInMagazine += availableBackupAmmo;
+		}
+	}
 }
 
 void ASWeapon::BeginPlay()

@@ -20,10 +20,15 @@ class COOPGAME_API ASWeapon : public AActor
 public:
 	// Sets default values for this actor's properties
 	ASWeapon();
+	void limitAmmoToCapacitiesSet();
 
 	virtual void startFire();
 
 	virtual void stopFire();
+
+	bool hasAmmoInMagazine();
+	void reduceMagazineAmmo();
+	void reload();
 
 protected:
 	virtual void BeginPlay() override;
@@ -42,15 +47,25 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	float bonusDamage;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		int magazineCapacity;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		int ammoInMagazine;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		int availableBackupAmmo;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		int backupAmmoCapacity;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon") //not everything has to be exposed to blueprints
+		TSubclassOf<UCameraShake> recoilCameraShake;
+
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //no need to edit it
 	FName muzzleSocket;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //secure way to expose it
 	UParticleSystem* muzzleEffect;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Weapon") //not everything has to be exposed to blueprints
-	TSubclassOf<UCameraShake> recoilCameraShake;
-
 	
 	TMap<EPhysicalSurface, UParticleSystem**> physicalMaterialsMap;//to map surface types
 
@@ -68,7 +83,7 @@ protected:
 	float lastFireTime;
 
 	/*Bullets per minute*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon", meta = (ClampMin = "0.1"))
 		float fireRate;
 
 	/*Inverse of fireRate (in seconds)*/
