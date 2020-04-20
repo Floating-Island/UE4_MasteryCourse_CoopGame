@@ -68,7 +68,7 @@ protected:
 	void endZoom();
 
 	//weapon holding
-	UPROPERTY(VisibleAnywhere, Category = "Weapon")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon")
 	ASWeapon* heldWeapon;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
