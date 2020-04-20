@@ -59,7 +59,6 @@ void ASWeapon::limitAmmoToCapacitiesSet()
 void ASWeapon::startFire()
 {
 	fireAtRate<ASWeapon, &ASWeapon::fire>(this);
-	limitAmmoToCapacitiesSet();
 }
 
 void ASWeapon::stopFire()
@@ -108,6 +107,7 @@ void ASWeapon::BeginPlay()
 	Super::BeginPlay();
 
 	timeBetweenShots = 60 / fireRate;//in seconds
+	limitAmmoToCapacitiesSet();
 }
 
 void ASWeapon::muzzleFireFlash()
