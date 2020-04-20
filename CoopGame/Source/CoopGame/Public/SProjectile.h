@@ -14,17 +14,19 @@ UCLASS()
 class COOPGAME_API ASProjectile : public AActor
 {
 	GENERATED_BODY()
-	
+private:
+	TMap<EPhysicalSurface, UParticleSystem**> physicalMaterialsMap;
 public:	
 	// Sets default values for this actor's properties
 	ASProjectile();
+	
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	/** Sphere collision component */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Projectile")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
 		USphereComponent* collisionComponent;
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")//UE4 now is able to see and edit this
@@ -34,25 +36,30 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
 		UProjectileMovementComponent* ProjectileMovement;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")//secure way to expose it
-		UParticleSystem* hitImpactEffect;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		UParticleSystem* DefaultHitImpactEffect;
 
-	FTimerHandle explodeTimer;//timer to explode
-
-
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		UParticleSystem* FleshImpactEffect;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	void provokeRadialDamage(const FHitResult& hit);
+	
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
 		TSubclassOf<UDamageType> damageType;
 	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		float baseDamage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		float bonusDamage;
+
+	void reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit);
 
 	///** called when projectile hits something */
 	//UFUNCTION()
 	//	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& hit);
-
-	void generateExplosion();
+	
 
 };

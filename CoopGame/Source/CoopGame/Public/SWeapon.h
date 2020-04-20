@@ -4,52 +4,102 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "TimerManager.h"
 #include "SWeapon.generated.h"
 
 class USkeletalMeshComponent;
 class UDamageType;
 class UParticleSystem;
+class UCameraShake;
 
-UCLASS()
+UCLASS(Abstract)
 class COOPGAME_API ASWeapon : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ASWeapon();
+	void limitAmmoToCapacitiesSet();
+
+	virtual void startFire();
+
+	virtual void stopFire();
+
+	bool hasAmmoInMagazine();
+	void reduceMagazineAmmo();
+	void reload();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	void tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance);
-	void processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked);
+	
+	void muzzleFireFlash();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* mesh;
 
-	UFUNCTION(BlueprintCallable, Category = "Weapon")
-	virtual void fire();
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	TSubclassOf<UDamageType> typeOfDamage;
 
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//no need to edit it
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	float baseDamage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	float bonusDamage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		int magazineCapacity;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		int ammoInMagazine;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		int availableBackupAmmo;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		int backupAmmoCapacity;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon") //not everything has to be exposed to blueprints
+		TSubclassOf<UCameraShake> recoilCameraShake;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //no need to edit it
 	FName muzzleSocket;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //secure way to expose it
 	UParticleSystem* muzzleEffect;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
-		UParticleSystem* hitImpactEffect;
-
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//no need to edit it
-		FName tracerTarget;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//secure way to expose it
-		UParticleSystem* tracerEffect;
-	
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	TMap<EPhysicalSurface, UParticleSystem**> physicalMaterialsMap;//to map surface types
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		UParticleSystem* DefaultHitImpactEffect;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+		UParticleSystem* FleshImpactEffect;
+
+	void reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit);
+
+	//fire rate timers
+	FTimerHandle timeBetweenShotsTimer;
+
+	float lastFireTime;
+
+	/*Bullets per minute*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon", meta = (ClampMin = "0.1"))
+		float fireRate;
+
+	/*Inverse of fireRate (in seconds)*/
+	float timeBetweenShots;
+
+	template <typename callerType, void(callerType::* method)()>
+	void fireAtRate(callerType* caller);
+
+	virtual void fire();
+
+	void recoilShakingCamera(AActor* weaponOwnerActor);
 };
+
+template <typename callerType, void( callerType::* method)()>
+void ASWeapon::fireAtRate(callerType* caller)
+{
+	const float firstDelay = FMath::Max(0.0f, lastFireTime + timeBetweenShots - GetWorld()->TimeSeconds);
+	GetWorldTimerManager().SetTimer(timeBetweenShotsTimer, caller, method, timeBetweenShots, true, firstDelay);
+}

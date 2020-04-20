@@ -8,6 +8,7 @@
 
 class UCameraComponent;
 class USpringArmComponent;
+class ASWeapon;
 
 UCLASS()
 class COOPGAME_API ASCharacter : public ACharacter
@@ -17,6 +18,11 @@ class COOPGAME_API ASCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ASCharacter();
+	void attachWeapon();
+
+	void startFire();
+
+	void stopFire();
 
 protected:
 	// Called when the game starts or when spawned
@@ -45,6 +51,31 @@ protected:
 
 	//jumping
 	void jump();
+
+	//zooming
+	float defaultFOV;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float zoomFOV;
+
+	float targetFOV; //necessary to smooth the zooming in and zooming out.
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera", meta = (ClampMin = 0.1, ClampMax = 100))
+	float fovTransitionSpeed;
+
+	void beginZoom();
+
+	void endZoom();
+
+	//weapon holding
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon")
+	ASWeapon* heldWeapon;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+		TSubclassOf<ASWeapon> heldWeaponClass;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "Weapon")
+		FName weaponSocket;
 	
 public:	
 	// Called every frame

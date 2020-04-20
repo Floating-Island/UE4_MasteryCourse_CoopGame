@@ -3,17 +3,21 @@
 
 #include "SProjectile.h"
 
-
-#include "Kismet/GameplayStatics.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "TimerManager.h"
+#include "Kismet/GameplayStatics.h"
+
+#include "CoopGame.h"
 
 // Sets default values
 ASProjectile::ASProjectile()
 {
+	physicalMaterialsMap.Add(SurfaceType_Default, &DefaultHitImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_DEFAULT, &FleshImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_VULNERABLE, &FleshImpactEffect);
+	
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -38,15 +42,17 @@ ASProjectile::ASProjectile()
 	collisionComponent->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
 	collisionComponent->CanCharacterStepUpOn = ECB_No;
 
-	
+	baseDamage = 40.0f;
+
+	bonusDamage = 60.0f;
 }
+
+
 
 // Called when the game starts or when spawned
 void ASProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	GetWorldTimerManager().ClearTimer(explodeTimer);
-	GetWorldTimerManager().SetTimer(explodeTimer, this, &ASProjectile::generateExplosion, 1.0f, false);
 }
 
 // Called every frame
@@ -56,41 +62,20 @@ void ASProjectile::Tick(float DeltaTime)
 
 }
 
-void ASProjectile::provokeRadialDamage(const FHitResult& hit)
+void ASProjectile::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit)
 {
-	//process damage
-	AActor* hitActor = hit.GetActor();
+	UParticleSystem* selectedHitImpactEffect = *(*(physicalMaterialsMap.Find(surfaceHit)));
 
-	float damage = 40.0f;
-	float damageRadius = 200.0f;
-	TArray<AActor*> ignoredActors = TArray<AActor*>();
-	UGameplayStatics::ApplyRadialDamage(this, damage, this->GetActorLocation(), damageRadius, damageType, 
-											ignoredActors, this,this->GetInstigatorController(), true, ECC_Visibility);
+	if (!selectedHitImpactEffect)
+	{
+		selectedHitImpactEffect = DefaultHitImpactEffect;
+	}
 
-	if (hitImpactEffect)//if it was assigned
+	if (selectedHitImpactEffect)//if it was assigned
 	{
 		//spawn impact effect
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitImpactEffect, this->GetActorLocation(), this->GetActorRotation());
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), selectedHitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
 		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
 	}
 }
-
-void ASProjectile::generateExplosion()
-{
-	FHitResult hit;
-	provokeRadialDamage(hit);
-	Destroy();
-}
-
-//void ASProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
-//                         FVector NormalImpulse, const FHitResult& hit)
-//{
-//	if ((OtherActor != NULL) && (OtherActor != this) && (OtherComp != NULL) && OtherComp->IsSimulatingPhysics())
-//	{
-//		provokeRadialDamage(hit);
-//	}
-//	MakeNoise(1.0f, Instigator);//instigator is the one responsible for damage deal. In this case is used to make noise.
-//	//Instigator has a UNoiseEmitterComponent so it's nice to use.
-//	Destroy();//only the server has the authority to destroy it.
-//}
 

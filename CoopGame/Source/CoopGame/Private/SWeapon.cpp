@@ -5,120 +5,150 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
+//#include "TimerManager.h"//call it when you need to have a fire rate
 //#include "Particles/ParticleSystem.h"//used to spawn effects
 //#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location
-#include "Particles/ParticleSystemComponent.h"
+
+#include "CoopGame.h"
+
+//debug variables:
+static int32 DebugWeaponDrawing = 0;
+FAutoConsoleVariableRef ConsoleDebugWeaponDrawing(
+TEXT("COOP.DebugWeapons")/*command used in console*/,
+	DebugWeaponDrawing /*variable that holds the value*/,
+	TEXT("Draw Debug lines for weapons") /*help information*/,
+	ECVF_Cheat /*works only when cheats are enabled*/
+);
+
 
 // Sets default values
 ASWeapon::ASWeapon()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
 	mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));//mesh instantiation
 	RootComponent = mesh;//make mesh the root components
 
 	muzzleSocket = "MuzzleSocket";
-	tracerTarget = "BeamEnd";
-}
 
-// Called when the game starts or when spawned
-void ASWeapon::BeginPlay()
-{
-	Super::BeginPlay();
+	physicalMaterialsMap.Add(SurfaceType_Default, &DefaultHitImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_DEFAULT, &FleshImpactEffect);
+	physicalMaterialsMap.Add(SURFACE_FLESH_VULNERABLE, &FleshImpactEffect);
+
+	baseDamage = 20.0f;
+	bonusDamage = 30.0f;
 	
+	fireRate = 60.0f;
+
+	ammoInMagazine = 15;
+	magazineCapacity = 20;
+	availableBackupAmmo = 30;
+	backupAmmoCapacity = 100;
 }
 
-void ASWeapon::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)
+void ASWeapon::limitAmmoToCapacitiesSet()
 {
-	if(tracerEffect)
+	if(ammoInMagazine > magazineCapacity)
 	{
-		//we want to spawn a beam effect between the muzzle socket and the trace end (or the hit impact location if it hit)
-		FVector beamStart = mesh->GetSocketLocation(muzzleSocket);
-		UParticleSystemComponent* tracerComponent = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), tracerEffect, beamStart);
-		if(tracerComponent)
+		ammoInMagazine = magazineCapacity;
+	}
+	if(availableBackupAmmo > backupAmmoCapacity)
+	{
+		availableBackupAmmo = backupAmmoCapacity;
+	}
+}
+
+void ASWeapon::startFire()
+{
+	fireAtRate<ASWeapon, &ASWeapon::fire>(this);
+}
+
+void ASWeapon::stopFire()
+{
+	GetWorldTimerManager().ClearTimer(timeBetweenShotsTimer);
+}
+
+bool ASWeapon::hasAmmoInMagazine()
+{
+	if(ammoInMagazine > 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+void ASWeapon::reduceMagazineAmmo()
+{
+	if(ammoInMagazine > 0)
+	{
+		--ammoInMagazine;
+	}
+}
+
+void ASWeapon::reload()
+{
+	if(availableBackupAmmo > 0 && ammoInMagazine < magazineCapacity)
+	{
+		//start reload animation here.
+		int spaceLeftInMagazine = magazineCapacity - ammoInMagazine;
+		if(spaceLeftInMagazine < availableBackupAmmo)
 		{
-			FVector beamEnd;
-			if (hitBlocked)
-			{
-				beamEnd = hit.ImpactPoint;
-			}
-			else
-			{
-				beamEnd = traceDistance;
-			}
-			tracerComponent->SetVectorParameter(tracerTarget, beamEnd);
+			availableBackupAmmo -= spaceLeftInMagazine;
+			ammoInMagazine += spaceLeftInMagazine;
+		}
+		else
+		{
+			ammoInMagazine += availableBackupAmmo;
+			availableBackupAmmo = 0;
 		}
 	}
 }
 
-void ASWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit, bool hitBlocked)
+void ASWeapon::BeginPlay()
 {
-	if(hitBlocked)//something got hit by the trace
+	Super::BeginPlay();
+
+	timeBetweenShots = 60 / fireRate;//in seconds
+	limitAmmoToCapacitiesSet();
+}
+
+void ASWeapon::muzzleFireFlash()
+{
+	if(muzzleEffect)//only if a muzzle effect was assigned
 	{
-		//process damage
-		AActor* hitActor = hit.GetActor();
+		UGameplayStatics::SpawnEmitterAttached(muzzleEffect, mesh, muzzleSocket);//emits the muzzle effect when firing the weapon
+	}
+}
 
-		float damage = 20.0f;
-		UGameplayStatics::ApplyPointDamage(hitActor, damage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
+void ASWeapon::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit)
+{
 
-		if(hitImpactEffect)//if it was assigned
+	UParticleSystem* selectedHitImpactEffect = *(*(physicalMaterialsMap.Find(surfaceHit)));
+
+	if (!selectedHitImpactEffect)
+	{
+		selectedHitImpactEffect = DefaultHitImpactEffect;
+	}
+
+	if (selectedHitImpactEffect)//if it was assigned
+	{
+		//spawn impact effect
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), selectedHitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
+		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
+	}
+}
+
+void ASWeapon::recoilShakingCamera(AActor* weaponOwnerActor)
+{
+	APawn* weaponOwner = Cast<APawn>(weaponOwnerActor);
+	if(weaponOwner && recoilCameraShake)
+	{
+		APlayerController* playerController = Cast<APlayerController>(weaponOwner->GetController());
+		if(playerController)
 		{
-			//spawn impact effect
-			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
-			//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
+			playerController->ClientPlayCameraShake(recoilCameraShake);
 		}
 	}
 }
 
 void ASWeapon::fire()
 {
-	//first it has to trace the world from the pawn's eyes to the crosshair (at the center of the screen)
-
-	AActor* weaponOwner = GetOwner();//it's necessary to know who's holding the weapon
-
-	if(weaponOwner)
-	{
-		if(muzzleEffect)//only if a muzzle effect was assigned
-		{
-			UGameplayStatics::SpawnEmitterAttached(muzzleEffect, mesh, muzzleSocket);//emits the muzzle effect when firing the weapon
-		}
-
-		
-		FVector eyesLocation;//will be used as the starting point for our trace
-		FRotator eyesRotation;
-		weaponOwner->GetActorEyesViewPoint(eyesLocation, eyesRotation);//now we have the eyes's location and rotation
-
-		FVector shotDirection = eyesRotation.Vector();
-		int traceMultiplier = 10000;
-		FVector traceDistance = eyesLocation + shotDirection * traceMultiplier;//where the trace ends
-
-		FCollisionQueryParams collisionParameters;
-		collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
-		collisionParameters.AddIgnoredActor(this);//ignore also the weapon in the trace
-		collisionParameters.bTraceComplex = true;//traces against each individual triangle from the traced mesh. Gives the exact result of where we hit something. It's more expensive
-
-		
-		FHitResult hit;//struct containing hit information
-		bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, ECC_Visibility, collisionParameters);
-		//ECC_Visibility is used now because everything that blocks that channel, will block the trace.
-		//That thing that blocks will be something that can be damaged
-		processPointDamage(weaponOwner, shotDirection, hit, hitBlocked);
-
-
-		tracerEffectSpawn(hitBlocked, hit, traceDistance);//create beam to represent bullet trajectory 
-
-		DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
-		
-	}
-	
-	
 }
-
-// Called every frame
-void ASWeapon::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
