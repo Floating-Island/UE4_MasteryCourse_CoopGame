@@ -18,8 +18,16 @@ FAutoConsoleVariableRef ConsoleDebugTracerWeaponDrawing(
 
 void ASTracerSingle::fire()
 {
-	singleTraceFire();
-	reduceMagazineAmmo();
+	if (hasAmmoInMagazine())
+	{
+		singleTraceFire();
+		reduceMagazineAmmo();
+	}
+	else
+	{
+		reload();
+	}
+	
 }
 
 void ASTracerSingle::startFire()
@@ -28,17 +36,9 @@ void ASTracerSingle::startFire()
 
 	if(weaponOwner)
 	{
-		if (hasAmmoInMagazine())
-		{
-			fireAtRate<ASTracerSingle, &ASTracerSingle::fire>(this);
-		}
-		else
-		{
-			reload();
-		}
+		fireAtRate<ASTracerSingle, &ASTracerSingle::fire>(this);
+
 	}
-	
-	
 }
 
 void ASTracerSingle::singleTraceFire()

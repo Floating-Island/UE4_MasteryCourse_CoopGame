@@ -28,21 +28,22 @@ void ASTracerMulti::startFire()
 
 	if (weaponOwner)
 	{
-		if(hasAmmoInMagazine())
-		{
-			fireAtRate<ASTracerMulti, &ASTracerMulti::fire>(this);
-		}
-		else
-		{
-			reload();
-		}
+		fireAtRate<ASTracerMulti, &ASTracerMulti::fire>(this);
 	}	
 }
 
 void ASTracerMulti::fire()
 {
-	multiTraceFire();
-	reduceMagazineAmmo();
+	if (hasAmmoInMagazine())
+	{
+		multiTraceFire();
+		reduceMagazineAmmo();
+	}
+	else
+	{
+		reload();
+	}
+	
 }
 
 void ASTracerMulti::multiTraceFire()

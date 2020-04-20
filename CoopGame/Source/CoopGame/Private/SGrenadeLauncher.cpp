@@ -10,19 +10,19 @@ void ASGrenadeLauncher::startFire()
 	
 	if (weaponOwner)
 	{
-		if (hasAmmoInMagazine())
-		{
-			fireAtRate<ASGrenadeLauncher, &ASGrenadeLauncher::fire>(this);
-		}
-		else
-		{
-			reload();
-		}
+		fireAtRate<ASGrenadeLauncher, &ASGrenadeLauncher::fire>(this);
 	}
 }
 
 void ASGrenadeLauncher::fire()
 {
-	FireSingleProjectile();
-	reduceMagazineAmmo();
+	if (hasAmmoInMagazine())
+	{
+		FireSingleProjectile();
+		reduceMagazineAmmo();
+	}
+	else
+	{
+		reload();
+	}
 }
