@@ -39,6 +39,7 @@ protected:
 	USpringArmComponent* springArm;//used to adapt lookUp and turnRight to a third person camera mode
 
 	//health component
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USHealthComponent* healthComp;
 
 	UFUNCTION()

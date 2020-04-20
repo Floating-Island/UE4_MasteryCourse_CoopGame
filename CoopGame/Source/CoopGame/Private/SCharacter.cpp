@@ -168,9 +168,8 @@ void ASCharacter::onHealthChanged(USHealthComponent* trigger, float health, floa
 
 		//leave the character's body
 		DetachFromControllerPendingDestroy();
-
+		//destroy the body
 		SetLifeSpan(5.0f);
-		
 	}
 }
 
