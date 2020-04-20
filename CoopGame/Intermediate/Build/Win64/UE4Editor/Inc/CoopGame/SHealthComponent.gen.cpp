@@ -57,7 +57,7 @@ void EmptyLinkFunctionForGeneratedCodeSHealthComponent() {}
 		{ "ModuleRelativePath", "Public/SHealthComponent.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_USHealthComponent_Statics::NewProp_health = { "health", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(USHealthComponent, health), METADATA_PARAMS(Z_Construct_UClass_USHealthComponent_Statics::NewProp_health_MetaData, ARRAY_COUNT(Z_Construct_UClass_USHealthComponent_Statics::NewProp_health_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_USHealthComponent_Statics::NewProp_health = { "health", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(USHealthComponent, health), METADATA_PARAMS(Z_Construct_UClass_USHealthComponent_Statics::NewProp_health_MetaData, ARRAY_COUNT(Z_Construct_UClass_USHealthComponent_Statics::NewProp_health_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_USHealthComponent_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USHealthComponent_Statics::NewProp_health,
 	};
@@ -88,7 +88,7 @@ void EmptyLinkFunctionForGeneratedCodeSHealthComponent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(USHealthComponent, 2587605195);
+	IMPLEMENT_CLASS(USHealthComponent, 2402939460);
 	template<> COOPGAME_API UClass* StaticClass<USHealthComponent>()
 	{
 		return USHealthComponent::StaticClass();
