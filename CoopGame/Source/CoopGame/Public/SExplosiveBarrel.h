@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "SExplosiveBarrel.generated.h"
 
+class USHealthComponent;
+
 UCLASS()
 class COOPGAME_API ASExplosiveBarrel : public AActor
 {
@@ -19,8 +21,29 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+		USkeletalMeshComponent* mesh;
+
+	//health component
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+		USHealthComponent* healthComp;
+
+	UFUNCTION()
+		void onHealthChanged(USHealthComponent* trigger,
+			float health,
+			float healthDelta,
+			const class UDamageType* DamageType,
+			class AController* InstigatedBy,
+			AActor* DamageCauser);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Barrel")
+		bool bHasDied;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Barrel")
+		UMaterialInstanceDynamic* DefaultMaterial;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Barrel")
+		UMaterialInstanceDynamic* DeadMaterial;
+
 
 };

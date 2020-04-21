@@ -2,13 +2,17 @@
 
 
 #include "SExplosiveBarrel.h"
+#include "Components/SkeletalMeshComponent.h"
+
+#include "SHealthComponent.h"
 
 // Sets default values
 ASExplosiveBarrel::ASExplosiveBarrel()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+	bHasDied = false;
+	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health Component"));
+	mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh Component"));
+	RootComponent = mesh;
 }
 
 // Called when the game starts or when spawned
@@ -16,12 +20,10 @@ void ASExplosiveBarrel::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	
 }
 
-// Called every frame
-void ASExplosiveBarrel::Tick(float DeltaTime)
+void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health, float healthDelta,
+	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	Super::Tick(DeltaTime);
-
 }
-
