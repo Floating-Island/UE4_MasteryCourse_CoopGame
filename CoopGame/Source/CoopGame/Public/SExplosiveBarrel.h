@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "SExplosiveBarrel.generated.h"
 
+class URadialForceComponent;
 class USHealthComponent;
 
 UCLASS()
@@ -17,12 +18,18 @@ public:
 	// Sets default values for this actor's properties
 	ASExplosiveBarrel();
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		UStaticMeshComponent* mesh;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+		URadialForceComponent* forceComp;
 
 	//health component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")

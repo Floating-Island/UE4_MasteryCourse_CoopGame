@@ -5,13 +5,15 @@
 #include "Components/StaticMeshComponent.h"
 #include "kismet/GameplayStatics.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
-#include "Components/PrimitiveComponent.h"
+#include "PhysicsEngine/RadialForceComponent.h"
 
 #include "SHealthComponent.h"
 
 // Sets default values
 ASExplosiveBarrel::ASExplosiveBarrel()
 {
+	PrimaryActorTick.bCanEverTick = true;
+	
 	bHasExploded = false;
 	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health Component"));
 	mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
@@ -19,8 +21,20 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 	explosionDamage = 60.0f;
 	explosionRadius = 200.0f;
 	mesh->SetSimulatePhysics(true);
-	explosionReactionImpulse = FVector(0.0f, 0.0f, 10.0f);
+	float impulseMagnitude = 100000.0;
+	explosionReactionImpulse = FVector(0.0f, 0.0f, impulseMagnitude);
 	
+	
+	forceComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("Radial Force Component"));
+	forceComp->SetupAttachment(RootComponent);
+	forceComp->bIgnoreOwningActor = true;
+	forceComp->Radius = explosionRadius;
+	forceComp->ImpulseStrength = impulseMagnitude;
+
+}
+
+void ASExplosiveBarrel::Tick(float DeltaTime)
+{
 }
 
 // Called when the game starts or when spawned
@@ -42,8 +56,9 @@ void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health
 		{
 			UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
 		}
-		mesh->AddImpulse(explosionReactionImpulse);
 		
+		mesh->AddImpulse(explosionReactionImpulse);//doesn't work yet
+		forceComp->FireImpulse();
 		provokeRadialDamage();
 	}
 }
