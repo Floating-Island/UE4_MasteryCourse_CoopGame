@@ -18,6 +18,7 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 	RootComponent = mesh;
 	explosionDamage = 60.0f;
 	explosionRadius = 200.0f;
+	mesh->SetSimulatePhysics(true);
 	explosionReactionImpulse = FVector(0.0f, 0.0f, 10.0f);
 	
 }
@@ -35,6 +36,7 @@ void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health
 {
 	if(health <= 0 && !bHasExploded)
 	{
+		bHasExploded = true;
 		mesh->SetMaterial(mesh->GetMaterialIndex("DefaultMaterial"), explodedMaterial);
 		if(explodeParticle)
 		{

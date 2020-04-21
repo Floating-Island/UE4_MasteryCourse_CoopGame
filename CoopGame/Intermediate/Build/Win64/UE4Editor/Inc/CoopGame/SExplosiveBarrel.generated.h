@@ -101,7 +101,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASExplosiveBarrel); \
 	FORCEINLINE static uint32 __PPO__explodeParticle() { return STRUCT_OFFSET(ASExplosiveBarrel, explodeParticle); } \
 	FORCEINLINE static uint32 __PPO__explosionDamage() { return STRUCT_OFFSET(ASExplosiveBarrel, explosionDamage); } \
 	FORCEINLINE static uint32 __PPO__explosionRadius() { return STRUCT_OFFSET(ASExplosiveBarrel, explosionRadius); } \
-	FORCEINLINE static uint32 __PPO__damageType() { return STRUCT_OFFSET(ASExplosiveBarrel, damageType); }
+	FORCEINLINE static uint32 __PPO__damageType() { return STRUCT_OFFSET(ASExplosiveBarrel, damageType); } \
+	FORCEINLINE static uint32 __PPO__explosionReactionImpulse() { return STRUCT_OFFSET(ASExplosiveBarrel, explosionReactionImpulse); }
 
 
 #define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_11_PROLOG
