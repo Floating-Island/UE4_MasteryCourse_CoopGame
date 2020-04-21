@@ -54,6 +54,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Barrel")
 		TSubclassOf<UDamageType> damageType;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Barrel")
+		FVector explosionReactionImpulse;
 	
 	
 	void provokeRadialDamage();

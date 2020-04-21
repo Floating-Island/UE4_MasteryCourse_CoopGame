@@ -5,6 +5,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "kismet/GameplayStatics.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
+#include "Components/PrimitiveComponent.h"
 
 #include "SHealthComponent.h"
 
@@ -17,6 +18,7 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 	RootComponent = mesh;
 	explosionDamage = 60.0f;
 	explosionRadius = 200.0f;
+	explosionReactionImpulse = FVector(0.0f, 0.0f, 10.0f);
 	
 }
 
@@ -38,6 +40,7 @@ void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health
 		{
 			UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
 		}
+		mesh->AddImpulse(explosionReactionImpulse);
 		
 		provokeRadialDamage();
 	}
