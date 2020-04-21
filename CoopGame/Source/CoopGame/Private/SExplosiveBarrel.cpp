@@ -12,8 +12,6 @@
 // Sets default values
 ASExplosiveBarrel::ASExplosiveBarrel()
 {
-	PrimaryActorTick.bCanEverTick = true;
-	
 	bHasExploded = false;
 	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health Component"));
 	mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
@@ -28,38 +26,37 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 	forceComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("Radial Force Component"));
 	forceComp->SetupAttachment(RootComponent);
 	forceComp->bIgnoreOwningActor = true;
-	forceComp->Radius = explosionRadius;
-	forceComp->ImpulseStrength = impulseMagnitude;
-
-}
-
-void ASExplosiveBarrel::Tick(float DeltaTime)
-{
+	forceComp->bAutoActivate = false;//so we don't need to have tick enabled
 }
 
 // Called when the game starts or when spawned
 void ASExplosiveBarrel::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	forceComp->Radius = explosionRadius;
+	forceComp->ImpulseStrength = explosionReactionImpulse.Size();
 	healthComp->onHealthChanged.AddDynamic(this, &ASExplosiveBarrel::onHealthChanged);
 }
 
+void ASExplosiveBarrel::explode()
+{
+	bHasExploded = true;
+	mesh->SetMaterial(mesh->GetMaterialIndex("DefaultMaterial"), explodedMaterial);
+	if(explodeParticle)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
+	}
+	mesh->AddImpulse(explosionReactionImpulse);//doesn't work yet
+	forceComp->FireImpulse();
+	provokeRadialDamage();
+}
+
 void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health, float healthDelta,
-	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+                                        const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
 	if(health <= 0 && !bHasExploded)
 	{
-		bHasExploded = true;
-		mesh->SetMaterial(mesh->GetMaterialIndex("DefaultMaterial"), explodedMaterial);
-		if(explodeParticle)
-		{
-			UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
-		}
-		
-		mesh->AddImpulse(explosionReactionImpulse);//doesn't work yet
-		forceComp->FireImpulse();
-		provokeRadialDamage();
+		explode();
 	}
 }
 

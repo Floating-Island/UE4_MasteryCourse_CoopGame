@@ -18,12 +18,10 @@ public:
 	// Sets default values for this actor's properties
 	ASExplosiveBarrel();
 
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	void explode();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		UStaticMeshComponent* mesh;
