@@ -37,13 +37,10 @@ protected:
 			AActor* DamageCauser);
 
 	UPROPERTY(BlueprintReadOnly, Category = "Barrel")
-		bool bHasDied;
+		bool bHasExploded;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Barrel")
-		UMaterialInstanceDynamic* DefaultMaterial;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Barrel")
-		UMaterialInstanceDynamic* DeadMaterial;
+		UMaterialInterface* explodedMaterial;
 
 
 };
