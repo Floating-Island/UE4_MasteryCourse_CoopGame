@@ -22,7 +22,7 @@ void ASExplosiveBarrel::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	
+	healthComp->onHealthChanged.AddDynamic(this, &ASExplosiveBarrel::onHealthChanged);
 }
 
 void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health, float healthDelta,
