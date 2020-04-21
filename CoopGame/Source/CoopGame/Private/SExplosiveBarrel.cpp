@@ -3,7 +3,8 @@
 
 #include "SExplosiveBarrel.h"
 #include "Components/StaticMeshComponent.h"
-#include "DrawDebugHelpers.h"
+#include "kismet/GameplayStatics.h"
+#include "PhysicalMaterials/PhysicalMaterial.h"
 
 #include "SHealthComponent.h"
 
@@ -14,6 +15,8 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health Component"));
 	mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
 	RootComponent = mesh;
+	explosionDamage = 60.0f;
+	explosionRadius = 200.0f;
 	
 }
 
@@ -28,10 +31,30 @@ void ASExplosiveBarrel::BeginPlay()
 void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health, float healthDelta,
 	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	DrawDebugSphere(GetWorld(), this->GetActorLocation(), 300.0f, 36, FColor::Black, false, 2.0f, 2, 3);
 	if(health <= 0 && !bHasExploded)
 	{
 		mesh->SetMaterial(mesh->GetMaterialIndex("DefaultMaterial"), explodedMaterial);
+		if(explodeParticle)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
+		}
 		
+		provokeRadialDamage();
 	}
+}
+
+void ASExplosiveBarrel::provokeRadialDamage()
+{
+	FHitResult hit;
+	//process baseDamage
+	AActor* hitActor = hit.GetActor();
+
+	TArray<AActor*> ignoredActors = TArray<AActor*>();
+
+
+	EPhysicalSurface surfaceHit = UPhysicalMaterial::DetermineSurfaceType(hit.PhysMaterial.Get());
+
+	bool damagedApplied = false;
+	damagedApplied = UGameplayStatics::ApplyRadialDamage(this, explosionDamage, this->GetActorLocation(), explosionRadius, damageType,
+		ignoredActors, this, this->GetInstigatorController(), true, ECC_Visibility);
 }

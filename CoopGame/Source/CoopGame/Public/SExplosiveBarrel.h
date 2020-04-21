@@ -42,5 +42,21 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Barrel")
 		UMaterialInterface* explodedMaterial;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Barrel")
+		UParticleSystem* explodeParticle;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Barrel")
+		float explosionDamage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Barrel")
+		float explosionRadius;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Barrel")
+		TSubclassOf<UDamageType> damageType;
+
+	
+	
+	void provokeRadialDamage();
+
 
 };
