@@ -17,9 +17,6 @@ ASProjectile::ASProjectile()
 	physicalMaterialsMap.Add(SurfaceType_Default, &DefaultHitImpactEffect);
 	physicalMaterialsMap.Add(SURFACE_FLESH_DEFAULT, &FleshImpactEffect);
 	physicalMaterialsMap.Add(SURFACE_FLESH_VULNERABLE, &FleshImpactEffect);
-	
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
 
 	mesh = CreateDefaultSubobject < UStaticMeshComponent>(TEXT("Mesh Component"));//creates component 
 	
@@ -27,10 +24,11 @@ ASProjectile::ASProjectile()
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileComp"));
 	ProjectileMovement->UpdatedComponent = mesh;
-	ProjectileMovement->InitialSpeed = 3000.f;
-	ProjectileMovement->MaxSpeed = 3000.f;
+	ProjectileMovement->InitialSpeed = 500.0f;
+	ProjectileMovement->MaxSpeed = 1000.0f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
+
 
 	// Use a sphere as a simple collision representation
 	collisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
@@ -41,6 +39,8 @@ ASProjectile::ASProjectile()
 		// Players can't walk on it
 	collisionComponent->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
 	collisionComponent->CanCharacterStepUpOn = ECB_No;
+
+	RootComponent = mesh;
 
 	baseDamage = 40.0f;
 
@@ -53,13 +53,6 @@ ASProjectile::ASProjectile()
 void ASProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-}
-
-// Called every frame
-void ASProjectile::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void ASProjectile::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit)

@@ -6,8 +6,11 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
 #include "Components/InputComponent.h"
+#include "Components/CapsuleComponent.h"
 
 #include "SWeapon.h"
+#include "CoopGame.h"
+#include "SHealthComponent.h"
 
 // Sets default values
 ASCharacter::ASCharacter()
@@ -27,6 +30,12 @@ ASCharacter::ASCharacter()
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;//necessary to allow the pawn to crouch
 
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanJump = true;//necessary to allow the pawn to jump
+
+	GetCapsuleComponent()->SetCollisionResponseToChannel(COLLISION_WEAPON_CHANNEL, ECR_Ignore);
+
+	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health"));
+
+	bHasDied = false;
 
 	//zoom properties
 	defaultFOV = camera->FieldOfView;
@@ -81,6 +90,7 @@ void ASCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	attachWeapon();
+	healthComp->onHealthChanged.AddDynamic(this, &ASCharacter::onHealthChanged);
 }
 
 void ASCharacter::beginZoom()
@@ -141,6 +151,26 @@ FVector ASCharacter::GetPawnViewLocation() const
 		return camera->GetComponentLocation();
 	}
 	return Super::GetPawnViewLocation();
+}
+
+void ASCharacter::onHealthChanged(USHealthComponent* trigger, float health, float healthDelta,
+									const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+{
+	if(health <= 0 && !bHasDied)
+	{
+		//die motherfucker
+		bHasDied = true;
+		//we have to stop movement immediately
+		GetMovementComponent()->StopMovementImmediately();
+		//we have to stop interacting with collisions
+		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		//playDeathAnimation
+
+		//leave the character's body
+		DetachFromControllerPendingDestroy();
+		//destroy the body
+		SetLifeSpan(5.0f);
+	}
 }
 
 void ASCharacter::moveForward(float forwardValue)

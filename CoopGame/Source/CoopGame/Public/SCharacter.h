@@ -9,6 +9,7 @@
 class UCameraComponent;
 class USpringArmComponent;
 class ASWeapon;
+class USHealthComponent;
 
 UCLASS()
 class COOPGAME_API ASCharacter : public ACharacter
@@ -36,6 +37,21 @@ protected:
 	//spring arm component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* springArm;//used to adapt lookUp and turnRight to a third person camera mode
+
+	//health component
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	USHealthComponent* healthComp;
+
+	UFUNCTION()
+		void onHealthChanged(USHealthComponent* trigger,
+			float health,
+			float healthDelta,
+			const class UDamageType* DamageType,
+			class AController* InstigatedBy,
+			AActor* DamageCauser);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Player")
+	bool bHasDied;
 
 	
 	//forward movement
