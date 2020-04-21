@@ -2,6 +2,6 @@
 	"BuildId": "5660361",
 	"Modules": 
 	{
-		"CoopGame": "UE4Editor-CoopGame.dll"
+		"CoopGame": "UE4Editor-CoopGame-2048.dll"
 	}
 }

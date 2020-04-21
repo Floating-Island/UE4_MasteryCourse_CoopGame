@@ -378,6 +378,7 @@
     <ClCompile Include="..\..\Source\CoopGame\CoopGameGameModeBase.cpp" />
     <ClInclude Include="..\..\Source\CoopGame\CoopGameGameModeBase.h" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SCharacter.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SExplosiveBarrel.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeLauncher.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SHealthComponent.cpp" />
@@ -391,6 +392,7 @@
     <ClCompile Include="..\..\Source\CoopGame\Private\STracerWeapon.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SWeapon.cpp" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SCharacter.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SExplosiveBarrel.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeLauncher.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SHealthComponent.h" />
