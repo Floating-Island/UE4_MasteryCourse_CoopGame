@@ -8,14 +8,50 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class USHealthComponent;
+class UDamageType;
+class AController;
+class AActor;
 #ifdef COOPGAME_SExplosiveBarrel_generated_h
 #error "SExplosiveBarrel.generated.h already included, missing '#pragma once' in SExplosiveBarrel.h"
 #endif
 #define COOPGAME_SExplosiveBarrel_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_RPC_WRAPPERS
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_RPC_WRAPPERS_NO_PURE_DECLS
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_INCLASS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execonHealthChanged) \
+	{ \
+		P_GET_OBJECT(USHealthComponent,Z_Param_trigger); \
+		P_GET_PROPERTY(UFloatProperty,Z_Param_health); \
+		P_GET_PROPERTY(UFloatProperty,Z_Param_healthDelta); \
+		P_GET_OBJECT(UDamageType,Z_Param_DamageType); \
+		P_GET_OBJECT(AController,Z_Param_InstigatedBy); \
+		P_GET_OBJECT(AActor,Z_Param_DamageCauser); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->onHealthChanged(Z_Param_trigger,Z_Param_health,Z_Param_healthDelta,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser); \
+		P_NATIVE_END; \
+	}
+
+
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execonHealthChanged) \
+	{ \
+		P_GET_OBJECT(USHealthComponent,Z_Param_trigger); \
+		P_GET_PROPERTY(UFloatProperty,Z_Param_health); \
+		P_GET_PROPERTY(UFloatProperty,Z_Param_healthDelta); \
+		P_GET_OBJECT(UDamageType,Z_Param_DamageType); \
+		P_GET_OBJECT(AController,Z_Param_InstigatedBy); \
+		P_GET_OBJECT(AActor,Z_Param_DamageCauser); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->onHealthChanged(Z_Param_trigger,Z_Param_health,Z_Param_healthDelta,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser); \
+		P_NATIVE_END; \
+	}
+
+
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASExplosiveBarrel(); \
 	friend struct Z_Construct_UClass_ASExplosiveBarrel_Statics; \
@@ -24,7 +60,7 @@ public: \
 	DECLARE_SERIALIZER(ASExplosiveBarrel)
 
 
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_INCLASS \
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_INCLASS \
 private: \
 	static void StaticRegisterNativesASExplosiveBarrel(); \
 	friend struct Z_Construct_UClass_ASExplosiveBarrel_Statics; \
@@ -33,7 +69,7 @@ public: \
 	DECLARE_SERIALIZER(ASExplosiveBarrel)
 
 
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_STANDARD_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ASExplosiveBarrel(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASExplosiveBarrel) \
@@ -46,7 +82,7 @@ private: \
 public:
 
 
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_ENHANCED_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASExplosiveBarrel(ASExplosiveBarrel&&); \
@@ -57,26 +93,33 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASExplosiveBarrel); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASExplosiveBarrel)
 
 
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_PRIVATE_PROPERTY_OFFSET
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_9_PROLOG
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_GENERATED_BODY_LEGACY \
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__mesh() { return STRUCT_OFFSET(ASExplosiveBarrel, mesh); } \
+	FORCEINLINE static uint32 __PPO__healthComp() { return STRUCT_OFFSET(ASExplosiveBarrel, healthComp); } \
+	FORCEINLINE static uint32 __PPO__bHasDied() { return STRUCT_OFFSET(ASExplosiveBarrel, bHasDied); } \
+	FORCEINLINE static uint32 __PPO__DefaultMaterial() { return STRUCT_OFFSET(ASExplosiveBarrel, DefaultMaterial); } \
+	FORCEINLINE static uint32 __PPO__DeadMaterial() { return STRUCT_OFFSET(ASExplosiveBarrel, DeadMaterial); }
+
+
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_11_PROLOG
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_RPC_WRAPPERS \
-	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_INCLASS \
-	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_STANDARD_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_RPC_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_INCLASS \
+	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_GENERATED_BODY \
+#define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_INCLASS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_12_ENHANCED_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_INCLASS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

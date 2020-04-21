@@ -22,7 +22,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-		USkeletalMeshComponent* mesh;
+		UStaticMeshComponent* mesh;
 
 	//health component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")

@@ -2,7 +2,7 @@
 
 
 #include "SExplosiveBarrel.h"
-#include "Components/SkeletalMeshComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 #include "SHealthComponent.h"
 
@@ -11,7 +11,7 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 {
 	bHasDied = false;
 	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health Component"));
-	mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh Component"));
+	mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
 	RootComponent = mesh;
 }
 
