@@ -15,7 +15,6 @@
 
 void ASTracerWeapon::singleTraceEffectReplication()
 {
-	firingEffects();
 	tracerEffectSpawn(traceNetInfo.traceTo);
 }
 
