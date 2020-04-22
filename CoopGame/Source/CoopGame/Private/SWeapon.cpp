@@ -42,6 +42,8 @@ ASWeapon::ASWeapon()
 	magazineCapacity = 20;
 	availableBackupAmmo = 30;
 	backupAmmoCapacity = 100;
+
+	SetReplicates(true);
 }
 
 void ASWeapon::limitAmmoToCapacitiesSet()
