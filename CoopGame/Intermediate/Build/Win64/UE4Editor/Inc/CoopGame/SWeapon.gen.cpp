@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 	COOPGAME_API UClass* Z_Construct_UClass_ASWeapon();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASWeapon_firingEffects();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASWeapon_serverFires();
 	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
@@ -33,9 +34,32 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 	{
 		UClass* Class = ASWeapon::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "firingEffects", &ASWeapon::execfiringEffects },
 			{ "serverFires", &ASWeapon::execserverFires },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ASWeapon_firingEffects_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASWeapon_firingEffects_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SWeapon.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASWeapon_firingEffects_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASWeapon, nullptr, "firingEffects", 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASWeapon_firingEffects_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASWeapon_firingEffects_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASWeapon_firingEffects()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASWeapon_firingEffects_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ASWeapon_serverFires_Statics
 	{
@@ -75,6 +99,10 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_fireRate_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_fireRate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_lastFireTime_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_lastFireTime;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FleshImpactEffect_MetaData[];
 #endif
@@ -136,6 +164,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_CoopGame,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ASWeapon_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ASWeapon_firingEffects, "firingEffects" }, // 3404914412
 		{ &Z_Construct_UFunction_ASWeapon_serverFires, "serverFires" }, // 127827640
 	};
 #if WITH_METADATA
@@ -153,6 +182,12 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_fireRate = { "fireRate", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, fireRate), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_fireRate_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_fireRate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_lastFireTime_MetaData[] = {
+		{ "ModuleRelativePath", "Public/SWeapon.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_lastFireTime = { "lastFireTime", "firingEffects", (EPropertyFlags)0x0020080100000020, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, lastFireTime), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_lastFireTime_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_lastFireTime_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_FleshImpactEffect_MetaData[] = {
 		{ "Category", "Weapon" },
@@ -205,21 +240,21 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo = { "availableBackupAmmo", nullptr, (EPropertyFlags)0x0020080000010035, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, availableBackupAmmo), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo = { "availableBackupAmmo", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, availableBackupAmmo), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData[] = {
 		{ "Category", "Weapon" },
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine = { "ammoInMagazine", nullptr, (EPropertyFlags)0x0020080000010035, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, ammoInMagazine), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine = { "ammoInMagazine", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, ammoInMagazine), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData[] = {
 		{ "Category", "Weapon" },
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity = { "magazineCapacity", nullptr, (EPropertyFlags)0x0020080000010035, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, magazineCapacity), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity = { "magazineCapacity", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, magazineCapacity), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_bonusDamage_MetaData[] = {
 		{ "Category", "Weapon" },
@@ -251,6 +286,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_mesh = { "mesh", nullptr, (EPropertyFlags)0x00200800000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, mesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_mesh_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_mesh_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASWeapon_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_fireRate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_lastFireTime,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_FleshImpactEffect,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_DefaultHitImpactEffect,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_muzzleEffect,
@@ -292,7 +328,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASWeapon, 1988689979);
+	IMPLEMENT_CLASS(ASWeapon, 3571713010);
 	template<> COOPGAME_API UClass* StaticClass<ASWeapon>()
 	{
 		return ASWeapon::StaticClass();

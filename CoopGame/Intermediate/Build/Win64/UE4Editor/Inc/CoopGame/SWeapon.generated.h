@@ -13,9 +13,17 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COOPGAME_SWeapon_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_RPC_WRAPPERS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_RPC_WRAPPERS \
 	virtual bool serverFires_Validate(); \
 	virtual void serverFires_Implementation(); \
+ \
+	DECLARE_FUNCTION(execfiringEffects) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->firingEffects(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execserverFires) \
 	{ \
@@ -31,9 +39,17 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
 	virtual bool serverFires_Validate(); \
 	virtual void serverFires_Implementation(); \
+ \
+	DECLARE_FUNCTION(execfiringEffects) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->firingEffects(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execserverFires) \
 	{ \
@@ -49,9 +65,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_EVENT_PARMS
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_CALLBACK_WRAPPERS
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_INCLASS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_EVENT_PARMS
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_CALLBACK_WRAPPERS
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASWeapon(); \
 	friend struct Z_Construct_UClass_ASWeapon_Statics; \
@@ -61,7 +77,7 @@ public: \
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_INCLASS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_INCLASS \
 private: \
 	static void StaticRegisterNativesASWeapon(); \
 	friend struct Z_Construct_UClass_ASWeapon_Statics; \
@@ -71,7 +87,7 @@ public: \
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_STANDARD_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ASWeapon(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASWeapon) \
@@ -84,7 +100,7 @@ private: \
 public:
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_ENHANCED_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASWeapon(ASWeapon&&); \
@@ -95,7 +111,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASWeapon); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASWeapon)
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_PRIVATE_PROPERTY_OFFSET \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__mesh() { return STRUCT_OFFSET(ASWeapon, mesh); } \
 	FORCEINLINE static uint32 __PPO__typeOfDamage() { return STRUCT_OFFSET(ASWeapon, typeOfDamage); } \
 	FORCEINLINE static uint32 __PPO__baseDamage() { return STRUCT_OFFSET(ASWeapon, baseDamage); } \
@@ -109,33 +125,34 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASWeapon); \
 	FORCEINLINE static uint32 __PPO__muzzleEffect() { return STRUCT_OFFSET(ASWeapon, muzzleEffect); } \
 	FORCEINLINE static uint32 __PPO__DefaultHitImpactEffect() { return STRUCT_OFFSET(ASWeapon, DefaultHitImpactEffect); } \
 	FORCEINLINE static uint32 __PPO__FleshImpactEffect() { return STRUCT_OFFSET(ASWeapon, FleshImpactEffect); } \
+	FORCEINLINE static uint32 __PPO__lastFireTime() { return STRUCT_OFFSET(ASWeapon, lastFireTime); } \
 	FORCEINLINE static uint32 __PPO__fireRate() { return STRUCT_OFFSET(ASWeapon, fireRate); }
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_15_PROLOG \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_EVENT_PARMS
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_PROLOG \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_EVENT_PARMS
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_GENERATED_BODY_LEGACY \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_RPC_WRAPPERS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_CALLBACK_WRAPPERS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_INCLASS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_STANDARD_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_RPC_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_CALLBACK_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_INCLASS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_18_GENERATED_BODY \
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_CALLBACK_WRAPPERS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_INCLASS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SWeapon_h_18_ENHANCED_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_CALLBACK_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_INCLASS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SWeapon_h_21_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

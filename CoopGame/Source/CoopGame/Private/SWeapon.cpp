@@ -5,6 +5,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h"
 //#include "TimerManager.h"//call it when you need to have a fire rate
 //#include "Particles/ParticleSystem.h"//used to spawn effects
 //#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location
@@ -178,4 +179,11 @@ bool ASWeapon::serverFires_Validate()
 
 void ASWeapon::fire()
 {
+}
+
+void ASWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME_CONDITION(ASWeapon, lastFireTime, COND_SkipOwner);
 }
