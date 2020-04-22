@@ -159,6 +159,11 @@ void ASWeapon::checkIfServerIsFiring()
 	}
 }
 
+void ASWeapon::singleTraceReplication()
+{
+	//used for playing cosmetic effects from a single trace.
+}
+
 void ASWeapon::serverFires_Implementation()
 {
 	fire();

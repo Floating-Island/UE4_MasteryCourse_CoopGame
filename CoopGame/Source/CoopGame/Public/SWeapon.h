@@ -115,6 +115,13 @@ protected:
 		void serverFires();
 
 	void checkIfServerIsFiring();
+
+	UPROPERTY(ReplicatedUsing= singleTraceReplication)
+	FHitScanTrace traceNetInfo;
+
+	UFUNCTION()
+	void singleTraceReplication();
+	
 };
 
 template <typename callerType, void( callerType::* method)()>
