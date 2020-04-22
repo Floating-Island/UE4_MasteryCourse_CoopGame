@@ -66,12 +66,15 @@ void ASTracerSingle::singleTraceFire()
 	bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, COLLISION_WEAPON_CHANNEL, collisionParameters);
 	//ECC_Visibility is used now because everything that blocks that channel, will block the trace.
 	//That thing that blocks will be something that can be damaged
+
+	tracerEffectSpawn(hitBlocked, hit, traceDistance);//create beam to represent bullet trajectory
+
 	if(hitBlocked)
 	{
 		processPointDamage(weaponOwner, shotDirection, hit);
 	}
 	
-	tracerEffectSpawn(hitBlocked, hit, traceDistance);//create beam to represent bullet trajectory 
+	 
 
 	if (DebugTracerWeaponDrawing > 0)
 	{

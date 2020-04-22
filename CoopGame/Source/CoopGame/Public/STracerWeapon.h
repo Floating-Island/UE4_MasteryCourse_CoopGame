@@ -7,6 +7,21 @@
 #include "STracerWeapon.generated.h"
 
 class UParticleSystem;
+
+
+//contains the information of a single trace
+USTRUCT()
+struct FHitScanTrace
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY()
+		FVector_NetQuantize traceFrom;//this has less precision. 10 has 1 decimal position, 100 has 2.
+	UPROPERTY()
+		FVector_NetQuantize traceTo;
+};
+
 /**
  * 
  */
@@ -27,6 +42,12 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int rangeMultiplier;
+
+	UPROPERTY(ReplicatedUsing = singleTraceReplication)
+		FHitScanTrace traceNetInfo;
+
+	UFUNCTION()
+		void singleTraceReplication();
 
 public:
 	ASTracerWeapon();
