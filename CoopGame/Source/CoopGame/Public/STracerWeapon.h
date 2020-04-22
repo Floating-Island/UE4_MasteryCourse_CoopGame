@@ -31,7 +31,8 @@ class COOPGAME_API ASTracerWeapon : public ASWeapon
 	GENERATED_BODY()
 protected:
 
-	void tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance);
+	FVector calculateEndPoint(bool hitBlocked, FHitResult hit, FVector traceDistance);
+	void tracerEffectSpawn(FVector endPoint);
 	void processPointDamage(AActor* weaponOwner, FVector shotDirection, FHitResult hit);
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//no need to edit it
@@ -47,7 +48,9 @@ protected:
 		FHitScanTrace traceNetInfo;
 
 	UFUNCTION()
-		void singleTraceReplication();
+		 void singleTraceReplication();
+
+	
 
 public:
 	ASTracerWeapon();

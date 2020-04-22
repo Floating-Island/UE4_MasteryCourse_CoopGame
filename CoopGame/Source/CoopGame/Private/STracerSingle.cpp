@@ -48,6 +48,7 @@ void ASTracerSingle::singleTraceFire()
 	muzzleFireFlash();
 
 	AActor* weaponOwner = GetOwner();
+	recoilShakingCamera(weaponOwner);
 	
 	FCollisionQueryParams collisionParameters;
 	collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
@@ -67,7 +68,8 @@ void ASTracerSingle::singleTraceFire()
 	//ECC_Visibility is used now because everything that blocks that channel, will block the trace.
 	//That thing that blocks will be something that can be damaged
 
-	tracerEffectSpawn(hitBlocked, hit, traceDistance);//create beam to represent bullet trajectory
+	FVector traceEndPoint = calculateEndPoint(hitBlocked, hit, traceDistance);
+	tracerEffectSpawn(traceEndPoint);//create beam to represent bullet trajectory
 
 	if(hitBlocked)
 	{
@@ -81,5 +83,5 @@ void ASTracerSingle::singleTraceFire()
 		DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
 	}
 	lastFireTime = GetWorld()->TimeSeconds;
-	recoilShakingCamera(weaponOwner);
+
 }

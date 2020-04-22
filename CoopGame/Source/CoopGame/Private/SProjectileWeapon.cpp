@@ -40,6 +40,7 @@ void ASProjectileWeapon::FireSingleProjectile()
 	if (ProjectileClass)
 	{
 		muzzleFireFlash();
+		recoilShakingCamera(weaponOwner);
 		FVector muzzleLocation = mesh->GetSocketLocation(muzzleSocket);
 
 		FVector eyesLocation;
@@ -56,7 +57,6 @@ void ASProjectileWeapon::FireSingleProjectile()
 		GetWorld()->SpawnActor<ASProjectile>(ProjectileClass, muzzleLocation, eyesRotation, ActorSpawnParams);
 
 		lastFireTime = GetWorld()->TimeSeconds;
-		recoilShakingCamera(weaponOwner);
 	}
 }
 

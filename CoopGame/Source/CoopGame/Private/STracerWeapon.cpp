@@ -10,7 +10,10 @@
 #include "CoopGame.h"
 
 
-
+void ASTracerWeapon::singleTraceReplication()
+{
+	muzzleFireFlash();
+}
 
 ASTracerWeapon::ASTracerWeapon()
 {
@@ -35,7 +38,21 @@ void ASTracerWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirecti
 		reactAtPhysicsMaterial(hit, surfaceHit);
 }
 
-void ASTracerWeapon::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)
+FVector ASTracerWeapon::calculateEndPoint(bool hitBlocked, FHitResult hit, FVector traceDistance)
+{
+	FVector beamEnd;
+	if (hitBlocked)
+	{
+		beamEnd = hit.ImpactPoint;
+	}
+	else
+	{
+		beamEnd = traceDistance;
+	}
+	return beamEnd;
+}
+
+void ASTracerWeapon::tracerEffectSpawn(FVector endPoint)
 {
 	if (tracerEffect)
 	{
@@ -44,16 +61,7 @@ void ASTracerWeapon::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector 
 		UParticleSystemComponent* tracerComponent = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), tracerEffect, beamStart);
 		if (tracerComponent)
 		{
-			FVector beamEnd;
-			if (hitBlocked)
-			{
-				beamEnd = hit.ImpactPoint;
-			}
-			else
-			{
-				beamEnd = traceDistance;
-			}
-			tracerComponent->SetVectorParameter(tracerTarget, beamEnd);
+			tracerComponent->SetVectorParameter(tracerTarget, endPoint);
 		}
 	}
 }
