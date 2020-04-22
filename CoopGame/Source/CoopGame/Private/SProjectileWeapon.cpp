@@ -39,8 +39,7 @@ void ASProjectileWeapon::FireSingleProjectile()
 	AActor* weaponOwner = GetOwner();
 	if (ProjectileClass)
 	{
-		muzzleFireFlash();
-		recoilShakingCamera(weaponOwner);
+		firingEffects();
 		FVector muzzleLocation = mesh->GetSocketLocation(muzzleSocket);
 
 		FVector eyesLocation;

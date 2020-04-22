@@ -50,9 +50,8 @@ void ASTracerMulti::fire()
 
 void ASTracerMulti::multiTraceFire()
 {
-	muzzleFireFlash();
+	firingEffects();
 	AActor* weaponOwner = GetOwner();
-	recoilShakingCamera(weaponOwner);
 
 	FCollisionQueryParams collisionParameters;
 	collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
@@ -83,6 +82,8 @@ void ASTracerMulti::multiTraceFire()
 		}
 		FVector traceEndPoint = calculateEndPoint(hitBlocked, hit, traceDistance);
 		tracerEffectSpawn(traceEndPoint);//create beam to represent bullet trajectory
+
+		serverTraceEffects(traceEndPoint);
 
 		if (DebugMultiTraceDrawing > 0)
 		{

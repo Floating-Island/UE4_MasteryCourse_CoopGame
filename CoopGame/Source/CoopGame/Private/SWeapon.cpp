@@ -159,6 +159,13 @@ void ASWeapon::checkIfServerIsFiring()
 	}
 }
 
+void ASWeapon::firingEffects()
+{
+	muzzleFireFlash();
+	AActor* weaponOwner = GetOwner();
+	recoilShakingCamera(weaponOwner);
+}
+
 void ASWeapon::serverFires_Implementation()
 {
 	fire();

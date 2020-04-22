@@ -48,7 +48,9 @@ protected:
 		FHitScanTrace traceNetInfo;
 
 	UFUNCTION()
-		 void singleTraceReplication();
+		 void singleTraceEffectReplication();
+
+	void serverTraceEffects(FVector traceEndPoint);
 
 	
 

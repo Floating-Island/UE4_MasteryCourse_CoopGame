@@ -45,10 +45,8 @@ void ASTracerSingle::startFire()
 
 void ASTracerSingle::singleTraceFire()
 {
-	muzzleFireFlash();
-
+	firingEffects();
 	AActor* weaponOwner = GetOwner();
-	recoilShakingCamera(weaponOwner);
 	
 	FCollisionQueryParams collisionParameters;
 	collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
@@ -70,6 +68,8 @@ void ASTracerSingle::singleTraceFire()
 
 	FVector traceEndPoint = calculateEndPoint(hitBlocked, hit, traceDistance);
 	tracerEffectSpawn(traceEndPoint);//create beam to represent bullet trajectory
+
+	serverTraceEffects(traceEndPoint);//only executed by server
 
 	if(hitBlocked)
 	{

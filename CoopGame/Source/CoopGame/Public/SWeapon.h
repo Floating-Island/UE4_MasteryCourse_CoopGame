@@ -53,7 +53,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int magazineCapacity;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, ReplicatedUsing= , BlueprintReadOnly, Category = "Weapon")
 		int ammoInMagazine;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int availableBackupAmmo;
@@ -104,6 +104,8 @@ protected:
 		void serverFires();
 
 	void checkIfServerIsFiring();
+
+	void firingEffects();
 	
 };
 

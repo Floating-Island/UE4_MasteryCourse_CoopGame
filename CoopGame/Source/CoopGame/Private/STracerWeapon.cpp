@@ -2,17 +2,29 @@
 
 
 #include "STracerWeapon.h"
+//engine includes
 #include "DrawDebugHelpers.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
+#include "Net/UnrealNetwork.h"
 
+//project includes
 #include "CoopGame.h"
 
 
-void ASTracerWeapon::singleTraceReplication()
+void ASTracerWeapon::singleTraceEffectReplication()
 {
-	muzzleFireFlash();
+	firingEffects();
+	tracerEffectSpawn(traceNetInfo.traceTo);
+}
+
+void ASTracerWeapon::serverTraceEffects(FVector traceEndPoint)
+{
+	if (Role == ROLE_Authority)
+	{
+		traceNetInfo.traceTo = traceEndPoint;
+	}
 }
 
 ASTracerWeapon::ASTracerWeapon()
@@ -66,7 +78,12 @@ void ASTracerWeapon::tracerEffectSpawn(FVector endPoint)
 	}
 }
 
+void ASTracerWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
+	DOREPLIFETIME_CONDITION(ASTracerWeapon, traceNetInfo, COND_SkipOwner);
+}
 
 
 
