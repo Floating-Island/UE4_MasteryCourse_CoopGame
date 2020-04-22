@@ -9,6 +9,7 @@
 
 #include "SHealthComponent.h"
 
+
 // Sets default values
 ASExplosiveBarrel::ASExplosiveBarrel()
 {
@@ -21,7 +22,6 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 	mesh->SetSimulatePhysics(true);
 	float impulseMagnitude = 100000.0;
 	explosionReactionImpulse = FVector(0.0f, 0.0f, impulseMagnitude);
-	
 	
 	forceComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("Radial Force Component"));
 	forceComp->SetupAttachment(RootComponent);
