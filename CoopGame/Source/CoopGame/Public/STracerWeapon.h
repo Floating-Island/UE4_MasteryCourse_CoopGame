@@ -44,7 +44,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int rangeMultiplier;
 
-	UPROPERTY(ReplicatedUsing = singleTraceReplication)
+	UPROPERTY(ReplicatedUsing = singleTraceEffectReplication)
 		FHitScanTrace traceNetInfo;
 
 	UFUNCTION()
