@@ -95,6 +95,12 @@ protected:
 	virtual void fire();
 
 	void recoilShakingCamera(AActor* weaponOwnerActor);
+
+	//networking
+	UFUNCTION(Server, Reliable, WithValidation)
+		void serverFires();
+
+	void checkIfServerIsFiring();
 };
 
 template <typename callerType, void( callerType::* method)()>

@@ -18,6 +18,8 @@ FAutoConsoleVariableRef ConsoleDebugTracerWeaponDrawing(
 
 void ASTracerSingle::fire()
 {
+	checkIfServerIsFiring();
+	
 	if (hasAmmoInMagazine())
 	{
 		singleTraceFire();

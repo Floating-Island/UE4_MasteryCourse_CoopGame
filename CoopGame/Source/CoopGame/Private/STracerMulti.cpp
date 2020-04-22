@@ -34,6 +34,8 @@ void ASTracerMulti::startFire()
 
 void ASTracerMulti::fire()
 {
+	checkIfServerIsFiring();
+	
 	if (hasAmmoInMagazine())
 	{
 		multiTraceFire();

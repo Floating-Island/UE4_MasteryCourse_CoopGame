@@ -151,6 +151,25 @@ void ASWeapon::recoilShakingCamera(AActor* weaponOwnerActor)
 	}
 }
 
+void ASWeapon::checkIfServerIsFiring()
+{
+	if (Role < ROLE_Authority)
+	{
+		serverFires();
+		return;
+	}
+}
+
+void ASWeapon::serverFires_Implementation()
+{
+	fire();
+}
+
+bool ASWeapon::serverFires_Validate()
+{
+	return true;
+}
+
 void ASWeapon::fire()
 {
 }
