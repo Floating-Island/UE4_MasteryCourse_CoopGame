@@ -12,6 +12,20 @@ class UDamageType;
 class UParticleSystem;
 class UCameraShake;
 
+//contains the information of a single trace
+USTRUCT()
+struct FHitScanTrace
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY()
+	FVector_NetQuantize traceFrom;//this has less precision. 10 has 1 decimal position, 100 has 2.
+	UPROPERTY()
+	FVector_NetQuantize traceTo;
+};
+
+
 UCLASS(Abstract)
 class COOPGAME_API ASWeapon : public AActor
 {

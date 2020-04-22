@@ -87,6 +87,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Replicated, Category = "Weapon")
 	ASWeapon* heldWeapon;
 
+	UFUNCTION(BlueprintCallable, Category = "weapon")
+		bool isHoldingAWeapon();
+
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 		TSubclassOf<ASWeapon> heldWeaponClass;
 

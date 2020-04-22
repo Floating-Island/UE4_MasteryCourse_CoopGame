@@ -156,7 +156,6 @@ void ASWeapon::checkIfServerIsFiring()
 	if (Role < ROLE_Authority)
 	{
 		serverFires();
-		return;
 	}
 }
 

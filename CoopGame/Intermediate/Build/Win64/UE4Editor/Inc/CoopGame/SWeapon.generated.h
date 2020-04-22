@@ -57,7 +57,8 @@ private: \
 	friend struct Z_Construct_UClass_ASWeapon_Statics; \
 public: \
 	DECLARE_CLASS(ASWeapon, AActor, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASWeapon)
+	DECLARE_SERIALIZER(ASWeapon) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_18_INCLASS \
@@ -66,7 +67,8 @@ private: \
 	friend struct Z_Construct_UClass_ASWeapon_Statics; \
 public: \
 	DECLARE_CLASS(ASWeapon, AActor, COMPILED_IN_FLAGS(CLASS_Abstract), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASWeapon)
+	DECLARE_SERIALIZER(ASWeapon) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_18_STANDARD_CONSTRUCTORS \

@@ -19,6 +19,14 @@ class AActor;
 
 #define CoopGame_Source_CoopGame_Public_SCharacter_h_17_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execisHoldingAWeapon) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(bool*)Z_Param__Result=P_THIS->isHoldingAWeapon(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execonHealthChanged) \
 	{ \
 		P_GET_OBJECT(USHealthComponent,Z_Param_trigger); \
@@ -35,6 +43,14 @@ class AActor;
 
 
 #define CoopGame_Source_CoopGame_Public_SCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execisHoldingAWeapon) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(bool*)Z_Param__Result=P_THIS->isHoldingAWeapon(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execonHealthChanged) \
 	{ \
