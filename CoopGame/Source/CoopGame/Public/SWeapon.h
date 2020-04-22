@@ -39,21 +39,21 @@ protected:
 	void muzzleFireFlash();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	USkeletalMeshComponent* mesh;
+		USkeletalMeshComponent* mesh;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	TSubclassOf<UDamageType> typeOfDamage;
+		TSubclassOf<UDamageType> typeOfDamage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	float baseDamage;
+		float baseDamage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	float bonusDamage;
+		float bonusDamage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int magazineCapacity;
 	
-	UPROPERTY(EditDefaultsOnly, ReplicatedUsing= , BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int ammoInMagazine;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int availableBackupAmmo;
@@ -65,10 +65,10 @@ protected:
 		TSubclassOf<UCameraShake> recoilCameraShake;
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //no need to edit it
-	FName muzzleSocket;
+		FName muzzleSocket;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //secure way to expose it
-	UParticleSystem* muzzleEffect;
+		UParticleSystem* muzzleEffect;
 	
 	TMap<EPhysicalSurface, UParticleSystem**> physicalMaterialsMap;//to map surface types
 
@@ -83,7 +83,8 @@ protected:
 	//fire rate timers
 	FTimerHandle timeBetweenShotsTimer;
 
-	float lastFireTime;
+	UPROPERTY(ReplicatedUsing = firingEffects)
+		float lastFireTime;
 
 	/*Bullets per minute*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon", meta = (ClampMin = "0.1"))
@@ -105,7 +106,8 @@ protected:
 
 	void checkIfServerIsFiring();
 
-	void firingEffects();
+	UFUNCTION()
+		void firingEffects();
 	
 };
 

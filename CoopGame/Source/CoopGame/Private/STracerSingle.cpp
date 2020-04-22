@@ -46,6 +46,7 @@ void ASTracerSingle::startFire()
 void ASTracerSingle::singleTraceFire()
 {
 	firingEffects();
+	lastFireTime = GetWorld()->TimeSeconds;//triggers replication via server
 	AActor* weaponOwner = GetOwner();
 	
 	FCollisionQueryParams collisionParameters;
@@ -68,7 +69,6 @@ void ASTracerSingle::singleTraceFire()
 
 	FVector traceEndPoint = calculateEndPoint(hitBlocked, hit, traceDistance);
 	tracerEffectSpawn(traceEndPoint);//create beam to represent bullet trajectory
-
 	serverTraceEffects(traceEndPoint);//only executed by server
 
 	if(hitBlocked)
@@ -82,6 +82,4 @@ void ASTracerSingle::singleTraceFire()
 	{
 		DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
 	}
-	lastFireTime = GetWorld()->TimeSeconds;
-
 }

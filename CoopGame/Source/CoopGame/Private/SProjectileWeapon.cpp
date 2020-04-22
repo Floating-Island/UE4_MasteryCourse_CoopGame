@@ -39,7 +39,6 @@ void ASProjectileWeapon::FireSingleProjectile()
 	AActor* weaponOwner = GetOwner();
 	if (ProjectileClass)
 	{
-		firingEffects();
 		FVector muzzleLocation = mesh->GetSocketLocation(muzzleSocket);
 
 		FVector eyesLocation;
@@ -52,10 +51,11 @@ void ASProjectileWeapon::FireSingleProjectile()
 		ActorSpawnParams.Owner = weaponOwner;
 		ActorSpawnParams.Instigator = weaponOwner->GetInstigator();
 
+		firingEffects();
+		lastFireTime = GetWorld()->TimeSeconds;//triggers replication via server
+		
 		//spawn the projectile
 		GetWorld()->SpawnActor<ASProjectile>(ProjectileClass, muzzleLocation, eyesRotation, ActorSpawnParams);
-
-		lastFireTime = GetWorld()->TimeSeconds;
 	}
 }
 

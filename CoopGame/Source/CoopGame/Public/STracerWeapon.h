@@ -52,8 +52,6 @@ protected:
 
 	void serverTraceEffects(FVector traceEndPoint);
 
-	
-
 public:
 	ASTracerWeapon();
 };

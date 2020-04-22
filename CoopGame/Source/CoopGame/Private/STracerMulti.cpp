@@ -51,6 +51,7 @@ void ASTracerMulti::fire()
 void ASTracerMulti::multiTraceFire()
 {
 	firingEffects();
+	lastFireTime = GetWorld()->TimeSeconds;//triggers replication via server
 	AActor* weaponOwner = GetOwner();
 
 	FCollisionQueryParams collisionParameters;
@@ -80,9 +81,9 @@ void ASTracerMulti::multiTraceFire()
 		{
 			processPointDamage(weaponOwner, shotDirection, hit);
 		}
+		
 		FVector traceEndPoint = calculateEndPoint(hitBlocked, hit, traceDistance);
 		tracerEffectSpawn(traceEndPoint);//create beam to represent bullet trajectory
-
 		serverTraceEffects(traceEndPoint);
 
 		if (DebugMultiTraceDrawing > 0)
@@ -91,6 +92,4 @@ void ASTracerMulti::multiTraceFire()
 		}
 		
 	}
-	lastFireTime = GetWorld()->TimeSeconds;
-	
 }
