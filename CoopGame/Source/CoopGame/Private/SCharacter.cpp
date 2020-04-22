@@ -89,7 +89,10 @@ void ASCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	attachWeapon();
+	if (Role == ROLE_Authority)//if the one who executes this is a server...
+	{
+		attachWeapon();
+	}
 	healthComp->onHealthChanged.AddDynamic(this, &ASCharacter::onHealthChanged);
 }
 
