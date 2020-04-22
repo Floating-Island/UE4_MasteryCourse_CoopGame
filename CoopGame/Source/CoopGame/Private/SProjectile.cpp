@@ -45,6 +45,9 @@ ASProjectile::ASProjectile()
 	baseDamage = 40.0f;
 
 	bonusDamage = 60.0f;
+
+	SetReplicates(true);
+	SetReplicateMovement(true);
 }
 
 

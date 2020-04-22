@@ -196,7 +196,7 @@ static struct FScriptStruct_CoopGame_StaticRegisterNativesFHitScanTrace
 		{ "ModuleRelativePath", "Public/STracerWeapon.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_ASTracerWeapon_Statics::NewProp_traceNetInfo = { "traceNetInfo", "singleTraceReplication", (EPropertyFlags)0x0020080100000020, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTracerWeapon, traceNetInfo), Z_Construct_UScriptStruct_FHitScanTrace, METADATA_PARAMS(Z_Construct_UClass_ASTracerWeapon_Statics::NewProp_traceNetInfo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTracerWeapon_Statics::NewProp_traceNetInfo_MetaData)) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_ASTracerWeapon_Statics::NewProp_traceNetInfo = { "traceNetInfo", "singleTraceEffectReplication", (EPropertyFlags)0x0020080100000020, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTracerWeapon, traceNetInfo), Z_Construct_UScriptStruct_FHitScanTrace, METADATA_PARAMS(Z_Construct_UClass_ASTracerWeapon_Statics::NewProp_traceNetInfo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTracerWeapon_Statics::NewProp_traceNetInfo_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTracerWeapon_Statics::NewProp_rangeMultiplier_MetaData[] = {
 		{ "Category", "Weapon" },
@@ -253,7 +253,7 @@ static struct FScriptStruct_CoopGame_StaticRegisterNativesFHitScanTrace
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTracerWeapon, 3649271759);
+	IMPLEMENT_CLASS(ASTracerWeapon, 2795462485);
 	template<> COOPGAME_API UClass* StaticClass<ASTracerWeapon>()
 	{
 		return ASTracerWeapon::StaticClass();
