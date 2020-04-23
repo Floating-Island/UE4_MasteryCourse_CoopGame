@@ -22,7 +22,7 @@ void ASTracerWeapon::serverTraceEffects(FVector traceEndPoint)
 {
 	if (Role == ROLE_Authority)
 	{
-		traceNetInfo.traceTo = traceEndPoint;
+		traceNetInfo.traceTo = traceEndPoint;//doesn't replicate if the value is the same as the current one
 	}
 }
 
@@ -35,7 +35,7 @@ void ASTracerWeapon::serverReactsAtPhysicalMaterial(EPhysicalSurface surfaceHit)
 {
 	if (Role == ROLE_Authority)
 	{
-		surfaceToReplicate = surfaceHit;
+		surfaceToReplicate = surfaceHit;//doesn't replicate if the value is the same as the current one
 	}
 }
 
