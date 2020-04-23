@@ -31,6 +31,14 @@ class AActor;
 		P_NATIVE_BEGIN; \
 		P_THIS->onHealthChanged(Z_Param_trigger,Z_Param_health,Z_Param_healthDelta,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser); \
 		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execexplode) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->explode(); \
+		P_NATIVE_END; \
 	}
 
 
@@ -47,6 +55,14 @@ class AActor;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		P_THIS->onHealthChanged(Z_Param_trigger,Z_Param_health,Z_Param_healthDelta,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execexplode) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->explode(); \
 		P_NATIVE_END; \
 	}
 
