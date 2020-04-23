@@ -20,7 +20,15 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 template<> COOPGAME_API UScriptStruct* StaticStruct<struct FHitScanTrace>();
 
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_RPC_WRAPPERS \
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execphysicalMaterialReactionReplication) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->physicalMaterialReactionReplication(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execsingleTraceEffectReplication) \
 	{ \
@@ -31,7 +39,15 @@ template<> COOPGAME_API UScriptStruct* StaticStruct<struct FHitScanTrace>();
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_RPC_WRAPPERS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execphysicalMaterialReactionReplication) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->physicalMaterialReactionReplication(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execsingleTraceEffectReplication) \
 	{ \
@@ -42,7 +58,7 @@ template<> COOPGAME_API UScriptStruct* StaticStruct<struct FHitScanTrace>();
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_INCLASS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASTracerWeapon(); \
 	friend struct Z_Construct_UClass_ASTracerWeapon_Statics; \
@@ -52,7 +68,7 @@ public: \
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_INCLASS \
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_INCLASS \
 private: \
 	static void StaticRegisterNativesASTracerWeapon(); \
 	friend struct Z_Construct_UClass_ASTracerWeapon_Statics; \
@@ -62,7 +78,7 @@ public: \
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_STANDARD_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ASTracerWeapon(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASTracerWeapon) \
@@ -75,7 +91,7 @@ private: \
 public:
 
 
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_ENHANCED_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASTracerWeapon(ASTracerWeapon&&); \
@@ -86,32 +102,33 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTracerWeapon); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASTracerWeapon)
 
 
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_PRIVATE_PROPERTY_OFFSET \
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__tracerTarget() { return STRUCT_OFFSET(ASTracerWeapon, tracerTarget); } \
 	FORCEINLINE static uint32 __PPO__tracerEffect() { return STRUCT_OFFSET(ASTracerWeapon, tracerEffect); } \
 	FORCEINLINE static uint32 __PPO__rangeMultiplier() { return STRUCT_OFFSET(ASTracerWeapon, rangeMultiplier); } \
-	FORCEINLINE static uint32 __PPO__traceNetInfo() { return STRUCT_OFFSET(ASTracerWeapon, traceNetInfo); }
+	FORCEINLINE static uint32 __PPO__traceNetInfo() { return STRUCT_OFFSET(ASTracerWeapon, traceNetInfo); } \
+	FORCEINLINE static uint32 __PPO__surfaceToReplicate() { return STRUCT_OFFSET(ASTracerWeapon, surfaceToReplicate); }
 
 
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_28_PROLOG
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_GENERATED_BODY_LEGACY \
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_26_PROLOG
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_RPC_WRAPPERS \
-	CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_INCLASS \
-	CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_STANDARD_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_RPC_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_INCLASS \
+	CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_GENERATED_BODY \
+#define CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_RPC_WRAPPERS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_INCLASS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_STracerWeapon_h_31_ENHANCED_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_INCLASS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_STracerWeapon_h_29_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

@@ -11,15 +11,13 @@ class UParticleSystem;
 
 //contains the information of a single trace. It could've been a single variable, but it's there to show that you can send a struct to server.
 USTRUCT()
-struct FHitScanTrace
+struct FHitScanTrace//in this case, it shouldn't be necessary
 {
 	GENERATED_BODY()
 
 public:
 	UPROPERTY()
-		FVector_NetQuantize traceFrom;//this has less precision. 10 has 1 decimal position, 100 has 2.
-	UPROPERTY()
-		FVector_NetQuantize traceTo;
+		FVector_NetQuantize traceTo;//this has less precision. 10 has 1 decimal position, 100 has 2.
 };
 
 /**
@@ -44,6 +42,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int rangeMultiplier;
 
+	
+	//replicates trace effects
 	UPROPERTY(ReplicatedUsing = singleTraceEffectReplication)
 		FHitScanTrace traceNetInfo;
 
@@ -51,6 +51,16 @@ protected:
 		 void singleTraceEffectReplication();
 
 	void serverTraceEffects(FVector traceEndPoint);
+
+	
+	//replicates physical material hit effect
+	UPROPERTY(ReplicatedUsing = physicalMaterialReactionReplication)
+		TEnumAsByte<EPhysicalSurface> surfaceToReplicate;
+	
+	UFUNCTION()
+		void physicalMaterialReactionReplication();
+	
+	void serverReactsAtPhysicalMaterial(EPhysicalSurface surfaceHit);
 
 public:
 	ASTracerWeapon();

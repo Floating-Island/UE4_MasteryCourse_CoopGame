@@ -26,6 +26,19 @@ void ASTracerWeapon::serverTraceEffects(FVector traceEndPoint)
 	}
 }
 
+void ASTracerWeapon::physicalMaterialReactionReplication()
+{
+	reactAtPhysicsMaterial(traceNetInfo.traceTo, surfaceToReplicate);
+}
+
+void ASTracerWeapon::serverReactsAtPhysicalMaterial(EPhysicalSurface surfaceHit)
+{
+	if (Role == ROLE_Authority)
+	{
+		surfaceToReplicate = surfaceHit;
+	}
+}
+
 ASTracerWeapon::ASTracerWeapon()
 {
 	rangeMultiplier = 10000;
@@ -46,6 +59,7 @@ void ASTracerWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirecti
 		}
 		UGameplayStatics::ApplyPointDamage(hitActor, actualDamage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
 
+		serverReactsAtPhysicalMaterial(surfaceHit);
 		reactAtPhysicsMaterial(hit.ImpactPoint, surfaceHit);
 }
 
@@ -82,6 +96,7 @@ void ASTracerWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLi
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME_CONDITION(ASTracerWeapon, traceNetInfo, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(ASTracerWeapon, surfaceToReplicate, COND_SkipOwner);
 }
 
 

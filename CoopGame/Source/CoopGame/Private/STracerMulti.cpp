@@ -74,15 +74,17 @@ void ASTracerMulti::multiTraceFire()
 		
 		FHitResult hit;
 		bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, COLLISION_WEAPON_CHANNEL, collisionParameters);
+
+
+		FVector traceEndPoint = calculateEndPoint(hitBlocked, hit, traceDistance);
+		tracerEffectSpawn(traceEndPoint);//create trace line to represent bullet trajectory
+		serverTraceEffects(traceEndPoint);//changes FHitScanTrace.traceTo to traceEndPoint if it's the server, which then triggers replicatedUsing on the function that executes tracerEffectSpawn with the updated value for all clients
 		
 		if (hitBlocked)
 		{
 			processPointDamage(weaponOwner, shotDirection, hit);
 		}
-		
-		FVector traceEndPoint = calculateEndPoint(hitBlocked, hit, traceDistance);
-		tracerEffectSpawn(traceEndPoint);//create trace line to represent bullet trajectory
-		serverTraceEffects(traceEndPoint);//changes FHitScanTrace.traceTo to traceEndPoint if it's the server, which then triggers replicatedUsing on the function that executes tracerEffectSpawn with the updated value for all clients
+
 
 		if (DebugMultiTraceDrawing > 0)
 		{
