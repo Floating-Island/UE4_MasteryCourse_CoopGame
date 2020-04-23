@@ -39,7 +39,6 @@ void ASTracerSingle::startFire()
 	if(weaponOwner)
 	{
 		fireAtRate<ASTracerSingle, &ASTracerSingle::fire>(this);
-
 	}
 }
 

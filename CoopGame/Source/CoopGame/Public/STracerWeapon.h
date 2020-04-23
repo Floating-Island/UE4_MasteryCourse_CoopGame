@@ -9,7 +9,7 @@
 class UParticleSystem;
 
 
-//contains the information of a single trace
+//contains the information of a single trace. It could've been a single variable, but it's there to show that you can send a struct to server.
 USTRUCT()
 struct FHitScanTrace
 {

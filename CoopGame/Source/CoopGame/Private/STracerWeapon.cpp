@@ -46,7 +46,7 @@ void ASTracerWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirecti
 		}
 		UGameplayStatics::ApplyPointDamage(hitActor, actualDamage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
 
-		reactAtPhysicsMaterial(hit, surfaceHit);
+		reactAtPhysicsMaterial(hit.ImpactPoint, surfaceHit);
 }
 
 FVector ASTracerWeapon::calculateEndPoint(bool hitBlocked, FHitResult hit, FVector traceDistance)
