@@ -240,21 +240,21 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo = { "availableBackupAmmo", nullptr, (EPropertyFlags)0x0020080000010035, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, availableBackupAmmo), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo = { "availableBackupAmmo", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, availableBackupAmmo), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData[] = {
 		{ "Category", "Weapon" },
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine = { "ammoInMagazine", nullptr, (EPropertyFlags)0x0020080000010035, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, ammoInMagazine), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine = { "ammoInMagazine", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, ammoInMagazine), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData[] = {
 		{ "Category", "Weapon" },
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity = { "magazineCapacity", nullptr, (EPropertyFlags)0x0020080000010035, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, magazineCapacity), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity = { "magazineCapacity", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, magazineCapacity), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_bonusDamage_MetaData[] = {
 		{ "Category", "Weapon" },
@@ -328,7 +328,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASWeapon, 3769607194);
+	IMPLEMENT_CLASS(ASWeapon, 3571713010);
 	template<> COOPGAME_API UClass* StaticClass<ASWeapon>()
 	{
 		return ASWeapon::StaticClass();

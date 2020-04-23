@@ -191,7 +191,4 @@ void ASWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetime
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME_CONDITION(ASWeapon, lastFireTime, COND_SkipOwner);
-	DOREPLIFETIME(ASWeapon, ammoInMagazine);
-	DOREPLIFETIME(ASWeapon, magazineCapacity);
-	DOREPLIFETIME(ASWeapon, availableBackupAmmo);
 }
