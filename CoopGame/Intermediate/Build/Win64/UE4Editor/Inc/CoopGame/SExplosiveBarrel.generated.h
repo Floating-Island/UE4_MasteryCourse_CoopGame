@@ -19,6 +19,14 @@ class AActor;
 
 #define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_15_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execserverImitateExplosionReplication) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->serverImitateExplosionReplication(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execonHealthChanged) \
 	{ \
 		P_GET_OBJECT(USHealthComponent,Z_Param_trigger); \
@@ -30,20 +38,20 @@ class AActor;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		P_THIS->onHealthChanged(Z_Param_trigger,Z_Param_health,Z_Param_healthDelta,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser); \
-		P_NATIVE_END; \
-	} \
- \
-	DECLARE_FUNCTION(execexplode) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->explode(); \
 		P_NATIVE_END; \
 	}
 
 
 #define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execserverImitateExplosionReplication) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->serverImitateExplosionReplication(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execonHealthChanged) \
 	{ \
 		P_GET_OBJECT(USHealthComponent,Z_Param_trigger); \
@@ -55,14 +63,6 @@ class AActor;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		P_THIS->onHealthChanged(Z_Param_trigger,Z_Param_health,Z_Param_healthDelta,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser); \
-		P_NATIVE_END; \
-	} \
- \
-	DECLARE_FUNCTION(execexplode) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->explode(); \
 		P_NATIVE_END; \
 	}
 

@@ -30,7 +30,7 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 	forceComp->bAutoActivate = false;//so we don't need to have tick enabled
 
 	SetReplicates(true);
-	SetReplicateMovement(true);
+	SetReplicateMovement(true);//has gameplay significance. It's important that client and server see the same
 }
 
 // Called when the game starts or when spawned
@@ -44,14 +44,24 @@ void ASExplosiveBarrel::BeginPlay()
 
 void ASExplosiveBarrel::explode()
 {
-	mesh->SetMaterial(mesh->GetMaterialIndex("DefaultMaterial"), explodedMaterial);
-	if(explodeParticle)
-	{
-		UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
-	}
+	explosionEffects();
 	mesh->AddImpulse(explosionReactionImpulse);//doesn't work yet
 	forceComp->FireImpulse();
 	provokeRadialDamage();
+}
+
+void ASExplosiveBarrel::explosionEffects()
+{
+	mesh->SetMaterial(mesh->GetMaterialIndex("DefaultMaterial"), explodedMaterial);
+	if (explodeParticle)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
+	}
+}
+
+void ASExplosiveBarrel::serverImitateExplosionReplication()
+{
+	explosionEffects();
 }
 
 void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health, float healthDelta,
@@ -84,5 +94,5 @@ void ASExplosiveBarrel::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME(ASExplosiveBarrel, bHasExploded);
+	DOREPLIFETIME_CONDITION(ASExplosiveBarrel, bHasExploded, COND_SkipOwner);
 }
