@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "SWeapon.h"
+#include "../../../../../../../Program Files/Epic Games/UE_4.22/Engine/Source/Runtime/Engine/Classes/Engine/World.h"
+
 #include "SProjectileWeapon.generated.h"
 
 class ASProjectile;
@@ -26,4 +28,5 @@ public:
 protected:
 	//UFUNCTION(BlueprintCallable, Category = "Weapon") it shouldn't have this, the parent class already has it
 	virtual void fire() override;
+	void serverSpawnProjectile(FVector muzzleLocation, FRotator eyesRotation, FActorSpawnParameters ActorSpawnParams);
 };
