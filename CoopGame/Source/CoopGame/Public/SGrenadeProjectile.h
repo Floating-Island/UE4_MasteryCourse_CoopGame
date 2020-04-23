@@ -28,7 +28,23 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Explosion")
 	float damageRadius;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		float explosionDamage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+		TSubclassOf<UDamageType> damageType;
+
+	UPROPERTY(ReplicatedUsing = serverImitateExplosionReplication)
+	bool bIsExploding;
+
+	UFUNCTION()
+		void serverImitateExplosionReplication();
+	void explosionEffects();
 	void startExplosionCountdown();
 	void generateExplosion();
 	void provokeRadialDamage(const FHitResult& hit);
+
+	UFUNCTION()
+		void serverVanish();
+	
 };

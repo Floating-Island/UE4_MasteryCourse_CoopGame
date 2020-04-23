@@ -13,15 +13,52 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COOPGAME_SGrenadeProjectile_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_15_RPC_WRAPPERS
-#define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_15_RPC_WRAPPERS_NO_PURE_DECLS
+#define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_15_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execserverVanish) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->serverVanish(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execserverImitateExplosionReplication) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->serverImitateExplosionReplication(); \
+		P_NATIVE_END; \
+	}
+
+
+#define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execserverVanish) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->serverVanish(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execserverImitateExplosionReplication) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->serverImitateExplosionReplication(); \
+		P_NATIVE_END; \
+	}
+
+
 #define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASGrenadeProjectile(); \
 	friend struct Z_Construct_UClass_ASGrenadeProjectile_Statics; \
 public: \
 	DECLARE_CLASS(ASGrenadeProjectile, ASProjectile, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASGrenadeProjectile)
+	DECLARE_SERIALIZER(ASGrenadeProjectile) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_15_INCLASS \
@@ -30,7 +67,8 @@ private: \
 	friend struct Z_Construct_UClass_ASGrenadeProjectile_Statics; \
 public: \
 	DECLARE_CLASS(ASGrenadeProjectile, ASProjectile, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASGrenadeProjectile)
+	DECLARE_SERIALIZER(ASGrenadeProjectile) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_15_STANDARD_CONSTRUCTORS \
@@ -59,7 +97,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASGrenadeProjectile); \
 
 #define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_15_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__explosionCountdown() { return STRUCT_OFFSET(ASGrenadeProjectile, explosionCountdown); } \
-	FORCEINLINE static uint32 __PPO__damageRadius() { return STRUCT_OFFSET(ASGrenadeProjectile, damageRadius); }
+	FORCEINLINE static uint32 __PPO__damageRadius() { return STRUCT_OFFSET(ASGrenadeProjectile, damageRadius); } \
+	FORCEINLINE static uint32 __PPO__explosionDamage() { return STRUCT_OFFSET(ASGrenadeProjectile, explosionDamage); } \
+	FORCEINLINE static uint32 __PPO__damageType() { return STRUCT_OFFSET(ASGrenadeProjectile, damageType); } \
+	FORCEINLINE static uint32 __PPO__bIsExploding() { return STRUCT_OFFSET(ASGrenadeProjectile, bIsExploding); }
 
 
 #define CoopGame_Source_CoopGame_Public_SGrenadeProjectile_h_12_PROLOG

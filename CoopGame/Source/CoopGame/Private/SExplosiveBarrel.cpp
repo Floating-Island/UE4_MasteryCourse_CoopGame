@@ -82,11 +82,7 @@ void ASExplosiveBarrel::provokeRadialDamage()
 
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
 
-
-	EPhysicalSurface surfaceHit = UPhysicalMaterial::DetermineSurfaceType(hit.PhysMaterial.Get());
-
-	bool damagedApplied = false;
-	damagedApplied = UGameplayStatics::ApplyRadialDamage(this, explosionDamage, this->GetActorLocation(), explosionRadius, damageType,
+	UGameplayStatics::ApplyRadialDamage(this, explosionDamage, this->GetActorLocation(), explosionRadius, damageType,
 		ignoredActors, this, this->GetInstigatorController(), true, ECC_Visibility);
 }
 
@@ -94,5 +90,5 @@ void ASExplosiveBarrel::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME_CONDITION(ASExplosiveBarrel, bHasExploded, COND_SkipOwner);
+	DOREPLIFETIME(ASExplosiveBarrel, bHasExploded);
 }
