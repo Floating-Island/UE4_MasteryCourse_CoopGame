@@ -59,7 +59,7 @@ void ASExplosiveBarrel::explosionEffects()
 	}
 }
 
-void ASExplosiveBarrel::serverImitateExplosionReplication()
+void ASExplosiveBarrel::serverImitateExplosionReplication()//only the effects are needed to replicate. Movement is already replicated by the setReplicatesMovement and damage is replicated by the health component.
 {
 	explosionEffects();
 }
