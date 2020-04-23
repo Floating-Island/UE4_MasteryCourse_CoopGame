@@ -50,7 +50,7 @@ protected:
 			class AController* InstigatedBy,
 			AActor* DamageCauser);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Player")
+	UPROPERTY(BlueprintReadOnly, Replicated, Category = "Player")
 	bool bHasDied;
 
 	

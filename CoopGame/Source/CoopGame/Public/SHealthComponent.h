@@ -30,6 +30,7 @@ class COOPGAME_API USHealthComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	USHealthComponent();
+	void serverAddDamageToHandle();
 
 protected:
 	// Called when the game starts
@@ -38,6 +39,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="HealthComponent")
 	float maxHealth;
 
+	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadOnly, Category = "HealthComponent")
 	float currentHealth;
 
 	UFUNCTION()//it's an event handler
