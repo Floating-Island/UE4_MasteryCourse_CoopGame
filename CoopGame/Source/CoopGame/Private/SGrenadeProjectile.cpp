@@ -56,12 +56,15 @@ void ASGrenadeProjectile::provokeRadialDamage(const FHitResult& hit)
 
 	bIsExploding = true;
 	explosionEffects();
-	SetLifeSpan(0.3f);
+	serverVanish();
 }
 
 void ASGrenadeProjectile::serverVanish()
 {
-	Destroy();
+	if(Role == ROLE_Authority)
+	{
+		SetLifeSpan(0.3f);
+	}
 }
 
 void ASGrenadeProjectile::generateExplosion()
