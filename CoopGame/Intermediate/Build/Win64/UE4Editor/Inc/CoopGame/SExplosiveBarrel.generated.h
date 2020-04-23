@@ -57,7 +57,8 @@ private: \
 	friend struct Z_Construct_UClass_ASExplosiveBarrel_Statics; \
 public: \
 	DECLARE_CLASS(ASExplosiveBarrel, AActor, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASExplosiveBarrel)
+	DECLARE_SERIALIZER(ASExplosiveBarrel) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_15_INCLASS \
@@ -66,7 +67,8 @@ private: \
 	friend struct Z_Construct_UClass_ASExplosiveBarrel_Statics; \
 public: \
 	DECLARE_CLASS(ASExplosiveBarrel, AActor, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASExplosiveBarrel)
+	DECLARE_SERIALIZER(ASExplosiveBarrel) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SExplosiveBarrel_h_15_STANDARD_CONSTRUCTORS \

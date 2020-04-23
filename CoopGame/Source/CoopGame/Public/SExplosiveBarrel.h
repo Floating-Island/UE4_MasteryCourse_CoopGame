@@ -41,7 +41,7 @@ protected:
 			class AController* InstigatedBy,
 			AActor* DamageCauser);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Barrel")
+	UPROPERTY(Replicated, BlueprintReadOnly, Category = "Barrel")
 		bool bHasExploded;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Barrel")

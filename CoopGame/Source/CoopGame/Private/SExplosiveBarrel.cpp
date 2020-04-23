@@ -6,6 +6,7 @@
 #include "kismet/GameplayStatics.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
 #include "PhysicsEngine/RadialForceComponent.h"
+#include "Net/UnrealNetwork.h"
 
 #include "SHealthComponent.h"
 
@@ -27,6 +28,9 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 	forceComp->SetupAttachment(RootComponent);
 	forceComp->bIgnoreOwningActor = true;
 	forceComp->bAutoActivate = false;//so we don't need to have tick enabled
+
+	SetReplicates(true);
+	SetReplicateMovement(true);
 }
 
 // Called when the game starts or when spawned
@@ -40,7 +44,6 @@ void ASExplosiveBarrel::BeginPlay()
 
 void ASExplosiveBarrel::explode()
 {
-	bHasExploded = true;
 	mesh->SetMaterial(mesh->GetMaterialIndex("DefaultMaterial"), explodedMaterial);
 	if(explodeParticle)
 	{
@@ -56,6 +59,7 @@ void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health
 {
 	if(health <= 0 && !bHasExploded)
 	{
+		bHasExploded = true;
 		explode();
 	}
 }
@@ -74,4 +78,11 @@ void ASExplosiveBarrel::provokeRadialDamage()
 	bool damagedApplied = false;
 	damagedApplied = UGameplayStatics::ApplyRadialDamage(this, explosionDamage, this->GetActorLocation(), explosionRadius, damageType,
 		ignoredActors, this, this->GetInstigatorController(), true, ECC_Visibility);
+}
+
+void ASExplosiveBarrel::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(ASExplosiveBarrel, bHasExploded);
 }

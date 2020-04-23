@@ -226,7 +226,7 @@ void EmptyLinkFunctionForGeneratedCodeSExplosiveBarrel() {}
 	{
 		((ASExplosiveBarrel*)Obj)->bHasExploded = 1;
 	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASExplosiveBarrel_Statics::NewProp_bHasExploded = { "bHasExploded", nullptr, (EPropertyFlags)0x0020080000000014, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ASExplosiveBarrel), &Z_Construct_UClass_ASExplosiveBarrel_Statics::NewProp_bHasExploded_SetBit, METADATA_PARAMS(Z_Construct_UClass_ASExplosiveBarrel_Statics::NewProp_bHasExploded_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASExplosiveBarrel_Statics::NewProp_bHasExploded_MetaData)) };
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASExplosiveBarrel_Statics::NewProp_bHasExploded = { "bHasExploded", nullptr, (EPropertyFlags)0x0020080000000034, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ASExplosiveBarrel), &Z_Construct_UClass_ASExplosiveBarrel_Statics::NewProp_bHasExploded_SetBit, METADATA_PARAMS(Z_Construct_UClass_ASExplosiveBarrel_Statics::NewProp_bHasExploded_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASExplosiveBarrel_Statics::NewProp_bHasExploded_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASExplosiveBarrel_Statics::NewProp_healthComp_MetaData[] = {
 		{ "Category", "Components" },
@@ -291,7 +291,7 @@ void EmptyLinkFunctionForGeneratedCodeSExplosiveBarrel() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASExplosiveBarrel, 4040029167);
+	IMPLEMENT_CLASS(ASExplosiveBarrel, 1368210117);
 	template<> COOPGAME_API UClass* StaticClass<ASExplosiveBarrel>()
 	{
 		return ASExplosiveBarrel::StaticClass();
