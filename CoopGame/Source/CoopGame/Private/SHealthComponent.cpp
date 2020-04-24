@@ -9,7 +9,6 @@
 USHealthComponent::USHealthComponent()
 {
 	maxHealth = 100;
-	currentHealth = maxHealth;
 	SetIsReplicated(true);
 }
 
@@ -27,7 +26,7 @@ void USHealthComponent::serverAddDamageToHandle()
 void USHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
+	currentHealth = maxHealth;
 	serverAddDamageToHandle();
 	
 }

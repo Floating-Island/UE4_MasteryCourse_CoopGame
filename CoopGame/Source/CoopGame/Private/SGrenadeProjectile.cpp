@@ -7,6 +7,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
 
+#include "CoopGame.h"
 
 
 ASGrenadeProjectile::ASGrenadeProjectile()
@@ -52,7 +53,7 @@ void ASGrenadeProjectile::provokeRadialDamage(const FHitResult& hit)
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
 
 	UGameplayStatics::ApplyRadialDamage(this, explosionDamage, this->GetActorLocation(), damageRadius, damageType,
-		ignoredActors, this, this->GetInstigatorController(), true, ECC_Visibility);
+		ignoredActors, this, this->GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
 
 	bIsExploding = true;
 	explosionEffects();
