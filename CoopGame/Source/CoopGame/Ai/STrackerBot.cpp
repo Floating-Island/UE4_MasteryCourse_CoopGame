@@ -7,7 +7,8 @@
 #include "NavigationSystem.h"
 #include "NavigationPath.h"
 #include "GameFramework/Character.h"
-#include "DrawDebugHelpers.h"
+
+#include "SHealthComponent.h"
 
 // Sets default values
 ASTrackerBot::ASTrackerBot()
@@ -20,6 +21,10 @@ ASTrackerBot::ASTrackerBot()
 	meshComp->SetSimulatePhysics(true);//so we can apply forces to it.
 	RootComponent = meshComp;
 
+	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health Component"));
+	healthComp->onHealthChanged.AddDynamic(this, &ASTrackerBot::handleTakeDamage);
+
+	
 	forceMagnitude = 1000;
 	minimumEndSeekDistance = 100.0f;
 
@@ -31,6 +36,12 @@ void ASTrackerBot::BeginPlay()
 {
 	Super::BeginPlay();
 	nextStep = nextStepInDestination();
+}
+
+void ASTrackerBot::handleTakeDamage(USHealthComponent* trigger, float health, float healthDelta,
+	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+{
+	
 }
 
 FVector ASTrackerBot::nextStepInDestination()
