@@ -373,7 +373,9 @@
     <None Include="..\..\Config\DefaultGame.ini" />
     <None Include="..\..\Config\DefaultInput.ini" />
     <None Include="..\..\Source\CoopGame\CoopGame.Build.cs" />
+    <ClCompile Include="..\..\Source\CoopGame\Ai\STrackerBot.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\CoopGame.cpp" />
+    <ClInclude Include="..\..\Source\CoopGame\Ai\STrackerBot.h" />
     <ClInclude Include="..\..\Source\CoopGame\CoopGame.h" />
     <ClCompile Include="..\..\Source\CoopGame\CoopGameGameModeBase.cpp" />
     <ClInclude Include="..\..\Source\CoopGame\CoopGameGameModeBase.h" />
@@ -384,7 +386,6 @@
     <ClCompile Include="..\..\Source\CoopGame\Private\SHealthComponent.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectileWeapon.cpp" />
-    <ClCompile Include="..\..\Source\CoopGame\Private\SRifle.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\STracerMachineGun.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\STracerMulti.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\STracerRifle.cpp" />
@@ -398,7 +399,6 @@
     <ClInclude Include="..\..\Source\CoopGame\Public\SHealthComponent.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectileWeapon.h" />
-    <ClInclude Include="..\..\Source\CoopGame\Public\SRifle.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\STracerMachineGun.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\STracerMulti.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\STracerRifle.h" />
