@@ -3,6 +3,10 @@
 
 #include "STrackerBot.h"
 #include "Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "NavigationSystem.h"
+#include "NavigationPath.h"
+#include "GameFramework/Character.h"
 
 // Sets default values
 ASTrackerBot::ASTrackerBot()
@@ -20,6 +24,19 @@ void ASTrackerBot::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+FVector ASTrackerBot::nextStepInDestination()
+{
+	ACharacter* target = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);//shouldn't be used, it's a hack
+	FVector currentLocation = this->GetActorLocation();
+	
+	UNavigationPath* pathToTarget =  UNavigationSystemV1::FindPathToActorSynchronously(this,currentLocation, target);
+	if(pathToTarget->PathPoints.Num() > 1)
+	{
+		return pathToTarget->PathPoints[1];
+	}
+	return currentLocation;
 }
 
 // Called every frame

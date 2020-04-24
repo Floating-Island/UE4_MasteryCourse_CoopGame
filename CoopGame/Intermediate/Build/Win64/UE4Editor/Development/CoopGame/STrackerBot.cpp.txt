@@ -1,3 +1,37 @@
 C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Intermediate\Build\Win64\UE4Editor\Development\CoopGame\Definitions.CoopGame.h
 C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source\CoopGame\Ai\STrackerBot.h
 C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Intermediate\Build\Win64\UE4Editor\Inc\CoopGame\STrackerBot.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Kismet/KismetSystemLibrary.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Engine/CollisionProfile.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CollisionProfile.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetSystemLibrary.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Sound/DialogueTypes.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DialogueTypes.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\NavigationSystem\Public\NavigationSystem.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\NavigationSystem\Public\NavFilters/NavigationQueryFilter.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\NavigationSystem\Public\NavAreas/NavArea.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\AI/Navigation/NavAreaBase.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\NavAreaBase.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\NavigationSystem\NavArea.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\NavigationSystem\NavigationQueryFilter.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\NavigationSystem\Public\NavigationSystemTypes.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\AI/NavigationSystemConfig.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\NavigationSystemConfig.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\NavigationSystem\Public\NavigationData.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\AI/Navigation/NavigationDataInterface.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\NavigationDataInterface.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\NavigationSystem\NavigationData.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\AI/NavigationSystemBase.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\NavigationSystemBase.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\NavigationSystem\Public\NavigationOctree.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\NavigationSystem\NavigationSystem.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\NavigationSystem\Public\NavigationPath.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\NavigationSystem\NavigationPath.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
