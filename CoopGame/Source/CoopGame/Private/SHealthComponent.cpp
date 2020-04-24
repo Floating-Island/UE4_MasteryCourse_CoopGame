@@ -3,25 +3,31 @@
 
 #include "SHealthComponent.h"
 #include "GameFramework/Actor.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values for this component's properties
 USHealthComponent::USHealthComponent()
 {
 	maxHealth = 100;
-	currentHealth = maxHealth;
+	SetIsReplicated(true);
 }
 
+
+void USHealthComponent::serverAddDamageToHandle()
+{
+	AActor* componentOwner = GetOwner();
+	if(componentOwner && componentOwner->Role.GetValue() == ROLE_Authority)
+	{
+		componentOwner->OnTakeAnyDamage.AddDynamic(this, &USHealthComponent::damageTakerHandle);
+	}
+}
 
 // Called when the game starts
 void USHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	AActor* componentOwner = GetOwner();
-	if(componentOwner)
-	{
-		componentOwner->OnTakeAnyDamage.AddDynamic(this, &USHealthComponent::damageTakerHandle);
-	}
+	currentHealth = maxHealth;
+	serverAddDamageToHandle();
 	
 }
 
@@ -40,3 +46,9 @@ void USHealthComponent::damageTakerHandle(AActor* DamagedActor, float Damage, co
 	onHealthChanged.Broadcast(this, currentHealth, Damage, DamageType, InstigatedBy, DamageCauser); 
 }
 
+void USHealthComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(USHealthComponent, currentHealth);
+}

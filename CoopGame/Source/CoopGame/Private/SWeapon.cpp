@@ -5,6 +5,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h"
 //#include "TimerManager.h"//call it when you need to have a fire rate
 //#include "Particles/ParticleSystem.h"//used to spawn effects
 //#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location
@@ -42,6 +43,10 @@ ASWeapon::ASWeapon()
 	magazineCapacity = 20;
 	availableBackupAmmo = 30;
 	backupAmmoCapacity = 100;
+
+	SetReplicates(true);
+	NetUpdateFrequency = 66.0f;
+	MinNetUpdateFrequency = 33.0f;
 }
 
 void ASWeapon::limitAmmoToCapacitiesSet()
@@ -118,7 +123,7 @@ void ASWeapon::muzzleFireFlash()
 	}
 }
 
-void ASWeapon::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit)
+void ASWeapon::reactAtPhysicsMaterial(FVector hitImpactPoint, EPhysicalSurface surfaceHit)
 {
 
 	UParticleSystem* selectedHitImpactEffect = *(*(physicalMaterialsMap.Find(surfaceHit)));
@@ -130,8 +135,11 @@ void ASWeapon::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHi
 
 	if (selectedHitImpactEffect)//if it was assigned
 	{
+		FVector muzzleLocation = mesh->GetSocketLocation(muzzleSocket);
+		FVector shotDirection = hitImpactPoint - muzzleLocation;
+		shotDirection.Normalize();
 		//spawn impact effect
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), selectedHitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), selectedHitImpactEffect, hitImpactPoint, shotDirection.Rotation());
 		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
 	}
 }
@@ -149,6 +157,38 @@ void ASWeapon::recoilShakingCamera(AActor* weaponOwnerActor)
 	}
 }
 
+void ASWeapon::checkIfServerIsFiring()
+{
+	if (Role < ROLE_Authority)
+	{
+		serverFires();
+	}
+}
+
+void ASWeapon::firingEffects()
+{
+	muzzleFireFlash();
+	AActor* weaponOwner = GetOwner();
+	recoilShakingCamera(weaponOwner);
+}
+
+void ASWeapon::serverFires_Implementation()
+{
+	fire();
+}
+
+bool ASWeapon::serverFires_Validate()
+{
+	return true;
+}
+
 void ASWeapon::fire()
 {
+}
+
+void ASWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME_CONDITION(ASWeapon, lastFireTime, COND_SkipOwner);
 }

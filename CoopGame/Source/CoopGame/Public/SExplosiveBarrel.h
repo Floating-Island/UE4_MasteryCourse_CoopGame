@@ -21,7 +21,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	void explode();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		UStaticMeshComponent* mesh;
@@ -41,7 +40,7 @@ protected:
 			class AController* InstigatedBy,
 			AActor* DamageCauser);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Barrel")
+	UPROPERTY(ReplicatedUsing = serverImitateExplosionReplication, BlueprintReadOnly, Category = "Barrel")
 		bool bHasExploded;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Barrel")
@@ -61,6 +60,12 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Barrel")
 		FVector explosionReactionImpulse;
+
+	void explode();
+	void explosionEffects();
+	
+	UFUNCTION()
+		void serverImitateExplosionReplication();
 	
 	
 	void provokeRadialDamage();

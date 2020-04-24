@@ -2,15 +2,42 @@
 
 
 #include "STracerWeapon.h"
+//engine includes
 #include "DrawDebugHelpers.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
+#include "Net/UnrealNetwork.h"
 
+//project includes
 #include "CoopGame.h"
 
 
+void ASTracerWeapon::singleTraceEffectReplication()
+{
+	tracerEffectSpawn(traceNetInfo.traceTo);
+}
 
+void ASTracerWeapon::serverTraceEffects(FVector traceEndPoint)
+{
+	if (Role == ROLE_Authority)
+	{
+		traceNetInfo.traceTo = traceEndPoint;//doesn't replicate if the value is the same as the current one
+	}
+}
+
+void ASTracerWeapon::physicalMaterialReactionReplication()
+{
+	reactAtPhysicsMaterial(traceNetInfo.traceTo, surfaceToReplicate);
+}
+
+void ASTracerWeapon::serverReactsAtPhysicalMaterial(EPhysicalSurface surfaceHit)
+{
+	if (Role == ROLE_Authority)
+	{
+		surfaceToReplicate = surfaceHit;//doesn't replicate if the value is the same as the current one
+	}
+}
 
 ASTracerWeapon::ASTracerWeapon()
 {
@@ -32,10 +59,25 @@ void ASTracerWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirecti
 		}
 		UGameplayStatics::ApplyPointDamage(hitActor, actualDamage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
 
-		reactAtPhysicsMaterial(hit, surfaceHit);
+		serverReactsAtPhysicalMaterial(surfaceHit);
+		reactAtPhysicsMaterial(hit.ImpactPoint, surfaceHit);
 }
 
-void ASTracerWeapon::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector traceDistance)
+FVector ASTracerWeapon::calculateEndPoint(bool hitBlocked, FHitResult hit, FVector traceDistance)
+{
+	FVector beamEnd;
+	if (hitBlocked)
+	{
+		beamEnd = hit.ImpactPoint;
+	}
+	else
+	{
+		beamEnd = traceDistance;
+	}
+	return beamEnd;
+}
+
+void ASTracerWeapon::tracerEffectSpawn(FVector endPoint)
 {
 	if (tracerEffect)
 	{
@@ -44,21 +86,18 @@ void ASTracerWeapon::tracerEffectSpawn(bool hitBlocked, FHitResult hit, FVector 
 		UParticleSystemComponent* tracerComponent = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), tracerEffect, beamStart);
 		if (tracerComponent)
 		{
-			FVector beamEnd;
-			if (hitBlocked)
-			{
-				beamEnd = hit.ImpactPoint;
-			}
-			else
-			{
-				beamEnd = traceDistance;
-			}
-			tracerComponent->SetVectorParameter(tracerTarget, beamEnd);
+			tracerComponent->SetVectorParameter(tracerTarget, endPoint);
 		}
 	}
 }
 
+void ASTracerWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
+	DOREPLIFETIME_CONDITION(ASTracerWeapon, traceNetInfo, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(ASTracerWeapon, surfaceToReplicate, COND_SkipOwner);
+}
 
 
 

@@ -34,12 +34,19 @@ void ASProjectileWeapon::fire()
 
 }
 
+void ASProjectileWeapon::serverSpawnProjectile(FVector muzzleLocation, FRotator eyesRotation, FActorSpawnParameters ActorSpawnParams)
+{
+	if(Role == ROLE_Authority)
+	{
+		GetWorld()->SpawnActor<ASProjectile>(ProjectileClass, muzzleLocation, eyesRotation, ActorSpawnParams);
+	}
+}
+
 void ASProjectileWeapon::FireSingleProjectile()
 {
 	AActor* weaponOwner = GetOwner();
 	if (ProjectileClass)
 	{
-		muzzleFireFlash();
 		FVector muzzleLocation = mesh->GetSocketLocation(muzzleSocket);
 
 		FVector eyesLocation;
@@ -52,11 +59,11 @@ void ASProjectileWeapon::FireSingleProjectile()
 		ActorSpawnParams.Owner = weaponOwner;
 		ActorSpawnParams.Instigator = weaponOwner->GetInstigator();
 
+		firingEffects();
+		lastFireTime = GetWorld()->TimeSeconds;//triggers replication via server
+		
 		//spawn the projectile
-		GetWorld()->SpawnActor<ASProjectile>(ProjectileClass, muzzleLocation, eyesRotation, ActorSpawnParams);
-
-		lastFireTime = GetWorld()->TimeSeconds;
-		recoilShakingCamera(weaponOwner);
+		serverSpawnProjectile(muzzleLocation, eyesRotation, ActorSpawnParams);
 	}
 }
 

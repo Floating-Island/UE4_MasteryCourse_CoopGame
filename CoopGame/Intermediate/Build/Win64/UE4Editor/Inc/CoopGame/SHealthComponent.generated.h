@@ -78,7 +78,8 @@ private: \
 	friend struct Z_Construct_UClass_USHealthComponent_Statics; \
 public: \
 	DECLARE_CLASS(USHealthComponent, UActorComponent, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(USHealthComponent)
+	DECLARE_SERIALIZER(USHealthComponent) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SHealthComponent_h_28_INCLASS \
@@ -87,7 +88,8 @@ private: \
 	friend struct Z_Construct_UClass_USHealthComponent_Statics; \
 public: \
 	DECLARE_CLASS(USHealthComponent, UActorComponent, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(USHealthComponent)
+	DECLARE_SERIALIZER(USHealthComponent) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SHealthComponent_h_28_STANDARD_CONSTRUCTORS \
@@ -115,7 +117,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(USHealthComponent); \
 
 
 #define CoopGame_Source_CoopGame_Public_SHealthComponent_h_28_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__maxHealth() { return STRUCT_OFFSET(USHealthComponent, maxHealth); }
+	FORCEINLINE static uint32 __PPO__maxHealth() { return STRUCT_OFFSET(USHealthComponent, maxHealth); } \
+	FORCEINLINE static uint32 __PPO__currentHealth() { return STRUCT_OFFSET(USHealthComponent, currentHealth); }
 
 
 #define CoopGame_Source_CoopGame_Public_SHealthComponent_h_25_PROLOG

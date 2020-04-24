@@ -34,6 +34,8 @@ void ASTracerMulti::startFire()
 
 void ASTracerMulti::fire()
 {
+	checkIfServerIsFiring();
+	
 	if (hasAmmoInMagazine())
 	{
 		multiTraceFire();
@@ -43,24 +45,23 @@ void ASTracerMulti::fire()
 	{
 		reload();
 	}
-	
 }
 
 void ASTracerMulti::multiTraceFire()
 {
-	muzzleFireFlash();
-
+	firingEffects();// muzzle and recoil, replicated independently of the trace
+	lastFireTime = GetWorld()->TimeSeconds;
 	AActor* weaponOwner = GetOwner();
 
 	FCollisionQueryParams collisionParameters;
-	collisionParameters.AddIgnoredActor(weaponOwner);//owner is ignored when tracing
-	collisionParameters.AddIgnoredActor(this);//ignore also the weapon in the trace
-	collisionParameters.bTraceComplex = true;//traces against each individual triangle from the traced mesh. Gives the exact result of where we hit something. It's more expensive
+	collisionParameters.AddIgnoredActor(weaponOwner);
+	collisionParameters.AddIgnoredActor(this);
+	collisionParameters.bTraceComplex = true;
 	collisionParameters.bReturnPhysicalMaterial = true;
 
 	FVector eyesLocation;//will be used as the starting point for our trace
 	FRotator eyesRotation;
-	weaponOwner->GetActorEyesViewPoint(eyesLocation, eyesRotation);//now we have the eyes's location and rotation
+	weaponOwner->GetActorEyesViewPoint(eyesLocation, eyesRotation);
 
 	FVector shotDirection = eyesRotation.Vector();
 	
@@ -71,16 +72,19 @@ void ASTracerMulti::multiTraceFire()
 
 		FVector traceDistance = eyesLocation + shot * rangeMultiplier;//where the trace ends
 		
-		FHitResult hit;//struct containing hit information
+		FHitResult hit;
 		bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, COLLISION_WEAPON_CHANNEL, collisionParameters);
-		//ECC_Visibility is used now because everything that blocks that channel, will block the trace.
-		//That thing that blocks will be something that can be damaged
+
+
+		FVector traceEndPoint = calculateEndPoint(hitBlocked, hit, traceDistance);
+		tracerEffectSpawn(traceEndPoint);//create trace line to represent bullet trajectory
+		serverTraceEffects(traceEndPoint);//changes FHitScanTrace.traceTo to traceEndPoint if it's the server, which then triggers replicatedUsing on the function that executes tracerEffectSpawn with the updated value for all clients
+		
 		if (hitBlocked)
 		{
 			processPointDamage(weaponOwner, shotDirection, hit);
 		}
 
-		tracerEffectSpawn(hitBlocked, hit, traceDistance);//create beam to represent bullet trajectory 
 
 		if (DebugMultiTraceDrawing > 0)
 		{
@@ -88,6 +92,4 @@ void ASTracerMulti::multiTraceFire()
 		}
 		
 	}
-	lastFireTime = GetWorld()->TimeSeconds;
-	recoilShakingCamera(weaponOwner);
 }

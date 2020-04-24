@@ -18,6 +18,8 @@ FAutoConsoleVariableRef ConsoleDebugTracerWeaponDrawing(
 
 void ASTracerSingle::fire()
 {
+	checkIfServerIsFiring();
+	
 	if (hasAmmoInMagazine())
 	{
 		singleTraceFire();
@@ -37,14 +39,13 @@ void ASTracerSingle::startFire()
 	if(weaponOwner)
 	{
 		fireAtRate<ASTracerSingle, &ASTracerSingle::fire>(this);
-
 	}
 }
 
 void ASTracerSingle::singleTraceFire()
 {
-	muzzleFireFlash();
-
+	firingEffects();
+	lastFireTime = GetWorld()->TimeSeconds;//triggers replication via server
 	AActor* weaponOwner = GetOwner();
 	
 	FCollisionQueryParams collisionParameters;
@@ -64,17 +65,20 @@ void ASTracerSingle::singleTraceFire()
 	bool hitBlocked = GetWorld()->LineTraceSingleByChannel(hit, eyesLocation, traceDistance, COLLISION_WEAPON_CHANNEL, collisionParameters);
 	//ECC_Visibility is used now because everything that blocks that channel, will block the trace.
 	//That thing that blocks will be something that can be damaged
+
+	FVector traceEndPoint = calculateEndPoint(hitBlocked, hit, traceDistance);
+	tracerEffectSpawn(traceEndPoint);//create beam to represent bullet trajectory
+	serverTraceEffects(traceEndPoint);//only executed by server
+
 	if(hitBlocked)
 	{
 		processPointDamage(weaponOwner, shotDirection, hit);
 	}
 	
-	tracerEffectSpawn(hitBlocked, hit, traceDistance);//create beam to represent bullet trajectory 
+	 
 
 	if (DebugTracerWeaponDrawing > 0)
 	{
 		DrawDebugLine(GetWorld(), eyesLocation, traceDistance, FColor::Orange, false, 1.0f, 0, 1.0f);//draws a line representing the trace
 	}
-	lastFireTime = GetWorld()->TimeSeconds;
-	recoilShakingCamera(weaponOwner);
 }

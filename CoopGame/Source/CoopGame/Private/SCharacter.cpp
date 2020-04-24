@@ -7,6 +7,7 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Net/UnrealNetwork.h"
 
 #include "SWeapon.h"
 #include "CoopGame.h"
@@ -89,7 +90,10 @@ void ASCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	attachWeapon();
+	if (Role == ROLE_Authority)//if the one who executes this is a server...
+	{
+		attachWeapon();
+	}
 	healthComp->onHealthChanged.AddDynamic(this, &ASCharacter::onHealthChanged);
 }
 
@@ -101,6 +105,15 @@ void ASCharacter::beginZoom()
 void ASCharacter::endZoom()
 {
 	targetFOV = defaultFOV;
+}
+
+bool ASCharacter::isHoldingAWeapon()
+{
+	if(heldWeapon)
+	{
+		return true;
+	}
+	return false;
 }
 
 // Called every frame
@@ -198,3 +211,10 @@ void ASCharacter::jump()
 	Jump();
 }
 
+void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(ASCharacter, heldWeapon);
+	DOREPLIFETIME(ASCharacter, bHasDied);
+}

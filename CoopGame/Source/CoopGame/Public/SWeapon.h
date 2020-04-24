@@ -12,6 +12,9 @@ class UDamageType;
 class UParticleSystem;
 class UCameraShake;
 
+
+
+
 UCLASS(Abstract)
 class COOPGAME_API ASWeapon : public AActor
 {
@@ -36,16 +39,16 @@ protected:
 	void muzzleFireFlash();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	USkeletalMeshComponent* mesh;
+		USkeletalMeshComponent* mesh;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	TSubclassOf<UDamageType> typeOfDamage;
+		TSubclassOf<UDamageType> typeOfDamage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	float baseDamage;
+		float baseDamage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	float bonusDamage;
+		float bonusDamage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int magazineCapacity;
@@ -62,10 +65,10 @@ protected:
 		TSubclassOf<UCameraShake> recoilCameraShake;
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //no need to edit it
-	FName muzzleSocket;
+		FName muzzleSocket;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon") //secure way to expose it
-	UParticleSystem* muzzleEffect;
+		UParticleSystem* muzzleEffect;
 	
 	TMap<EPhysicalSurface, UParticleSystem**> physicalMaterialsMap;//to map surface types
 
@@ -75,12 +78,13 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		UParticleSystem* FleshImpactEffect;
 
-	void reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit);
+	void reactAtPhysicsMaterial(FVector hitImpactPoint, EPhysicalSurface surfaceHit);
 
 	//fire rate timers
 	FTimerHandle timeBetweenShotsTimer;
 
-	float lastFireTime;
+	UPROPERTY(ReplicatedUsing = firingEffects)
+		float lastFireTime;
 
 	/*Bullets per minute*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon", meta = (ClampMin = "0.1"))
@@ -95,6 +99,16 @@ protected:
 	virtual void fire();
 
 	void recoilShakingCamera(AActor* weaponOwnerActor);
+
+	//networking
+	UFUNCTION(Server, Reliable, WithValidation)
+		void serverFires();
+
+	void checkIfServerIsFiring();
+
+	UFUNCTION()
+		void firingEffects();
+	
 };
 
 template <typename callerType, void( callerType::* method)()>

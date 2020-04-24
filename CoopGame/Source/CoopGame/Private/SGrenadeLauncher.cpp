@@ -16,6 +16,8 @@ void ASGrenadeLauncher::startFire()
 
 void ASGrenadeLauncher::fire()
 {
+	checkIfServerIsFiring();
+	
 	if (hasAmmoInMagazine())
 	{
 		FireSingleProjectile();

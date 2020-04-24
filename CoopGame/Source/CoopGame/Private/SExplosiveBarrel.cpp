@@ -6,8 +6,10 @@
 #include "kismet/GameplayStatics.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
 #include "PhysicsEngine/RadialForceComponent.h"
+#include "Net/UnrealNetwork.h"
 
 #include "SHealthComponent.h"
+
 
 // Sets default values
 ASExplosiveBarrel::ASExplosiveBarrel()
@@ -22,11 +24,13 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 	float impulseMagnitude = 100000.0;
 	explosionReactionImpulse = FVector(0.0f, 0.0f, impulseMagnitude);
 	
-	
 	forceComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("Radial Force Component"));
 	forceComp->SetupAttachment(RootComponent);
 	forceComp->bIgnoreOwningActor = true;
 	forceComp->bAutoActivate = false;//so we don't need to have tick enabled
+
+	SetReplicates(true);
+	SetReplicateMovement(true);//has gameplay significance. It's important that client and server see the same
 }
 
 // Called when the game starts or when spawned
@@ -40,15 +44,24 @@ void ASExplosiveBarrel::BeginPlay()
 
 void ASExplosiveBarrel::explode()
 {
-	bHasExploded = true;
-	mesh->SetMaterial(mesh->GetMaterialIndex("DefaultMaterial"), explodedMaterial);
-	if(explodeParticle)
-	{
-		UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
-	}
+	explosionEffects();
 	mesh->AddImpulse(explosionReactionImpulse);//doesn't work yet
 	forceComp->FireImpulse();
 	provokeRadialDamage();
+}
+
+void ASExplosiveBarrel::explosionEffects()
+{
+	mesh->SetMaterial(mesh->GetMaterialIndex("DefaultMaterial"), explodedMaterial);
+	if (explodeParticle)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
+	}
+}
+
+void ASExplosiveBarrel::serverImitateExplosionReplication()//only the effects are needed to replicate. Movement is already replicated by the setReplicatesMovement and damage is replicated by the health component.
+{
+	explosionEffects();
 }
 
 void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health, float healthDelta,
@@ -56,6 +69,7 @@ void ASExplosiveBarrel::onHealthChanged(USHealthComponent* trigger, float health
 {
 	if(health <= 0 && !bHasExploded)
 	{
+		bHasExploded = true;
 		explode();
 	}
 }
@@ -68,10 +82,13 @@ void ASExplosiveBarrel::provokeRadialDamage()
 
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
 
-
-	EPhysicalSurface surfaceHit = UPhysicalMaterial::DetermineSurfaceType(hit.PhysMaterial.Get());
-
-	bool damagedApplied = false;
-	damagedApplied = UGameplayStatics::ApplyRadialDamage(this, explosionDamage, this->GetActorLocation(), explosionRadius, damageType,
+	UGameplayStatics::ApplyRadialDamage(this, explosionDamage, this->GetActorLocation(), explosionRadius, damageType,
 		ignoredActors, this, this->GetInstigatorController(), true, ECC_Visibility);
+}
+
+void ASExplosiveBarrel::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(ASExplosiveBarrel, bHasExploded);
 }

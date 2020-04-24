@@ -37,21 +37,9 @@ protected:
 		UProjectileMovementComponent* ProjectileMovement;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
-		UParticleSystem* DefaultHitImpactEffect;
+		UParticleSystem* hitEffect;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
-		UParticleSystem* FleshImpactEffect;
 public:	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
-		TSubclassOf<UDamageType> damageType;
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
-		float baseDamage;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
-		float bonusDamage;
-
-	void reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit);
 
 	///** called when projectile hits something */
 	//UFUNCTION()

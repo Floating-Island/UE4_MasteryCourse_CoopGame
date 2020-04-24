@@ -19,6 +19,14 @@ class AActor;
 
 #define CoopGame_Source_CoopGame_Public_SCharacter_h_17_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execisHoldingAWeapon) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(bool*)Z_Param__Result=P_THIS->isHoldingAWeapon(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execonHealthChanged) \
 	{ \
 		P_GET_OBJECT(USHealthComponent,Z_Param_trigger); \
@@ -35,6 +43,14 @@ class AActor;
 
 
 #define CoopGame_Source_CoopGame_Public_SCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execisHoldingAWeapon) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(bool*)Z_Param__Result=P_THIS->isHoldingAWeapon(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execonHealthChanged) \
 	{ \
@@ -57,7 +73,8 @@ private: \
 	friend struct Z_Construct_UClass_ASCharacter_Statics; \
 public: \
 	DECLARE_CLASS(ASCharacter, ACharacter, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASCharacter)
+	DECLARE_SERIALIZER(ASCharacter) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SCharacter_h_17_INCLASS \
@@ -66,7 +83,8 @@ private: \
 	friend struct Z_Construct_UClass_ASCharacter_Statics; \
 public: \
 	DECLARE_CLASS(ASCharacter, ACharacter, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASCharacter)
+	DECLARE_SERIALIZER(ASCharacter) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SCharacter_h_17_STANDARD_CONSTRUCTORS \

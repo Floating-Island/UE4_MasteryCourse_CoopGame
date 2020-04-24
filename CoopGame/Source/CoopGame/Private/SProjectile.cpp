@@ -7,24 +7,16 @@
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Kismet/GameplayStatics.h"
-
-#include "CoopGame.h"
 
 // Sets default values
 ASProjectile::ASProjectile()
 {
-	physicalMaterialsMap.Add(SurfaceType_Default, &DefaultHitImpactEffect);
-	physicalMaterialsMap.Add(SURFACE_FLESH_DEFAULT, &FleshImpactEffect);
-	physicalMaterialsMap.Add(SURFACE_FLESH_VULNERABLE, &FleshImpactEffect);
-
 	mesh = CreateDefaultSubobject < UStaticMeshComponent>(TEXT("Mesh Component"));//creates component 
-	
 	
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileComp"));
 	ProjectileMovement->UpdatedComponent = mesh;
-	ProjectileMovement->InitialSpeed = 500.0f;
+	ProjectileMovement->InitialSpeed = 800.0f;
 	ProjectileMovement->MaxSpeed = 1000.0f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
@@ -42,9 +34,10 @@ ASProjectile::ASProjectile()
 
 	RootComponent = mesh;
 
-	baseDamage = 40.0f;
-
-	bonusDamage = 60.0f;
+	SetReplicates(true);
+	SetReplicateMovement(true);
+	NetUpdateFrequency = 66.0f;
+	MinNetUpdateFrequency = 33.0f;
 }
 
 
@@ -53,22 +46,5 @@ ASProjectile::ASProjectile()
 void ASProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-}
-
-void ASProjectile::reactAtPhysicsMaterial(FHitResult hit, EPhysicalSurface surfaceHit)
-{
-	UParticleSystem* selectedHitImpactEffect = *(*(physicalMaterialsMap.Find(surfaceHit)));
-
-	if (!selectedHitImpactEffect)
-	{
-		selectedHitImpactEffect = DefaultHitImpactEffect;
-	}
-
-	if (selectedHitImpactEffect)//if it was assigned
-	{
-		//spawn impact effect
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), selectedHitImpactEffect, hit.ImpactPoint, hit.ImpactNormal.Rotation());
-		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
-	}
 }
 
