@@ -24,6 +24,17 @@ protected:
 
 	FVector nextStepInDestination();
 
+	FVector nextStep;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tracking")
+	int forceMagnitude;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tracking")
+		bool bVelocityChanges;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tracking")
+		float minimumEndSeekDistance;
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

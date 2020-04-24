@@ -7,6 +7,7 @@
 #include "NavigationSystem.h"
 #include "NavigationPath.h"
 #include "GameFramework/Character.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 ASTrackerBot::ASTrackerBot()
@@ -15,15 +16,21 @@ ASTrackerBot::ASTrackerBot()
 	PrimaryActorTick.bCanEverTick = true;
 
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
-	meshComp->SetCanEverAffectNavigation(false);
+	meshComp->SetCanEverAffectNavigation(false);//doesn't interfere with the navigation mesh volume
+	meshComp->SetSimulatePhysics(true);//so we can apply forces to it.
 	RootComponent = meshComp;
+
+	forceMagnitude = 1000;
+	minimumEndSeekDistance = 100.0f;
+
+	bVelocityChanges = true;
 }
 
 // Called when the game starts or when spawned
 void ASTrackerBot::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	nextStep = nextStepInDestination();
 }
 
 FVector ASTrackerBot::nextStepInDestination()
@@ -44,4 +51,20 @@ void ASTrackerBot::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	FVector currentLocation = GetActorLocation();
+	FVector forceDirection = nextStep - currentLocation;
+	float distanceToTargetStep = forceDirection.Size(); 
+	
+	if(distanceToTargetStep <= minimumEndSeekDistance)
+	{
+		nextStep = nextStepInDestination();
+	}
+	else
+	{
+		//get pushed to nextStep
+
+		forceDirection.Normalize();
+
+		meshComp->AddForce(forceDirection * forceMagnitude, NAME_None, bVelocityChanges);
+	}
 }
