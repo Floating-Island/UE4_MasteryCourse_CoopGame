@@ -57,7 +57,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTrackerBot); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASTrackerBot)
 
 
-#define CoopGame_Source_CoopGame_Ai_STrackerBot_h_12_PRIVATE_PROPERTY_OFFSET
+#define CoopGame_Source_CoopGame_Ai_STrackerBot_h_12_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__meshComp() { return STRUCT_OFFSET(ASTrackerBot, meshComp); }
+
+
 #define CoopGame_Source_CoopGame_Ai_STrackerBot_h_9_PROLOG
 #define CoopGame_Source_CoopGame_Ai_STrackerBot_h_12_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

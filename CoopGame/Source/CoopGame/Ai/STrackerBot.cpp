@@ -2,6 +2,7 @@
 
 
 #include "STrackerBot.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 ASTrackerBot::ASTrackerBot()
@@ -10,6 +11,7 @@ ASTrackerBot::ASTrackerBot()
 	PrimaryActorTick.bCanEverTick = true;
 
 	meshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
+	meshComp->SetCanEverAffectNavigation(false);
 	RootComponent = meshComp;
 }
 
