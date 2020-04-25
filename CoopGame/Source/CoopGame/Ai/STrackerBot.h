@@ -8,6 +8,7 @@
 
 
 class USHealthComponent;
+class UParticleSystem;
 
 UCLASS()
 class COOPGAME_API ASTrackerBot : public APawn
@@ -21,6 +22,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	void pulseBody();
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Components")
 	UStaticMeshComponent* meshComp;
@@ -47,6 +49,25 @@ protected:
 		float minimumEndSeekDistance;
 
 	UMaterialInstanceDynamic* pulseMaterial;
+
+	void selfDestruct();
+	void explosionEffect();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
+		UParticleSystem* explosionParticle;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
+		float explosionDamage;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
+		float explosionRadius;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
+		TSubclassOf<UDamageType> explosionDamageType;
+
+	bool bHasExploded;
+
+	void provokeRadialDamage();
 	
 public:	
 	// Called every frame
