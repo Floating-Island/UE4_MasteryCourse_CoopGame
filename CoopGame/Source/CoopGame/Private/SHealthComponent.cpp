@@ -28,7 +28,6 @@ void USHealthComponent::BeginPlay()
 	Super::BeginPlay();
 	currentHealth = maxHealth;
 	serverAddDamageToHandle();
-	
 }
 
 void USHealthComponent::damageTakerHandle(AActor* DamagedActor, float Damage, const UDamageType* DamageType,
