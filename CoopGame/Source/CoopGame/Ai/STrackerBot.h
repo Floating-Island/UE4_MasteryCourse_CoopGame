@@ -20,6 +20,7 @@ class COOPGAME_API ASTrackerBot : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ASTrackerBot();
+	void serverCalculateNextStep();
 
 protected:
 	// Called when the game starts or when spawned
@@ -82,6 +83,7 @@ protected:
 	bool bSelfDestructionInitiated;
 	
 	void selfDamage();
+	void serverMoveToNextStep();
 
 
 	//sounds

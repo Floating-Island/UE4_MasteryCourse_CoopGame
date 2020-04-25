@@ -49,11 +49,19 @@ ASTrackerBot::ASTrackerBot()
 	bHasExploded = false;
 }
 
+void ASTrackerBot::serverCalculateNextStep()
+{
+	if(Role == ROLE_Authority)
+	{
+		nextStep = nextStepInDestination();
+	}
+}
+
 // Called when the game starts or when spawned
 void ASTrackerBot::BeginPlay()
 {
 	Super::BeginPlay();
-	nextStep = nextStepInDestination();
+	serverCalculateNextStep();
 	overlapSphere->SetSphereRadius(explosionRadius);
 }
 
@@ -101,7 +109,6 @@ void ASTrackerBot::selfDestruct()
 	{
 		return;
 	}
-	UGameplayStatics::PlaySoundAtLocation(GetWorld(), destructionSound, GetActorLocation(), GetActorRotation());
 	bHasExploded = true;
 	explosionEffect();
 	provokeRadialDamage();
@@ -115,6 +122,7 @@ void ASTrackerBot::explosionEffect()
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionParticle, GetActorLocation());
 	}
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), destructionSound, GetActorLocation(), GetActorRotation());
 }
 
 void ASTrackerBot::provokeRadialDamage()
@@ -129,25 +137,33 @@ void ASTrackerBot::selfDamage()
 	UGameplayStatics::ApplyDamage(this, selfInflictedDamage, GetInstigatorController(), this, explosionDamageType);
 }
 
+void ASTrackerBot::serverMoveToNextStep()
+{
+	if(Role == ROLE_Authority)
+	{
+		FVector currentLocation = GetActorLocation();
+		FVector forceDirection = nextStep - currentLocation;
+		float distanceToTargetStep = forceDirection.Size(); 
+		
+		if(distanceToTargetStep <= minimumEndSeekDistance)
+		{
+			nextStep = nextStepInDestination();
+		}
+		else
+		{
+			//get pushed to nextStep
+			forceDirection.Normalize();
+			meshComp->AddForce(forceDirection * forceMagnitude, NAME_None, bVelocityChanges);
+		}	
+	}
+}
+
 // Called every frame
 void ASTrackerBot::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	FVector currentLocation = GetActorLocation();
-	FVector forceDirection = nextStep - currentLocation;
-	float distanceToTargetStep = forceDirection.Size(); 
-	
-	if(distanceToTargetStep <= minimumEndSeekDistance)
-	{
-		nextStep = nextStepInDestination();
-	}
-	else
-	{
-		//get pushed to nextStep
-		forceDirection.Normalize();
-		meshComp->AddForce(forceDirection * forceMagnitude, NAME_None, bVelocityChanges);
-	}
+	serverMoveToNextStep();
 }
 
 void ASTrackerBot::NotifyActorBeginOverlap(AActor* OtherActor)
