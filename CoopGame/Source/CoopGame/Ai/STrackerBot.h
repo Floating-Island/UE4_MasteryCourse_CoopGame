@@ -45,6 +45,8 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Tracking")
 		float minimumEndSeekDistance;
+
+	UMaterialInstanceDynamic* pulseMaterial;
 	
 public:	
 	// Called every frame

@@ -7,6 +7,7 @@
 #include "NavigationSystem.h"
 #include "NavigationPath.h"
 #include "GameFramework/Character.h"
+#include "Materials/MaterialInstanceDynamic.h"
 
 #include "SHealthComponent.h"
 
@@ -41,11 +42,26 @@ void ASTrackerBot::BeginPlay()
 void ASTrackerBot::handleTakeDamage(USHealthComponent* trigger, float health, float healthDelta,
 	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	//explodes when health equals zero.
+	if(health <= 0)
+	{
+		//explodes when health equals zero.
+	}
+	else
+	{
+		//we should pulse the material when hit, pulse more when nearing death.
+		if (pulseMaterial == nullptr)
+		{
+			pulseMaterial = meshComp->CreateAndSetMaterialInstanceDynamicFromMaterial(0, meshComp->GetMaterial(0));//0 because it's the only material of the mesh.
+		}
 
-	//we should pulse the material when hit, pulse more when nearing death.
+		if (pulseMaterial)//isn't nullptr and it was assigned in blueprint. 
+		{
+			pulseMaterial->SetScalarParameterValue("lastTimeDamaged", GetWorld()->TimeSeconds);//the name of the parameter set inside the material's graph
+		}
+	}
 
-	meshComp->CreateAndSetMaterialInstanceDynamicFromMaterial(0, meshComp->GetMaterial(0));//0 because it's the only material of the mesh.
+	
+	
 }
 
 FVector ASTrackerBot::nextStepInDestination()
