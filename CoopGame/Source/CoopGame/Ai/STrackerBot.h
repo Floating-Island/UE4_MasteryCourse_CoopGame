@@ -57,6 +57,7 @@ protected:
 	UMaterialInstanceDynamic* pulseMaterial;
 
 	void selfDestruct();
+	void hideMesh();
 	void explosionEffect();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
@@ -83,6 +84,7 @@ protected:
 	bool bSelfDestructionInitiated;
 	
 	void selfDamage();
+	void serverStartSelfDestruct();
 	void serverMoveToNextStep();
 
 

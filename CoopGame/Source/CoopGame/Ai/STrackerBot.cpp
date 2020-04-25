@@ -49,14 +49,6 @@ ASTrackerBot::ASTrackerBot()
 	bHasExploded = false;
 }
 
-void ASTrackerBot::serverCalculateNextStep()
-{
-	if(Role == ROLE_Authority)
-	{
-		nextStep = nextStepInDestination();
-	}
-}
-
 // Called when the game starts or when spawned
 void ASTrackerBot::BeginPlay()
 {
@@ -65,81 +57,17 @@ void ASTrackerBot::BeginPlay()
 	overlapSphere->SetSphereRadius(explosionRadius);
 }
 
-void ASTrackerBot::pulseBody()
+// Called every frame
+void ASTrackerBot::Tick(float DeltaTime)
 {
-	if (pulseMaterial == nullptr)
-	{
-		pulseMaterial = meshComp->CreateAndSetMaterialInstanceDynamicFromMaterial(0, meshComp->GetMaterial(0));//0 because it's the only material of the mesh.
-	}
+	Super::Tick(DeltaTime);
 
-	if (pulseMaterial)//isn't nullptr and it was assigned in blueprint. 
-	{
-		pulseMaterial->SetScalarParameterValue("lastTimeDamaged", GetWorld()->TimeSeconds);//the name of the parameter set inside the material's graph
-	}
-}
-
-void ASTrackerBot::handleTakeDamage(USHealthComponent* trigger, float health, float healthDelta,
-                                    const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
-{
-	//we should pulse the material when hit, pulse more when nearing death.
-	pulseBody();
-	if(health <= 0)
-	{
-		//explodes when health equals zero.
-		selfDestruct();
-	}
-}
-
-FVector ASTrackerBot::nextStepInDestination()
-{
-	ACharacter* target = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);//shouldn't be used, it's a hack
-	FVector currentLocation = GetActorLocation();
-	
-	UNavigationPath* pathToTarget =  UNavigationSystemV1::FindPathToActorSynchronously(this,currentLocation, target);
-	if(pathToTarget->PathPoints.Num() > 1)
-	{
-		return pathToTarget->PathPoints[1];
-	}
-	return currentLocation;
-}
-
-void ASTrackerBot::selfDestruct()
-{
-	if(bHasExploded)
-	{
-		return;
-	}
-	bHasExploded = true;
-	explosionEffect();
-	provokeRadialDamage();
-	//Destroy tracker immediately
-	Destroy();
-}
-
-void ASTrackerBot::explosionEffect()
-{
-	if(explosionParticle)
-	{
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionParticle, GetActorLocation());
-	}
-	UGameplayStatics::PlaySoundAtLocation(GetWorld(), destructionSound, GetActorLocation(), GetActorRotation());
-}
-
-void ASTrackerBot::provokeRadialDamage()
-{
-	TArray<AActor*> ignoredActors;
-	ignoredActors.Add(this);
-	UGameplayStatics::ApplyRadialDamage(GetWorld(), explosionDamage, GetActorLocation(), explosionRadius, explosionDamageType, ignoredActors, this, GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
-}
-
-void ASTrackerBot::selfDamage()
-{
-	UGameplayStatics::ApplyDamage(this, selfInflictedDamage, GetInstigatorController(), this, explosionDamageType);
+	serverMoveToNextStep();
 }
 
 void ASTrackerBot::serverMoveToNextStep()
 {
-	if(Role == ROLE_Authority)
+	if(Role == ROLE_Authority && !bHasExploded)
 	{
 		FVector currentLocation = GetActorLocation();
 		FVector forceDirection = nextStep - currentLocation;
@@ -158,17 +86,101 @@ void ASTrackerBot::serverMoveToNextStep()
 	}
 }
 
-// Called every frame
-void ASTrackerBot::Tick(float DeltaTime)
+void ASTrackerBot::serverCalculateNextStep()
 {
-	Super::Tick(DeltaTime);
-
-	serverMoveToNextStep();
+	if(Role == ROLE_Authority)
+	{
+		nextStep = nextStepInDestination();
+	}
 }
+
+FVector ASTrackerBot::nextStepInDestination()
+{
+	ACharacter* target = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);//shouldn't be used, it's a hack
+	FVector currentLocation = GetActorLocation();
+	
+	UNavigationPath* pathToTarget =  UNavigationSystemV1::FindPathToActorSynchronously(this,currentLocation, target);
+	if(pathToTarget->PathPoints.Num() > 1)
+	{
+		return pathToTarget->PathPoints[1];
+	}
+	return currentLocation;
+}
+
+void ASTrackerBot::handleTakeDamage(USHealthComponent* trigger, float health, float healthDelta,
+                                    const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+{
+	//we should pulse the material when hit, pulse more when nearing death.
+	pulseBody();
+	if(health <= 0)
+	{
+		//explodes when health equals zero.
+		selfDestruct();
+	}
+}
+
+void ASTrackerBot::pulseBody()
+{
+	if (pulseMaterial == nullptr)
+	{
+		pulseMaterial = meshComp->CreateAndSetMaterialInstanceDynamicFromMaterial(0, meshComp->GetMaterial(0));//0 because it's the only material of the mesh.
+	}
+
+	if (pulseMaterial)//isn't nullptr and it was assigned in blueprint. 
+	{
+		pulseMaterial->SetScalarParameterValue("lastTimeDamaged", GetWorld()->TimeSeconds);//the name of the parameter set inside the material's graph
+	}
+}
+
+void ASTrackerBot::selfDestruct()
+{
+	if(bHasExploded)
+	{
+		return;
+	}
+	bHasExploded = true;
+	explosionEffect();//if we have dedicated servers, this and other things (like the one below this) shouldn't be done by them.
+	hideMesh();
+	
+	if(Role == ROLE_Authority)
+	{	
+	provokeRadialDamage();
+	//Destroy tracker after some time
+	SetLifeSpan(0.5f);
+	}
+}
+
+void ASTrackerBot::explosionEffect()
+{
+	if(explosionParticle)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), explosionParticle, GetActorLocation());
+	}
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), destructionSound, GetActorLocation(), GetActorRotation());
+}
+
+void ASTrackerBot::hideMesh()
+{
+	meshComp->SetVisibility(false, true);
+	meshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
+void ASTrackerBot::provokeRadialDamage()
+{
+	TArray<AActor*> ignoredActors;
+	ignoredActors.Add(this);
+	UGameplayStatics::ApplyRadialDamage(GetWorld(), explosionDamage, GetActorLocation(), explosionRadius, explosionDamageType, ignoredActors, this, GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
+}
+
+void ASTrackerBot::selfDamage()
+{
+	UGameplayStatics::ApplyDamage(this, selfInflictedDamage, GetInstigatorController(), this, explosionDamageType);
+}
+
 
 void ASTrackerBot::NotifyActorBeginOverlap(AActor* OtherActor)
 {
-	if(bSelfDestructionInitiated)
+	if(bSelfDestructionInitiated || bHasExploded)
 	{
 		return;
 	}
@@ -178,7 +190,15 @@ void ASTrackerBot::NotifyActorBeginOverlap(AActor* OtherActor)
 		bSelfDestructionInitiated = true;
 		//overlapped with a player, start self destruction sequence...
 		UGameplayStatics::SpawnSoundAttached(destructionSequenceInitiatedSound, RootComponent);
-		float timerTime = 0.5f;
-		GetWorldTimerManager().SetTimer(SelfDamageTimer, this, &ASTrackerBot::selfDamage, timerTime, true, 0);
+		serverStartSelfDestruct();
+	}
+}
+
+void ASTrackerBot::serverStartSelfDestruct()
+{
+	if(Role == ROLE_Authority)
+	{
+		float timerTime = 0.25f;
+		GetWorldTimerManager().SetTimer(SelfDamageTimer, this, &ASTrackerBot::selfDamage, timerTime, true, 0);	
 	}
 }

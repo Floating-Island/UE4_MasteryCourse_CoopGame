@@ -39,8 +39,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="HealthComponent")
 	float maxHealth;
 
-	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadOnly, Category = "HealthComponent")
+	UPROPERTY(ReplicatedUsing = currentHealthReplication, VisibleAnywhere, BlueprintReadOnly, Category = "HealthComponent")
 	float currentHealth;
+
+	UFUNCTION()
+		void currentHealthReplication(float oldHealth);//when currentHealth is replicated, the current value (before being changed) is sent as parameter, inside oldHealth.
 
 	UFUNCTION()//it's an event handler
 	void damageTakerHandle(AActor* DamagedActor,
