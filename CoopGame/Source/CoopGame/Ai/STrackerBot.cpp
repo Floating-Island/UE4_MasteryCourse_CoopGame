@@ -162,6 +162,7 @@ void ASTrackerBot::explosionEffect()
 void ASTrackerBot::hideMesh()
 {
 	meshComp->SetVisibility(false, true);
+	meshComp->SetSimulatePhysics(false);
 	meshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
