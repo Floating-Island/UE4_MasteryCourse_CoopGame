@@ -33,8 +33,6 @@ protected:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Overlapping")
 		USphereComponent* overlapSphere;
-	UPROPERTY(EditDefaultsOnly, Category = "Overlapping")
-		float overlapRadius;
 
 	UFUNCTION()
 		void handleTakeDamage(USHealthComponent* trigger, float health, float healthDelta,

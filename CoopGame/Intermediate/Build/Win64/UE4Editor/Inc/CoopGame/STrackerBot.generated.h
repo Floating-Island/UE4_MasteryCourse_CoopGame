@@ -97,7 +97,6 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTrackerBot); \
 	FORCEINLINE static uint32 __PPO__meshComp() { return STRUCT_OFFSET(ASTrackerBot, meshComp); } \
 	FORCEINLINE static uint32 __PPO__healthComp() { return STRUCT_OFFSET(ASTrackerBot, healthComp); } \
 	FORCEINLINE static uint32 __PPO__overlapSphere() { return STRUCT_OFFSET(ASTrackerBot, overlapSphere); } \
-	FORCEINLINE static uint32 __PPO__overlapRadius() { return STRUCT_OFFSET(ASTrackerBot, overlapRadius); } \
 	FORCEINLINE static uint32 __PPO__forceMagnitude() { return STRUCT_OFFSET(ASTrackerBot, forceMagnitude); } \
 	FORCEINLINE static uint32 __PPO__bVelocityChanges() { return STRUCT_OFFSET(ASTrackerBot, bVelocityChanges); } \
 	FORCEINLINE static uint32 __PPO__minimumEndSeekDistance() { return STRUCT_OFFSET(ASTrackerBot, minimumEndSeekDistance); } \

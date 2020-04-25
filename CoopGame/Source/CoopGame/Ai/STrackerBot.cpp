@@ -53,7 +53,7 @@ void ASTrackerBot::BeginPlay()
 {
 	Super::BeginPlay();
 	nextStep = nextStepInDestination();
-	overlapSphere->SetSphereRadius(overlapRadius);
+	overlapSphere->SetSphereRadius(explosionRadius);
 }
 
 void ASTrackerBot::pulseBody()
@@ -103,7 +103,6 @@ void ASTrackerBot::selfDestruct()
 	bHasExploded = true;
 	explosionEffect();
 	provokeRadialDamage();
-	DrawDebugSphere(GetWorld(), GetActorLocation(), explosionRadius, 32, FColor::Yellow, false, 1.0f, 0, 1);
 	//Destroy tracker immediately
 	Destroy();
 }
