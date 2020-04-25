@@ -54,7 +54,6 @@ void ASTrackerBot::BeginPlay()
 	Super::BeginPlay();
 	nextStep = nextStepInDestination();
 	overlapSphere->SetSphereRadius(overlapRadius);
-	OnActorBeginOverlap.AddDynamic(this, &ASTrackerBot::);
 }
 
 void ASTrackerBot::pulseBody()
