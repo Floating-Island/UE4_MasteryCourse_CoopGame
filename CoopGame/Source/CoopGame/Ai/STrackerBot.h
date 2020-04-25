@@ -10,6 +10,7 @@
 class USHealthComponent;
 class UParticleSystem;
 class USphereComponent;
+class USoundCue;
 
 UCLASS()
 class COOPGAME_API ASTrackerBot : public APawn
@@ -81,6 +82,14 @@ protected:
 	bool bSelfDestructionInitiated;
 	
 	void selfDamage();
+
+
+	//sounds
+	UPROPERTY(EditDefaultsOnly, Category = "Overlapping")
+	USoundCue* destructionSequenceInitiatedSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
+		USoundCue* destructionSound;
 	
 public:	
 	// Called every frame

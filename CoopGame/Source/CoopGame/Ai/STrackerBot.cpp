@@ -10,6 +10,7 @@
 #include "GameFramework/Character.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "TimerManager.h"
+#include "Sound/SoundCue.h"
 #include "DrawDebugHelpers.h"
 
 #include "SHealthComponent.h"
@@ -100,6 +101,7 @@ void ASTrackerBot::selfDestruct()
 	{
 		return;
 	}
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), destructionSound, GetActorLocation(), GetActorRotation());
 	bHasExploded = true;
 	explosionEffect();
 	provokeRadialDamage();
@@ -159,6 +161,7 @@ void ASTrackerBot::NotifyActorBeginOverlap(AActor* OtherActor)
 	{
 		bSelfDestructionInitiated = true;
 		//overlapped with a player, start self destruction sequence...
+		UGameplayStatics::SpawnSoundAttached(destructionSequenceInitiatedSound, RootComponent);
 		float timerTime = 0.5f;
 		GetWorldTimerManager().SetTimer(SelfDamageTimer, this, &ASTrackerBot::selfDamage, timerTime, true, 0);
 	}
