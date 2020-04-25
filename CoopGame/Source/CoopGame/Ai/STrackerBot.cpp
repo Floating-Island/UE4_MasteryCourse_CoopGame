@@ -41,7 +41,11 @@ void ASTrackerBot::BeginPlay()
 void ASTrackerBot::handleTakeDamage(USHealthComponent* trigger, float health, float healthDelta,
 	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	
+	//explodes when health equals zero.
+
+	//we should pulse the material when hit, pulse more when nearing death.
+
+	meshComp->CreateAndSetMaterialInstanceDynamicFromMaterial(0, meshComp->GetMaterial(0));//0 because it's the only material of the mesh.
 }
 
 FVector ASTrackerBot::nextStepInDestination()
