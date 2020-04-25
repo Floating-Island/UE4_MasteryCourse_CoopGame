@@ -40,24 +40,17 @@ void ASGrenadeProjectile::explosionEffects()
 	if (hitEffect)//if it was assigned
 	{
 		//spawn impact effect
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitEffect, this->GetActorLocation(), this->GetActorRotation());
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitEffect, GetActorLocation());
 		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
 	}
 }
 
-void ASGrenadeProjectile::provokeRadialDamage(const FHitResult& hit)
+void ASGrenadeProjectile::provokeRadialDamage()
 {
-	//process baseDamage
-	AActor* hitActor = hit.GetActor();
-
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
 
-	UGameplayStatics::ApplyRadialDamage(this, explosionDamage, this->GetActorLocation(), damageRadius, damageType,
-		ignoredActors, this, this->GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
-
-	bIsExploding = true;
-	explosionEffects();
-	serverVanish();
+	UGameplayStatics::ApplyRadialDamage(this, explosionDamage, GetActorLocation(), damageRadius, damageType,
+		ignoredActors, this, GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
 }
 
 void ASGrenadeProjectile::serverVanish()
@@ -70,8 +63,10 @@ void ASGrenadeProjectile::serverVanish()
 
 void ASGrenadeProjectile::generateExplosion()
 {
-	FHitResult hit;
-	provokeRadialDamage(hit);
+	provokeRadialDamage();
+	bIsExploding = true;
+	explosionEffects();
+	serverVanish();
 }
 
 //void ASProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,

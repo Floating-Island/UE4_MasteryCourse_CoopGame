@@ -42,7 +42,7 @@ protected:
 	void explosionEffects();
 	void startExplosionCountdown();
 	void generateExplosion();
-	void provokeRadialDamage(const FHitResult& hit);
+	void provokeRadialDamage();
 
 	UFUNCTION()
 		void serverVanish();
