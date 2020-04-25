@@ -3,14 +3,17 @@
 
 #include "STrackerBot.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "NavigationSystem.h"
 #include "NavigationPath.h"
 #include "GameFramework/Character.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "TimerManager.h"
 #include "DrawDebugHelpers.h"
 
 #include "SHealthComponent.h"
+#include "SCharacter.h"
 #include "CoopGame.h"
 
 // Sets default values
@@ -27,6 +30,13 @@ ASTrackerBot::ASTrackerBot()
 	healthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("Health Component"));
 	healthComp->onHealthChanged.AddDynamic(this, &ASTrackerBot::handleTakeDamage);
 
+	overlapSphere = CreateDefaultSubobject<USphereComponent>(TEXT("Overlap Sphere Component"));
+	overlapSphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);//doesn't need physics
+	overlapSphere->SetCollisionResponseToAllChannels(ECR_Ignore);//doesn't interact with any channel
+	overlapSphere->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);//only responds to the pawn channel
+	overlapSphere->SetupAttachment(RootComponent);
+	selfInflictedDamage = 10;
+	bSelfDestructionInitiated = false;
 	
 	forceMagnitude = 1000;
 	minimumEndSeekDistance = 100.0f;
@@ -43,6 +53,8 @@ void ASTrackerBot::BeginPlay()
 {
 	Super::BeginPlay();
 	nextStep = nextStepInDestination();
+	overlapSphere->SetSphereRadius(overlapRadius);
+	OnActorBeginOverlap.AddDynamic(this, &ASTrackerBot::);
 }
 
 void ASTrackerBot::pulseBody()
@@ -68,9 +80,6 @@ void ASTrackerBot::handleTakeDamage(USHealthComponent* trigger, float health, fl
 		//explodes when health equals zero.
 		selfDestruct();
 	}
-
-	
-	
 }
 
 FVector ASTrackerBot::nextStepInDestination()
@@ -115,6 +124,11 @@ void ASTrackerBot::provokeRadialDamage()
 	UGameplayStatics::ApplyRadialDamage(GetWorld(), explosionDamage, GetActorLocation(), explosionRadius, explosionDamageType, ignoredActors, this, GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
 }
 
+void ASTrackerBot::selfDamage()
+{
+	UGameplayStatics::ApplyDamage(this, selfInflictedDamage, GetInstigatorController(), this, explosionDamageType);
+}
+
 // Called every frame
 void ASTrackerBot::Tick(float DeltaTime)
 {
@@ -133,5 +147,21 @@ void ASTrackerBot::Tick(float DeltaTime)
 		//get pushed to nextStep
 		forceDirection.Normalize();
 		meshComp->AddForce(forceDirection * forceMagnitude, NAME_None, bVelocityChanges);
+	}
+}
+
+void ASTrackerBot::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	if(bSelfDestructionInitiated)
+	{
+		return;
+	}
+	ASCharacter* playerPawn = Cast<ASCharacter>(OtherActor);
+	if(playerPawn)
+	{
+		bSelfDestructionInitiated = true;
+		//overlapped with a player, start self destruction sequence...
+		float timerTime = 0.5f;
+		GetWorldTimerManager().SetTimer(SelfDamageTimer, this, &ASTrackerBot::selfDamage, timerTime, true, 0);
 	}
 }

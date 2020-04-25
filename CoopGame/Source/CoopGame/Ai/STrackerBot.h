@@ -9,6 +9,7 @@
 
 class USHealthComponent;
 class UParticleSystem;
+class USphereComponent;
 
 UCLASS()
 class COOPGAME_API ASTrackerBot : public APawn
@@ -25,10 +26,15 @@ protected:
 	void pulseBody();
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Components")
-	UStaticMeshComponent* meshComp;
+		UStaticMeshComponent* meshComp;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Components")
 		USHealthComponent* healthComp;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "Overlapping")
+		USphereComponent* overlapSphere;
+	UPROPERTY(EditDefaultsOnly, Category = "Overlapping")
+		float overlapRadius;
 
 	UFUNCTION()
 		void handleTakeDamage(USHealthComponent* trigger, float health, float healthDelta,
@@ -40,7 +46,7 @@ protected:
 	FVector nextStep;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Tracking")
-	int forceMagnitude;
+		int forceMagnitude;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Tracking")
 		bool bVelocityChanges;
@@ -68,8 +74,19 @@ protected:
 	bool bHasExploded;
 
 	void provokeRadialDamage();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Overlapping")
+		float selfInflictedDamage;
+
+	FTimerHandle SelfDamageTimer;
+
+	bool bSelfDestructionInitiated;
+	
+	void selfDamage();
 	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 };
