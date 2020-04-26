@@ -148,7 +148,6 @@ void ASTrackerBot::pulseBody()
 
 void ASTrackerBot::increasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult)
 {
-
 	currentPowerLevel = FMath::Clamp(++currentPowerLevel, currentPowerLevel, maximumPowerLevel);
 	UE_LOG(LogTemp, Log, TEXT("power level: %s"), *FString::FromInt(currentPowerLevel));
 }
@@ -186,9 +185,9 @@ void ASTrackerBot::selfDestruct()
 	
 	if(Role == ROLE_Authority)
 	{	
-	provokeRadialDamage();
-	//Destroy tracker after some time
-	SetLifeSpan(0.5f);
+		provokeRadialDamage();
+		//Destroy tracker after some time
+		SetLifeSpan(0.5f);
 	}
 }
 
@@ -225,6 +224,8 @@ void ASTrackerBot::selfDamage()
 
 void ASTrackerBot::NotifyActorBeginOverlap(AActor* OtherActor)
 {
+	Super::NotifyActorBeginOverlap(OtherActor);
+	
 	if(bSelfDestructionInitiated || bHasExploded)
 	{
 		return;
