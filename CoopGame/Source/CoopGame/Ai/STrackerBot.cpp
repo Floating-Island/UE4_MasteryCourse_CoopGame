@@ -170,7 +170,6 @@ void ASTrackerBot::swarmGlow()
 	if (swarmMaterialGlow)//isn't nullptr and it was assigned in blueprint. 
 	{
 		float relativePowerLevel = currentPowerLevel / static_cast<float>(maximumPowerLevel);
-		UE_LOG(LogTemp, Log, TEXT("power level Alpha: %s"), *FString::SanitizeFloat(relativePowerLevel));
 		swarmMaterialGlow->SetScalarParameterValue("PowerLevelAlpha", relativePowerLevel);//the name of the parameter set inside the material's graph
 	}
 }
