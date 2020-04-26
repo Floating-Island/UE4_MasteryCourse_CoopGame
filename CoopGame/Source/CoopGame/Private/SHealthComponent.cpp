@@ -28,11 +28,17 @@ void USHealthComponent::BeginPlay()
 	Super::BeginPlay();
 	currentHealth = maxHealth;
 	serverAddDamageToHandle();
-	
+}
+
+void USHealthComponent::currentHealthReplication(float oldHealth)
+{
+	float damage = oldHealth - currentHealth;
+
+	onHealthChanged.Broadcast(this, currentHealth, damage, nullptr, nullptr, nullptr);
 }
 
 void USHealthComponent::damageTakerHandle(AActor* DamagedActor, float Damage, const UDamageType* DamageType,
-	AController* InstigatedBy, AActor* DamageCauser)
+                                          AController* InstigatedBy, AActor* DamageCauser)
 {
 	if(Damage <= 0.0f)
 	{
