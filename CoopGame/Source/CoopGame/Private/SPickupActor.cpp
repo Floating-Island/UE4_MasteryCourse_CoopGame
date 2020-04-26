@@ -26,5 +26,7 @@ void ASPickupActor::BeginPlay()
 void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
+
+	//give player a powerup, if a player overlapped.
 }
 

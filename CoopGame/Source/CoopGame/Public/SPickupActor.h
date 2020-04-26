@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "SPickupActor.generated.h"
 
-class UsphereComponent;
+class USphereComponent;
 
 UCLASS()
 class COOPGAME_API ASPickupActor : public AActor
@@ -22,7 +22,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-		UsphereComponent* overlapSphere;
+		USphereComponent* overlapSphere;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 		UDecalComponent* decalComp;
