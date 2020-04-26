@@ -101,14 +101,16 @@ protected:
 
 	int currentPowerLevel;
 
+	/*Quantity of swarm colleagues, doesn't include self*/
 	UPROPERTY(EditDefaultsOnly, Category = "Swarm")
 		int maximumPowerLevel;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Swarm")
 		float swarmBonusDamageMultiplier;
-	
 
-	void calculatePowerLevel();
+	UMaterialInstanceDynamic* swarmMaterialGlow;
+	void swarmGlow();
+	
 	UFUNCTION()
 	void increasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult);
 	UFUNCTION()

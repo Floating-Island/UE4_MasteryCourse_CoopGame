@@ -70,36 +70,13 @@ void ASTrackerBot::BeginPlay()
 	overlapSphere->SetSphereRadius(explosionRadius);
 }
 
-void ASTrackerBot::calculatePowerLevel()
-{
-	TArray<UPrimitiveComponent*> colleaguesComponents;
-	outerSwarmSphere->GetOverlappingComponents(colleaguesComponents);
-	currentPowerLevel = colleaguesComponents.Num();
-	if(currentPowerLevel > 0)
-	UE_LOG(LogTemp, Log, TEXT("swarm colleagues quantity: %s"), *FString::FromInt(currentPowerLevel));
-}
-
-void ASTrackerBot::increasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult)
-{
-	
-	currentPowerLevel = FMath::Clamp(++currentPowerLevel, currentPowerLevel, maximumPowerLevel);
-	UE_LOG(LogTemp, Log, TEXT("power level: %s"), *FString::FromInt(currentPowerLevel));
-}
-
-void ASTrackerBot::decreasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex)
-{
-	currentPowerLevel = FMath::Clamp(--currentPowerLevel, 0, currentPowerLevel);
-	UE_LOG(LogTemp, Log, TEXT("power level: %s"), *FString::FromInt(currentPowerLevel));
-}
-
 // Called every frame
 void ASTrackerBot::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 	serverMoveToNextStep();
-
-	//calculatePowerLevel();
+	swarmGlow();
 }
 
 void ASTrackerBot::serverMoveToNextStep()
@@ -166,6 +143,35 @@ void ASTrackerBot::pulseBody()
 	if (pulseMaterial)//isn't nullptr and it was assigned in blueprint. 
 	{
 		pulseMaterial->SetScalarParameterValue("lastTimeDamaged", GetWorld()->TimeSeconds);//the name of the parameter set inside the material's graph
+	}
+}
+
+void ASTrackerBot::increasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult)
+{
+
+	currentPowerLevel = FMath::Clamp(++currentPowerLevel, currentPowerLevel, maximumPowerLevel);
+	UE_LOG(LogTemp, Log, TEXT("power level: %s"), *FString::FromInt(currentPowerLevel));
+}
+
+void ASTrackerBot::decreasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex)
+{
+	currentPowerLevel = FMath::Clamp(--currentPowerLevel, 0, currentPowerLevel);
+	UE_LOG(LogTemp, Log, TEXT("power level: %s"), *FString::FromInt(currentPowerLevel));
+
+}
+
+void ASTrackerBot::swarmGlow()
+{
+	if (swarmMaterialGlow == nullptr)
+	{
+		swarmMaterialGlow = meshComp->CreateAndSetMaterialInstanceDynamicFromMaterial(0, meshComp->GetMaterial(0));//0 because it's the only material of the mesh.
+	}
+
+	if (swarmMaterialGlow)//isn't nullptr and it was assigned in blueprint. 
+	{
+		float relativePowerLevel = currentPowerLevel / static_cast<float>(maximumPowerLevel);
+		UE_LOG(LogTemp, Log, TEXT("power level Alpha: %s"), *FString::SanitizeFloat(relativePowerLevel));
+		swarmMaterialGlow->SetScalarParameterValue("PowerLevelAlpha", relativePowerLevel);//the name of the parameter set inside the material's graph
 	}
 }
 
