@@ -6,7 +6,8 @@
 // Sets default values
 ASPowerupActor::ASPowerupActor()
 {
-
+	powerupInterval = 0;
+	ticksQuantity = 0;
 }
 
 // Called when the game starts or when spawned
