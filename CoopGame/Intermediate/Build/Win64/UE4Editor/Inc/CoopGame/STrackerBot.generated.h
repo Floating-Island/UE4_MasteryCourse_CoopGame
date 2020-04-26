@@ -8,16 +8,44 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPrimitiveComponent;
+class AActor;
+struct FHitResult;
 class USHealthComponent;
 class UDamageType;
 class AController;
-class AActor;
 #ifdef COOPGAME_STrackerBot_generated_h
 #error "STrackerBot.generated.h already included, missing '#pragma once' in STrackerBot.h"
 #endif
 #define COOPGAME_STrackerBot_generated_h
 
 #define CoopGame_Source_CoopGame_Ai_STrackerBot_h_18_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execdecreasePowerLevel) \
+	{ \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_overlappedComponent); \
+		P_GET_OBJECT(AActor,Z_Param_otherActor); \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_otherComponent); \
+		P_GET_PROPERTY(UIntProperty,Z_Param_otherBodyIndex); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->decreasePowerLevel(Z_Param_overlappedComponent,Z_Param_otherActor,Z_Param_otherComponent,Z_Param_otherBodyIndex); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execincreasePowerLevel) \
+	{ \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_overlappedComponent); \
+		P_GET_OBJECT(AActor,Z_Param_otherActor); \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_otherComponent); \
+		P_GET_PROPERTY(UIntProperty,Z_Param_otherBodyIndex); \
+		P_GET_UBOOL(Z_Param_bFromSweep); \
+		P_GET_STRUCT_REF(FHitResult,Z_Param_Out_sweepResult); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->increasePowerLevel(Z_Param_overlappedComponent,Z_Param_otherActor,Z_Param_otherComponent,Z_Param_otherBodyIndex,Z_Param_bFromSweep,Z_Param_Out_sweepResult); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(exechandleTakeDamage) \
 	{ \
@@ -35,6 +63,32 @@ class AActor;
 
 
 #define CoopGame_Source_CoopGame_Ai_STrackerBot_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execdecreasePowerLevel) \
+	{ \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_overlappedComponent); \
+		P_GET_OBJECT(AActor,Z_Param_otherActor); \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_otherComponent); \
+		P_GET_PROPERTY(UIntProperty,Z_Param_otherBodyIndex); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->decreasePowerLevel(Z_Param_overlappedComponent,Z_Param_otherActor,Z_Param_otherComponent,Z_Param_otherBodyIndex); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execincreasePowerLevel) \
+	{ \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_overlappedComponent); \
+		P_GET_OBJECT(AActor,Z_Param_otherActor); \
+		P_GET_OBJECT(UPrimitiveComponent,Z_Param_otherComponent); \
+		P_GET_PROPERTY(UIntProperty,Z_Param_otherBodyIndex); \
+		P_GET_UBOOL(Z_Param_bFromSweep); \
+		P_GET_STRUCT_REF(FHitResult,Z_Param_Out_sweepResult); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->increasePowerLevel(Z_Param_overlappedComponent,Z_Param_otherActor,Z_Param_otherComponent,Z_Param_otherBodyIndex,Z_Param_bFromSweep,Z_Param_Out_sweepResult); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(exechandleTakeDamage) \
 	{ \
@@ -106,7 +160,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTrackerBot); \
 	FORCEINLINE static uint32 __PPO__explosionDamageType() { return STRUCT_OFFSET(ASTrackerBot, explosionDamageType); } \
 	FORCEINLINE static uint32 __PPO__selfInflictedDamage() { return STRUCT_OFFSET(ASTrackerBot, selfInflictedDamage); } \
 	FORCEINLINE static uint32 __PPO__destructionSequenceInitiatedSound() { return STRUCT_OFFSET(ASTrackerBot, destructionSequenceInitiatedSound); } \
-	FORCEINLINE static uint32 __PPO__destructionSound() { return STRUCT_OFFSET(ASTrackerBot, destructionSound); }
+	FORCEINLINE static uint32 __PPO__destructionSound() { return STRUCT_OFFSET(ASTrackerBot, destructionSound); } \
+	FORCEINLINE static uint32 __PPO__outerSwarmSphere() { return STRUCT_OFFSET(ASTrackerBot, outerSwarmSphere); } \
+	FORCEINLINE static uint32 __PPO__maximumPowerLevel() { return STRUCT_OFFSET(ASTrackerBot, maximumPowerLevel); } \
+	FORCEINLINE static uint32 __PPO__swarmBonusDamageMultiplier() { return STRUCT_OFFSET(ASTrackerBot, swarmBonusDamageMultiplier); }
 
 
 #define CoopGame_Source_CoopGame_Ai_STrackerBot_h_15_PROLOG

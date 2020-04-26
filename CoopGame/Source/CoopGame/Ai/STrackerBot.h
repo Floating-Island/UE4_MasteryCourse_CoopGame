@@ -94,6 +94,25 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
 		USoundCue* destructionSound;
+
+	//swarm logic
+	UPROPERTY(VisibleDefaultsOnly, Category = "Swarm")
+		USphereComponent* outerSwarmSphere;
+
+	int currentPowerLevel;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Swarm")
+		int maximumPowerLevel;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Swarm")
+		float swarmBonusDamageMultiplier;
+	
+
+	void calculatePowerLevel();
+	UFUNCTION()
+	void increasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult);
+	UFUNCTION()
+	void decreasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex);
 	
 public:	
 	// Called every frame

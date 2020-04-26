@@ -47,6 +47,19 @@ ASTrackerBot::ASTrackerBot()
 	explosionDamage = 30;
 	explosionRadius = 200;
 	bHasExploded = false;
+
+	outerSwarmSphere = CreateDefaultSubobject<USphereComponent>(TEXT("Outer Swarm Sphere Component"));
+	outerSwarmSphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	outerSwarmSphere->SetCollisionResponseToAllChannels(ECR_Ignore);
+	outerSwarmSphere->SetCollisionResponseToChannel(COLLISION_TRACKERBOT_CHANNEL, ECR_Overlap);
+	outerSwarmSphere->SetupAttachment(RootComponent);
+	outerSwarmSphere->SetGenerateOverlapEvents(true);
+	outerSwarmSphere->OnComponentBeginOverlap.AddDynamic(this, &ASTrackerBot::increasePowerLevel);
+	outerSwarmSphere->OnComponentEndOverlap.AddDynamic(this, &ASTrackerBot::decreasePowerLevel);
+
+	maximumPowerLevel = 3;
+	currentPowerLevel = 0;
+	swarmBonusDamageMultiplier = 15;
 }
 
 // Called when the game starts or when spawned
@@ -57,12 +70,36 @@ void ASTrackerBot::BeginPlay()
 	overlapSphere->SetSphereRadius(explosionRadius);
 }
 
+void ASTrackerBot::calculatePowerLevel()
+{
+	TArray<UPrimitiveComponent*> colleaguesComponents;
+	outerSwarmSphere->GetOverlappingComponents(colleaguesComponents);
+	currentPowerLevel = colleaguesComponents.Num();
+	if(currentPowerLevel > 0)
+	UE_LOG(LogTemp, Log, TEXT("swarm colleagues quantity: %s"), *FString::FromInt(currentPowerLevel));
+}
+
+void ASTrackerBot::increasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult)
+{
+	
+	currentPowerLevel = FMath::Clamp(++currentPowerLevel, currentPowerLevel, maximumPowerLevel);
+	UE_LOG(LogTemp, Log, TEXT("power level: %s"), *FString::FromInt(currentPowerLevel));
+}
+
+void ASTrackerBot::decreasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex)
+{
+	currentPowerLevel = FMath::Clamp(--currentPowerLevel, 0, currentPowerLevel);
+	UE_LOG(LogTemp, Log, TEXT("power level: %s"), *FString::FromInt(currentPowerLevel));
+}
+
 // Called every frame
 void ASTrackerBot::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 	serverMoveToNextStep();
+
+	//calculatePowerLevel();
 }
 
 void ASTrackerBot::serverMoveToNextStep()
@@ -100,7 +137,7 @@ FVector ASTrackerBot::nextStepInDestination()
 	FVector currentLocation = GetActorLocation();
 	
 	UNavigationPath* pathToTarget =  UNavigationSystemV1::FindPathToActorSynchronously(this,currentLocation, target);
-	if(pathToTarget->PathPoints.Num() > 1)
+	if(pathToTarget && pathToTarget->PathPoints.Num() > 1)
 	{
 		return pathToTarget->PathPoints[1];
 	}
@@ -170,7 +207,9 @@ void ASTrackerBot::provokeRadialDamage()
 {
 	TArray<AActor*> ignoredActors;
 	ignoredActors.Add(this);
-	UGameplayStatics::ApplyRadialDamage(GetWorld(), explosionDamage, GetActorLocation(), explosionRadius, explosionDamageType, ignoredActors, this, GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
+	float currentDamage = explosionDamage + currentPowerLevel * swarmBonusDamageMultiplier;
+	UE_LOG(LogTemp, Log, TEXT("Damage Dealt: %s"), *FString::FromInt(currentDamage));
+	UGameplayStatics::ApplyRadialDamage(GetWorld(), currentDamage, GetActorLocation(), explosionRadius, explosionDamageType, ignoredActors, this, GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
 }
 
 void ASTrackerBot::selfDamage()

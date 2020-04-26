@@ -17,24 +17,90 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 	COOPGAME_API UClass* Z_Construct_UClass_ASTrackerBot();
 	ENGINE_API UClass* Z_Construct_UClass_APawn();
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
-	COOPGAME_API UFunction* Z_Construct_UFunction_ASTrackerBot_handleTakeDamage();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel();
+	ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASTrackerBot_handleTakeDamage();
 	ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
 	COOPGAME_API UClass* Z_Construct_UClass_USHealthComponent_NoRegister();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASTrackerBot_increasePowerLevel();
+	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
+	ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
-	ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 // End Cross Module References
 	void ASTrackerBot::StaticRegisterNativesASTrackerBot()
 	{
 		UClass* Class = ASTrackerBot::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "decreasePowerLevel", &ASTrackerBot::execdecreasePowerLevel },
 			{ "handleTakeDamage", &ASTrackerBot::exechandleTakeDamage },
+			{ "increasePowerLevel", &ASTrackerBot::execincreasePowerLevel },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics
+	{
+		struct STrackerBot_eventdecreasePowerLevel_Parms
+		{
+			UPrimitiveComponent* overlappedComponent;
+			AActor* otherActor;
+			UPrimitiveComponent* otherComponent;
+			int32 otherBodyIndex;
+		};
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_otherBodyIndex;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_otherComponent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_otherComponent;
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_otherActor;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_overlappedComponent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_overlappedComponent;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_otherBodyIndex = { "otherBodyIndex", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(STrackerBot_eventdecreasePowerLevel_Parms, otherBodyIndex), METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_otherComponent_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_otherComponent = { "otherComponent", nullptr, (EPropertyFlags)0x0010000000080080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(STrackerBot_eventdecreasePowerLevel_Parms, otherComponent), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_otherComponent_MetaData, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_otherComponent_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_otherActor = { "otherActor", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(STrackerBot_eventdecreasePowerLevel_Parms, otherActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_overlappedComponent_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_overlappedComponent = { "overlappedComponent", nullptr, (EPropertyFlags)0x0010000000080080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(STrackerBot_eventdecreasePowerLevel_Parms, overlappedComponent), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_overlappedComponent_MetaData, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_overlappedComponent_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_otherBodyIndex,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_otherComponent,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_otherActor,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::NewProp_overlappedComponent,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASTrackerBot, nullptr, "decreasePowerLevel", sizeof(STrackerBot_eventdecreasePowerLevel_Parms), Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ASTrackerBot_handleTakeDamage_Statics
 	{
@@ -104,6 +170,87 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics
+	{
+		struct STrackerBot_eventincreasePowerLevel_Parms
+		{
+			UPrimitiveComponent* overlappedComponent;
+			AActor* otherActor;
+			UPrimitiveComponent* otherComponent;
+			int32 otherBodyIndex;
+			bool bFromSweep;
+			FHitResult sweepResult;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_sweepResult_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_sweepResult;
+		static void NewProp_bFromSweep_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bFromSweep;
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_otherBodyIndex;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_otherComponent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_otherComponent;
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_otherActor;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_overlappedComponent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_overlappedComponent;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_sweepResult_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_sweepResult = { "sweepResult", nullptr, (EPropertyFlags)0x0010008008000182, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(STrackerBot_eventincreasePowerLevel_Parms, sweepResult), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_sweepResult_MetaData, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_sweepResult_MetaData)) };
+	void Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_bFromSweep_SetBit(void* Obj)
+	{
+		((STrackerBot_eventincreasePowerLevel_Parms*)Obj)->bFromSweep = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_bFromSweep = { "bFromSweep", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(STrackerBot_eventincreasePowerLevel_Parms), &Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_bFromSweep_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_otherBodyIndex = { "otherBodyIndex", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(STrackerBot_eventincreasePowerLevel_Parms, otherBodyIndex), METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_otherComponent_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_otherComponent = { "otherComponent", nullptr, (EPropertyFlags)0x0010000000080080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(STrackerBot_eventincreasePowerLevel_Parms, otherComponent), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_otherComponent_MetaData, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_otherComponent_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_otherActor = { "otherActor", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(STrackerBot_eventincreasePowerLevel_Parms, otherActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_overlappedComponent_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_overlappedComponent = { "overlappedComponent", nullptr, (EPropertyFlags)0x0010000000080080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(STrackerBot_eventincreasePowerLevel_Parms, overlappedComponent), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_overlappedComponent_MetaData, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_overlappedComponent_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_sweepResult,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_bFromSweep,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_otherBodyIndex,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_otherComponent,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_otherActor,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::NewProp_overlappedComponent,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASTrackerBot, nullptr, "increasePowerLevel", sizeof(STrackerBot_eventincreasePowerLevel_Parms), Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASTrackerBot_increasePowerLevel()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASTrackerBot_increasePowerLevel_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	UClass* Z_Construct_UClass_ASTrackerBot_NoRegister()
 	{
 		return ASTrackerBot::StaticClass();
@@ -115,6 +262,18 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_swarmBonusDamageMultiplier_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_swarmBonusDamageMultiplier;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_maximumPowerLevel_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_maximumPowerLevel;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_outerSwarmSphere_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_outerSwarmSphere;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_destructionSound_MetaData[];
 #endif
@@ -177,7 +336,9 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_CoopGame,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ASTrackerBot_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel, "decreasePowerLevel" }, // 264356878
 		{ &Z_Construct_UFunction_ASTrackerBot_handleTakeDamage, "handleTakeDamage" }, // 1544438269
+		{ &Z_Construct_UFunction_ASTrackerBot_increasePowerLevel, "increasePowerLevel" }, // 3503212723
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTrackerBot_Statics::Class_MetaDataParams[] = {
@@ -186,6 +347,29 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTrackerBot_Statics::NewProp_swarmBonusDamageMultiplier_MetaData[] = {
+		{ "Category", "Swarm" },
+		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASTrackerBot_Statics::NewProp_swarmBonusDamageMultiplier = { "swarmBonusDamageMultiplier", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTrackerBot, swarmBonusDamageMultiplier), METADATA_PARAMS(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_swarmBonusDamageMultiplier_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_swarmBonusDamageMultiplier_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel_MetaData[] = {
+		{ "Category", "Swarm" },
+		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel = { "maximumPowerLevel", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTrackerBot, maximumPowerLevel), METADATA_PARAMS(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTrackerBot_Statics::NewProp_outerSwarmSphere_MetaData[] = {
+		{ "Category", "Swarm" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
+		{ "ToolTip", "swarm logic" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASTrackerBot_Statics::NewProp_outerSwarmSphere = { "outerSwarmSphere", nullptr, (EPropertyFlags)0x00200800000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTrackerBot, outerSwarmSphere), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_outerSwarmSphere_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_outerSwarmSphere_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTrackerBot_Statics::NewProp_destructionSound_MetaData[] = {
 		{ "Category", "Destruction" },
@@ -286,6 +470,9 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp = { "meshComp", nullptr, (EPropertyFlags)0x00200800000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTrackerBot, meshComp), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASTrackerBot_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_swarmBonusDamageMultiplier,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_outerSwarmSphere,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_destructionSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_destructionSequenceInitiatedSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_selfInflictedDamage,
@@ -327,7 +514,7 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTrackerBot, 1117998340);
+	IMPLEMENT_CLASS(ASTrackerBot, 834733531);
 	template<> COOPGAME_API UClass* StaticClass<ASTrackerBot>()
 	{
 		return ASTrackerBot::StaticClass();
