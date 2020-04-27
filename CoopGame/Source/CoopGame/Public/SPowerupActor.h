@@ -26,11 +26,24 @@ protected:
 	/*Number of times the powerup is applied*/
 	UPROPERTY(EditDefaultsOnly, Category = "Powerup")
 		int32 ticksQuantity;
+
+	FTimerHandle powerupTickTimer;
+
+	//ticks that have been applied
+	int32 processedTicks;
+	
+	UFUNCTION()
+	void onTickPowerup();
+
+	void activatePowerup();
+	
 public:	
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerup")
 	void onActivated();
 
+	void powerupTicking();
+	
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerup")
 	void onExpired();
 	
