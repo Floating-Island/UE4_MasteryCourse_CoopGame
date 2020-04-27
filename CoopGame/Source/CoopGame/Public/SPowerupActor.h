@@ -21,7 +21,7 @@ protected:
 
 	/*Time between powerup's application*/
 	UPROPERTY(EditDefaultsOnly, Category = "Powerup")
-		float powerupInterval;
+		float powerupDuration;
 
 	/*Number of times the powerup is applied*/
 	UPROPERTY(EditDefaultsOnly, Category = "Powerup")

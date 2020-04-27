@@ -7,7 +7,7 @@
 // Sets default values
 ASPowerupActor::ASPowerupActor()
 {
-	powerupInterval = 0;
+	powerupDuration = 0;
 	ticksQuantity = 0;
 	processedTicks = 0;
 }
@@ -23,9 +23,9 @@ void ASPowerupActor::activatePowerup()
 {
 	onActivated();
 	
-	if (powerupInterval > 0)
+	if (powerupDuration > 0)
 	{
-		GetWorldTimerManager().SetTimer(powerupTickTimer, this, &ASPowerupActor::onTickPowerup, powerupInterval, true);
+		GetWorldTimerManager().SetTimer(powerupTickTimer, this, &ASPowerupActor::onTickPowerup, powerupDuration, true);
 	}
 	else
 	{
