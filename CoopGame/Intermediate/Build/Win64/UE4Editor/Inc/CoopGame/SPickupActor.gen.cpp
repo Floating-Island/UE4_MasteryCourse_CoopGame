@@ -17,11 +17,41 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 	COOPGAME_API UClass* Z_Construct_UClass_ASPickupActor();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASPickupActor_respawn();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	COOPGAME_API UClass* Z_Construct_UClass_ASPowerupActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UDecalComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 // End Cross Module References
 	void ASPickupActor::StaticRegisterNativesASPickupActor()
 	{
+		UClass* Class = ASPickupActor::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "respawn", &ASPickupActor::execrespawn },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ASPickupActor_respawn_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASPickupActor_respawn_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SPickupActor.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASPickupActor_respawn_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASPickupActor, nullptr, "respawn", 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASPickupActor_respawn_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASPickupActor_respawn_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASPickupActor_respawn()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASPickupActor_respawn_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_ASPickupActor_NoRegister()
 	{
@@ -30,9 +60,18 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 	struct Z_Construct_UClass_ASPickupActor_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_respawnCooldown_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_respawnCooldown;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_powerupClass_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_powerupClass;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_decalComp_MetaData[];
 #endif
@@ -49,12 +88,29 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		(UObject* (*)())Z_Construct_UClass_AActor,
 		(UObject* (*)())Z_Construct_UPackage__Script_CoopGame,
 	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_ASPickupActor_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ASPickupActor_respawn, "respawn" }, // 1068491657
+	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::Class_MetaDataParams[] = {
 		{ "IncludePath", "SPickupActor.h" },
 		{ "ModuleRelativePath", "Public/SPickupActor.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown_MetaData[] = {
+		{ "Category", "Pickup Actor" },
+		{ "ModuleRelativePath", "Public/SPickupActor.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown = { "respawnCooldown", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, respawnCooldown), METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass_MetaData[] = {
+		{ "Category", "Pickup Actor" },
+		{ "ModuleRelativePath", "Public/SPickupActor.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass = { "powerupClass", nullptr, (EPropertyFlags)0x0024080000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, powerupClass), Z_Construct_UClass_ASPowerupActor_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_decalComp_MetaData[] = {
 		{ "Category", "Components" },
@@ -72,6 +128,8 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_overlapSphere = { "overlapSphere", nullptr, (EPropertyFlags)0x0020080000090009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, overlapSphere), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_overlapSphere_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_overlapSphere_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASPickupActor_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPickupActor_Statics::NewProp_decalComp,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPickupActor_Statics::NewProp_overlapSphere,
 	};
@@ -83,11 +141,11 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		nullptr,
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_ASPickupActor_Statics::PropPointers,
 		nullptr,
 		ARRAY_COUNT(DependentSingletons),
-		0,
+		ARRAY_COUNT(FuncInfo),
 		ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::PropPointers),
 		0,
 		0x009000A0u,
@@ -102,7 +160,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPickupActor, 495877028);
+	IMPLEMENT_CLASS(ASPickupActor, 3159444654);
 	template<> COOPGAME_API UClass* StaticClass<ASPickupActor>()
 	{
 		return ASPickupActor::StaticClass();

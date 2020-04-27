@@ -26,7 +26,7 @@ ASPickupActor::ASPickupActor()
 void ASPickupActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	respawn();
 }
 
 void ASPickupActor::respawn()
