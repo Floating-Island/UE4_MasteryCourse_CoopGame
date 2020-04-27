@@ -21,7 +21,7 @@ protected:
 
 	/*Time between powerup's application*/
 	UPROPERTY(EditDefaultsOnly, Category = "Powerup")
-	float powerupInterval;
+		float powerupInterval;
 
 	/*Number of times the powerup is applied*/
 	UPROPERTY(EditDefaultsOnly, Category = "Powerup")
@@ -35,13 +35,15 @@ protected:
 	UFUNCTION()
 	void onTickPowerup();
 
-	void activatePowerup();
 	
 public:	
 
+	void activatePowerup();
+	
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerup")
 	void onActivated();
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Powerup")
 	void powerupTicking();
 	
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerup")

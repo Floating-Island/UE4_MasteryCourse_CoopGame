@@ -12,9 +12,16 @@ ASPowerupActor::ASPowerupActor()
 	processedTicks = 0;
 }
 
+// Called when the game starts or when spawned
+void ASPowerupActor::BeginPlay()
+{
+	Super::BeginPlay();
+	
+}
+
 void ASPowerupActor::activatePowerup()
 {
-	if(powerupInterval > 0)
+	if (powerupInterval > 0)
 	{
 		GetWorldTimerManager().SetTimer(powerupTickTimer, this, &ASPowerupActor::onTickPowerup, powerupInterval, true, 0.0f);
 	}
@@ -24,14 +31,7 @@ void ASPowerupActor::activatePowerup()
 	}
 }
 
-// Called when the game starts or when spawned
-void ASPowerupActor::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-void ASPowerupActor::onTickPowerup()
+void ASPowerupActor::onTickPowerup()//if it's blueprint implementable, all methods inside it have to be UFUNCTION
 {
 	processedTicks++;
 
