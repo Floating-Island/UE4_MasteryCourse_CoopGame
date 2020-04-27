@@ -13,8 +13,30 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COOPGAME_SPowerupActor_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_RPC_WRAPPERS
-#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execonTickPowerup) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->onTickPowerup(); \
+		P_NATIVE_END; \
+	}
+
+
+#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execonTickPowerup) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->onTickPowerup(); \
+		P_NATIVE_END; \
+	}
+
+
+#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_EVENT_PARMS
+#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_CALLBACK_WRAPPERS
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASPowerupActor(); \
@@ -57,13 +79,21 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASPowerupActor); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASPowerupActor)
 
 
-#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_PRIVATE_PROPERTY_OFFSET
-#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_9_PROLOG
+#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__powerupInterval() { return STRUCT_OFFSET(ASPowerupActor, powerupInterval); } \
+	FORCEINLINE static uint32 __PPO__ticksQuantity() { return STRUCT_OFFSET(ASPowerupActor, ticksQuantity); }
+
+
+#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_9_PROLOG \
+	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_EVENT_PARMS
+
+
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_PRIVATE_PROPERTY_OFFSET \
 	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_RPC_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_CALLBACK_WRAPPERS \
 	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_INCLASS \
 	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_STANDARD_CONSTRUCTORS \
 public: \
@@ -75,6 +105,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_PRIVATE_PROPERTY_OFFSET \
 	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_CALLBACK_WRAPPERS \
 	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_INCLASS_NO_PURE_DECLS \
 	CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_ENHANCED_CONSTRUCTORS \
 private: \
