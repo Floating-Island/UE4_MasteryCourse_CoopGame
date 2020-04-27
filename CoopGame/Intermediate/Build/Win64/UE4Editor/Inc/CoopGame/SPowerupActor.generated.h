@@ -80,7 +80,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASPowerupActor); \
 
 
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__powerupInterval() { return STRUCT_OFFSET(ASPowerupActor, powerupInterval); } \
+	FORCEINLINE static uint32 __PPO__powerupDuration() { return STRUCT_OFFSET(ASPowerupActor, powerupDuration); } \
 	FORCEINLINE static uint32 __PPO__ticksQuantity() { return STRUCT_OFFSET(ASPowerupActor, ticksQuantity); }
 
 

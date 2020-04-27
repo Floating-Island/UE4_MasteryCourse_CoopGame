@@ -152,9 +152,9 @@ void EmptyLinkFunctionForGeneratedCodeSPowerupActor() {}
 #endif
 		static const UE4CodeGen_Private::FIntPropertyParams NewProp_ticksQuantity;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_powerupInterval_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_powerupDuration_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_powerupInterval;
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_powerupDuration;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -184,16 +184,16 @@ void EmptyLinkFunctionForGeneratedCodeSPowerupActor() {}
 #endif
 	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_ASPowerupActor_Statics::NewProp_ticksQuantity = { "ticksQuantity", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPowerupActor, ticksQuantity), METADATA_PARAMS(Z_Construct_UClass_ASPowerupActor_Statics::NewProp_ticksQuantity_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPowerupActor_Statics::NewProp_ticksQuantity_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupInterval_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupDuration_MetaData[] = {
 		{ "Category", "Powerup" },
 		{ "ModuleRelativePath", "Public/SPowerupActor.h" },
 		{ "ToolTip", "Time between powerup's application" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupInterval = { "powerupInterval", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPowerupActor, powerupInterval), METADATA_PARAMS(Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupInterval_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupInterval_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupDuration = { "powerupDuration", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPowerupActor, powerupDuration), METADATA_PARAMS(Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupDuration_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupDuration_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASPowerupActor_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPowerupActor_Statics::NewProp_ticksQuantity,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupInterval,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPowerupActor_Statics::NewProp_powerupDuration,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASPowerupActor_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ASPowerupActor>::IsAbstract,
@@ -222,7 +222,7 @@ void EmptyLinkFunctionForGeneratedCodeSPowerupActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPowerupActor, 3807266769);
+	IMPLEMENT_CLASS(ASPowerupActor, 4097679740);
 	template<> COOPGAME_API UClass* StaticClass<ASPowerupActor>()
 	{
 		return ASPowerupActor::StaticClass();
