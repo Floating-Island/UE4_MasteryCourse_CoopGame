@@ -28,7 +28,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 		UDecalComponent* decalComp;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Pickup Actor")
+	UPROPERTY(EditInstanceOnly, Category = "Pickup Actor")//EditInstanceOnly allows to change the powerup in each instance.
 		TSubclassOf<ASPowerupActor> powerupClass;
 
 

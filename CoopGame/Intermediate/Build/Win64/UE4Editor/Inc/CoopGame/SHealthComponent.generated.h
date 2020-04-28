@@ -42,6 +42,15 @@ static inline void FOnHealthChangedSignature_DelegateWrapper(const FMulticastScr
 
 #define CoopGame_Source_CoopGame_Public_SHealthComponent_h_28_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execheal) \
+	{ \
+		P_GET_PROPERTY(UFloatProperty,Z_Param_healingAmount); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->heal(Z_Param_healingAmount); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execdamageTakerHandle) \
 	{ \
 		P_GET_OBJECT(AActor,Z_Param_DamagedActor); \
@@ -66,6 +75,15 @@ static inline void FOnHealthChangedSignature_DelegateWrapper(const FMulticastScr
 
 
 #define CoopGame_Source_CoopGame_Public_SHealthComponent_h_28_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execheal) \
+	{ \
+		P_GET_PROPERTY(UFloatProperty,Z_Param_healingAmount); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->heal(Z_Param_healingAmount); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execdamageTakerHandle) \
 	{ \
