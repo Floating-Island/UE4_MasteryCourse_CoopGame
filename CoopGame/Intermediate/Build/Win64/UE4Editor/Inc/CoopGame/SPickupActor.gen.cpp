@@ -108,9 +108,10 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass_MetaData[] = {
 		{ "Category", "Pickup Actor" },
 		{ "ModuleRelativePath", "Public/SPickupActor.h" },
+		{ "ToolTip", "EditInstanceOnly allows to change the powerup in each instance." },
 	};
 #endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass = { "powerupClass", nullptr, (EPropertyFlags)0x0024080000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, powerupClass), Z_Construct_UClass_ASPowerupActor_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass_MetaData)) };
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass = { "powerupClass", nullptr, (EPropertyFlags)0x0024080000000801, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, powerupClass), Z_Construct_UClass_ASPowerupActor_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_decalComp_MetaData[] = {
 		{ "Category", "Components" },
@@ -160,7 +161,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPickupActor, 3159444654);
+	IMPLEMENT_CLASS(ASPickupActor, 2343836593);
 	template<> COOPGAME_API UClass* StaticClass<ASPickupActor>()
 	{
 		return ASPickupActor::StaticClass();
