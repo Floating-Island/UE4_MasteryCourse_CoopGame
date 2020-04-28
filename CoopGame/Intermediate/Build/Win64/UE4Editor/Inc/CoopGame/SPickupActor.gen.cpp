@@ -103,7 +103,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		{ "ModuleRelativePath", "Public/SPickupActor.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown = { "respawnCooldown", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, respawnCooldown), METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown = { "respawnCooldown", nullptr, (EPropertyFlags)0x0020080000000801, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, respawnCooldown), METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_powerupClass_MetaData[] = {
 		{ "Category", "Pickup Actor" },
@@ -161,7 +161,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPickupActor, 2343836593);
+	IMPLEMENT_CLASS(ASPickupActor, 1631605615);
 	template<> COOPGAME_API UClass* StaticClass<ASPickupActor>()
 	{
 		return ASPickupActor::StaticClass();
