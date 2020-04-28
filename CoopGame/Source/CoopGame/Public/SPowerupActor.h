@@ -40,19 +40,19 @@ protected:
 		void onPowerUpActivation();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerup")
-		void onStateChanged(bool bIsStateActive);
+		virtual void onStateChanged(bool bIsStateActive);
 	
 public:	
 
 	void activatePowerup();
 	
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerup")
-		void onActivated();
+		virtual void onActivated();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerup")
-		void powerupTicking();
+		virtual void powerupTicking();
 	
 	UFUNCTION(BlueprintImplementableEvent, Category = "Powerup")
-		void onExpired();
+		virtual void onExpired();
 	
 };
