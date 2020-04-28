@@ -58,6 +58,7 @@ void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	//give player a powerup, if a player overlapped.
 	if(Role == ROLE_Authority && powerupInstance)
 	{
+		powerupInstance->SetOwner(OtherActor);
 		powerupInstance->activatePowerup();
 		powerupInstance = nullptr;
 
