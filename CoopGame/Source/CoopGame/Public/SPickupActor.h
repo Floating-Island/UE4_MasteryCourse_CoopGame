@@ -37,7 +37,7 @@ protected:
 		void respawn();
 	FTimerHandle respawnPowerupTimer;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Pickup Actor")
+	UPROPERTY(EditInstanceOnly, Category = "Pickup Actor")
 		float respawnCooldown;
 public:	
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
