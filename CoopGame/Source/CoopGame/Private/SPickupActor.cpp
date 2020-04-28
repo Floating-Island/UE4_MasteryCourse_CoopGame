@@ -23,13 +23,18 @@ ASPickupActor::ASPickupActor()
 
 
 	respawnCooldown = 10;
+
+	SetReplicates(true);
 }
 
 // Called when the game starts or when spawned
 void ASPickupActor::BeginPlay()
 {
 	Super::BeginPlay();
-	respawn();
+	if(Role == ROLE_Authority)
+	{
+		respawn();
+	}
 }
 
 void ASPickupActor::respawn()
@@ -51,7 +56,7 @@ void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	Super::NotifyActorBeginOverlap(OtherActor);
 
 	//give player a powerup, if a player overlapped.
-	if(powerupInstance)
+	if(Role == ROLE_Authority && powerupInstance)
 	{
 		powerupInstance->activatePowerup();
 		powerupInstance = nullptr;
