@@ -12,13 +12,18 @@ ASPowerupActor::ASPowerupActor()
 	ticksQuantity = 0;
 	processedTicks = 0;
 
+	bIsActivated = false;
+	
 	SetReplicates(true);
 }
 
 void ASPowerupActor::activatePowerup()
 {
 	onActivated();
-	
+
+	bIsActivated = true;
+	onPowerUpActivation();//we are always server here, so it has to be called.
+
 	if (powerupDuration > 0)
 	{
 		GetWorldTimerManager().SetTimer(powerupTickTimer, this, &ASPowerupActor::onTickPowerup, powerupDuration, true);
@@ -38,6 +43,9 @@ void ASPowerupActor::onTickPowerup()//if it's blueprint implementable, all metho
 	if(processedTicks >= ticksQuantity)
 	{
 		onExpired();
+
+		bIsActivated = true;
+		onPowerUpActivation();//we are always server here, so it has to be called.
 
 		GetWorldTimerManager().ClearTimer(powerupTickTimer);
 	}

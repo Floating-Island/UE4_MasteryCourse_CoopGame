@@ -15,6 +15,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execonPowerUpActivation) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->onPowerUpActivation(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execonTickPowerup) \
 	{ \
 		P_FINISH; \
@@ -26,6 +34,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execonPowerUpActivation) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->onPowerUpActivation(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execonTickPowerup) \
 	{ \
 		P_FINISH; \
@@ -35,7 +51,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_EVENT_PARMS
+#define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_EVENT_PARMS \
+	struct SPowerupActor_eventonStateChanged_Parms \
+	{ \
+		bool bIsStateActive; \
+	};
+
+
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_CALLBACK_WRAPPERS
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_INCLASS_NO_PURE_DECLS \
 private: \
@@ -43,7 +65,8 @@ private: \
 	friend struct Z_Construct_UClass_ASPowerupActor_Statics; \
 public: \
 	DECLARE_CLASS(ASPowerupActor, AActor, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASPowerupActor)
+	DECLARE_SERIALIZER(ASPowerupActor) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_INCLASS \
@@ -52,7 +75,8 @@ private: \
 	friend struct Z_Construct_UClass_ASPowerupActor_Statics; \
 public: \
 	DECLARE_CLASS(ASPowerupActor, AActor, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
-	DECLARE_SERIALIZER(ASPowerupActor)
+	DECLARE_SERIALIZER(ASPowerupActor) \
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_STANDARD_CONSTRUCTORS \
@@ -81,7 +105,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASPowerupActor); \
 
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_12_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__powerupDuration() { return STRUCT_OFFSET(ASPowerupActor, powerupDuration); } \
-	FORCEINLINE static uint32 __PPO__ticksQuantity() { return STRUCT_OFFSET(ASPowerupActor, ticksQuantity); }
+	FORCEINLINE static uint32 __PPO__ticksQuantity() { return STRUCT_OFFSET(ASPowerupActor, ticksQuantity); } \
+	FORCEINLINE static uint32 __PPO__bIsActivated() { return STRUCT_OFFSET(ASPowerupActor, bIsActivated); }
 
 
 #define CoopGame_Source_CoopGame_Public_SPowerupActor_h_9_PROLOG \
