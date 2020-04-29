@@ -15,7 +15,7 @@ class UCameraShake;
 
 
 
-UCLASS(Abstract)
+UCLASS()
 class COOPGAME_API ASWeapon : public AActor
 {
 	GENERATED_BODY()

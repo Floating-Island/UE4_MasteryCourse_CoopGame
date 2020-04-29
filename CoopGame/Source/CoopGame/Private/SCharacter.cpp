@@ -127,7 +127,7 @@ void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)
 	{
 		heldWeapon->Destroy();
 	}
-	heldWeaponClass = newWeapon->StaticClass();
+	heldWeaponClass = newWeapon->GetClass();
 	serverAttachWeapon();//ahora falta hacerlo en el weapon pickup, la logica
 }
 

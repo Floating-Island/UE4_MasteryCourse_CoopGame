@@ -9,7 +9,7 @@ void ASPickupWeaponActor::pickupObjectOverlaping(AActor* OtherActor)
 {
 	ASWeapon* pickedWeapon = Cast<ASWeapon, AActor>(pickupObjectInstance);
 	ASCharacter* player = Cast<ASCharacter, AActor>(OtherActor);
-	if (pickedWeapon && player)
+	if (pickupObjectInstance && pickedWeapon && player)
 	{
 		pickedWeapon->SetOwner(OtherActor);
 		player->replaceHeldWeapon(pickedWeapon);

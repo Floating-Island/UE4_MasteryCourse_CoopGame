@@ -316,7 +316,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		ARRAY_COUNT(FuncInfo),
 		ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::PropPointers),
 		0,
-		0x009000A1u,
+		0x009000A0u,
 		METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::Class_MetaDataParams, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::Class_MetaDataParams))
 	};
 	UClass* Z_Construct_UClass_ASWeapon()
@@ -328,7 +328,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASWeapon, 3571713010);
+	IMPLEMENT_CLASS(ASWeapon, 1904065232);
 	template<> COOPGAME_API UClass* StaticClass<ASWeapon>()
 	{
 		return ASWeapon::StaticClass();
