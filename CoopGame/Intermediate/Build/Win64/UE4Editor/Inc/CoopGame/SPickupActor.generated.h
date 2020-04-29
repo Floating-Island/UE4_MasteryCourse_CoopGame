@@ -80,7 +80,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASPickupActor); \
 #define CoopGame_Source_CoopGame_Public_SPickupActor_h_15_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__overlapSphere() { return STRUCT_OFFSET(ASPickupActor, overlapSphere); } \
 	FORCEINLINE static uint32 __PPO__decalComp() { return STRUCT_OFFSET(ASPickupActor, decalComp); } \
-	FORCEINLINE static uint32 __PPO__powerupClass() { return STRUCT_OFFSET(ASPickupActor, powerupClass); } \
+	FORCEINLINE static uint32 __PPO__pickupObjectClass() { return STRUCT_OFFSET(ASPickupActor, pickupObjectClass); } \
+	FORCEINLINE static uint32 __PPO__pickupObjectLocation() { return STRUCT_OFFSET(ASPickupActor, pickupObjectLocation); } \
 	FORCEINLINE static uint32 __PPO__respawnCooldown() { return STRUCT_OFFSET(ASPickupActor, respawnCooldown); }
 
 
