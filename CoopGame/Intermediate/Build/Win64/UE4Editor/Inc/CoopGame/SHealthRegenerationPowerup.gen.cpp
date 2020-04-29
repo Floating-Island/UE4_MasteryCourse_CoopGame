@@ -86,7 +86,7 @@ void EmptyLinkFunctionForGeneratedCodeSHealthRegenerationPowerup() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASHealthRegenerationPowerup, 3554626137);
+	IMPLEMENT_CLASS(ASHealthRegenerationPowerup, 2040310846);
 	template<> COOPGAME_API UClass* StaticClass<ASHealthRegenerationPowerup>()
 	{
 		return ASHealthRegenerationPowerup::StaticClass();
