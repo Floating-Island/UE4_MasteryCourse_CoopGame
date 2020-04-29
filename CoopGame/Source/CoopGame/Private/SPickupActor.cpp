@@ -21,6 +21,7 @@ ASPickupActor::ASPickupActor()
 	decalComp->SetRelativeRotation(FRotator(90, 0, 0));
 	decalComp->DecalSize = FVector(64, radius, radius);
 
+	pickupObjectLocation = FVector(0, 0, 50);
 
 	respawnCooldown = 10;
 
@@ -39,7 +40,7 @@ void ASPickupActor::BeginPlay()
 
 void ASPickupActor::respawn()
 {
-	if(powerupClass == nullptr)
+	if(pickupObjectClass == nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Powerup class not set in %s."), *GetName());
 		return;
@@ -47,8 +48,12 @@ void ASPickupActor::respawn()
 	
 	FActorSpawnParameters spawningParameters;
 	spawningParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	FTransform spawnTransform = GetTransform();
+
+	spawnTransform.SetLocation(GetTransform().GetLocation() + pickupObjectLocation);
 	
-	powerupInstance = GetWorld()->SpawnActor<ASPowerupActor>(powerupClass, GetTransform(), spawningParameters);
+	powerupInstance = GetWorld()->SpawnActor<ASPowerupActor>(pickupObjectClass, spawnTransform, spawningParameters);
 }
 
 void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)

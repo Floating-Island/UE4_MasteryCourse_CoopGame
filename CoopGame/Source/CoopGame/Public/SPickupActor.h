@@ -29,8 +29,10 @@ protected:
 		UDecalComponent* decalComp;
 
 	UPROPERTY(EditInstanceOnly, Category = "Pickup Actor")//EditInstanceOnly allows to change the powerup in each instance.
-		TSubclassOf<ASPowerupActor> powerupClass;
+		TSubclassOf<ASPowerupActor> pickupObjectClass;
 
+	UPROPERTY(EditInstanceOnly, Category = "Pickup Actor")
+		FVector pickupObjectLocation;
 
 	ASPowerupActor* powerupInstance;
 	UFUNCTION()
