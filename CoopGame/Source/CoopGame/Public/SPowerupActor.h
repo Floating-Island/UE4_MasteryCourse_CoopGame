@@ -21,13 +21,13 @@ public:
 
 protected:
 
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 		UStaticMeshComponent* mesh;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 		UPointLightComponent* pointLight;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 		URotatingMovementComponent* rotationComponent;
 
 	/*Time between powerup's application*/

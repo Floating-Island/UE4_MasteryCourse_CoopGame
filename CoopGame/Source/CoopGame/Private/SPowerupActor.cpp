@@ -15,7 +15,7 @@ ASPowerupActor::ASPowerupActor()
 	RootComponent = mesh;
 
 	pointLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("Point Light Component"));
-	pointLight->SetupAttachment(mesh);
+	pointLight->SetupAttachment(RootComponent);
 
 	rotationComponent = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement Component"));
 	rotationComponent->SetUpdatedComponent(RootComponent);
