@@ -125,11 +125,12 @@ void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)
 {
 	if(isHoldingAWeapon())
 	{
-		heldWeapon->Destroy();
-		heldWeapon = nullptr;
+		ASWeapon* oldWeapon = heldWeapon;
+		heldWeapon = nullptr;//has to be this way to avoid accessing of the variable when is being destroyed.
+		oldWeapon->Destroy();
 	}
 	heldWeaponClass = newWeapon->GetClass();
-	serverAttachWeapon();//ahora falta hacerlo en el weapon pickup, la logica
+	serverAttachWeapon();
 }
 
 // Called every frame
