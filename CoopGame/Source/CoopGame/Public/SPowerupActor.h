@@ -57,7 +57,7 @@ protected:
 	
 public:	
 
-	void activatePowerup();
+	void activate();
 	
 	UFUNCTION()
 		virtual void onActivated();

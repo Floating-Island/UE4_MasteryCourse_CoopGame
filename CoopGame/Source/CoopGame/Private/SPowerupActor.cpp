@@ -30,7 +30,7 @@ ASPowerupActor::ASPowerupActor()
 	SetReplicates(true);
 }
 
-void ASPowerupActor::activatePowerup()
+void ASPowerupActor::activate()
 {
 	onActivated();
 

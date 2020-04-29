@@ -42,7 +42,7 @@ void ASPickupActor::respawn()
 {
 	if(pickupObjectClass == nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Powerup class not set in %s."), *GetName());
+		UE_LOG(LogTemp, Warning, TEXT("Pickup object class not set in %s."), *GetName());
 		return;
 	}
 	
@@ -64,7 +64,7 @@ void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	if(Role == ROLE_Authority && pickupObjectInstance)
 	{
 		pickupObjectInstance->SetOwner(OtherActor);
-		pickupObjectInstance->activatePowerup();
+		pickupObjectInstance->activate();
 		pickupObjectInstance = nullptr;
 
 		//set respawn timer
