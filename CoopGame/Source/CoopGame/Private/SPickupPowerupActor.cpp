@@ -7,11 +7,11 @@
 void ASPickupPowerupActor::pickupObjectOverlaping(AActor* OtherActor)
 {
 	ASPowerupActor* pickedPowerup = Cast<ASPowerupActor, AActor>(pickupObjectInstance);
-	if(pickedPowerup)
+	if(pickedPowerup && pickupObjectInstance)
 	{
 		pickedPowerup->SetOwner(OtherActor);
 		pickedPowerup->activate();
-		pickedPowerup = nullptr;
+		pickupObjectInstance = nullptr;
 	}
 	
 }

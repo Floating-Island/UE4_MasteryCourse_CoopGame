@@ -13,6 +13,6 @@ void ASPickupWeaponActor::pickupObjectOverlaping(AActor* OtherActor)
 	{
 		pickedWeapon->SetOwner(OtherActor);
 		player->replaceHeldWeapon(pickedWeapon);
-		pickedWeapon = nullptr;
+		pickupObjectInstance = nullptr;
 	}
 }
