@@ -6,6 +6,7 @@
 #include "SPowerupActor.h"
 #include "SSuperSpeedPowerup.generated.h"
 
+class ASCharacter;
 /**
  * 
  */
@@ -14,6 +15,10 @@ class COOPGAME_API ASSuperSpeedPowerup : public ASPowerupActor
 {
 	GENERATED_BODY()
 
+protected:
+	ASCharacter* player;
+
 public:
-	
+	void onActivated() override;
+	void onExpired() override;
 };

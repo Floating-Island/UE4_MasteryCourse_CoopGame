@@ -47,6 +47,14 @@ void ASPowerupActor::activatePowerup()
 	}
 }
 
+void ASPowerupActor::onActivated()
+{
+}
+
+void ASPowerupActor::powerupTicking()
+{
+}
+
 void ASPowerupActor::onExpired()
 {
 	Destroy();

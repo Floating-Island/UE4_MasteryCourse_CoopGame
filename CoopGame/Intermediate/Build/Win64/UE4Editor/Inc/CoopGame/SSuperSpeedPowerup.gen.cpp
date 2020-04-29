@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeSSuperSpeedPowerup() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASSuperSpeedPowerup, 3619795768);
+	IMPLEMENT_CLASS(ASSuperSpeedPowerup, 274442234);
 	template<> COOPGAME_API UClass* StaticClass<ASSuperSpeedPowerup>()
 	{
 		return ASSuperSpeedPowerup::StaticClass();

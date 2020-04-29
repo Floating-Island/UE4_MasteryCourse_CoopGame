@@ -13,5 +13,10 @@ UCLASS()
 class COOPGAME_API ASHealthRegenerationPowerup : public ASPowerupActor
 {
 	GENERATED_BODY()
-	
+
+	UPROPERTY(EditDefaultsOnly, Category = "Powerup Effect")
+	float healingAmount;
+
+public:
+	void powerupTicking() override;
 };

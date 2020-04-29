@@ -59,7 +59,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASHealthRegenerationPowerup); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASHealthRegenerationPowerup)
 
 
-#define CoopGame_Source_CoopGame_Public_SHealthRegenerationPowerup_h_15_PRIVATE_PROPERTY_OFFSET
+#define CoopGame_Source_CoopGame_Public_SHealthRegenerationPowerup_h_15_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__healingAmount() { return STRUCT_OFFSET(ASHealthRegenerationPowerup, healingAmount); }
+
+
 #define CoopGame_Source_CoopGame_Public_SHealthRegenerationPowerup_h_12_PROLOG
 #define CoopGame_Source_CoopGame_Public_SHealthRegenerationPowerup_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
