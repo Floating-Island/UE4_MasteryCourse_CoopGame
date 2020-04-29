@@ -13,5 +13,7 @@ UCLASS()
 class COOPGAME_API ASSuperSpeedPowerup : public ASPowerupActor
 {
 	GENERATED_BODY()
+
+public:
 	
 };

@@ -6,6 +6,10 @@
 #include "GameFramework/Actor.h"
 #include "SPowerupActor.generated.h"
 
+
+class URotatingMovementComponent;
+class UPointLightComponent;
+
 UCLASS()
 class COOPGAME_API ASPowerupActor : public AActor
 {
@@ -16,6 +20,15 @@ public:
 	ASPowerupActor();
 
 protected:
+
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+		UStaticMeshComponent* mesh;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+		UPointLightComponent* pointLight;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+		URotatingMovementComponent* rotationComponent;
 
 	/*Time between powerup's application*/
 	UPROPERTY(EditDefaultsOnly, Category = "Powerup")

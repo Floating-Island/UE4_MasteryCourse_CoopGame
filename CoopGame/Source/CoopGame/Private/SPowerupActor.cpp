@@ -4,10 +4,23 @@
 #include "SPowerupActor.h"
 #include "TimerManager.h"
 #include "Net/UnrealNetwork.h"
+#include "Components/StaticMeshComponent.h"
+#include "GameFramework/RotatingMovementComponent.h"
+#include "Components/PointLightComponent.h"
 
 // Sets default values
 ASPowerupActor::ASPowerupActor()
 {
+	mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh Component"));
+	RootComponent = mesh;
+
+	pointLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("Point Light Component"));
+	pointLight->SetupAttachment(mesh);
+
+	rotationComponent = CreateDefaultSubobject<URotatingMovementComponent>(TEXT("Rotating Movement Component"));
+	rotationComponent->SetUpdatedComponent(RootComponent);
+	
+	
 	powerupDuration = 0;
 	ticksQuantity = 0;
 	processedTicks = 0;
@@ -34,6 +47,11 @@ void ASPowerupActor::activatePowerup()
 	}
 }
 
+void ASPowerupActor::onExpired()
+{
+	Destroy();
+}
+
 void ASPowerupActor::onTickPowerup()//if it's blueprint implementable, all methods inside it have to be UFUNCTION
 {
 	processedTicks++;
@@ -54,6 +72,12 @@ void ASPowerupActor::onTickPowerup()//if it's blueprint implementable, all metho
 void ASPowerupActor::onPowerUpActivation()
 {
 	onStateChanged(bIsActivated);
+}
+
+void ASPowerupActor::onStateChanged(bool bIsStateActive)
+{
+	mesh->SetVisibility(!bIsStateActive, true );//sets visibility to state activity and propagates to children.
+	mesh->SetCollisionResponseToAllChannels(ECR_Ignore);
 }
 
 void ASPowerupActor::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
