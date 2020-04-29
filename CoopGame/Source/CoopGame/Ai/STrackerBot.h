@@ -27,7 +27,7 @@ protected:
 	virtual void BeginPlay() override;
 	void pulseBody();
 
-	UPROPERTY(VisibleDefaultsOnly, Category = "Components")
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 		UStaticMeshComponent* meshComp;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Components")

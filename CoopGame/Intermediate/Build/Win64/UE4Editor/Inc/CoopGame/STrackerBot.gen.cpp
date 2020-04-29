@@ -358,6 +358,7 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel_MetaData[] = {
 		{ "Category", "Swarm" },
 		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
+		{ "ToolTip", "Quantity of swarm colleagues, doesn't include self" },
 	};
 #endif
 	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel = { "maximumPowerLevel", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTrackerBot, maximumPowerLevel), METADATA_PARAMS(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel_MetaData)) };
@@ -468,7 +469,7 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp = { "meshComp", nullptr, (EPropertyFlags)0x00200800000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTrackerBot, meshComp), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp_MetaData)) };
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp = { "meshComp", nullptr, (EPropertyFlags)0x00200800000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTrackerBot, meshComp), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASTrackerBot_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_swarmBonusDamageMultiplier,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel,
@@ -514,7 +515,7 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTrackerBot, 834733531);
+	IMPLEMENT_CLASS(ASTrackerBot, 1041683511);
 	template<> COOPGAME_API UClass* StaticClass<ASTrackerBot>()
 	{
 		return ASTrackerBot::StaticClass();

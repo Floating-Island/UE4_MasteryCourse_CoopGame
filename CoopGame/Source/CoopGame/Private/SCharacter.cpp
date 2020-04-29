@@ -85,15 +85,20 @@ void ASCharacter::stopFire()
 	}
 }
 
+void ASCharacter::serverAttachWeapon()
+{
+	if (Role == ROLE_Authority)//if the one who executes this is a server...
+	{
+		attachWeapon();
+	}
+}
+
 // Called when the game starts or when spawned
 void ASCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (Role == ROLE_Authority)//if the one who executes this is a server...
-	{
-		attachWeapon();
-	}
+	serverAttachWeapon();
 	healthComp->onHealthChanged.AddDynamic(this, &ASCharacter::onHealthChanged);
 }
 
@@ -114,6 +119,18 @@ bool ASCharacter::isHoldingAWeapon()
 		return true;
 	}
 	return false;
+}
+
+void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)
+{
+	if(isHoldingAWeapon())
+	{
+		ASWeapon* oldWeapon = heldWeapon;
+		heldWeapon = nullptr;//has to be this way to avoid accessing of the variable when is being destroyed.
+		oldWeapon->Destroy();
+	}
+	heldWeaponClass = newWeapon->GetClass();
+	serverAttachWeapon();
 }
 
 // Called every frame

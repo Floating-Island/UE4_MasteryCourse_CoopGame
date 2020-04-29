@@ -24,6 +24,7 @@ public:
 	void startFire();
 
 	void stopFire();
+	void serverAttachWeapon();
 
 protected:
 	// Called when the game starts or when spawned
@@ -95,6 +96,8 @@ protected:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Weapon")
 		FName weaponSocket;
+
+	
 	
 public:	
 	// Called every frame
@@ -104,4 +107,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual FVector GetPawnViewLocation() const override;//we want to get the camera view
+
+	void replaceHeldWeapon(ASWeapon* newWeapon);
 };

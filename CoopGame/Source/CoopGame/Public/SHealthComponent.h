@@ -37,21 +37,24 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="HealthComponent")
-	float maxHealth;
+		float maxHealth;
 
 	UPROPERTY(ReplicatedUsing = currentHealthReplication, VisibleAnywhere, BlueprintReadOnly, Category = "HealthComponent")
-	float currentHealth;
+		float currentHealth;
 
 	UFUNCTION()
 		void currentHealthReplication(float oldHealth);//when currentHealth is replicated, the current value (before being changed) is sent as parameter, inside oldHealth.
 
 	UFUNCTION()//it's an event handler
-	void damageTakerHandle(AActor* DamagedActor,
-							float Damage,
-							const class UDamageType* DamageType,
-							class AController* InstigatedBy,
-							AActor* DamageCauser);
+		void damageTakerHandle(AActor* DamagedActor,
+								float Damage,
+								const class UDamageType* DamageType,
+								class AController* InstigatedBy,
+								AActor* DamageCauser);
 public:
 	UPROPERTY(BlueprintAssignable, Category = "Events")
-	FOnHealthChangedSignature onHealthChanged;
+		FOnHealthChangedSignature onHealthChanged;
+
+	UFUNCTION(BlueprintCallable, Category = "HealthComponent")
+		void heal(float healingAmount);
 };
