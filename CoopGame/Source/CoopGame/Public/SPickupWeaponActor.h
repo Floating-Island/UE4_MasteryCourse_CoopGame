@@ -14,4 +14,6 @@ class COOPGAME_API ASPickupWeaponActor : public ASPickupActor
 {
 	GENERATED_BODY()
 	
+protected:
+	void pickupObjectOverlaping(AActor* OtherActor) override;
 };

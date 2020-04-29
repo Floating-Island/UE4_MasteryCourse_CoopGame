@@ -20,7 +20,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASPickupActor_respawn();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-	COOPGAME_API UClass* Z_Construct_UClass_ASPowerupActor_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UDecalComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 // End Cross Module References
@@ -123,7 +123,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		{ "ToolTip", "EditInstanceOnly allows to change the powerup in each instance." },
 	};
 #endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_pickupObjectClass = { "pickupObjectClass", nullptr, (EPropertyFlags)0x0024080000000801, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, pickupObjectClass), Z_Construct_UClass_ASPowerupActor_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_pickupObjectClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_pickupObjectClass_MetaData)) };
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_pickupObjectClass = { "pickupObjectClass", nullptr, (EPropertyFlags)0x0024080000000801, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, pickupObjectClass), Z_Construct_UClass_AActor_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_pickupObjectClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_pickupObjectClass_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_decalComp_MetaData[] = {
 		{ "Category", "Components" },
@@ -174,7 +174,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPickupActor, 3739995050);
+	IMPLEMENT_CLASS(ASPickupActor, 3328347685);
 	template<> COOPGAME_API UClass* StaticClass<ASPickupActor>()
 	{
 		return ASPickupActor::StaticClass();

@@ -13,5 +13,7 @@ UCLASS()
 class COOPGAME_API ASPickupPowerupActor : public ASPickupActor
 {
 	GENERATED_BODY()
-	
+
+protected:
+	void pickupObjectOverlaping(AActor* OtherActor) override;
 };

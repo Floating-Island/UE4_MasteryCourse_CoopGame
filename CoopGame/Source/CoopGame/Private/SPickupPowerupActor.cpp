@@ -2,4 +2,16 @@
 
 
 #include "SPickupPowerupActor.h"
+#include "SPowerupActor.h"
 
+void ASPickupPowerupActor::pickupObjectOverlaping(AActor* OtherActor)
+{
+	ASPowerupActor* pickedPowerup = Cast<ASPowerupActor, AActor>(pickupObjectInstance);
+	if(pickedPowerup)
+	{
+		pickedPowerup->SetOwner(OtherActor);
+		pickedPowerup->activate();
+		pickedPowerup = nullptr;
+	}
+	
+}

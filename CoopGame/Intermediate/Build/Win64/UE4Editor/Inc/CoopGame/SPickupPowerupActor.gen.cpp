@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupPowerupActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPickupPowerupActor, 2595374848);
+	IMPLEMENT_CLASS(ASPickupPowerupActor, 3306762802);
 	template<> COOPGAME_API UClass* StaticClass<ASPickupPowerupActor>()
 	{
 		return ASPickupPowerupActor::StaticClass();
