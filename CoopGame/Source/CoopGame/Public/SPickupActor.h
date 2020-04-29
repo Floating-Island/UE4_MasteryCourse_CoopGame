@@ -34,10 +34,10 @@ protected:
 	UPROPERTY(EditInstanceOnly, Category = "Pickup Actor")
 		FVector pickupObjectLocation;
 
-	ASPowerupActor* powerupInstance;
+	ASPowerupActor* pickupObjectInstance;
 	UFUNCTION()
 		void respawn();
-	FTimerHandle respawnPowerupTimer;
+	FTimerHandle respawnPickupObjectTimer;
 
 	UPROPERTY(EditInstanceOnly, Category = "Pickup Actor")
 		float respawnCooldown;

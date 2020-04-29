@@ -53,7 +53,7 @@ void ASPickupActor::respawn()
 
 	spawnTransform.SetLocation(GetTransform().GetLocation() + pickupObjectLocation);
 	
-	powerupInstance = GetWorld()->SpawnActor<ASPowerupActor>(pickupObjectClass, spawnTransform, spawningParameters);
+	pickupObjectInstance = GetWorld()->SpawnActor<ASPowerupActor>(pickupObjectClass, spawnTransform, spawningParameters);
 }
 
 void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
@@ -61,14 +61,14 @@ void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	Super::NotifyActorBeginOverlap(OtherActor);
 
 	//give player a powerup, if a player overlapped.
-	if(Role == ROLE_Authority && powerupInstance)
+	if(Role == ROLE_Authority && pickupObjectInstance)
 	{
-		powerupInstance->SetOwner(OtherActor);
-		powerupInstance->activatePowerup();
-		powerupInstance = nullptr;
+		pickupObjectInstance->SetOwner(OtherActor);
+		pickupObjectInstance->activatePowerup();
+		pickupObjectInstance = nullptr;
 
 		//set respawn timer
-		GetWorldTimerManager().SetTimer(respawnPowerupTimer, this, &ASPickupActor::respawn, respawnCooldown);
+		GetWorldTimerManager().SetTimer(respawnPickupObjectTimer, this, &ASPickupActor::respawn, respawnCooldown);
 	}
 }
 
