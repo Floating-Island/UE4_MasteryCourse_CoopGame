@@ -30,10 +30,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 		UStaticMeshComponent* meshComp;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UPROPERTY(VisibleDefaultsOnly, Category = "Components")
 		USHealthComponent* healthComp;
 
-	UPROPERTY(VisibleAnywhere, Category = "Overlapping")
+	UPROPERTY(VisibleDefaultsOnly, Category = "Overlapping")
 		USphereComponent* overlapSphere;
 
 	UFUNCTION()

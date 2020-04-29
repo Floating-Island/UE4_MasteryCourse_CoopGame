@@ -24,10 +24,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 		UStaticMeshComponent* mesh;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UPROPERTY(VisibleDefaultsOnly, Category = "Components")
 		UPointLightComponent* pointLight;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UPROPERTY(VisibleDefaultsOnly, Category = "Components")
 		URotatingMovementComponent* rotationComponent;
 
 	/*Time between powerup's application*/
