@@ -3,3 +3,15 @@
 
 #include "SGameMode.h"
 
+void ASGameMode::startBotWave()
+{
+	
+}
+
+void ASGameMode::endBotWave()
+{
+}
+
+void ASGameMode::nextBotWavePreparation()
+{
+}

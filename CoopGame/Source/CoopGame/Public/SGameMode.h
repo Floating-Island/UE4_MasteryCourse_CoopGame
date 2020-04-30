@@ -13,5 +13,15 @@ UCLASS()
 class COOPGAME_API ASGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+protected:
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+	void spawnNewBot();
+
+	void startBotWave();
+
+	void endBotWave();
+
+	void nextBotWavePreparation();
 };
