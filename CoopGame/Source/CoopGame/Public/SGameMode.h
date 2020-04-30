@@ -54,5 +54,5 @@ public:
 	
 	void StartPlay() override;
 
-	void Tick(float DeltaSeconds) override;
+	virtual void Tick(float DeltaSeconds) override;
 };

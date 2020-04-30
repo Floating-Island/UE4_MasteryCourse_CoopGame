@@ -8,6 +8,39 @@
 
 #include "SHealthComponent.h"
 
+
+ASGameMode::ASGameMode()
+{
+
+	spawnRate = 0;
+
+	waveLevel = 0;
+
+	waveSpawnMultiplier = 0;
+
+	botsToSpawn = 0;
+
+	waveDelay = 0;
+
+	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.TickInterval = 1;
+}
+
+void ASGameMode::StartPlay()
+{
+	Super::StartPlay();
+
+	nextBotWavePreparation();
+}
+
+void ASGameMode::Tick(float DeltaSeconds)
+{
+	Super::Tick();
+
+	checkBotsState();
+}
+
+
 void ASGameMode::startBotWave()
 {
 	waveLevel++;
@@ -15,9 +48,6 @@ void ASGameMode::startBotWave()
 	botsToSpawn = waveSpawnMultiplier * waveLevel;
 	
 	GetWorldTimerManager().SetTimer(botSpawnTimer, this, &ASGameMode::spawnOnTimerElapsed, spawnRate, true, 0);
-
-	PrimaryActorTick.bCanEverTick = true;
-	PrimaryActorTick.TickInterval = 1;
 	
 }
 
@@ -73,32 +103,4 @@ void ASGameMode::checkBotsState()
 	{
 		nextBotWavePreparation();
 	}
-}
-
-ASGameMode::ASGameMode()
-{
-
-	spawnRate = 0;
-
-	waveLevel = 0;
-
-	waveSpawnMultiplier = 0;
-
-	botsToSpawn = 0;
-
-	waveDelay = 0;
-}
-
-void ASGameMode::StartPlay()
-{
-	Super::StartPlay();
-
-	nextBotWavePreparation();
-}
-
-void ASGameMode::Tick(float DeltaSeconds)
-{
-	Super::Tick(DeltaSeconds);
-
-	checkBotsState();
 }
