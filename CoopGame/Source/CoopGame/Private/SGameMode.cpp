@@ -35,7 +35,7 @@ void ASGameMode::StartPlay()
 
 void ASGameMode::Tick(float DeltaSeconds)
 {
-	Super::Tick();
+	Super::Tick(DeltaSeconds);
 
 	checkBotsState();
 }
