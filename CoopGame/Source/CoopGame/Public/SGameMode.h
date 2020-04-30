@@ -40,11 +40,19 @@ protected:
 
 	void spawnOnTimerElapsed();
 
+	FTimerHandle nextWaveStartTimer;
+	
 	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
 		float waveDelay;
+
+	bool allWaveBotsDied();
+
+	void checkBotsState();
 
 public:
 	ASGameMode();
 	
 	void StartPlay() override;
+
+	void Tick(float DeltaSeconds) override;
 };
