@@ -11,7 +11,7 @@ void ASGameMode::startBotWave()
 
 	botsToSpawn = waveSpawnMultiplier * waveLevel;
 	
-	GetWorldTimerManager().SetTimer(botSpawnTimer, this, &ASGameMode::spawnNewBot, spawnRate, true, 0);
+	GetWorldTimerManager().SetTimer(botSpawnTimer, this, &ASGameMode::spawnOnTimerElapsed, spawnRate, true, 0);
 }
 
 void ASGameMode::endBotWave()
@@ -20,7 +20,7 @@ void ASGameMode::endBotWave()
 
 	nextBotWavePreparation();
 }
-
+ 
 void ASGameMode::nextBotWavePreparation()
 {
 	FTimerHandle nextWaveStart;
