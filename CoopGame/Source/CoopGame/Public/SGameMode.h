@@ -17,11 +17,32 @@ class COOPGAME_API ASGameMode : public AGameModeBase
 protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
-	void spawnNewBot();
+		void spawnNewBot();
 
 	void startBotWave();
 
 	void endBotWave();
 
 	void nextBotWavePreparation();
+
+	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
+		float spawnRate;
+
+	int32 waveLevel;
+
+	int32 waveSpawnMultiplier;
+	
+	int32 botsToSpawn;
+	
+	FTimerHandle botSpawnTimer;
+
+	void spawnOnTimerElapsed();
+
+	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
+		float waveDelay;
+
+public:
+	ASGameMode();
+	
+	void StartPlay() override;
 };
