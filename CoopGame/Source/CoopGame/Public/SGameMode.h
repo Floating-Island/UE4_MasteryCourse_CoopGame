@@ -28,9 +28,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
 		float spawnRate;
 
-	int32 waveLevel;
+	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
+		int32 waveLevel;
 
-	int32 waveSpawnMultiplier;
+	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
+		int32 waveSpawnMultiplier;
 	
 	int32 botsToSpawn;
 	
