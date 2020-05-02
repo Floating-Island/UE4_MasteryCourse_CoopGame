@@ -142,6 +142,13 @@ void ASGameMode::checkPlayersState()
 
 void ASGameMode::gameOver()
 {
+	//should return if wave state is already game over.
+	ASGameState* gameState = Cast<ASGameState, AGameStateBase>(GameState);
+	if(gameState->currentWaveState() == EWaveState::gameOver)
+	{
+		return;
+	}
+	
 	endBotWave();
 
 	setWaveState(EWaveState::gameOver);

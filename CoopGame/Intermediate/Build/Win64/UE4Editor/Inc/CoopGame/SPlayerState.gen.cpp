@@ -17,9 +17,48 @@ void EmptyLinkFunctionForGeneratedCodeSPlayerState() {}
 	COOPGAME_API UClass* Z_Construct_UClass_ASPlayerState();
 	ENGINE_API UClass* Z_Construct_UClass_APlayerState();
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASPlayerState_addScore();
 // End Cross Module References
 	void ASPlayerState::StaticRegisterNativesASPlayerState()
 	{
+		UClass* Class = ASPlayerState::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "addScore", &ASPlayerState::execaddScore },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ASPlayerState_addScore_Statics
+	{
+		struct SPlayerState_eventaddScore_Parms
+		{
+			float scoreToAdd;
+		};
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_scoreToAdd;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASPlayerState_addScore_Statics::NewProp_scoreToAdd = { "scoreToAdd", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SPlayerState_eventaddScore_Parms, scoreToAdd), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASPlayerState_addScore_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASPlayerState_addScore_Statics::NewProp_scoreToAdd,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASPlayerState_addScore_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Score" },
+		{ "ModuleRelativePath", "Public/SPlayerState.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASPlayerState_addScore_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASPlayerState, nullptr, "addScore", sizeof(SPlayerState_eventaddScore_Parms), Z_Construct_UFunction_ASPlayerState_addScore_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_ASPlayerState_addScore_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASPlayerState_addScore_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASPlayerState_addScore_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASPlayerState_addScore()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASPlayerState_addScore_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_ASPlayerState_NoRegister()
 	{
@@ -28,6 +67,7 @@ void EmptyLinkFunctionForGeneratedCodeSPlayerState() {}
 	struct Z_Construct_UClass_ASPlayerState_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -37,6 +77,9 @@ void EmptyLinkFunctionForGeneratedCodeSPlayerState() {}
 	UObject* (*const Z_Construct_UClass_ASPlayerState_Statics::DependentSingletons[])() = {
 		(UObject* (*)())Z_Construct_UClass_APlayerState,
 		(UObject* (*)())Z_Construct_UPackage__Script_CoopGame,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_ASPlayerState_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ASPlayerState_addScore, "addScore" }, // 2975354810
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPlayerState_Statics::Class_MetaDataParams[] = {
@@ -54,11 +97,11 @@ void EmptyLinkFunctionForGeneratedCodeSPlayerState() {}
 		nullptr,
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		nullptr,
 		nullptr,
 		ARRAY_COUNT(DependentSingletons),
-		0,
+		ARRAY_COUNT(FuncInfo),
 		0,
 		0,
 		0x009002A0u,
@@ -73,7 +116,7 @@ void EmptyLinkFunctionForGeneratedCodeSPlayerState() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPlayerState, 4279649180);
+	IMPLEMENT_CLASS(ASPlayerState, 847533265);
 	template<> COOPGAME_API UClass* StaticClass<ASPlayerState>()
 	{
 		return ASPlayerState::StaticClass();

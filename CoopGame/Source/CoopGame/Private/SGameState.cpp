@@ -15,6 +15,11 @@ void ASGameState::changeWaveState(EWaveState newState)
 	}
 }
 
+EWaveState ASGameState::currentWaveState()
+{
+	return waveState;
+}
+
 void ASGameState::waveStateReplication(EWaveState oldWaveState)
 {
 	waveStateChanged(waveState, oldWaveState);

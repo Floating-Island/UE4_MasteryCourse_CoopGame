@@ -13,8 +13,30 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COOPGAME_SPlayerState_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SPlayerState_h_15_RPC_WRAPPERS
-#define CoopGame_Source_CoopGame_Public_SPlayerState_h_15_RPC_WRAPPERS_NO_PURE_DECLS
+#define CoopGame_Source_CoopGame_Public_SPlayerState_h_15_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execaddScore) \
+	{ \
+		P_GET_PROPERTY(UFloatProperty,Z_Param_scoreToAdd); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->addScore(Z_Param_scoreToAdd); \
+		P_NATIVE_END; \
+	}
+
+
+#define CoopGame_Source_CoopGame_Public_SPlayerState_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execaddScore) \
+	{ \
+		P_GET_PROPERTY(UFloatProperty,Z_Param_scoreToAdd); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->addScore(Z_Param_scoreToAdd); \
+		P_NATIVE_END; \
+	}
+
+
 #define CoopGame_Source_CoopGame_Public_SPlayerState_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASPlayerState(); \

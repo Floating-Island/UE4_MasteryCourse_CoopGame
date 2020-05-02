@@ -31,6 +31,8 @@ public:
 	UFUNCTION()
 		void changeWaveState(EWaveState newState);
 
+	EWaveState currentWaveState();
+
 protected:
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = waveStateReplication, Category = "States")
