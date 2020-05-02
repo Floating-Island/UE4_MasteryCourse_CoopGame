@@ -177,4 +177,14 @@
       <Filter>Source\CoopGame\Public</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\CoopGame\Public\SGameState.h">
+      <Filter>Source\CoopGame\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\CoopGame\Private\SGameState.cpp">
+      <Filter>Source\CoopGame\Private</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
