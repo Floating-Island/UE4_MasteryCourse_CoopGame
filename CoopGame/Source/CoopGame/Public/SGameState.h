@@ -8,7 +8,7 @@
 
 
 UENUM(BlueprintType)
-enum class EWaveState
+enum class EWaveState :uint8
 {
 	preparingNextWave,
 	playingWave,

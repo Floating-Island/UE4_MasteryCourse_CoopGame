@@ -6,7 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "SGameMode.generated.h"
 
-enum class EWaveState;
+enum class EWaveState : uint8;
 /**
  * 
  */
