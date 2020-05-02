@@ -11,7 +11,7 @@
 enum class EWaveState : uint8;
 
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnActorKilled, AActor*, victim, AActor*, killer);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnActorKilled, AActor*, victim, AActor*, killer, AController*, killerController);
 
 /**
  * 
