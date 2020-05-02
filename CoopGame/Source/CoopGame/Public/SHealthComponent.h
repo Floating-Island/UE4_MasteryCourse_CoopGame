@@ -51,6 +51,9 @@ protected:
 								const class UDamageType* DamageType,
 								class AController* InstigatedBy,
 								AActor* DamageCauser);
+
+	bool isDead;
+	
 public:
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 		FOnHealthChangedSignature onHealthChanged;
