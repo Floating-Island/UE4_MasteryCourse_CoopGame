@@ -3,3 +3,7 @@
 
 #include "SGameState.h"
 
+void ASGameState::waveStateReplication(EWaveState oldWaveState)
+{
+	waveStateChanged(waveState, oldWaveState);
+}
