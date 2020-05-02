@@ -143,3 +143,13 @@ void ASGameMode::gameOver()
 
 	UE_LOG(LogTemp, Log, TEXT("All players died, it's game over"));
 }
+
+void ASGameMode::setWaveState(EWaveState newWaveState)
+{
+	ASGameState* gameState = GetGameState<ASGameState>();
+
+	if(ensureAlways(gameState))
+	{
+		gameState->waveState = newWaveState;
+	}
+}

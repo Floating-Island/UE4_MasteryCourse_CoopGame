@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "SGameMode.generated.h"
 
+enum class EWaveState;
 /**
  * 
  */
@@ -54,6 +55,8 @@ protected:
 	void checkPlayersState();
 
 	void gameOver();
+
+	void setWaveState(EWaveState newWaveState);
 
 public:
 	ASGameMode();
