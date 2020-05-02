@@ -6,11 +6,13 @@
 #include "TimerManager.h"
 #include "Engine/World.h"
 
+#include "SGameState.h"
 #include "SHealthComponent.h"
 
 
 ASGameMode::ASGameMode()
 {
+	GameStateClass = ASGameState::StaticClass();
 
 	spawnRate = 0;
 
