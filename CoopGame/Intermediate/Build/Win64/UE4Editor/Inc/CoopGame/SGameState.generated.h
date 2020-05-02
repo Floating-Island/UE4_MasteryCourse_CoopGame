@@ -23,6 +23,15 @@ enum class EWaveState : uint8;
 		P_NATIVE_BEGIN; \
 		P_THIS->waveStateReplication(EWaveState(Z_Param_oldWaveState)); \
 		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execchangeWaveState) \
+	{ \
+		P_GET_ENUM(EWaveState,Z_Param_newState); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->changeWaveState(EWaveState(Z_Param_newState)); \
+		P_NATIVE_END; \
 	}
 
 
@@ -34,6 +43,15 @@ enum class EWaveState : uint8;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		P_THIS->waveStateReplication(EWaveState(Z_Param_oldWaveState)); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execchangeWaveState) \
+	{ \
+		P_GET_ENUM(EWaveState,Z_Param_newState); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->changeWaveState(EWaveState(Z_Param_newState)); \
 		P_NATIVE_END; \
 	}
 
@@ -93,7 +111,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASGameState); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASGameState)
 
 
-#define CoopGame_Source_CoopGame_Public_SGameState_h_26_PRIVATE_PROPERTY_OFFSET
+#define CoopGame_Source_CoopGame_Public_SGameState_h_26_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__waveState() { return STRUCT_OFFSET(ASGameState, waveState); }
+
+
 #define CoopGame_Source_CoopGame_Public_SGameState_h_23_PROLOG \
 	CoopGame_Source_CoopGame_Public_SGameState_h_26_EVENT_PARMS
 

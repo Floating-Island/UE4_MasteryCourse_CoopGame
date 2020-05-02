@@ -18,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeSGameState() {}
 	COOPGAME_API UClass* Z_Construct_UClass_ASGameState_NoRegister();
 	COOPGAME_API UClass* Z_Construct_UClass_ASGameState();
 	ENGINE_API UClass* Z_Construct_UClass_AGameStateBase();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASGameState_changeWaveState();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASGameState_waveStateChanged();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASGameState_waveStateReplication();
 // End Cross Module References
@@ -87,9 +88,46 @@ void EmptyLinkFunctionForGeneratedCodeSGameState() {}
 	{
 		UClass* Class = ASGameState::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "changeWaveState", &ASGameState::execchangeWaveState },
 			{ "waveStateReplication", &ASGameState::execwaveStateReplication },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ASGameState_changeWaveState_Statics
+	{
+		struct SGameState_eventchangeWaveState_Parms
+		{
+			EWaveState newState;
+		};
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_newState;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_newState_Underlying;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ASGameState_changeWaveState_Statics::NewProp_newState = { "newState", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(SGameState_eventchangeWaveState_Parms, newState), Z_Construct_UEnum_CoopGame_EWaveState, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ASGameState_changeWaveState_Statics::NewProp_newState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGameState_changeWaveState_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGameState_changeWaveState_Statics::NewProp_newState,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGameState_changeWaveState_Statics::NewProp_newState_Underlying,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASGameState_changeWaveState_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SGameState.h" },
+		{ "ToolTip", "Only a server uses it." },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGameState_changeWaveState_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASGameState, nullptr, "changeWaveState", sizeof(SGameState_eventchangeWaveState_Parms), Z_Construct_UFunction_ASGameState_changeWaveState_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_ASGameState_changeWaveState_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASGameState_changeWaveState_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASGameState_changeWaveState_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASGameState_changeWaveState()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASGameState_changeWaveState_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ASGameState_waveStateChanged_Statics
 	{
@@ -188,6 +226,7 @@ void EmptyLinkFunctionForGeneratedCodeSGameState() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_CoopGame,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ASGameState_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ASGameState_changeWaveState, "changeWaveState" }, // 40149989
 		{ &Z_Construct_UFunction_ASGameState_waveStateChanged, "waveStateChanged" }, // 3735086933
 		{ &Z_Construct_UFunction_ASGameState_waveStateReplication, "waveStateReplication" }, // 342918491
 	};
@@ -205,7 +244,7 @@ void EmptyLinkFunctionForGeneratedCodeSGameState() {}
 		{ "ModuleRelativePath", "Public/SGameState.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ASGameState_Statics::NewProp_waveState = { "waveState", "waveStateReplication", (EPropertyFlags)0x0010000100000034, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASGameState, waveState), Z_Construct_UEnum_CoopGame_EWaveState, METADATA_PARAMS(Z_Construct_UClass_ASGameState_Statics::NewProp_waveState_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASGameState_Statics::NewProp_waveState_MetaData)) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ASGameState_Statics::NewProp_waveState = { "waveState", "waveStateReplication", (EPropertyFlags)0x0020080100000034, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASGameState, waveState), Z_Construct_UEnum_CoopGame_EWaveState, METADATA_PARAMS(Z_Construct_UClass_ASGameState_Statics::NewProp_waveState_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASGameState_Statics::NewProp_waveState_MetaData)) };
 	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UClass_ASGameState_Statics::NewProp_waveState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASGameState_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGameState_Statics::NewProp_waveState,
@@ -238,7 +277,7 @@ void EmptyLinkFunctionForGeneratedCodeSGameState() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASGameState, 2242537230);
+	IMPLEMENT_CLASS(ASGameState, 3461678419);
 	template<> COOPGAME_API UClass* StaticClass<ASGameState>()
 	{
 		return ASGameState::StaticClass();

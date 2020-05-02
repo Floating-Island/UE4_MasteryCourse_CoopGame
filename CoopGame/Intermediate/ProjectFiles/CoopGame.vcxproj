@@ -388,6 +388,7 @@
     <ClCompile Include="..\..\Source\CoopGame\Private\SPickupActor.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SPickupPowerupActor.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SPickupWeaponActor.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SPlayerState.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SPowerupActor.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectileWeapon.cpp" />
@@ -409,6 +410,7 @@
     <ClInclude Include="..\..\Source\CoopGame\Public\SPickupActor.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SPickupPowerupActor.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SPickupWeaponActor.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SPlayerState.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SPowerupActor.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectileWeapon.h" />
