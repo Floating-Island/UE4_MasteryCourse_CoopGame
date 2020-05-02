@@ -107,10 +107,11 @@ void ASGameMode::checkBotsState()
 
 bool ASGameMode::allPlayersDied()
 {
-	for (auto pawnIterator = GetWorld()->GetPawnIterator(); pawnIterator; ++pawnIterator)
+	for (auto controllerIterator = GetWorld()->GetPlayerControllerIterator(); controllerIterator; ++controllerIterator)
 	{
-		APawn* spawnedPlayer = pawnIterator->Get();
-		if (spawnedPlayer && spawnedPlayer->IsPlayerControlled())
+		APlayerController* spawnedPlayerController = controllerIterator->Get();
+		APawn* spawnedPlayer = spawnedPlayerController->GetPawn();
+		if (spawnedPlayerController && spawnedPlayer)
 		{
 			USHealthComponent* healthComponent = Cast<USHealthComponent, UActorComponent>(spawnedPlayer->GetComponentByClass(USHealthComponent::StaticClass()));
 			if (healthComponent && healthComponent->getCurrentHealth() > 0)
