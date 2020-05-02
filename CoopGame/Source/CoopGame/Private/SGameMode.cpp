@@ -7,12 +7,14 @@
 #include "Engine/World.h"
 
 #include "SGameState.h"
+#include "SPlayerState.h"
 #include "SHealthComponent.h"
 
 
 ASGameMode::ASGameMode()
 {
 	GameStateClass = ASGameState::StaticClass();
+	PlayerStateClass = ASPlayerState::StaticClass();
 
 	spawnRate = 0;
 
