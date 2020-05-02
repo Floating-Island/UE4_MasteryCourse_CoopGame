@@ -138,4 +138,6 @@ void ASGameMode::gameOver()
 	endBotWave();
 
 	//detach controllers, display game over screen to players, etc.
+
+	UE_LOG(LogTemp, Log, TEXT("All players died, it's game over"));
 }
