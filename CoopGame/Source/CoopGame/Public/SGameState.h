@@ -27,11 +27,15 @@ class COOPGAME_API ASGameState : public AGameStateBase
 
 public:
 
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = waveStateReplication, Category = "States")
-		EWaveState waveState;
+	/*Only a server uses it.*/
+	UFUNCTION()
+		void changeWaveState(EWaveState newState);
 
 protected:
 
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = waveStateReplication, Category = "States")
+		EWaveState waveState;
+	
 	UFUNCTION()
 		void waveStateReplication(EWaveState oldWaveState);
 

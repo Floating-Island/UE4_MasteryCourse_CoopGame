@@ -154,6 +154,6 @@ void ASGameMode::setWaveState(EWaveState newWaveState)
 
 	if(ensureAlways(gameState))
 	{
-		gameState->waveState = newWaveState;
+		gameState->changeWaveState(newWaveState);
 	}
 }
