@@ -15,6 +15,7 @@ void EmptyLinkFunctionForGeneratedCodeSGameMode() {}
 // Cross Module References
 	COOPGAME_API UFunction* Z_Construct_UDelegateFunction_CoopGame_OnActorKilled__DelegateSignature();
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
+	ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	COOPGAME_API UClass* Z_Construct_UClass_ASGameMode_NoRegister();
 	COOPGAME_API UClass* Z_Construct_UClass_ASGameMode();
@@ -27,7 +28,9 @@ void EmptyLinkFunctionForGeneratedCodeSGameMode() {}
 		{
 			AActor* victim;
 			AActor* killer;
+			AController* killerController;
 		};
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_killerController;
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_killer;
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_victim;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -36,9 +39,11 @@ void EmptyLinkFunctionForGeneratedCodeSGameMode() {}
 #endif
 		static const UE4CodeGen_Private::FFunctionParams FuncParams;
 	};
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_CoopGame_OnActorKilled__DelegateSignature_Statics::NewProp_killerController = { "killerController", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_CoopGame_eventOnActorKilled_Parms, killerController), Z_Construct_UClass_AController_NoRegister, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_CoopGame_OnActorKilled__DelegateSignature_Statics::NewProp_killer = { "killer", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_CoopGame_eventOnActorKilled_Parms, killer), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UDelegateFunction_CoopGame_OnActorKilled__DelegateSignature_Statics::NewProp_victim = { "victim", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_CoopGame_eventOnActorKilled_Parms, victim), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_CoopGame_OnActorKilled__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_CoopGame_OnActorKilled__DelegateSignature_Statics::NewProp_killerController,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_CoopGame_OnActorKilled__DelegateSignature_Statics::NewProp_killer,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_CoopGame_OnActorKilled__DelegateSignature_Statics::NewProp_victim,
 	};

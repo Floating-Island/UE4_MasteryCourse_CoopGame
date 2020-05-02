@@ -9,6 +9,7 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class AActor;
+class AController;
 #ifdef COOPGAME_SGameMode_generated_h
 #error "SGameMode.generated.h already included, missing '#pragma once' in SGameMode.h"
 #endif
@@ -19,12 +20,14 @@ struct _Script_CoopGame_eventOnActorKilled_Parms \
 { \
 	AActor* victim; \
 	AActor* killer; \
+	AController* killerController; \
 }; \
-static inline void FOnActorKilled_DelegateWrapper(const FMulticastScriptDelegate& OnActorKilled, AActor* victim, AActor* killer) \
+static inline void FOnActorKilled_DelegateWrapper(const FMulticastScriptDelegate& OnActorKilled, AActor* victim, AActor* killer, AController* killerController) \
 { \
 	_Script_CoopGame_eventOnActorKilled_Parms Parms; \
 	Parms.victim=victim; \
 	Parms.killer=killer; \
+	Parms.killerController=killerController; \
 	OnActorKilled.ProcessMulticastDelegate<UObject>(&Parms); \
 }
 
