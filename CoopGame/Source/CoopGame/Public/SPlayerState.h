@@ -13,5 +13,9 @@ UCLASS()
 class COOPGAME_API ASPlayerState : public APlayerState
 {
 	GENERATED_BODY()
-	
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category = "Score")
+		void addScore(float scoreToAdd);
 };

@@ -3,3 +3,7 @@
 
 #include "SPlayerState.h"
 
+void ASPlayerState::addScore(float scoreToAdd)
+{
+	Score += scoreToAdd;
+}
