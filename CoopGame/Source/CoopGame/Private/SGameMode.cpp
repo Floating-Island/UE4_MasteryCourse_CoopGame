@@ -38,6 +38,8 @@ void ASGameMode::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 
 	checkBotsState();
+
+	checkPlayersState();
 }
 
 
@@ -114,11 +116,26 @@ bool ASGameMode::allPlayersDied()
 		if (spawnedPlayerController && spawnedPlayer)
 		{
 			USHealthComponent* healthComponent = Cast<USHealthComponent, UActorComponent>(spawnedPlayer->GetComponentByClass(USHealthComponent::StaticClass()));
-			if (healthComponent && healthComponent->getCurrentHealth() > 0)
+			if (ensure(healthComponent) && healthComponent->getCurrentHealth() > 0)
 			{
 				return false;
 			}
 		}
 	}
 	return true;
+}
+
+void ASGameMode::checkPlayersState()
+{
+	if(allPlayersDied())
+	{
+		gameOver();
+	}
+}
+
+void ASGameMode::gameOver()
+{
+	endBotWave();
+
+	//detach controllers, display game over screen to players, etc.
 }

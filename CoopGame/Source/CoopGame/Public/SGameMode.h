@@ -51,6 +51,10 @@ protected:
 
 	bool allPlayersDied();
 
+	void checkPlayersState();
+
+	void gameOver();
+
 public:
 	ASGameMode();
 	
