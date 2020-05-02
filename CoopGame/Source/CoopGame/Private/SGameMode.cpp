@@ -79,10 +79,10 @@ bool ASGameMode::allWaveBotsDied()
 {
 	for(auto pawnIterator = GetWorld()->GetPawnIterator(); pawnIterator; ++pawnIterator)
 	{
-		APawn* spawnedPawn = pawnIterator->Get();
-		if(spawnedPawn && !spawnedPawn->IsPlayerControlled())
+		APawn* spawnedBot = pawnIterator->Get();
+		if(spawnedBot && !spawnedBot->IsPlayerControlled())
 		{
-			USHealthComponent* healthComponent = Cast<USHealthComponent, UActorComponent>(spawnedPawn->GetComponentByClass(USHealthComponent::StaticClass()));
+			USHealthComponent* healthComponent = Cast<USHealthComponent, UActorComponent>(spawnedBot->GetComponentByClass(USHealthComponent::StaticClass()));
 			if(healthComponent && healthComponent->getCurrentHealth() > 0)
 			{
 				return false;
@@ -103,4 +103,21 @@ void ASGameMode::checkBotsState()
 	{
 		nextBotWavePreparation();
 	}
+}
+
+bool ASGameMode::allPlayersDied()
+{
+	for (auto pawnIterator = GetWorld()->GetPawnIterator(); pawnIterator; ++pawnIterator)
+	{
+		APawn* spawnedPlayer = pawnIterator->Get();
+		if (spawnedPlayer && spawnedPlayer->IsPlayerControlled())
+		{
+			USHealthComponent* healthComponent = Cast<USHealthComponent, UActorComponent>(spawnedPlayer->GetComponentByClass(USHealthComponent::StaticClass()));
+			if (healthComponent && healthComponent->getCurrentHealth() > 0)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
 }

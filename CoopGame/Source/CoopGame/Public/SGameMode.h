@@ -49,6 +49,8 @@ protected:
 
 	void checkBotsState();
 
+	bool allPlayersDied();
+
 public:
 	ASGameMode();
 	
