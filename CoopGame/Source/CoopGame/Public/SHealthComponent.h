@@ -51,10 +51,15 @@ protected:
 								const class UDamageType* DamageType,
 								class AController* InstigatedBy,
 								AActor* DamageCauser);
+
+	bool isDead;
+	
 public:
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 		FOnHealthChangedSignature onHealthChanged;
 
 	UFUNCTION(BlueprintCallable, Category = "HealthComponent")
 		void heal(float healingAmount);
+
+	float getCurrentHealth() { return currentHealth; }
 };

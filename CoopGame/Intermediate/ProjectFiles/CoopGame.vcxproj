@@ -373,14 +373,14 @@
     <None Include="..\..\Config\DefaultGame.ini" />
     <None Include="..\..\Config\DefaultInput.ini" />
     <None Include="..\..\Source\CoopGame\CoopGame.Build.cs" />
-    <ClCompile Include="..\..\Source\CoopGame\Ai\STrackerBot.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\CoopGame.cpp" />
-    <ClInclude Include="..\..\Source\CoopGame\Ai\STrackerBot.h" />
     <ClInclude Include="..\..\Source\CoopGame\CoopGame.h" />
-    <ClCompile Include="..\..\Source\CoopGame\CoopGameGameModeBase.cpp" />
-    <ClInclude Include="..\..\Source\CoopGame\CoopGameGameModeBase.h" />
+    <ClCompile Include="..\..\Source\CoopGame\Ai\STrackerBot.cpp" />
+    <ClInclude Include="..\..\Source\CoopGame\Ai\STrackerBot.h" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SCharacter.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SExplosiveBarrel.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SGameMode.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SGameState.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeLauncher.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SHealthComponent.cpp" />
@@ -388,6 +388,7 @@
     <ClCompile Include="..\..\Source\CoopGame\Private\SPickupActor.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SPickupPowerupActor.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SPickupWeaponActor.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SPlayerState.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SPowerupActor.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SProjectileWeapon.cpp" />
@@ -400,6 +401,8 @@
     <ClCompile Include="..\..\Source\CoopGame\Private\SWeapon.cpp" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SCharacter.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SExplosiveBarrel.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SGameMode.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SGameState.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeLauncher.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SHealthComponent.h" />
@@ -407,6 +410,7 @@
     <ClInclude Include="..\..\Source\CoopGame\Public\SPickupActor.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SPickupPowerupActor.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SPickupWeaponActor.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SPlayerState.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SPowerupActor.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SProjectileWeapon.h" />
