@@ -64,6 +64,8 @@ protected:
 
 	void setWaveState(EWaveState newWaveState);
 
+	void respawnDeadPlayers();
+	
 public:
 	ASGameMode();
 	

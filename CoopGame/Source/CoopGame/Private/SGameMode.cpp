@@ -70,6 +70,8 @@ void ASGameMode::nextBotWavePreparation()
 	GetWorldTimerManager().SetTimer(nextWaveStartTimer, this, &ASGameMode::startBotWave, waveDelay);
 
 	setWaveState(EWaveState::preparingNextWave);
+
+	respawnDeadPlayers();
 }
 
 void ASGameMode::spawnOnTimerElapsed()
@@ -164,5 +166,18 @@ void ASGameMode::setWaveState(EWaveState newWaveState)
 	if(ensureAlways(gameState))
 	{
 		gameState->changeWaveState(newWaveState);
+	}
+}
+
+void ASGameMode::respawnDeadPlayers()
+{
+	for (auto controllerIterator = GetWorld()->GetPlayerControllerIterator(); controllerIterator; ++controllerIterator)
+	{
+		APlayerController* spawnedPlayerController = controllerIterator->Get();
+		APawn* spawnedPlayer = spawnedPlayerController->GetPawn();
+		if (spawnedPlayerController && spawnedPlayer == nullptr)
+		{
+			RestartPlayer(spawnedPlayerController);
+		}
 	}
 }
