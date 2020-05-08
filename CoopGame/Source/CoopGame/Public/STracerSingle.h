@@ -16,6 +16,12 @@ class COOPGAME_API ASTracerSingle : public ASTracerWeapon
 protected:
 	void fire() override;
 	void singleTraceFire();
+
+	/*Half angle in Degrees*/
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon", meta = (ClampMin = 0.0f))
+		float bulletSpread;
 public:
 	void startFire() override;
+
+	ASTracerSingle();
 };

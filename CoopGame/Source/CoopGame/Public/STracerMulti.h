@@ -19,9 +19,9 @@ public:
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon", meta=(ClampMin="1"))
 		int shots;
-	/*90 degrees = 1.5708 radians*/
+	/*Half angle in Degrees*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon", meta = (ClampMin = "0", ClampMax = "1.5708"))
-		float spreadConeHalfAngleRadius;
+		float shotSpread;
 
 	void fire() override;
 	void multiTraceFire();
