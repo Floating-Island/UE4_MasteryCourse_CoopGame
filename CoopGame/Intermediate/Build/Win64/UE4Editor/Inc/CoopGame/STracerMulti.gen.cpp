@@ -56,7 +56,6 @@ void EmptyLinkFunctionForGeneratedCodeSTracerMulti() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shotSpread_MetaData[] = {
 		{ "Category", "Weapon" },
-		{ "ClampMax", "1.5708" },
 		{ "ClampMin", "0" },
 		{ "ModuleRelativePath", "Public/STracerMulti.h" },
 		{ "ToolTip", "Half angle in Degrees" },
@@ -102,7 +101,7 @@ void EmptyLinkFunctionForGeneratedCodeSTracerMulti() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTracerMulti, 1744431495);
+	IMPLEMENT_CLASS(ASTracerMulti, 4189033601);
 	template<> COOPGAME_API UClass* StaticClass<ASTracerMulti>()
 	{
 		return ASTracerMulti::StaticClass();
