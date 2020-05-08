@@ -23,6 +23,8 @@ void EmptyLinkFunctionForGeneratedCodeSCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
 	COOPGAME_API UClass* Z_Construct_UClass_USHealthComponent_NoRegister();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASCharacter_startFire();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASCharacter_stopFire();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	COOPGAME_API UClass* Z_Construct_UClass_ASWeapon_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
@@ -34,6 +36,8 @@ void EmptyLinkFunctionForGeneratedCodeSCharacter() {}
 		static const FNameNativePtrPair Funcs[] = {
 			{ "isHoldingAWeapon", &ASCharacter::execisHoldingAWeapon },
 			{ "onHealthChanged", &ASCharacter::execonHealthChanged },
+			{ "startFire", &ASCharacter::execstartFire },
+			{ "stopFire", &ASCharacter::execstopFire },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
 	}
@@ -143,6 +147,52 @@ void EmptyLinkFunctionForGeneratedCodeSCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ASCharacter_startFire_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASCharacter_startFire_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Player" },
+		{ "ModuleRelativePath", "Public/SCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASCharacter_startFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASCharacter, nullptr, "startFire", 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASCharacter_startFire_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASCharacter_startFire_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASCharacter_startFire()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASCharacter_startFire_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ASCharacter_stopFire_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASCharacter_stopFire_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Player" },
+		{ "ModuleRelativePath", "Public/SCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASCharacter_stopFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASCharacter, nullptr, "stopFire", 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASCharacter_stopFire_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASCharacter_stopFire_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASCharacter_stopFire()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASCharacter_stopFire_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	UClass* Z_Construct_UClass_ASCharacter_NoRegister()
 	{
 		return ASCharacter::StaticClass();
@@ -202,6 +252,8 @@ void EmptyLinkFunctionForGeneratedCodeSCharacter() {}
 	const FClassFunctionLinkInfo Z_Construct_UClass_ASCharacter_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ASCharacter_isHoldingAWeapon, "isHoldingAWeapon" }, // 3938412968
 		{ &Z_Construct_UFunction_ASCharacter_onHealthChanged, "onHealthChanged" }, // 2854755951
+		{ &Z_Construct_UFunction_ASCharacter_startFire, "startFire" }, // 4186071393
+		{ &Z_Construct_UFunction_ASCharacter_stopFire, "stopFire" }, // 2613506809
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASCharacter_Statics::Class_MetaDataParams[] = {
@@ -325,7 +377,7 @@ void EmptyLinkFunctionForGeneratedCodeSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASCharacter, 88347712);
+	IMPLEMENT_CLASS(ASCharacter, 301729800);
 	template<> COOPGAME_API UClass* StaticClass<ASCharacter>()
 	{
 		return ASCharacter::StaticClass();
