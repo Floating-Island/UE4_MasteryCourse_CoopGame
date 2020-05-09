@@ -231,7 +231,7 @@ void ASTrackerBot::NotifyActorBeginOverlap(AActor* OtherActor)
 		return;
 	}
 	ASCharacter* playerPawn = Cast<ASCharacter>(OtherActor);
-	if(playerPawn)
+	if(playerPawn && !healthComp->isFriendly(this, playerPawn))
 	{
 		bSelfDestructionInitiated = true;
 		//overlapped with a player, start self destruction sequence...
