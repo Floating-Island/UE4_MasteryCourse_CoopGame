@@ -115,6 +115,8 @@ protected:
 	void increasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult);
 	UFUNCTION()
 	void decreasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex);
+
+	APawn* nearestTarget();
 	
 public:	
 	// Called every frame

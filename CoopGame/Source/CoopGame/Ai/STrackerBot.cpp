@@ -110,15 +110,46 @@ void ASTrackerBot::serverCalculateNextStep()
 
 FVector ASTrackerBot::nextStepInDestination()
 {
-	ACharacter* target = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);//shouldn't be used, it's a hack
-	FVector currentLocation = GetActorLocation();
+	ACharacter* bestTarget = Cast<ASCharacter, APawn>(nearestTarget());
 	
-	UNavigationPath* pathToTarget =  UNavigationSystemV1::FindPathToActorSynchronously(this,currentLocation, target);
-	if(pathToTarget && pathToTarget->PathPoints.Num() > 1)
+	FVector currentLocation = GetActorLocation();
+
+	if(bestTarget)
 	{
-		return pathToTarget->PathPoints[1];
+		UNavigationPath* pathToTarget = UNavigationSystemV1::FindPathToActorSynchronously(this, currentLocation, bestTarget);
+		if (pathToTarget && pathToTarget->PathPoints.Num() > 1)
+		{
+			return pathToTarget->PathPoints[1];
+		}
 	}
+	
 	return currentLocation;
+}
+
+APawn* ASTrackerBot::nearestTarget()
+{
+	float nearestTargetDistance = FLT_MAX;
+
+	APawn* bestTarget = nullptr;
+
+	for (auto pawnIterator = GetWorld()->GetPawnIterator(); pawnIterator; ++pawnIterator)
+	{
+		APawn* pawnFound = pawnIterator->Get();
+		if (pawnFound && !healthComp->isFriendly(this, pawnFound))
+		{
+			USHealthComponent* pawnHealthComponent = Cast<USHealthComponent, UActorComponent>(pawnFound->GetComponentByClass(USHealthComponent::StaticClass()));
+			if (pawnHealthComponent && pawnHealthComponent->getCurrentHealth() > 0)
+			{
+				float distanceToPawn = (GetActorLocation() - pawnFound->GetActorLocation()).Size();
+				if (distanceToPawn < nearestTargetDistance)
+				{
+					bestTarget = pawnFound;
+					nearestTargetDistance = distanceToPawn;
+				}
+			}
+		}
+	}
+	return bestTarget;
 }
 
 void ASTrackerBot::handleTakeDamage(USHealthComponent* trigger, float health, float healthDelta,
