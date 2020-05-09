@@ -60,6 +60,7 @@ ASTrackerBot::ASTrackerBot()
 	maximumPowerLevel = 3;
 	currentPowerLevel = 0;
 	swarmBonusDamageMultiplier = 15;
+	Instigator = this;
 }
 
 // Called when the game starts or when spawned
