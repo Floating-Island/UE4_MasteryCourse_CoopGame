@@ -117,6 +117,14 @@ protected:
 	void decreasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex);
 
 	APawn* nearestTarget();
+
+	FTimerHandle stuckInPathTimer;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tracking")
+		float StuckInPathWaiting;
+	
+	UFUNCTION()
+		void refreshPath();
 	
 public:	
 	// Called every frame

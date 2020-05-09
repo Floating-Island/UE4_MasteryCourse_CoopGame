@@ -60,6 +60,8 @@ ASTrackerBot::ASTrackerBot()
 	maximumPowerLevel = 3;
 	currentPowerLevel = 0;
 	swarmBonusDamageMultiplier = 15;
+
+	StuckInPathWaiting = 5.0f;
 }
 
 // Called when the game starts or when spawned
@@ -117,6 +119,10 @@ FVector ASTrackerBot::nextStepInDestination()
 	if(bestTarget)
 	{
 		UNavigationPath* pathToTarget = UNavigationSystemV1::FindPathToActorSynchronously(this, currentLocation, bestTarget);
+
+		GetWorldTimerManager().ClearTimer(stuckInPathTimer);
+		GetWorldTimerManager().SetTimer(stuckInPathTimer, this, &ASTrackerBot::refreshPath, StuckInPathWaiting, false);
+		
 		if (pathToTarget && pathToTarget->PathPoints.Num() > 1)
 		{
 			return pathToTarget->PathPoints[1];
@@ -151,6 +157,12 @@ APawn* ASTrackerBot::nearestTarget()
 	}
 	return bestTarget;
 }
+
+void ASTrackerBot::refreshPath()
+{
+	nextStep = nextStepInDestination();
+}
+
 
 void ASTrackerBot::handleTakeDamage(USHealthComponent* trigger, float health, float healthDelta,
                                     const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
