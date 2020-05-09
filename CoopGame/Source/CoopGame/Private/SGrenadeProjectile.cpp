@@ -50,7 +50,7 @@ void ASGrenadeProjectile::provokeRadialDamage()
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
 
 	UGameplayStatics::ApplyRadialDamage(this, explosionDamage, GetActorLocation(), damageRadius, damageType,
-		ignoredActors, this, GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
+		ignoredActors, GetOwner(), GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
 }
 
 void ASGrenadeProjectile::serverVanish()

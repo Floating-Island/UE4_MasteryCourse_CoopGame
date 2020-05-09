@@ -51,7 +51,7 @@ void USHealthComponent::damageTakerHandle(AActor* DamagedActor, float Damage, co
 		return;
 	}
 
-	if (DamageCauser != DamagedActor && isFriendly(InstigatedBy->GetPawn(), DamagedActor))
+	if (DamageCauser != DamagedActor && isFriendly(DamageCauser, DamagedActor))
 	{
 		return;	
 	}
