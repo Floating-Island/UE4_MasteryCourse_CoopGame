@@ -21,6 +21,14 @@ class AController;
 
 #define CoopGame_Source_CoopGame_Ai_STrackerBot_h_18_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execrefreshPath) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->refreshPath(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execdecreasePowerLevel) \
 	{ \
 		P_GET_OBJECT(UPrimitiveComponent,Z_Param_overlappedComponent); \
@@ -63,6 +71,14 @@ class AController;
 
 
 #define CoopGame_Source_CoopGame_Ai_STrackerBot_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execrefreshPath) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->refreshPath(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execdecreasePowerLevel) \
 	{ \
@@ -163,7 +179,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTrackerBot); \
 	FORCEINLINE static uint32 __PPO__destructionSound() { return STRUCT_OFFSET(ASTrackerBot, destructionSound); } \
 	FORCEINLINE static uint32 __PPO__outerSwarmSphere() { return STRUCT_OFFSET(ASTrackerBot, outerSwarmSphere); } \
 	FORCEINLINE static uint32 __PPO__maximumPowerLevel() { return STRUCT_OFFSET(ASTrackerBot, maximumPowerLevel); } \
-	FORCEINLINE static uint32 __PPO__swarmBonusDamageMultiplier() { return STRUCT_OFFSET(ASTrackerBot, swarmBonusDamageMultiplier); }
+	FORCEINLINE static uint32 __PPO__swarmBonusDamageMultiplier() { return STRUCT_OFFSET(ASTrackerBot, swarmBonusDamageMultiplier); } \
+	FORCEINLINE static uint32 __PPO__StuckInPathWaiting() { return STRUCT_OFFSET(ASTrackerBot, StuckInPathWaiting); }
 
 
 #define CoopGame_Source_CoopGame_Ai_STrackerBot_h_15_PROLOG
