@@ -94,7 +94,7 @@ bool USHealthComponent::isFriendly(AActor* aTeamMember, AActor* anotherTeamMembe
 	}
 	
 	USHealthComponent* aHealthComponent = Cast<USHealthComponent, UActorComponent>(aTeamMember->GetComponentByClass(USHealthComponent::StaticClass()));
-	USHealthComponent* anotherHealthComponent = Cast<USHealthComponent, UActorComponent>(aTeamMember->GetComponentByClass(USHealthComponent::StaticClass()));
+	USHealthComponent* anotherHealthComponent = Cast<USHealthComponent, UActorComponent>(anotherTeamMember->GetComponentByClass(USHealthComponent::StaticClass()));
 
 	if(aHealthComponent == nullptr || anotherHealthComponent == nullptr)
 	{
