@@ -32,7 +32,7 @@ public:
 	USHealthComponent();
 	void serverAddDamageToHandle();
 
-	UPROPERTY(BlueprintReadOnly, Category = "Player")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player")
 	uint8 teamNumber;
 
 protected:
