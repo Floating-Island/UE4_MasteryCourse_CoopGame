@@ -32,6 +32,9 @@ public:
 	USHealthComponent();
 	void serverAddDamageToHandle();
 
+	UPROPERTY(BlueprintReadOnly, Category = "Player")
+	uint8 teamNumber;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -62,4 +65,7 @@ public:
 		void heal(float healingAmount);
 
 	float getCurrentHealth() { return currentHealth; }
+
+	UFUNCTION(BlueprintCallable, BlueprintPure ,Category = "Player")
+		static bool isFriendly(AActor* aTeamMember, AActor* anotherTeamMember);
 };
