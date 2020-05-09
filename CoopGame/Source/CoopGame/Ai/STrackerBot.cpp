@@ -45,7 +45,7 @@ ASTrackerBot::ASTrackerBot()
 	bVelocityChanges = true;
 
 	explosionDamage = 30;
-	explosionRadius = 200;
+	explosionRadius = 350;
 	bHasExploded = false;
 
 	outerSwarmSphere = CreateDefaultSubobject<USphereComponent>(TEXT("Outer Swarm Sphere Component"));
