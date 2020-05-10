@@ -114,6 +114,11 @@ protected:
 		USoundCue* fireSound;
 
 	void emitFireSound();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+		USoundCue* reloadSound;
+
+	void emitReloadSound();
 	
 };
 

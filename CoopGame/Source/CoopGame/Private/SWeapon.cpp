@@ -169,6 +169,7 @@ void ASWeapon::checkIfServerIsFiring()
 void ASWeapon::firingEffects()
 {
 	muzzleFireFlash();
+	emitFireSound();
 	AActor* weaponOwner = GetOwner();
 	recoilShakingCamera(weaponOwner);
 }
@@ -180,6 +181,13 @@ void ASWeapon::emitFireSound()
 		UGameplayStatics::SpawnSoundAttached(fireSound, RootComponent);
 	}
 }
+
+void ASWeapon::emitReloadSound()
+{
+	if (reloadSound)
+	{
+		UGameplayStatics::SpawnSoundAttached(reloadSound, RootComponent);
+	}
 
 void ASWeapon::serverFires_Implementation()
 {
