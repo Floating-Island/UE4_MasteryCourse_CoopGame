@@ -97,6 +97,10 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_reloadSound_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_reloadSound;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_fireSound_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_fireSound;
@@ -178,6 +182,13 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_reloadSound_MetaData[] = {
+		{ "Category", "Weapon" },
+		{ "ModuleRelativePath", "Public/SWeapon.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_reloadSound = { "reloadSound", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, reloadSound), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_reloadSound_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_reloadSound_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_fireSound_MetaData[] = {
 		{ "Category", "Weapon" },
@@ -298,6 +309,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_mesh = { "mesh", nullptr, (EPropertyFlags)0x00200800000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, mesh), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_mesh_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_mesh_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASWeapon_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_reloadSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_fireSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_fireRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASWeapon_Statics::NewProp_lastFireTime,
@@ -342,7 +354,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASWeapon, 3541492316);
+	IMPLEMENT_CLASS(ASWeapon, 3991565959);
 	template<> COOPGAME_API UClass* StaticClass<ASWeapon>()
 	{
 		return ASWeapon::StaticClass();
