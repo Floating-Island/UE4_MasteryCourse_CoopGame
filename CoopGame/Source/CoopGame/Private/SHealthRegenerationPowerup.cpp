@@ -10,11 +10,12 @@
 
 void ASHealthRegenerationPowerup::powerupTicking()
 {
-	TArray<APawn*> players;
+	TArray<AActor*> players;
 	UGameplayStatics::GetAllActorsOfClass(this, ASCharacter::StaticClass(), players);
 	for (auto player : players)
 	{
-		if(player && player->IsPlayerControlled())
+		ASCharacter* character = Cast<ASCharacter, AActor>(player);
+		if(player && character->IsPlayerControlled())
 		{
 			USHealthComponent* healthComponent = Cast<USHealthComponent, UActorComponent>(player->GetComponentByClass(USHealthComponent::StaticClass()));
 			if(healthComponent)
