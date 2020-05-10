@@ -15,7 +15,7 @@ void ASHealthRegenerationPowerup::powerupTicking()
 	for (auto player : players)
 	{
 		ASCharacter* character = Cast<ASCharacter, AActor>(player);
-		if(player && character->IsPlayerControlled())
+		if(player && character && character->IsPlayerControlled())
 		{
 			USHealthComponent* healthComponent = Cast<USHealthComponent, UActorComponent>(player->GetComponentByClass(USHealthComponent::StaticClass()));
 			if(healthComponent)
