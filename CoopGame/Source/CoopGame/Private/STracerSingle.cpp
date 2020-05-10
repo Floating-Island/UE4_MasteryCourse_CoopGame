@@ -16,6 +16,12 @@ FAutoConsoleVariableRef ConsoleDebugTracerWeaponDrawing(
 	ECVF_Cheat /*works only when cheats are enabled*/
 );
 
+
+ASTracerSingle::ASTracerSingle()
+{
+	bulletSpread = 1.0;
+}
+
 void ASTracerSingle::fire()
 {
 	checkIfServerIsFiring();
@@ -42,6 +48,7 @@ void ASTracerSingle::startFire()
 	}
 }
 
+
 void ASTracerSingle::singleTraceFire()
 {
 	firingEffects();
@@ -59,6 +66,11 @@ void ASTracerSingle::singleTraceFire()
 	weaponOwner->GetActorEyesViewPoint(eyesLocation, eyesRotation);//now we have the eyes's location and rotation
 
 	FVector shotDirection = eyesRotation.Vector();
+
+	//give a randomized effect to the shot.
+	float bulletSpreadRadians = FMath::DegreesToRadians(bulletSpread);
+	shotDirection = FMath::VRandCone(shotDirection, bulletSpreadRadians);
+	
 	FVector traceDistance = eyesLocation + shotDirection * rangeMultiplier;//where the trace ends
 
 	FHitResult hit;//struct containing hit information

@@ -57,7 +57,7 @@ void ASTracerWeapon::processPointDamage(AActor* weaponOwner, FVector shotDirecti
 		{
 			actualDamage += bonusDamage;
 		}
-		UGameplayStatics::ApplyPointDamage(hitActor, actualDamage, shotDirection, hit, weaponOwner->GetInstigatorController(), this, typeOfDamage);
+		UGameplayStatics::ApplyPointDamage(hitActor, actualDamage, shotDirection, hit, weaponOwner->GetInstigatorController(), weaponOwner, typeOfDamage);
 
 		serverReactsAtPhysicalMaterial(surfaceHit);
 		reactAtPhysicsMaterial(hit.ImpactPoint, surfaceHit);

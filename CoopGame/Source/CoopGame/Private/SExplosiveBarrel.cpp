@@ -31,6 +31,7 @@ ASExplosiveBarrel::ASExplosiveBarrel()
 
 	SetReplicates(true);
 	SetReplicateMovement(true);//has gameplay significance. It's important that client and server see the same
+
 }
 
 // Called when the game starts or when spawned

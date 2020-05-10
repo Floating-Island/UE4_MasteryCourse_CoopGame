@@ -35,7 +35,7 @@ public: \
 
 #define CoopGame_Source_CoopGame_Public_STracerSingle_h_15_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ASTracerSingle(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	NO_API ASTracerSingle(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASTracerSingle) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ASTracerSingle); \
 DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTracerSingle); \
@@ -47,8 +47,6 @@ public:
 
 
 #define CoopGame_Source_CoopGame_Public_STracerSingle_h_15_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ASTracerSingle() { }; \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASTracerSingle(ASTracerSingle&&); \
@@ -59,7 +57,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTracerSingle); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASTracerSingle)
 
 
-#define CoopGame_Source_CoopGame_Public_STracerSingle_h_15_PRIVATE_PROPERTY_OFFSET
+#define CoopGame_Source_CoopGame_Public_STracerSingle_h_15_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__bulletSpread() { return STRUCT_OFFSET(ASTracerSingle, bulletSpread); }
+
+
 #define CoopGame_Source_CoopGame_Public_STracerSingle_h_12_PROLOG
 #define CoopGame_Source_CoopGame_Public_STracerSingle_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

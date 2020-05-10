@@ -26,6 +26,7 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 	COOPGAME_API UClass* Z_Construct_UClass_USHealthComponent_NoRegister();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASTrackerBot_increasePowerLevel();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASTrackerBot_refreshPath();
 	ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
@@ -39,6 +40,7 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 			{ "decreasePowerLevel", &ASTrackerBot::execdecreasePowerLevel },
 			{ "handleTakeDamage", &ASTrackerBot::exechandleTakeDamage },
 			{ "increasePowerLevel", &ASTrackerBot::execincreasePowerLevel },
+			{ "refreshPath", &ASTrackerBot::execrefreshPath },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
 	}
@@ -251,6 +253,28 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ASTrackerBot_refreshPath_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASTrackerBot_refreshPath_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASTrackerBot_refreshPath_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASTrackerBot, nullptr, "refreshPath", 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASTrackerBot_refreshPath_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASTrackerBot_refreshPath_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASTrackerBot_refreshPath()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASTrackerBot_refreshPath_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	UClass* Z_Construct_UClass_ASTrackerBot_NoRegister()
 	{
 		return ASTrackerBot::StaticClass();
@@ -262,6 +286,10 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StuckInPathWaiting_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_StuckInPathWaiting;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_swarmBonusDamageMultiplier_MetaData[];
 #endif
@@ -339,6 +367,7 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		{ &Z_Construct_UFunction_ASTrackerBot_decreasePowerLevel, "decreasePowerLevel" }, // 264356878
 		{ &Z_Construct_UFunction_ASTrackerBot_handleTakeDamage, "handleTakeDamage" }, // 1544438269
 		{ &Z_Construct_UFunction_ASTrackerBot_increasePowerLevel, "increasePowerLevel" }, // 3503212723
+		{ &Z_Construct_UFunction_ASTrackerBot_refreshPath, "refreshPath" }, // 3032621631
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTrackerBot_Statics::Class_MetaDataParams[] = {
@@ -347,6 +376,13 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTrackerBot_Statics::NewProp_StuckInPathWaiting_MetaData[] = {
+		{ "Category", "Tracking" },
+		{ "ModuleRelativePath", "Ai/STrackerBot.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASTrackerBot_Statics::NewProp_StuckInPathWaiting = { "StuckInPathWaiting", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTrackerBot, StuckInPathWaiting), METADATA_PARAMS(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_StuckInPathWaiting_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_StuckInPathWaiting_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTrackerBot_Statics::NewProp_swarmBonusDamageMultiplier_MetaData[] = {
 		{ "Category", "Swarm" },
@@ -471,6 +507,7 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp = { "meshComp", nullptr, (EPropertyFlags)0x00200800000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTrackerBot, meshComp), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTrackerBot_Statics::NewProp_meshComp_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASTrackerBot_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_StuckInPathWaiting,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_swarmBonusDamageMultiplier,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_maximumPowerLevel,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTrackerBot_Statics::NewProp_outerSwarmSphere,
@@ -515,7 +552,7 @@ void EmptyLinkFunctionForGeneratedCodeSTrackerBot() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTrackerBot, 1041683511);
+	IMPLEMENT_CLASS(ASTrackerBot, 4245474058);
 	template<> COOPGAME_API UClass* StaticClass<ASTrackerBot>()
 	{
 		return ASTrackerBot::StaticClass();

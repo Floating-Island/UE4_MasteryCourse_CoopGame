@@ -59,7 +59,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASTracerMulti); \
 
 #define CoopGame_Source_CoopGame_Public_STracerMulti_h_15_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__shots() { return STRUCT_OFFSET(ASTracerMulti, shots); } \
-	FORCEINLINE static uint32 __PPO__spreadConeHalfAngleRadius() { return STRUCT_OFFSET(ASTracerMulti, spreadConeHalfAngleRadius); }
+	FORCEINLINE static uint32 __PPO__shotSpread() { return STRUCT_OFFSET(ASTracerMulti, shotSpread); }
 
 
 #define CoopGame_Source_CoopGame_Public_STracerMulti_h_12_PROLOG

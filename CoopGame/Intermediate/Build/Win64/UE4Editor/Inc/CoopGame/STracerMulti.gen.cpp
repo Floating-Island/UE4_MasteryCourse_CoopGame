@@ -32,9 +32,9 @@ void EmptyLinkFunctionForGeneratedCodeSTracerMulti() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_spreadConeHalfAngleRadius_MetaData[];
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_shotSpread_MetaData[];
 #endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_spreadConeHalfAngleRadius;
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_shotSpread;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_shots_MetaData[];
 #endif
@@ -54,15 +54,14 @@ void EmptyLinkFunctionForGeneratedCodeSTracerMulti() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTracerMulti_Statics::NewProp_spreadConeHalfAngleRadius_MetaData[] = {
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shotSpread_MetaData[] = {
 		{ "Category", "Weapon" },
-		{ "ClampMax", "1.5708" },
 		{ "ClampMin", "0" },
 		{ "ModuleRelativePath", "Public/STracerMulti.h" },
-		{ "ToolTip", "90 degrees = 1.5708 radians" },
+		{ "ToolTip", "Half angle in Degrees" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASTracerMulti_Statics::NewProp_spreadConeHalfAngleRadius = { "spreadConeHalfAngleRadius", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTracerMulti, spreadConeHalfAngleRadius), METADATA_PARAMS(Z_Construct_UClass_ASTracerMulti_Statics::NewProp_spreadConeHalfAngleRadius_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTracerMulti_Statics::NewProp_spreadConeHalfAngleRadius_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shotSpread = { "shotSpread", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTracerMulti, shotSpread), METADATA_PARAMS(Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shotSpread_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shotSpread_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shots_MetaData[] = {
 		{ "Category", "Weapon" },
@@ -72,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeSTracerMulti() {}
 #endif
 	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shots = { "shots", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTracerMulti, shots), METADATA_PARAMS(Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shots_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shots_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASTracerMulti_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTracerMulti_Statics::NewProp_spreadConeHalfAngleRadius,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shotSpread,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTracerMulti_Statics::NewProp_shots,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASTracerMulti_Statics::StaticCppClassTypeInfo = {
@@ -102,7 +101,7 @@ void EmptyLinkFunctionForGeneratedCodeSTracerMulti() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTracerMulti, 1816213324);
+	IMPLEMENT_CLASS(ASTracerMulti, 4189033601);
 	template<> COOPGAME_API UClass* StaticClass<ASTracerMulti>()
 	{
 		return ASTracerMulti::StaticClass();

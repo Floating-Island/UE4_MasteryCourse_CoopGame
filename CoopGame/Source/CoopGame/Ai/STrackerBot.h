@@ -115,6 +115,16 @@ protected:
 	void increasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex, bool bFromSweep, const FHitResult& sweepResult);
 	UFUNCTION()
 	void decreasePowerLevel(UPrimitiveComponent* overlappedComponent, AActor* otherActor, UPrimitiveComponent* otherComponent, int32 otherBodyIndex);
+
+	APawn* nearestTarget();
+
+	FTimerHandle stuckInPathTimer;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tracking")
+		float StuckInPathWaiting;
+	
+	UFUNCTION()
+		void refreshPath();
 	
 public:	
 	// Called every frame

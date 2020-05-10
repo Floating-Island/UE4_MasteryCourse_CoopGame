@@ -21,9 +21,12 @@ public:
 	ASCharacter();
 	void attachWeapon();
 
+	UFUNCTION(BlueprintCallable, Category = "Player")
 	void startFire();
 
+	UFUNCTION(BlueprintCallable, Category = "Player")
 	void stopFire();
+	
 	void serverAttachWeapon();
 
 protected:

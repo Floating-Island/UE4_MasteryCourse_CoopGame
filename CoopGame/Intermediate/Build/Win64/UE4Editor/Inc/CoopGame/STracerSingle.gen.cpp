@@ -31,6 +31,11 @@ void EmptyLinkFunctionForGeneratedCodeSTracerSingle() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bulletSpread_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_bulletSpread;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -44,6 +49,18 @@ void EmptyLinkFunctionForGeneratedCodeSTracerSingle() {}
 		{ "ModuleRelativePath", "Public/STracerSingle.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASTracerSingle_Statics::NewProp_bulletSpread_MetaData[] = {
+		{ "Category", "Weapon" },
+		{ "ClampMin", "0.000000" },
+		{ "ModuleRelativePath", "Public/STracerSingle.h" },
+		{ "ToolTip", "Half angle in Degrees" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASTracerSingle_Statics::NewProp_bulletSpread = { "bulletSpread", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASTracerSingle, bulletSpread), METADATA_PARAMS(Z_Construct_UClass_ASTracerSingle_Statics::NewProp_bulletSpread_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASTracerSingle_Statics::NewProp_bulletSpread_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASTracerSingle_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASTracerSingle_Statics::NewProp_bulletSpread,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASTracerSingle_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ASTracerSingle>::IsAbstract,
 	};
@@ -53,11 +70,11 @@ void EmptyLinkFunctionForGeneratedCodeSTracerSingle() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_ASTracerSingle_Statics::PropPointers,
 		nullptr,
 		ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		ARRAY_COUNT(Z_Construct_UClass_ASTracerSingle_Statics::PropPointers),
 		0,
 		0x009000A0u,
 		METADATA_PARAMS(Z_Construct_UClass_ASTracerSingle_Statics::Class_MetaDataParams, ARRAY_COUNT(Z_Construct_UClass_ASTracerSingle_Statics::Class_MetaDataParams))
@@ -71,7 +88,7 @@ void EmptyLinkFunctionForGeneratedCodeSTracerSingle() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTracerSingle, 597548478);
+	IMPLEMENT_CLASS(ASTracerSingle, 152498772);
 	template<> COOPGAME_API UClass* StaticClass<ASTracerSingle>()
 	{
 		return ASTracerSingle::StaticClass();

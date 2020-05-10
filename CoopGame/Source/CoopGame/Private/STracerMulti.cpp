@@ -19,7 +19,7 @@ FAutoConsoleVariableRef ConsoleDebugMultiTraceDrawing(
 ASTracerMulti::ASTracerMulti()
 {
 	shots = 1;
-	spreadConeHalfAngleRadius = 0.16f;
+	shotSpread = 9.16f;
 }
 
 void ASTracerMulti::startFire()
@@ -64,11 +64,12 @@ void ASTracerMulti::multiTraceFire()
 	weaponOwner->GetActorEyesViewPoint(eyesLocation, eyesRotation);
 
 	FVector shotDirection = eyesRotation.Vector();
-	
+
+	float hitSpreadRadians = FMath::DegreesToRadians(shotSpread);
 
 	for (int releaseShot = 0; releaseShot < shots; releaseShot++)
 	{
-		FVector shot = FMath::VRandCone(shotDirection, spreadConeHalfAngleRadius);
+		FVector shot = FMath::VRandCone(shotDirection, hitSpreadRadians);
 
 		FVector traceDistance = eyesLocation + shot * rangeMultiplier;//where the trace ends
 		
