@@ -6,6 +6,7 @@
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
+#include "Sound/SoundCue.h"
 //#include "TimerManager.h"//call it when you need to have a fire rate
 //#include "Particles/ParticleSystem.h"//used to spawn effects
 //#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location
@@ -170,6 +171,14 @@ void ASWeapon::firingEffects()
 	muzzleFireFlash();
 	AActor* weaponOwner = GetOwner();
 	recoilShakingCamera(weaponOwner);
+}
+
+void ASWeapon::emitFireSound()
+{
+	if(fireSound)
+	{
+		UGameplayStatics::SpawnSoundAttached(fireSound, RootComponent);
+	}
 }
 
 void ASWeapon::serverFires_Implementation()

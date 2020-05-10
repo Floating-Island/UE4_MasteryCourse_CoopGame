@@ -280,7 +280,7 @@ static struct FScriptStruct_CoopGame_StaticRegisterNativesFHitScanTrace
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTracerWeapon, 2171256354);
+	IMPLEMENT_CLASS(ASTracerWeapon, 849597475);
 	template<> COOPGAME_API UClass* StaticClass<ASTracerWeapon>()
 	{
 		return ASTracerWeapon::StaticClass();

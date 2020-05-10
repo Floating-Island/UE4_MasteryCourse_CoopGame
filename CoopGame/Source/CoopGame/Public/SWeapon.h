@@ -11,7 +11,7 @@ class USkeletalMeshComponent;
 class UDamageType;
 class UParticleSystem;
 class UCameraShake;
-
+class USoundCue;
 
 
 
@@ -108,6 +108,12 @@ protected:
 
 	UFUNCTION()
 		void firingEffects();
+
+	//Sounds
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+		USoundCue* fireSound;
+
+	void emitFireSound();
 	
 };
 
