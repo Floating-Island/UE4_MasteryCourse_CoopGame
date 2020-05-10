@@ -105,6 +105,7 @@ void ASWeapon::reload()
 			ammoInMagazine += availableBackupAmmo;
 			availableBackupAmmo = 0;
 		}
+		emitReloadSound();
 	}
 }
 
