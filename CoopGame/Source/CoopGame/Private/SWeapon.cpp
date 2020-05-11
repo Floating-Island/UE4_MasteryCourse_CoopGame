@@ -190,7 +190,15 @@ void ASWeapon::emitReloadSound()
 		UGameplayStatics::SpawnSoundAttached(reloadSound, RootComponent);
 	}
 }
-	
+
+void ASWeapon::emitEmptyMagazineSound()
+{
+	if (magazineEmptySound)
+	{
+		UGameplayStatics::SpawnSoundAttached(magazineEmptySound, RootComponent);
+	}
+}
+
 void ASWeapon::serverFires_Implementation()
 {
 	fire();

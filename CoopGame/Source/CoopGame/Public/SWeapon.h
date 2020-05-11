@@ -119,6 +119,11 @@ protected:
 		USoundCue* reloadSound;
 
 	void emitReloadSound();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+		USoundCue* magazineEmptySound;
+
+	void emitEmptyMagazineSound();
 	
 };
 
