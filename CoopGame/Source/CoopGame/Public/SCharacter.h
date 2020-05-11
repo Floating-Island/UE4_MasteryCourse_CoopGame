@@ -76,7 +76,8 @@ protected:
 	//jumping
 	void jump();
 
-	void reload();
+	UFUNCTION(BlueprintCallable)
+		void reload();
 
 	//zooming
 	float defaultFOV;
