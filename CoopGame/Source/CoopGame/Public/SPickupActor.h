@@ -46,7 +46,7 @@ protected:
 	UPROPERTY(EditInstanceOnly, Category = "Pickup Actor")
 		float respawnCooldown;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, Category = "Pickup Actor")
 		USoundCue* ObjectPickedUpSound;
 
 	
