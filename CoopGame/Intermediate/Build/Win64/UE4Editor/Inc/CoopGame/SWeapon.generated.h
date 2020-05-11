@@ -36,6 +36,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 		} \
 		P_THIS->serverFires_Implementation(); \
 		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(exechasAmmoInMagazine) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(bool*)Z_Param__Result=P_THIS->hasAmmoInMagazine(); \
+		P_NATIVE_END; \
 	}
 
 
@@ -61,6 +69,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 			return; \
 		} \
 		P_THIS->serverFires_Implementation(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(exechasAmmoInMagazine) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(bool*)Z_Param__Result=P_THIS->hasAmmoInMagazine(); \
 		P_NATIVE_END; \
 	}
 

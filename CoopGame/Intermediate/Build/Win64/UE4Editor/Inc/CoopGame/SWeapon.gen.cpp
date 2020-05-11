@@ -18,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASWeapon_firingEffects();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASWeapon_serverFires();
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
@@ -36,6 +37,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		UClass* Class = ASWeapon::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "firingEffects", &ASWeapon::execfiringEffects },
+			{ "hasAmmoInMagazine", &ASWeapon::exechasAmmoInMagazine },
 			{ "serverFires", &ASWeapon::execserverFires },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
@@ -59,6 +61,43 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASWeapon_firingEffects_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics
+	{
+		struct SWeapon_eventhasAmmoInMagazine_Parms
+		{
+			bool ReturnValue;
+		};
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((SWeapon_eventhasAmmoInMagazine_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(SWeapon_eventhasAmmoInMagazine_Parms), &Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SWeapon.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASWeapon, nullptr, "hasAmmoInMagazine", sizeof(SWeapon_eventhasAmmoInMagazine_Parms), Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -178,6 +217,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ASWeapon_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ASWeapon_firingEffects, "firingEffects" }, // 3404914412
+		{ &Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine, "hasAmmoInMagazine" }, // 2270773095
 		{ &Z_Construct_UFunction_ASWeapon_serverFires, "serverFires" }, // 127827640
 	};
 #if WITH_METADATA
@@ -366,7 +406,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASWeapon, 680286906);
+	IMPLEMENT_CLASS(ASWeapon, 3845780376);
 	template<> COOPGAME_API UClass* StaticClass<ASWeapon>()
 	{
 		return ASWeapon::StaticClass();

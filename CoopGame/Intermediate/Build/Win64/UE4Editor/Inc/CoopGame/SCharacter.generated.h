@@ -27,6 +27,14 @@ class AActor;
 		P_NATIVE_END; \
 	} \
  \
+	DECLARE_FUNCTION(execreload) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->reload(); \
+		P_NATIVE_END; \
+	} \
+ \
 	DECLARE_FUNCTION(execonHealthChanged) \
 	{ \
 		P_GET_OBJECT(USHealthComponent,Z_Param_trigger); \
@@ -65,6 +73,14 @@ class AActor;
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		*(bool*)Z_Param__Result=P_THIS->isHoldingAWeapon(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execreload) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->reload(); \
 		P_NATIVE_END; \
 	} \
  \
