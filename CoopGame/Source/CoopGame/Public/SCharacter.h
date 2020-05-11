@@ -104,7 +104,7 @@ protected:
 	UPROPERTY(VisibleDefaultsOnly, Category = "Weapon")
 		FName weaponSocket;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintImplementableEvent)
 		void emitWalkingSound();
 
 	

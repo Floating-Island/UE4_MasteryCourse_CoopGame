@@ -141,17 +141,6 @@ void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)
 	serverAttachWeapon();
 }
 
-void ASCharacter::emitWalkingSound()
-{
-	float currentSpeed = GetVelocity().Size();
-
-	float multiplier = UKismetMathLibrary::MapRangeClamped(currentSpeed, 10, 1000, 0.1, 2);
-
-	audioComponent->SetVolumeMultiplier(multiplier);
-	
-	audioComponent->SetPitchMultiplier(multiplier);
-}
-
 // Called every frame
 void ASCharacter::Tick(float DeltaTime)
 {
