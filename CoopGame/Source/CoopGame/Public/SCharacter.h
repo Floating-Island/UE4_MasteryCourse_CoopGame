@@ -76,6 +76,8 @@ protected:
 	//jumping
 	void jump();
 
+	void reload();
+
 	//zooming
 	float defaultFOV;
 

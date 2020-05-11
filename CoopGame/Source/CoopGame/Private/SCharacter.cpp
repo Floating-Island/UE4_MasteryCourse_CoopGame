@@ -184,6 +184,9 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	//fire weapon binding
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASCharacter::startFire);
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASCharacter::stopFire);
+
+	//weapon reload binding
+	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &ASCharacter::reload);
 }
 
 FVector ASCharacter::GetPawnViewLocation() const
@@ -238,6 +241,14 @@ void ASCharacter::endCrouch()
 void ASCharacter::jump()
 {
 	Jump();
+}
+
+void ASCharacter::reload()
+{
+	if(isHoldingAWeapon())
+	{
+		heldWeapon->reload();
+	}
 }
 
 void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
