@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeSTracerMachineGun() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTracerMachineGun, 2347030492);
+	IMPLEMENT_CLASS(ASTracerMachineGun, 2259405216);
 	template<> COOPGAME_API UClass* StaticClass<ASTracerMachineGun>()
 	{
 		return ASTracerMachineGun::StaticClass();

@@ -128,7 +128,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASWeapon); \
 	FORCEINLINE static uint32 __PPO__lastFireTime() { return STRUCT_OFFSET(ASWeapon, lastFireTime); } \
 	FORCEINLINE static uint32 __PPO__fireRate() { return STRUCT_OFFSET(ASWeapon, fireRate); } \
 	FORCEINLINE static uint32 __PPO__fireSound() { return STRUCT_OFFSET(ASWeapon, fireSound); } \
-	FORCEINLINE static uint32 __PPO__reloadSound() { return STRUCT_OFFSET(ASWeapon, reloadSound); }
+	FORCEINLINE static uint32 __PPO__reloadSound() { return STRUCT_OFFSET(ASWeapon, reloadSound); } \
+	FORCEINLINE static uint32 __PPO__magazineEmptySound() { return STRUCT_OFFSET(ASWeapon, magazineEmptySound); }
 
 
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_18_PROLOG \
