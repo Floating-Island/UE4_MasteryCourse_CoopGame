@@ -32,11 +32,15 @@ void EmptyLinkFunctionForGeneratedCodeSCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 // End Cross Module References
+	static FName NAME_ASCharacter_emitWalkingSound = FName(TEXT("emitWalkingSound"));
+	void ASCharacter::emitWalkingSound()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_ASCharacter_emitWalkingSound),NULL);
+	}
 	void ASCharacter::StaticRegisterNativesASCharacter()
 	{
 		UClass* Class = ASCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
-			{ "emitWalkingSound", &ASCharacter::execemitWalkingSound },
 			{ "isHoldingAWeapon", &ASCharacter::execisHoldingAWeapon },
 			{ "onHealthChanged", &ASCharacter::execonHealthChanged },
 			{ "startFire", &ASCharacter::execstartFire },
@@ -56,7 +60,7 @@ void EmptyLinkFunctionForGeneratedCodeSCharacter() {}
 		{ "ModuleRelativePath", "Public/SCharacter.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASCharacter_emitWalkingSound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASCharacter, nullptr, "emitWalkingSound", 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASCharacter_emitWalkingSound_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASCharacter_emitWalkingSound_Statics::Function_MetaDataParams)) };
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASCharacter_emitWalkingSound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASCharacter, nullptr, "emitWalkingSound", 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08080800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASCharacter_emitWalkingSound_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASCharacter_emitWalkingSound_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ASCharacter_emitWalkingSound()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -279,7 +283,7 @@ void EmptyLinkFunctionForGeneratedCodeSCharacter() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_CoopGame,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ASCharacter_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_ASCharacter_emitWalkingSound, "emitWalkingSound" }, // 1405416348
+		{ &Z_Construct_UFunction_ASCharacter_emitWalkingSound, "emitWalkingSound" }, // 2112601019
 		{ &Z_Construct_UFunction_ASCharacter_isHoldingAWeapon, "isHoldingAWeapon" }, // 3938412968
 		{ &Z_Construct_UFunction_ASCharacter_onHealthChanged, "onHealthChanged" }, // 2854755951
 		{ &Z_Construct_UFunction_ASCharacter_startFire, "startFire" }, // 4186071393
@@ -417,7 +421,7 @@ void EmptyLinkFunctionForGeneratedCodeSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASCharacter, 460495079);
+	IMPLEMENT_CLASS(ASCharacter, 1246312075);
 	template<> COOPGAME_API UClass* StaticClass<ASCharacter>()
 	{
 		return ASCharacter::StaticClass();
