@@ -5,8 +5,9 @@
 #include "Components/SphereComponent.h"
 #include "Components/DecalComponent.h"
 #include "TimerManager.h"
+#include "Sound/SoundCue.h"
+#include "Kismet/GameplayStatics.h"
 
-#include "SPowerupActor.h"
 
 // Sets default values
 ASPickupActor::ASPickupActor()
@@ -72,6 +73,14 @@ void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 
 		//set respawn timer
 		GetWorldTimerManager().SetTimer(respawnPickupObjectTimer, this, &ASPickupActor::respawn, respawnCooldown);
+	}
+}
+
+void ASPickupActor::emitObjectPickedSound()
+{
+	if(ObjectPickedUpSound)
+	{
+		UGameplayStatics::SpawnSoundAttached(ObjectPickedUpSound, RootComponent);
 	}
 }
 
