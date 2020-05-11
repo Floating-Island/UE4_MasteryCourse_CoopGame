@@ -145,9 +145,11 @@ void ASCharacter::emitWalkingSound()
 {
 	float currentSpeed = GetVelocity().Size();
 
-	float volumeMultiplier = UKismetMathLibrary::MapRangeClamped(currentSpeed, 10, 1000, 0.1, 2);
+	float multiplier = UKismetMathLibrary::MapRangeClamped(currentSpeed, 10, 1000, 0.1, 2);
 
-	audioComponent->SetVolumeMultiplier(volumeMultiplier);
+	audioComponent->SetVolumeMultiplier(multiplier);
+	
+	audioComponent->SetPitchMultiplier(multiplier);
 }
 
 // Called every frame
