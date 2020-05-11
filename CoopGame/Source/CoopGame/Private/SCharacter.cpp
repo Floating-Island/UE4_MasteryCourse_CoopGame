@@ -214,6 +214,7 @@ void ASCharacter::onHealthChanged(USHealthComponent* trigger, float health, floa
 		//leave the character's body
 		DetachFromControllerPendingDestroy();
 		//destroy the body
+		stopFire();
 		SetLifeSpan(5.0f);
 	}
 }
