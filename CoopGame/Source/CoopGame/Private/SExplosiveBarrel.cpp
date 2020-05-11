@@ -4,9 +4,9 @@
 #include "SExplosiveBarrel.h"
 #include "Components/StaticMeshComponent.h"
 #include "kismet/GameplayStatics.h"
-#include "PhysicalMaterials/PhysicalMaterial.h"
 #include "PhysicsEngine/RadialForceComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Sound/SoundCue.h"
 
 #include "SHealthComponent.h"
 
@@ -57,6 +57,10 @@ void ASExplosiveBarrel::explosionEffects()
 	if (explodeParticle)
 	{
 		UGameplayStatics::SpawnEmitterAtLocation(this, explodeParticle, this->GetActorLocation(), this->GetActorRotation());
+	}
+	if(explosionSound)
+	{
+		UGameplayStatics::SpawnSoundAttached(explosionSound, RootComponent);
 	}
 }
 
