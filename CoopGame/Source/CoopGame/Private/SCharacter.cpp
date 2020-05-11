@@ -7,7 +7,9 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/AudioComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "kismet/KismetMathLibrary.h"
 
 #include "SWeapon.h"
 #include "CoopGame.h"
@@ -50,6 +52,10 @@ ASCharacter::ASCharacter()
 	//weapon socket properties
 
 	weaponSocket = "rWeaponSocket";
+
+
+	audioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio Component"));
+	
 
 	
 }
@@ -133,6 +139,15 @@ void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)
 	serverAttachWeapon();
 }
 
+void ASCharacter::emitWalkingSound()
+{
+	float currentSpeed = GetVelocity().Size();
+
+	float volumeMultiplier = UKismetMathLibrary::MapRangeClamped(currentSpeed, 10, 1000, 0.1, 2);
+
+	audioComponent->SetVolumeMultiplier(volumeMultiplier);
+}
+
 // Called every frame
 void ASCharacter::Tick(float DeltaTime)
 {
@@ -142,6 +157,10 @@ void ASCharacter::Tick(float DeltaTime)
 	{
 		float nextFOV = FMath::FInterpTo(camera->FieldOfView, targetFOV, DeltaTime, fovTransitionSpeed);
 		camera->SetFieldOfView(nextFOV);
+	}
+	if(audioComponent->Sound && !GetMovementComponent()->IsFalling())
+	{
+		emitWalkingSound();
 	}
 }
 
