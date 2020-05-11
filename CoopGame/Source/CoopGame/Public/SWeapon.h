@@ -29,7 +29,9 @@ public:
 
 	virtual void stopFire();
 
-	bool hasAmmoInMagazine();
+	UFUNCTION(BlueprintCallable)
+		bool hasAmmoInMagazine();
+	
 	void reduceMagazineAmmo();
 	void reload();
 
