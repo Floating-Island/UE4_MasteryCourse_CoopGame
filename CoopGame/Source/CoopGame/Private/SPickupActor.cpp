@@ -70,7 +70,7 @@ void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	if(Role == ROLE_Authority && pickupObjectInstance)
 	{
 		pickupObjectOverlaping(OtherActor);
-
+		emitObjectPickedSound();
 		//set respawn timer
 		GetWorldTimerManager().SetTimer(respawnPickupObjectTimer, this, &ASPickupActor::respawn, respawnCooldown);
 	}

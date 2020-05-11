@@ -27,7 +27,7 @@ void EmptyLinkFunctionForGeneratedCodeCoopGame_init() {}
 				SingletonFuncArray,
 				ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x4496AD44,
+				0x2036DEE2,
 				0x6E463C4F,
 				METADATA_PARAMS(nullptr, 0)
 			};
