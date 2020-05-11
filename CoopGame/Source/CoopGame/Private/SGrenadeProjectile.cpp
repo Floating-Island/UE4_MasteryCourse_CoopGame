@@ -6,6 +6,7 @@
 #include "TimerManager.h"
 #include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
+#include "Sound/SoundCue.h"
 
 #include "CoopGame.h"
 
@@ -42,6 +43,10 @@ void ASGrenadeProjectile::explosionEffects()
 		//spawn impact effect
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), hitEffect, GetActorLocation());
 		//hit.ImpactPoint is the location of the hit and ImpactNormal.Rotation() is the rotation.
+	}
+	if(explosionSound)
+	{
+		UGameplayStatics::SpawnSoundAttached(explosionSound, RootComponent);
 	}
 }
 
