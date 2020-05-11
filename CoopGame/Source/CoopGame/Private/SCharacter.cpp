@@ -55,6 +55,8 @@ ASCharacter::ASCharacter()
 
 
 	audioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio Component"));
+
+	audioComponent->SetupAttachment(RootComponent);
 	
 
 	
@@ -158,7 +160,7 @@ void ASCharacter::Tick(float DeltaTime)
 		float nextFOV = FMath::FInterpTo(camera->FieldOfView, targetFOV, DeltaTime, fovTransitionSpeed);
 		camera->SetFieldOfView(nextFOV);
 	}
-	if(audioComponent->Sound && !GetMovementComponent()->IsFalling())
+	if(audioComponent->Sound)
 	{
 		emitWalkingSound();
 	}

@@ -21,7 +21,13 @@ C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Compone
 C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
 C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h
 C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CapsuleComponent.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\Components/AudioComponent.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\AudioComponent.generated.h
 C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Public\Net/UnrealNetwork.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\kismet/KismetMathLibrary.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Core\Public\Misc/QualifiedFrameTime.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetMathLibrary.generated.h
+C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\Engine\Classes\kismet\KismetMathLibrary.inl
 C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source\CoopGame\Public\SWeapon.h
 C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Intermediate\Build\Win64\UE4Editor\Inc\CoopGame\SWeapon.generated.h
 C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source\CoopGame\CoopGame.h

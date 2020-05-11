@@ -17,7 +17,15 @@ class AActor;
 #endif
 #define COOPGAME_SCharacter_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_17_RPC_WRAPPERS \
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_18_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execemitWalkingSound) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->emitWalkingSound(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execisHoldingAWeapon) \
 	{ \
@@ -58,7 +66,15 @@ class AActor;
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execemitWalkingSound) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->emitWalkingSound(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execisHoldingAWeapon) \
 	{ \
@@ -99,7 +115,7 @@ class AActor;
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_17_INCLASS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASCharacter(); \
 	friend struct Z_Construct_UClass_ASCharacter_Statics; \
@@ -109,7 +125,7 @@ public: \
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_17_INCLASS \
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_18_INCLASS \
 private: \
 	static void StaticRegisterNativesASCharacter(); \
 	friend struct Z_Construct_UClass_ASCharacter_Statics; \
@@ -119,7 +135,7 @@ public: \
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_17_STANDARD_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_18_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ASCharacter(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASCharacter) \
@@ -132,7 +148,7 @@ private: \
 public:
 
 
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_17_ENHANCED_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASCharacter(ASCharacter&&); \
@@ -143,9 +159,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASCharacter); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASCharacter)
 
 
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_17_PRIVATE_PROPERTY_OFFSET \
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_18_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__camera() { return STRUCT_OFFSET(ASCharacter, camera); } \
 	FORCEINLINE static uint32 __PPO__springArm() { return STRUCT_OFFSET(ASCharacter, springArm); } \
+	FORCEINLINE static uint32 __PPO__audioComponent() { return STRUCT_OFFSET(ASCharacter, audioComponent); } \
 	FORCEINLINE static uint32 __PPO__healthComp() { return STRUCT_OFFSET(ASCharacter, healthComp); } \
 	FORCEINLINE static uint32 __PPO__bHasDied() { return STRUCT_OFFSET(ASCharacter, bHasDied); } \
 	FORCEINLINE static uint32 __PPO__zoomFOV() { return STRUCT_OFFSET(ASCharacter, zoomFOV); } \
@@ -155,25 +172,25 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASCharacter); \
 	FORCEINLINE static uint32 __PPO__weaponSocket() { return STRUCT_OFFSET(ASCharacter, weaponSocket); }
 
 
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_14_PROLOG
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_17_GENERATED_BODY_LEGACY \
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_15_PROLOG
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_18_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SCharacter_h_17_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SCharacter_h_17_RPC_WRAPPERS \
-	CoopGame_Source_CoopGame_Public_SCharacter_h_17_INCLASS \
-	CoopGame_Source_CoopGame_Public_SCharacter_h_17_STANDARD_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SCharacter_h_18_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SCharacter_h_18_RPC_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_SCharacter_h_18_INCLASS \
+	CoopGame_Source_CoopGame_Public_SCharacter_h_18_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CoopGame_Source_CoopGame_Public_SCharacter_h_17_GENERATED_BODY \
+#define CoopGame_Source_CoopGame_Public_SCharacter_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SCharacter_h_17_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SCharacter_h_17_INCLASS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SCharacter_h_17_ENHANCED_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SCharacter_h_18_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SCharacter_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SCharacter_h_18_INCLASS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SCharacter_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
