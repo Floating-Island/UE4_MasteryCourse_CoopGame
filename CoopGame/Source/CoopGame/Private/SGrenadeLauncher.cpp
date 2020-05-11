@@ -25,6 +25,6 @@ void ASGrenadeLauncher::fire()
 	}
 	else
 	{
-		reload();
+		emitEmptyMagazineSound();
 	}
 }

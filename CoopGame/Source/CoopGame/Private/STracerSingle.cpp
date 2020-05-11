@@ -33,7 +33,7 @@ void ASTracerSingle::fire()
 	}
 	else
 	{
-		reload();
+		emitEmptyMagazineSound();
 	}
 	
 }

@@ -43,7 +43,7 @@ void ASTracerMulti::fire()
 	}
 	else
 	{
-		reload();
+		emitEmptyMagazineSound();
 	}
 }
 
