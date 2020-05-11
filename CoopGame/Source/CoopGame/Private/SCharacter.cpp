@@ -162,7 +162,7 @@ void ASCharacter::Tick(float DeltaTime)
 		float nextFOV = FMath::FInterpTo(camera->FieldOfView, targetFOV, DeltaTime, fovTransitionSpeed);
 		camera->SetFieldOfView(nextFOV);
 	}
-	if(audioComponent->Sound)
+	if(audioComponent->Sound && !GetMovementComponent()->IsFalling())
 	{
 		emitWalkingSound();
 	}
