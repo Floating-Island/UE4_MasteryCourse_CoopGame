@@ -52,7 +52,7 @@ void USHealthComponent::damageTakerHandle(AActor* DamagedActor, float Damage, co
 		return;
 	}
 
-	if (DamageCauser != DamagedActor && isFriendly(DamageCauser, DamagedActor))
+	if (DamageCauser != DamagedActor && isFriendly(DamageCauser, DamagedActor) && !bFriendlyFireEnabled)
 	{
 		return;	
 	}
@@ -100,11 +100,6 @@ bool USHealthComponent::isFriendly(AActor* aTeamMember, AActor* anotherTeamMembe
 	if(aHealthComponent == nullptr || anotherHealthComponent == nullptr)
 	{
 		return true;
-	}
-	
-	if(bFriendlyFireEnabled)
-	{
-		return false;
 	}
 	
 	return aHealthComponent->teamNumber == anotherHealthComponent->teamNumber;
