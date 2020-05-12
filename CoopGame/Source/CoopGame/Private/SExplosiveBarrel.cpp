@@ -9,6 +9,7 @@
 #include "Sound/SoundCue.h"
 
 #include "SHealthComponent.h"
+#include "CoopGame.h"
 
 
 // Sets default values
@@ -88,7 +89,7 @@ void ASExplosiveBarrel::provokeRadialDamage()
 	TArray<AActor*> ignoredActors = TArray<AActor*>();
 
 	UGameplayStatics::ApplyRadialDamage(this, explosionDamage, this->GetActorLocation(), explosionRadius, damageType,
-		ignoredActors, this, this->GetInstigatorController(), true, ECC_Visibility);
+		ignoredActors, this, this->GetInstigatorController(), true, COLLISION_WEAPON_CHANNEL);
 }
 
 void ASExplosiveBarrel::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
