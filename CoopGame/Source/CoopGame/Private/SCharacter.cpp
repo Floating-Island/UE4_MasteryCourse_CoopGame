@@ -136,6 +136,7 @@ void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)
 		if(newWeapon->GetClass() == heldWeapon->GetClass())
 		{
 			int restockAmmo = newWeapon->magAmmo() + newWeapon->backupAmmo();
+			newWeapon->Destroy();
 			heldWeapon->addAmmo(restockAmmo);
 			return;
 		}
