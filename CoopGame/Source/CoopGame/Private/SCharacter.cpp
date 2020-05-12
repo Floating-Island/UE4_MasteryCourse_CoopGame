@@ -222,7 +222,12 @@ void ASCharacter::onHealthChanged(USHealthComponent* trigger, float health, floa
 		DetachFromControllerPendingDestroy();
 		//destroy the body
 		stopFire();
-		SetLifeSpan(5.0f);
+		float deceaseTime = 5.0f;
+		if(heldWeapon)
+		{
+			heldWeapon->SetLifeSpan(deceaseTime);
+		}
+		SetLifeSpan(deceaseTime);
 	}
 }
 
