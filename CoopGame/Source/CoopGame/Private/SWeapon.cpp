@@ -109,6 +109,29 @@ void ASWeapon::reload()
 	}
 }
 
+int ASWeapon::magAmmo()
+{
+	return ammoInMagazine;
+}
+
+int ASWeapon::backupAmmo()
+{
+	return availableBackupAmmo;
+}
+
+void ASWeapon::addAmmo(int ammoAmount)
+{
+	int spaceLeftInBackup = backupAmmoCapacity - availableBackupAmmo;
+	if(spaceLeftInBackup >= ammoAmount)
+	{
+		availableBackupAmmo += ammoAmount;
+	}
+	else
+	{
+		availableBackupAmmo += spaceLeftInBackup;
+	}
+}
+
 void ASWeapon::BeginPlay()
 {
 	Super::BeginPlay();

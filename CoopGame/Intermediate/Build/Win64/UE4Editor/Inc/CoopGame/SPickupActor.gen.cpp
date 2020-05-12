@@ -109,7 +109,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 #endif
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_ObjectPickedUpSound_MetaData[] = {
-		{ "Category", "Weapon" },
+		{ "Category", "Pickup Actor" },
 		{ "ModuleRelativePath", "Public/SPickupActor.h" },
 	};
 #endif
@@ -187,7 +187,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPickupActor, 2309978058);
+	IMPLEMENT_CLASS(ASPickupActor, 773272734);
 	template<> COOPGAME_API UClass* StaticClass<ASPickupActor>()
 	{
 		return ASPickupActor::StaticClass();

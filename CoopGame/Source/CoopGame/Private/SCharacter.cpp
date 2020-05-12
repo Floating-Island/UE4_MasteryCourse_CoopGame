@@ -133,6 +133,12 @@ void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)
 {
 	if(isHoldingAWeapon())
 	{
+		if(newWeapon->StaticClass() == heldWeapon->StaticClass())
+		{
+			int restockAmmo = newWeapon->magAmmo() + newWeapon->backupAmmo();
+			heldWeapon->addAmmo(restockAmmo);
+			return;
+		}
 		ASWeapon* oldWeapon = heldWeapon;
 		heldWeapon = nullptr;//has to be this way to avoid accessing of the variable when is being destroyed.
 		oldWeapon->Destroy();

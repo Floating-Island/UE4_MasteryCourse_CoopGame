@@ -35,6 +35,10 @@ public:
 	void reduceMagazineAmmo();
 	void reload();
 
+	int magAmmo();
+	int backupAmmo();
+	void addAmmo(int ammoAmount);
+
 protected:
 	virtual void BeginPlay() override;
 	
@@ -57,6 +61,7 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int ammoInMagazine;
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int availableBackupAmmo;
 
