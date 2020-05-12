@@ -7,7 +7,9 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/AudioComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "kismet/KismetMathLibrary.h"
 
 #include "SWeapon.h"
 #include "CoopGame.h"
@@ -50,6 +52,12 @@ ASCharacter::ASCharacter()
 	//weapon socket properties
 
 	weaponSocket = "rWeaponSocket";
+
+
+	audioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio Component"));
+
+	audioComponent->SetupAttachment(RootComponent);
+	
 
 	
 }
@@ -125,6 +133,12 @@ void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)
 {
 	if(isHoldingAWeapon())
 	{
+		if(newWeapon->GetClass() == heldWeapon->GetClass())
+		{
+			int restockAmmo = newWeapon->magAmmo() + newWeapon->backupAmmo();
+			heldWeapon->addAmmo(restockAmmo);
+			return;
+		}
 		ASWeapon* oldWeapon = heldWeapon;
 		heldWeapon = nullptr;//has to be this way to avoid accessing of the variable when is being destroyed.
 		oldWeapon->Destroy();
@@ -142,6 +156,10 @@ void ASCharacter::Tick(float DeltaTime)
 	{
 		float nextFOV = FMath::FInterpTo(camera->FieldOfView, targetFOV, DeltaTime, fovTransitionSpeed);
 		camera->SetFieldOfView(nextFOV);
+	}
+	if(audioComponent->Sound && !GetMovementComponent()->IsFalling())
+	{
+		emitWalkingSound();
 	}
 }
 
@@ -172,6 +190,9 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	//fire weapon binding
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ASCharacter::startFire);
 	PlayerInputComponent->BindAction("Fire", IE_Released, this, &ASCharacter::stopFire);
+
+	//weapon reload binding
+	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &ASCharacter::reload);
 }
 
 FVector ASCharacter::GetPawnViewLocation() const
@@ -199,6 +220,7 @@ void ASCharacter::onHealthChanged(USHealthComponent* trigger, float health, floa
 		//leave the character's body
 		DetachFromControllerPendingDestroy();
 		//destroy the body
+		stopFire();
 		SetLifeSpan(5.0f);
 	}
 }
@@ -226,6 +248,14 @@ void ASCharacter::endCrouch()
 void ASCharacter::jump()
 {
 	Jump();
+}
+
+void ASCharacter::reload()
+{
+	if(isHoldingAWeapon())
+	{
+		heldWeapon->reload();
+	}
 }
 
 void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

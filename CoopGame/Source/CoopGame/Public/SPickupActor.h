@@ -8,6 +8,7 @@
 
 class USphereComponent;
 class ASPowerupActor;
+class USoundCue;
 
 UCLASS()
 class COOPGAME_API ASPickupActor : public AActor
@@ -44,6 +45,13 @@ protected:
 
 	UPROPERTY(EditInstanceOnly, Category = "Pickup Actor")
 		float respawnCooldown;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Pickup Actor")
+		USoundCue* ObjectPickedUpSound;
+
+	
 public:	
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
+	void emitObjectPickedSound();
 };

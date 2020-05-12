@@ -8,6 +8,7 @@
 
 class URadialForceComponent;
 class USHealthComponent;
+class USoundCue;
 
 UCLASS()
 class COOPGAME_API ASExplosiveBarrel : public AActor
@@ -69,6 +70,9 @@ protected:
 	
 	
 	void provokeRadialDamage();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
+		USoundCue* explosionSound;
 
 
 };

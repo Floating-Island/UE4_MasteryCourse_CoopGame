@@ -6,6 +6,7 @@
 #include "DrawDebugHelpers.h"//used to help seeing the trace
 #include "Kismet/GameplayStatics.h"
 #include "Net/UnrealNetwork.h"
+#include "Sound/SoundCue.h"
 //#include "TimerManager.h"//call it when you need to have a fire rate
 //#include "Particles/ParticleSystem.h"//used to spawn effects
 //#include "Components/SkeletalMeshComponent.h" //used to get the muzzle socket location
@@ -104,6 +105,30 @@ void ASWeapon::reload()
 			ammoInMagazine += availableBackupAmmo;
 			availableBackupAmmo = 0;
 		}
+		emitReloadSound();
+	}
+}
+
+int ASWeapon::magAmmo()
+{
+	return ammoInMagazine;
+}
+
+int ASWeapon::backupAmmo()
+{
+	return availableBackupAmmo;
+}
+
+void ASWeapon::addAmmo(int ammoAmount)
+{
+	int spaceLeftInBackup = backupAmmoCapacity - availableBackupAmmo;
+	if(spaceLeftInBackup >= ammoAmount)
+	{
+		availableBackupAmmo += ammoAmount;
+	}
+	else
+	{
+		availableBackupAmmo += spaceLeftInBackup;
 	}
 }
 
@@ -168,8 +193,33 @@ void ASWeapon::checkIfServerIsFiring()
 void ASWeapon::firingEffects()
 {
 	muzzleFireFlash();
+	emitFireSound();
 	AActor* weaponOwner = GetOwner();
 	recoilShakingCamera(weaponOwner);
+}
+
+void ASWeapon::emitFireSound()
+{
+	if(fireSound)
+	{
+		UGameplayStatics::SpawnSoundAttached(fireSound, RootComponent);
+	}
+}
+
+void ASWeapon::emitReloadSound()
+{
+	if (reloadSound)
+	{
+		UGameplayStatics::SpawnSoundAttached(reloadSound, RootComponent);
+	}
+}
+
+void ASWeapon::emitEmptyMagazineSound()
+{
+	if (magazineEmptySound)
+	{
+		UGameplayStatics::SpawnSoundAttached(magazineEmptySound, RootComponent);
+	}
 }
 
 void ASWeapon::serverFires_Implementation()

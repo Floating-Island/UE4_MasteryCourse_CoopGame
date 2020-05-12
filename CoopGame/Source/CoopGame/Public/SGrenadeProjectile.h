@@ -6,6 +6,8 @@
 #include "SProjectile.h"
 #include "SGrenadeProjectile.generated.h"
 
+
+class USoundCue;
 /**
  * 
  */
@@ -46,5 +48,8 @@ protected:
 
 	UFUNCTION()
 		void serverVanish();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Destruction")
+		USoundCue* explosionSound;
 	
 };

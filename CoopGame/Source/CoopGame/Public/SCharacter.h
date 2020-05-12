@@ -9,6 +9,7 @@
 class UCameraComponent;
 class USpringArmComponent;
 class ASWeapon;
+class UAudioComponent;
 class USHealthComponent;
 
 UCLASS()
@@ -42,6 +43,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* springArm;//used to adapt lookUp and turnRight to a third person camera mode
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+		UAudioComponent* audioComponent;
+	
 	//health component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USHealthComponent* healthComp;
@@ -72,6 +76,9 @@ protected:
 	//jumping
 	void jump();
 
+	UFUNCTION(BlueprintCallable)
+		void reload();
+
 	//zooming
 	float defaultFOV;
 
@@ -99,6 +106,9 @@ protected:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Weapon")
 		FName weaponSocket;
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void emitWalkingSound();
 
 	
 	

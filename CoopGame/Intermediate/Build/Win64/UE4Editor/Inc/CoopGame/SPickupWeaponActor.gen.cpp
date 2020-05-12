@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupWeaponActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPickupWeaponActor, 3638353548);
+	IMPLEMENT_CLASS(ASPickupWeaponActor, 213145979);
 	template<> COOPGAME_API UClass* StaticClass<ASPickupWeaponActor>()
 	{
 		return ASPickupWeaponActor::StaticClass();

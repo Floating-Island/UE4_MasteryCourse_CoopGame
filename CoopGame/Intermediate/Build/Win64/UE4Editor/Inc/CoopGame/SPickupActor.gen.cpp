@@ -18,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASPickupActor_respawn();
+	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
@@ -66,6 +67,10 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ObjectPickedUpSound_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ObjectPickedUpSound;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_respawnCooldown_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_respawnCooldown;
@@ -102,6 +107,13 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		{ "ModuleRelativePath", "Public/SPickupActor.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_ObjectPickedUpSound_MetaData[] = {
+		{ "Category", "Pickup Actor" },
+		{ "ModuleRelativePath", "Public/SPickupActor.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_ObjectPickedUpSound = { "ObjectPickedUpSound", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, ObjectPickedUpSound), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_ObjectPickedUpSound_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_ObjectPickedUpSound_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown_MetaData[] = {
 		{ "Category", "Pickup Actor" },
@@ -141,6 +153,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASPickupActor_Statics::NewProp_overlapSphere = { "overlapSphere", nullptr, (EPropertyFlags)0x00200800000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASPickupActor, overlapSphere), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASPickupActor_Statics::NewProp_overlapSphere_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASPickupActor_Statics::NewProp_overlapSphere_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASPickupActor_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPickupActor_Statics::NewProp_ObjectPickedUpSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPickupActor_Statics::NewProp_respawnCooldown,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPickupActor_Statics::NewProp_pickupObjectLocation,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPickupActor_Statics::NewProp_pickupObjectClass,
@@ -174,7 +187,7 @@ void EmptyLinkFunctionForGeneratedCodeSPickupActor() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASPickupActor, 3328347685);
+	IMPLEMENT_CLASS(ASPickupActor, 773272734);
 	template<> COOPGAME_API UClass* StaticClass<ASPickupActor>()
 	{
 		return ASPickupActor::StaticClass();

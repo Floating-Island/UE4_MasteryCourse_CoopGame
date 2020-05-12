@@ -11,7 +11,7 @@ class USkeletalMeshComponent;
 class UDamageType;
 class UParticleSystem;
 class UCameraShake;
-
+class USoundCue;
 
 
 
@@ -29,9 +29,15 @@ public:
 
 	virtual void stopFire();
 
-	bool hasAmmoInMagazine();
+	UFUNCTION(BlueprintCallable)
+		bool hasAmmoInMagazine();
+	
 	void reduceMagazineAmmo();
 	void reload();
+
+	int magAmmo();
+	int backupAmmo();
+	void addAmmo(int ammoAmount);
 
 protected:
 	virtual void BeginPlay() override;
@@ -55,6 +61,7 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int ammoInMagazine;
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int availableBackupAmmo;
 
@@ -108,6 +115,22 @@ protected:
 
 	UFUNCTION()
 		void firingEffects();
+
+	//Sounds
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+		USoundCue* fireSound;
+
+	void emitFireSound();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+		USoundCue* reloadSound;
+
+	void emitReloadSound();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+		USoundCue* magazineEmptySound;
+
+	void emitEmptyMagazineSound();
 	
 };
 

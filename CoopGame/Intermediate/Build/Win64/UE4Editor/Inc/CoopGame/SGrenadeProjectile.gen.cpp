@@ -19,6 +19,7 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeProjectile() {}
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASGrenadeProjectile_serverImitateExplosionReplication();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASGrenadeProjectile_serverVanish();
+	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
 // End Cross Module References
@@ -87,6 +88,10 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeProjectile() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_explosionSound_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_explosionSound;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsExploding_MetaData[];
 #endif
 		static void NewProp_bIsExploding_SetBit(void* Obj);
@@ -125,6 +130,13 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeProjectile() {}
 		{ "ModuleRelativePath", "Public/SGrenadeProjectile.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionSound_MetaData[] = {
+		{ "Category", "Destruction" },
+		{ "ModuleRelativePath", "Public/SGrenadeProjectile.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionSound = { "explosionSound", nullptr, (EPropertyFlags)0x0020080000010001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASGrenadeProjectile, explosionSound), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionSound_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionSound_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_bIsExploding_MetaData[] = {
 		{ "ModuleRelativePath", "Public/SGrenadeProjectile.h" },
@@ -165,6 +177,7 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeProjectile() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionCountdown = { "explosionCountdown", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASGrenadeProjectile, explosionCountdown), METADATA_PARAMS(Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionCountdown_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionCountdown_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASGrenadeProjectile_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionSound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_bIsExploding,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_damageType,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGrenadeProjectile_Statics::NewProp_explosionDamage,
@@ -198,7 +211,7 @@ void EmptyLinkFunctionForGeneratedCodeSGrenadeProjectile() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASGrenadeProjectile, 1794667151);
+	IMPLEMENT_CLASS(ASGrenadeProjectile, 2778249937);
 	template<> COOPGAME_API UClass* StaticClass<ASGrenadeProjectile>()
 	{
 		return ASGrenadeProjectile::StaticClass();
