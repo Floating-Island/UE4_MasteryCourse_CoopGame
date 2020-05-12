@@ -35,6 +35,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player")
 	uint8 teamNumber;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player")
+		bool bFriendlyFireEnabled;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -67,5 +70,5 @@ public:
 	float getCurrentHealth() { return currentHealth; }
 
 	UFUNCTION(BlueprintCallable, BlueprintPure ,Category = "Player")
-		static bool isFriendly(AActor* aTeamMember, AActor* anotherTeamMember);
+		bool isFriendly(AActor* aTeamMember, AActor* anotherTeamMember);
 };

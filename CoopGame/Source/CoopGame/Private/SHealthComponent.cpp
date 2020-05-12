@@ -16,6 +16,7 @@ USHealthComponent::USHealthComponent()
 	SetIsReplicated(true);
 
 	teamNumber = 255;
+	bFriendlyFireEnabled = false;
 }
 
 
@@ -87,7 +88,7 @@ void USHealthComponent::heal(float healingAmount)
 
 bool USHealthComponent::isFriendly(AActor* aTeamMember, AActor* anotherTeamMember)
 {
-
+	
 	if(aTeamMember == nullptr || anotherTeamMember == nullptr)
 	{
 		return true;
@@ -99,6 +100,11 @@ bool USHealthComponent::isFriendly(AActor* aTeamMember, AActor* anotherTeamMembe
 	if(aHealthComponent == nullptr || anotherHealthComponent == nullptr)
 	{
 		return true;
+	}
+	
+	if(bFriendlyFireEnabled)
+	{
+		return false;
 	}
 	
 	return aHealthComponent->teamNumber == anotherHealthComponent->teamNumber;
