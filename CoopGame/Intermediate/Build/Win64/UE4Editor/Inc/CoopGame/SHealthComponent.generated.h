@@ -48,7 +48,7 @@ static inline void FOnHealthChangedSignature_DelegateWrapper(const FMulticastScr
 		P_GET_OBJECT(AActor,Z_Param_anotherTeamMember); \
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
-		*(bool*)Z_Param__Result=USHealthComponent::isFriendly(Z_Param_aTeamMember,Z_Param_anotherTeamMember); \
+		*(bool*)Z_Param__Result=P_THIS->isFriendly(Z_Param_aTeamMember,Z_Param_anotherTeamMember); \
 		P_NATIVE_END; \
 	} \
  \
@@ -92,7 +92,7 @@ static inline void FOnHealthChangedSignature_DelegateWrapper(const FMulticastScr
 		P_GET_OBJECT(AActor,Z_Param_anotherTeamMember); \
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
-		*(bool*)Z_Param__Result=USHealthComponent::isFriendly(Z_Param_aTeamMember,Z_Param_anotherTeamMember); \
+		*(bool*)Z_Param__Result=P_THIS->isFriendly(Z_Param_aTeamMember,Z_Param_anotherTeamMember); \
 		P_NATIVE_END; \
 	} \
  \

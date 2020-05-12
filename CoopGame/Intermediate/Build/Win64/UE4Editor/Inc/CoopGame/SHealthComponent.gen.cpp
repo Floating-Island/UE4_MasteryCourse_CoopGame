@@ -264,7 +264,7 @@ void EmptyLinkFunctionForGeneratedCodeSHealthComponent() {}
 		{ "ModuleRelativePath", "Public/SHealthComponent.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USHealthComponent, nullptr, "isFriendly", sizeof(SHealthComponent_eventisFriendly_Parms), Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14022401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::Function_MetaDataParams)) };
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USHealthComponent, nullptr, "isFriendly", sizeof(SHealthComponent_eventisFriendly_Parms), Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::PropPointers, ARRAY_COUNT(Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_USHealthComponent_isFriendly_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_USHealthComponent_isFriendly()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -298,6 +298,11 @@ void EmptyLinkFunctionForGeneratedCodeSHealthComponent() {}
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_maxHealth;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bFriendlyFireEnabled_MetaData[];
+#endif
+		static void NewProp_bFriendlyFireEnabled_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bFriendlyFireEnabled;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_teamNumber_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FBytePropertyParams NewProp_teamNumber;
@@ -313,7 +318,7 @@ void EmptyLinkFunctionForGeneratedCodeSHealthComponent() {}
 		{ &Z_Construct_UFunction_USHealthComponent_currentHealthReplication, "currentHealthReplication" }, // 3056282096
 		{ &Z_Construct_UFunction_USHealthComponent_damageTakerHandle, "damageTakerHandle" }, // 1948494353
 		{ &Z_Construct_UFunction_USHealthComponent_heal, "heal" }, // 2372646827
-		{ &Z_Construct_UFunction_USHealthComponent_isFriendly, "isFriendly" }, // 3119461152
+		{ &Z_Construct_UFunction_USHealthComponent_isFriendly, "isFriendly" }, // 4131827407
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USHealthComponent_Statics::Class_MetaDataParams[] = {
@@ -345,6 +350,17 @@ void EmptyLinkFunctionForGeneratedCodeSHealthComponent() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_USHealthComponent_Statics::NewProp_maxHealth = { "maxHealth", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(USHealthComponent, maxHealth), METADATA_PARAMS(Z_Construct_UClass_USHealthComponent_Statics::NewProp_maxHealth_MetaData, ARRAY_COUNT(Z_Construct_UClass_USHealthComponent_Statics::NewProp_maxHealth_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USHealthComponent_Statics::NewProp_bFriendlyFireEnabled_MetaData[] = {
+		{ "Category", "Player" },
+		{ "ModuleRelativePath", "Public/SHealthComponent.h" },
+	};
+#endif
+	void Z_Construct_UClass_USHealthComponent_Statics::NewProp_bFriendlyFireEnabled_SetBit(void* Obj)
+	{
+		((USHealthComponent*)Obj)->bFriendlyFireEnabled = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_USHealthComponent_Statics::NewProp_bFriendlyFireEnabled = { "bFriendlyFireEnabled", nullptr, (EPropertyFlags)0x0010000000010015, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(USHealthComponent), &Z_Construct_UClass_USHealthComponent_Statics::NewProp_bFriendlyFireEnabled_SetBit, METADATA_PARAMS(Z_Construct_UClass_USHealthComponent_Statics::NewProp_bFriendlyFireEnabled_MetaData, ARRAY_COUNT(Z_Construct_UClass_USHealthComponent_Statics::NewProp_bFriendlyFireEnabled_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USHealthComponent_Statics::NewProp_teamNumber_MetaData[] = {
 		{ "Category", "Player" },
 		{ "ModuleRelativePath", "Public/SHealthComponent.h" },
@@ -355,6 +371,7 @@ void EmptyLinkFunctionForGeneratedCodeSHealthComponent() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USHealthComponent_Statics::NewProp_onHealthChanged,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USHealthComponent_Statics::NewProp_currentHealth,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USHealthComponent_Statics::NewProp_maxHealth,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USHealthComponent_Statics::NewProp_bFriendlyFireEnabled,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USHealthComponent_Statics::NewProp_teamNumber,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_USHealthComponent_Statics::StaticCppClassTypeInfo = {
@@ -384,7 +401,7 @@ void EmptyLinkFunctionForGeneratedCodeSHealthComponent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(USHealthComponent, 446006819);
+	IMPLEMENT_CLASS(USHealthComponent, 4262166372);
 	template<> COOPGAME_API UClass* StaticClass<USHealthComponent>()
 	{
 		return USHealthComponent::StaticClass();
