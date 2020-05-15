@@ -6,6 +6,8 @@
 #include "Engine/GameInstance.h"
 #include "SGameInstance.generated.h"
 
+class FOnCreateSessionCompleteDelegate;
+class FOnStartSessionCompleteDelegate;
 /**
  * 
  */
@@ -13,5 +15,26 @@ UCLASS()
 class COOPGAME_API USGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
+
+public:
+	USGameInstance(const FObjectInitializer& ObjectInitializer);
+	
+protected:
+
+	//Sessions
+
+	bool hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
+
+	//delegates
+	FOnCreateSessionCompleteDelegate* OnCreateSessionCompleteDelegate;
+	FOnStartSessionCompleteDelegate* OnStartSessionCompleteDelegate;
+
+	//handles
+	FDelegateHandle OnCreateSessionCompleteDelegateHandle;
+	FDelegateHandle OnStartSessionCompleteDelegateHandle;
+
+	TSharedPtr<class FOnlineSessionSettings> sessionSettings;
+	
+	virtual void OnCreateSessionComplete(FName sessionName, bool bWasSuccessful);
 	
 };
