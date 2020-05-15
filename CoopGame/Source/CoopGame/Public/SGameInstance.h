@@ -17,12 +17,13 @@ class COOPGAME_API USGameInstance : public UGameInstance
 
 public:
 	USGameInstance(const FObjectInitializer& ObjectInitializer);
-	
+	void configureSessionSettings(bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
+
 protected:
 
 	//Sessions
 
-	bool hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
+	bool hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity, FString mapName);
 
 	//delegates
 	FOnCreateSessionCompleteDelegate OnCreateSessionCompleteDelegate;
