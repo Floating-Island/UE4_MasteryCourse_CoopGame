@@ -4,10 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "OnlineSessionInterface.h"
 #include "SGameInstance.generated.h"
 
-class FOnCreateSessionCompleteDelegate;
-class FOnStartSessionCompleteDelegate;
 /**
  * 
  */
@@ -26,8 +25,8 @@ protected:
 	bool hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
 
 	//delegates
-	FOnCreateSessionCompleteDelegate* OnCreateSessionCompleteDelegate;
-	FOnStartSessionCompleteDelegate* OnStartSessionCompleteDelegate;
+	FOnCreateSessionCompleteDelegate OnCreateSessionCompleteDelegate;
+	FOnStartSessionCompleteDelegate OnStartSessionCompleteDelegate;
 
 	//handles
 	FDelegateHandle OnCreateSessionCompleteDelegateHandle;
@@ -36,5 +35,7 @@ protected:
 	TSharedPtr<class FOnlineSessionSettings> sessionSettings;
 	
 	virtual void OnCreateSessionComplete(FName sessionName, bool bWasSuccessful);
+
+	virtual void OnStartOnlineGameComplete(FName sessionName, bool bWasSuccessful);
 	
 };
