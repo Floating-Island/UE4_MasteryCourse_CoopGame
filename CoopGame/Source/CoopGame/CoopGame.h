@@ -2,7 +2,10 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Engine.h"
+#include "Net/UnrealNetwork.h"
+#include "Online.h"
+
 
 #define SURFACE_FLESH_DEFAULT SurfaceType1
 #define SURFACE_FLESH_VULNERABLE SurfaceType2
