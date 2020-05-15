@@ -5,6 +5,8 @@
 
 #include "OnlineSubsystem.h"
 #include "OnlineSessionSettings.h"
+#include "Kismet/GameplayStatics.h"
+
 
 
 
@@ -29,7 +31,7 @@ void USGameInstance::configureSessionSettings(bool bIsLANSession, bool bIsPresen
 }
 
 bool USGameInstance::hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession,
-                                 bool bIsPresence, int32 playerCapacity, FString mapName)
+                                 bool bIsPresence, int32 playerCapacity)
 {
 	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
 
@@ -75,6 +77,28 @@ void USGameInstance::OnCreateSessionComplete(FName sessionName, bool bWasSuccess
 				session->StartSession(sessionName);
 			}
 		}
+	}
+}
+
+void USGameInstance::OnStartOnlineGameComplete(FName sessionName, bool bWasSuccessful)
+{
+	UE_LOG(LogTemp, Log, TEXT("Session %s creation: %s."), (*sessionName.ToString()), (bWasSuccessful) ? (*FString("Successful")) : (*FString("Unsuccessful")));
+
+	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
+
+	if (onlineSubSystem)
+	{
+		IOnlineSessionPtr session = onlineSubSystem->GetSessionInterface();
+
+		if (session.IsValid())
+		{
+			session->ClearOnStartSessionCompleteDelegate_Handle(OnStartSessionCompleteDelegateHandle);
+		}
+	}
+
+	if (bWasSuccessful)
+	{
+		UGameplayStatics::OpenLevel(GetWorld(), mapName, true, "listen");
 	}
 }
 

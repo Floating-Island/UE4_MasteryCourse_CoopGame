@@ -23,7 +23,10 @@ protected:
 
 	//Sessions
 
-	bool hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity, FString mapName);
+
+	FName mapName;
+	
+	bool hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
 
 	//delegates
 	FOnCreateSessionCompleteDelegate OnCreateSessionCompleteDelegate;
