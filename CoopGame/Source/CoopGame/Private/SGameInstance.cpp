@@ -55,4 +55,27 @@ bool USGameInstance::hostSession(TSharedPtr<const FUniqueNetId> userID, FName se
 	return false;
 }
 
+void USGameInstance::OnCreateSessionComplete(FName sessionName, bool bWasSuccessful)
+{
+	UE_LOG(LogTemp, Log, TEXT("Session %s creation: %s."), (*sessionName.ToString()), (bWasSuccessful)? (*FString("Successful")):(*FString("Unsuccessful")));
+
+	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
+
+	if (onlineSubSystem)
+	{
+		IOnlineSessionPtr session = onlineSubSystem->GetSessionInterface();
+
+		if (session.IsValid())
+		{
+			session->ClearOnCreateSessionCompleteDelegate_Handle(OnCreateSessionCompleteDelegateHandle);
+			if(bWasSuccessful)
+			{
+				OnStartSessionCompleteDelegateHandle = session->AddOnStartSessionCompleteDelegate_Handle(OnStartSessionCompleteDelegate);
+
+				session->StartSession(sessionName);
+			}
+		}
+	}
+}
+
 
