@@ -431,6 +431,16 @@
 /I "C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source"
 /I "C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source\CoopGame\Public"
 /I "C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source\CoopGame"
+/I ..\Plugins\Online\OnlineSubsystem\Intermediate\Build\Win64\UE4Editor\Inc\OnlineSubsystem
+/I ..\Plugins\Online\OnlineSubsystem
+/I ..\Plugins\Online\OnlineSubsystem\Source
+/I ..\Plugins\Online\OnlineSubsystem\Source\Public
+/I ..\Plugins\Online\OnlineSubsystem\Source\Public\Interfaces
+/I ..\Plugins\Online\OnlineSubsystemUtils\Intermediate\Build\Win64\UE4Editor\Inc\OnlineSubsystemUtils
+/I ..\Plugins\Online\OnlineSubsystemUtils\Source
+/I ..\Plugins\Online\OnlineSubsystemUtils\Source\OnlineSubsystemUtils\Classes
+/I ..\Plugins\Online\OnlineSubsystemUtils\Source\OnlineSubsystemUtils\Public
+/I ..\Plugins\Online\OnlineSubsystemUtils\Source\OnlineSubsystemUtils
 /I "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\INCLUDE"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
