@@ -15,7 +15,15 @@ USGameInstance::USGameInstance(const FObjectInitializer& ObjectInitializer)
 {
 	OnCreateSessionCompleteDelegate = FOnCreateSessionCompleteDelegate::CreateUObject(this, &USGameInstance::OnCreateSessionComplete);
 	OnStartSessionCompleteDelegate = FOnStartSessionCompleteDelegate::CreateUObject(this, &USGameInstance::OnStartOnlineGameComplete);
+
+	searchesMaxNumber = 20;
+	pingSize = 50;
+
+	OnFindSessionsCompleteDelegate = FOnFindSessionsCompleteDelegate::CreateUObject(this, &USGameInstance::onFindSessionComplete);
 }
+
+
+///creation and start
 
 void USGameInstance::configureSessionSettings(bool bIsLANSession, bool bIsPresence, int32 playerCapacity)
 {
@@ -101,5 +109,75 @@ void USGameInstance::OnStartOnlineGameComplete(FName sessionName, bool bWasSucce
 		UGameplayStatics::OpenLevel(GetWorld(), mapName, true, "listen");
 	}
 }
+
+
+
+///Searching
+
+
+void USGameInstance::findSession(TSharedPtr<const FUniqueNetId> userID, bool bIsLANSession, bool bIsPresence)
+{
+	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
+
+	if (onlineSubSystem)
+	{
+		IOnlineSessionPtr session = onlineSubSystem->GetSessionInterface();
+
+		if (session.IsValid() && userID.IsValid())
+		{
+			sessionSearch = MakeShareable(new FOnlineSessionSearch());
+
+			sessionSearch->bIsLanQuery = bIsLANSession;
+			sessionSearch->MaxSearchResults = searchesMaxNumber;
+			sessionSearch->PingBucketSize = pingSize;
+
+			if(bIsPresence)
+			{
+				sessionSearch->QuerySettings.Set(SEARCH_PRESENCE, bIsPresence, EOnlineComparisonOp::Equals);
+			}
+			TSharedRef<FOnlineSessionSearch> searchSettings = sessionSearch.ToSharedRef();
+
+			OnFindSessionsCompleteDelegateHandle = session->AddOnFindSessionsCompleteDelegate_Handle(OnFindSessionsCompleteDelegate);
+
+			session->FindSessions(*userID, searchSettings);
+		}
+	}
+	else
+	{
+		onFindSessionComplete(false);
+	}
+}
+
+void USGameInstance::onFindSessionComplete(bool bWasSuccessful)
+{
+	UE_LOG(LogTemp, Log, TEXT("Found sessions: %s."), (bWasSuccessful) ? (*FString("Yes")) : (*FString("No")));
+
+	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
+
+	if (onlineSubSystem)
+	{
+		IOnlineSessionPtr session = onlineSubSystem->GetSessionInterface();
+
+		if (session.IsValid())
+		{
+			session->ClearOnFindSessionsCompleteDelegate_Handle(OnFindSessionsCompleteDelegateHandle);
+
+			TArray<FOnlineSessionSearchResult> searchResults = sessionSearch->SearchResults;
+			
+			int foundSessionsquantity = searchResults.Num();
+			
+			UE_LOG(LogTemp, Log, TEXT("Number of found sessions: %d."), foundSessionsquantity);
+
+			UE_LOG(LogTemp, Log, TEXT("Sessions found:"));
+
+			for (auto sessionFound : searchResults)
+			{
+				UE_LOG(LogTemp, Log, TEXT("%s"), *(sessionFound.Session.OwningUserName));
+			}
+
+		}
+	}
+}
+
 
 

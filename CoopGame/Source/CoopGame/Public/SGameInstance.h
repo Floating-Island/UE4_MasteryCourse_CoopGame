@@ -23,7 +23,7 @@ protected:
 
 	//Sessions
 
-
+	//Session Creation and start
 	FName mapName;
 	
 	bool hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
@@ -41,5 +41,18 @@ protected:
 	virtual void OnCreateSessionComplete(FName sessionName, bool bWasSuccessful);
 
 	virtual void OnStartOnlineGameComplete(FName sessionName, bool bWasSuccessful);
-	
+
+	//Session Search
+
+	void findSession(TSharedPtr<const FUniqueNetId> userID, bool bIsLANSession, bool bIsPresence);
+
+	FOnFindSessionsCompleteDelegate OnFindSessionsCompleteDelegate;
+	FDelegateHandle OnFindSessionsCompleteDelegateHandle;
+
+	TSharedPtr<class FOnlineSessionSearch> sessionSearch;
+
+	int searchesMaxNumber;
+	int pingSize;
+
+	void onFindSessionComplete(bool bWasSuccessful);
 };
