@@ -42,7 +42,7 @@ protected:
 	FDelegateHandle OnCreateSessionCompleteDelegateHandle;
 	FDelegateHandle OnStartSessionCompleteDelegateHandle;
 
-	TSharedPtr<class FOnlineSessionSettings> sessionSettings;
+	TSharedPtr<FOnlineSessionSettings> sessionSettings;
 	
 	virtual void OnCreateSessionComplete(FName sessionName, bool bWasSuccessful);
 

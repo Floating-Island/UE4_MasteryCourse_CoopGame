@@ -202,7 +202,7 @@ void USGameInstance::onDestroySessionComplete(FName sessionName, bool bWasSucces
 		if(bWasSuccessful)
 		{
 			//goes to the default game map after destroying the session.
-			UGameplayStatics::OpenLevel(GetWorld(), *UGameMapsSettings::GetGameDefaultMap());
+			UGameplayStatics::OpenLevel(GetWorld(), FName(*UGameMapsSettings::GetGameDefaultMap()));
 		}
 	}
 }
