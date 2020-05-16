@@ -62,7 +62,7 @@ bool USGameInstance::hostSession(TSharedPtr<const FUniqueNetId> userID, FName se
 
 		configureSessionSettings(bIsLANSession, bIsPresence, playerCapacity);
 
-		sessionSettings->Set(SETTING_MAPNAME, mapName, EOnlineDataAdvertisementType::ViaOnlineService);
+		sessionSettings->Set(SETTING_MAPNAME, mapName.ToString(), EOnlineDataAdvertisementType::ViaOnlineService);
 
 		OnCreateSessionCompleteDelegateHandle = session->AddOnCreateSessionCompleteDelegate_Handle(OnCreateSessionCompleteDelegate);
 
