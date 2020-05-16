@@ -5,7 +5,9 @@
 
 #include "OnlineSubsystem.h"
 #include "OnlineSessionSettings.h"
+#include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameMapsSettings.h"
 
 
 USGameInstance::USGameInstance(const FObjectInitializer& ObjectInitializer)
@@ -23,6 +25,8 @@ USGameInstance::USGameInstance(const FObjectInitializer& ObjectInitializer)
 
 	onlineSubSystem = IOnlineSubsystem::Get();
 	makeSession();
+
+	onDestroySessionCompleteDelegate = FOnDestroySessionCompleteDelegate::CreateUObject(this, &USGameInstance::onDestroySessionComplete);
 }
 
 
@@ -170,7 +174,7 @@ bool USGameInstance::joinSession(TSharedPtr<const FUniqueNetId> userID, FName se
 
 void USGameInstance::onJoinSessionComplete(FName sessionName, EOnJoinSessionCompleteResult::Type result)
 {
-	UE_LOG(LogTemp, Log, TEXT("Joining session %s, %d"), *(sessionName.ToString()), static_cast<int32>(result));
+	UE_LOG(LogTemp, Log, TEXT("Joining session %s, %d."), *(sessionName.ToString()), static_cast<int32>(result));
 
 	if (session.IsValid())
 	{
@@ -185,6 +189,22 @@ void USGameInstance::onJoinSessionComplete(FName sessionName, EOnJoinSessionComp
 			UE_LOG(LogTemp, Log, TEXT("Session URL: %s"), *(travelURL));
 
 			userController->ClientTravel(travelURL, ETravelType::TRAVEL_Absolute);
+		}
+	}
+}
+
+void USGameInstance::onDestroySessionComplete(FName sessionName, bool bWasSuccessful)
+{
+	UE_LOG(LogTemp, Log, TEXT("Destroying session %s was %s."), *(sessionName.ToString()), (bWasSuccessful) ? (*FString("Successful")) : (*FString("Unsuccessful")));
+
+	if(session.IsValid())
+	{
+		session->ClearOnDestroySessionCompleteDelegate_Handle(onDestroySessionCompleteDelegateHandle);
+
+		if(bWasSuccessful)
+		{
+			//goes to the default game map after destroying the session.
+			UGameplayStatics::OpenLevel(GetWorld(), *UGameMapsSettings::GetGameDefaultMap());
 		}
 	}
 }

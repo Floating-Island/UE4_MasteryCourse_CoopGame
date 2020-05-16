@@ -71,4 +71,12 @@ protected:
 	FDelegateHandle onJoinSessionCompleteDelegateHandle;
 
 	void onJoinSessionComplete(FName sessionName, EOnJoinSessionCompleteResult::Type result);
+
+	//Session Destruction
+
+	FOnDestroySessionCompleteDelegate onDestroySessionCompleteDelegate;
+
+	FDelegateHandle onDestroySessionCompleteDelegateHandle;
+
+	virtual void  onDestroySessionComplete(FName sessionName, bool bWasSuccessful);
 };
