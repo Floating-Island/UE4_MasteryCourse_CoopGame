@@ -7,6 +7,7 @@
 #include "OnlineSessionInterface.h"
 #include "SGameInstance.generated.h"
 
+class IOnlineSubsystem;
 /**
  * 
  */
@@ -16,6 +17,7 @@ class COOPGAME_API USGameInstance : public UGameInstance
 	GENERATED_BODY()
 
 public:
+	void makeSession();
 	USGameInstance(const FObjectInitializer& ObjectInitializer);
 	void configureSessionSettings(bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
 
@@ -23,6 +25,10 @@ protected:
 
 	//Sessions
 
+	IOnlineSubsystem* onlineSubSystem;
+
+	IOnlineSessionPtr session;
+	
 	//Session Creation and start
 	FName mapName;
 	
@@ -55,4 +61,14 @@ protected:
 	int pingSize;
 
 	void onFindSessionComplete(bool bWasSuccessful);
+
+	//Session Join
+
+	bool joinSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, const FOnlineSessionSearchResult& SearchResult);
+
+	FOnJoinSessionCompleteDelegate onnJoinSessionCompleteDelegate;
+
+	FDelegateHandle onJoinSessionCompleteDelegateHandle;
+
+	void onJoinSessionComplete(FName sessionName, EOnJoinSessionCompleteResult::Type result);
 };

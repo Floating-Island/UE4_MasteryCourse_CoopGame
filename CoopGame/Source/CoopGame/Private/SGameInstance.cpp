@@ -8,8 +8,6 @@
 #include "Kismet/GameplayStatics.h"
 
 
-
-
 USGameInstance::USGameInstance(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
 {
@@ -20,8 +18,21 @@ USGameInstance::USGameInstance(const FObjectInitializer& ObjectInitializer)
 	pingSize = 50;
 
 	OnFindSessionsCompleteDelegate = FOnFindSessionsCompleteDelegate::CreateUObject(this, &USGameInstance::onFindSessionComplete);
+
+	onnJoinSessionCompleteDelegate = FOnJoinSessionCompleteDelegate::CreateUObject(this, &USGameInstance::onJoinSessionComplete);
+
+	onlineSubSystem = IOnlineSubsystem::Get();
+	makeSession();
 }
 
+
+void USGameInstance::makeSession()
+{
+	if (onlineSubSystem)
+	{
+		session = onlineSubSystem->GetSessionInterface();
+	}
+}
 
 ///creation and start
 
@@ -41,24 +52,17 @@ void USGameInstance::configureSessionSettings(bool bIsLANSession, bool bIsPresen
 bool USGameInstance::hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession,
                                  bool bIsPresence, int32 playerCapacity)
 {
-	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
-
-	if(onlineSubSystem)
+	if(session.IsValid() && userID.IsValid())
 	{
-		IOnlineSessionPtr session = onlineSubSystem->GetSessionInterface();
+		sessionSettings = MakeShareable(new FOnlineSessionSettings());
 
-		if(session.IsValid() && userID.IsValid())
-		{
-			sessionSettings = MakeShareable(new FOnlineSessionSettings());
+		configureSessionSettings(bIsLANSession, bIsPresence, playerCapacity);
 
-			configureSessionSettings(bIsLANSession, bIsPresence, playerCapacity);
+		sessionSettings->Set(SETTING_MAPNAME, mapName, EOnlineDataAdvertisementType::ViaOnlineService);
 
-			sessionSettings->Set(SETTING_MAPNAME, mapName, EOnlineDataAdvertisementType::ViaOnlineService);
+		OnCreateSessionCompleteDelegateHandle = session->AddOnCreateSessionCompleteDelegate_Handle(OnCreateSessionCompleteDelegate);
 
-			OnCreateSessionCompleteDelegateHandle = session->AddOnCreateSessionCompleteDelegate_Handle(OnCreateSessionCompleteDelegate);
-
-			return session->CreateSession(*userID, sessionName, *sessionSettings);
-		}
+		return session->CreateSession(*userID, sessionName, *sessionSettings);
 	}
 
 	UE_LOG(LogTemp, Log, TEXT("Couldn't host session, no Online Subsystem present..."));
@@ -69,21 +73,14 @@ void USGameInstance::OnCreateSessionComplete(FName sessionName, bool bWasSuccess
 {
 	UE_LOG(LogTemp, Log, TEXT("Session %s creation: %s."), (*sessionName.ToString()), (bWasSuccessful)? (*FString("Successful")):(*FString("Unsuccessful")));
 
-	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
-
-	if (onlineSubSystem)
+	if (session.IsValid())
 	{
-		IOnlineSessionPtr session = onlineSubSystem->GetSessionInterface();
-
-		if (session.IsValid())
+		session->ClearOnCreateSessionCompleteDelegate_Handle(OnCreateSessionCompleteDelegateHandle);
+		if(bWasSuccessful)
 		{
-			session->ClearOnCreateSessionCompleteDelegate_Handle(OnCreateSessionCompleteDelegateHandle);
-			if(bWasSuccessful)
-			{
-				OnStartSessionCompleteDelegateHandle = session->AddOnStartSessionCompleteDelegate_Handle(OnStartSessionCompleteDelegate);
+			OnStartSessionCompleteDelegateHandle = session->AddOnStartSessionCompleteDelegate_Handle(OnStartSessionCompleteDelegate);
 
-				session->StartSession(sessionName);
-			}
+			session->StartSession(sessionName);
 		}
 	}
 }
@@ -92,16 +89,9 @@ void USGameInstance::OnStartOnlineGameComplete(FName sessionName, bool bWasSucce
 {
 	UE_LOG(LogTemp, Log, TEXT("Session %s creation: %s."), (*sessionName.ToString()), (bWasSuccessful) ? (*FString("Successful")) : (*FString("Unsuccessful")));
 
-	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
-
-	if (onlineSubSystem)
+	if (session.IsValid())
 	{
-		IOnlineSessionPtr session = onlineSubSystem->GetSessionInterface();
-
-		if (session.IsValid())
-		{
-			session->ClearOnStartSessionCompleteDelegate_Handle(OnStartSessionCompleteDelegateHandle);
-		}
+		session->ClearOnStartSessionCompleteDelegate_Handle(OnStartSessionCompleteDelegateHandle);
 	}
 
 	if (bWasSuccessful)
@@ -119,65 +109,82 @@ void USGameInstance::findSession(TSharedPtr<const FUniqueNetId> userID, bool bIs
 {
 	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
 
-	if (onlineSubSystem)
+	if (session.IsValid() && userID.IsValid())
 	{
-		IOnlineSessionPtr session = onlineSubSystem->GetSessionInterface();
+		sessionSearch = MakeShareable(new FOnlineSessionSearch());
 
-		if (session.IsValid() && userID.IsValid())
+		sessionSearch->bIsLanQuery = bIsLANSession;
+		sessionSearch->MaxSearchResults = searchesMaxNumber;
+		sessionSearch->PingBucketSize = pingSize;
+
+		if(bIsPresence)
 		{
-			sessionSearch = MakeShareable(new FOnlineSessionSearch());
-
-			sessionSearch->bIsLanQuery = bIsLANSession;
-			sessionSearch->MaxSearchResults = searchesMaxNumber;
-			sessionSearch->PingBucketSize = pingSize;
-
-			if(bIsPresence)
-			{
-				sessionSearch->QuerySettings.Set(SEARCH_PRESENCE, bIsPresence, EOnlineComparisonOp::Equals);
-			}
-			TSharedRef<FOnlineSessionSearch> searchSettings = sessionSearch.ToSharedRef();
-
-			OnFindSessionsCompleteDelegateHandle = session->AddOnFindSessionsCompleteDelegate_Handle(OnFindSessionsCompleteDelegate);
-
-			session->FindSessions(*userID, searchSettings);
+			sessionSearch->QuerySettings.Set(SEARCH_PRESENCE, bIsPresence, EOnlineComparisonOp::Equals);
 		}
+		TSharedRef<FOnlineSessionSearch> searchSettings = sessionSearch.ToSharedRef();
+
+		OnFindSessionsCompleteDelegateHandle = session->AddOnFindSessionsCompleteDelegate_Handle(OnFindSessionsCompleteDelegate);
+
+		session->FindSessions(*userID, searchSettings);
+		return;
 	}
-	else
-	{
-		onFindSessionComplete(false);
-	}
+	
+	onFindSessionComplete(false);
 }
 
 void USGameInstance::onFindSessionComplete(bool bWasSuccessful)
 {
 	UE_LOG(LogTemp, Log, TEXT("Found sessions: %s."), (bWasSuccessful) ? (*FString("Yes")) : (*FString("No")));
 
-	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
-
-	if (onlineSubSystem)
+	if (session.IsValid())
 	{
-		IOnlineSessionPtr session = onlineSubSystem->GetSessionInterface();
+		session->ClearOnFindSessionsCompleteDelegate_Handle(OnFindSessionsCompleteDelegateHandle);
 
-		if (session.IsValid())
+		TArray<FOnlineSessionSearchResult> searchResults = sessionSearch->SearchResults;
+		
+		UE_LOG(LogTemp, Log, TEXT("Number of found sessions: %d."), searchResults.Num());
+
+		UE_LOG(LogTemp, Log, TEXT("Sessions found:"));
+
+		for (auto sessionFound : searchResults)
 		{
-			session->ClearOnFindSessionsCompleteDelegate_Handle(OnFindSessionsCompleteDelegateHandle);
-
-			TArray<FOnlineSessionSearchResult> searchResults = sessionSearch->SearchResults;
-			
-			int foundSessionsquantity = searchResults.Num();
-			
-			UE_LOG(LogTemp, Log, TEXT("Number of found sessions: %d."), foundSessionsquantity);
-
-			UE_LOG(LogTemp, Log, TEXT("Sessions found:"));
-
-			for (auto sessionFound : searchResults)
-			{
-				UE_LOG(LogTemp, Log, TEXT("%s"), *(sessionFound.Session.OwningUserName));
-			}
-
+			UE_LOG(LogTemp, Log, TEXT("%s"), *(sessionFound.Session.OwningUserName));
 		}
 	}
 }
 
+bool USGameInstance::joinSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName,
+	const FOnlineSessionSearchResult& SearchResult)
+{
+	bool bJoinSuccessful = false;
 
+	if (session.IsValid() && userID.IsValid())
+	{
+		onJoinSessionCompleteDelegateHandle = session->AddOnJoinSessionCompleteDelegate_Handle(onnJoinSessionCompleteDelegate);
 
+		bJoinSuccessful = session->JoinSession(*userID, sessionName, SearchResult);
+	}
+	
+	return bJoinSuccessful;
+}
+
+void USGameInstance::onJoinSessionComplete(FName sessionName, EOnJoinSessionCompleteResult::Type result)
+{
+	UE_LOG(LogTemp, Log, TEXT("Joining session %s, %d"), *(sessionName.ToString()), static_cast<int32>(result));
+
+	if (session.IsValid())
+	{
+		session->ClearOnJoinSessionCompleteDelegate_Handle(onJoinSessionCompleteDelegateHandle);
+
+		APlayerController* const userController = GetFirstLocalPlayerController();
+
+		FString travelURL;
+
+		if(userController && session->GetResolvedConnectString(sessionName, travelURL))
+		{
+			UE_LOG(LogTemp, Log, TEXT("Session URL: %s"), *(travelURL));
+
+			userController->ClientTravel(travelURL, ETravelType::TRAVEL_Absolute);
+		}
+	}
+}
