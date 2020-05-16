@@ -42,6 +42,7 @@ void EmptyLinkFunctionForGeneratedCodeSGameInstance() {}
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USGameInstance_Statics::Class_MetaDataParams[] = {
 		{ "IncludePath", "SGameInstance.h" },
 		{ "ModuleRelativePath", "Public/SGameInstance.h" },
+		{ "ObjectInitializerConstructorDeclared", "" },
 	};
 #endif
 	const FCppClassTypeInfoStatic Z_Construct_UClass_USGameInstance_Statics::StaticCppClassTypeInfo = {
@@ -71,7 +72,7 @@ void EmptyLinkFunctionForGeneratedCodeSGameInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(USGameInstance, 546955036);
+	IMPLEMENT_CLASS(USGameInstance, 3172025746);
 	template<> COOPGAME_API UClass* StaticClass<USGameInstance>()
 	{
 		return USGameInstance::StaticClass();

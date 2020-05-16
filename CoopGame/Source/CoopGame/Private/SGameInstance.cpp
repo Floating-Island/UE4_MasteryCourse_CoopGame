@@ -111,8 +111,6 @@ void USGameInstance::OnStartOnlineGameComplete(FName sessionName, bool bWasSucce
 
 void USGameInstance::findSession(TSharedPtr<const FUniqueNetId> userID, bool bIsLANSession, bool bIsPresence)
 {
-	IOnlineSubsystem* const onlineSubSystem = IOnlineSubsystem::Get();
-
 	if (session.IsValid() && userID.IsValid())
 	{
 		sessionSearch = MakeShareable(new FOnlineSessionSearch());
