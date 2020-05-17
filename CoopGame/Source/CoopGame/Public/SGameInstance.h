@@ -30,8 +30,10 @@ protected:
 	IOnlineSessionPtr session;
 	
 	//Session Creation and start
-	FName mapName;
-	
+	UPROPERTY(BlueprintReadWrite, Category = "Session Creation")
+		FName mapName;
+
+	UFUNCTION(BlueprintCallable, Category = "Session Creation")
 	bool hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
 
 	//delegates
@@ -50,21 +52,24 @@ protected:
 
 	//Session Search
 
-	void findSession(TSharedPtr<const FUniqueNetId> userID, bool bIsLANSession, bool bIsPresence);
+	UFUNCTION(BlueprintCallable, Category = "Session Search")
+		void findSession(TSharedPtr<const FUniqueNetId> userID, bool bIsLANSession, bool bIsPresence);
 
 	FOnFindSessionsCompleteDelegate OnFindSessionsCompleteDelegate;
 	FDelegateHandle OnFindSessionsCompleteDelegateHandle;
 
 	TSharedPtr<class FOnlineSessionSearch> sessionSearch;
 
-	int searchesMaxNumber;
-	int pingSize;
+	UPROPERTY(BlueprintReadWrite, Category = "Session Search")
+		int searchesMaxNumber;
+	UPROPERTY(BlueprintReadWrite, Category = "Session Search")
+		int pingSize;
 
 	void onFindSessionComplete(bool bWasSuccessful);
 
 	//Session Join
-
-	bool joinSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, const FOnlineSessionSearchResult& SearchResult);
+	UFUNCTION(BlueprintCallable, Category = "Session Join")
+		bool joinSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, const FOnlineSessionSearchResult& SearchResult);
 
 	FOnJoinSessionCompleteDelegate onnJoinSessionCompleteDelegate;
 
@@ -78,5 +83,6 @@ protected:
 
 	FDelegateHandle onDestroySessionCompleteDelegateHandle;
 
-	virtual void  onDestroySessionComplete(FName sessionName, bool bWasSuccessful);
+	UFUNCTION(BlueprintCallable, Category = "Session Destruction")
+		virtual void  onDestroySessionComplete(FName sessionName, bool bWasSuccessful);
 };
