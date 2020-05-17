@@ -12,16 +12,19 @@ TArray<FString> USLevelSelectionBoxWidget::GetAllMapNames(FString levelsFolder)
 	IFileManager::Get().FindFilesRecursive(MapPaths, *FPaths::ProjectContentDir(), TEXT("*.umap"), true, false, false);
 
 	TArray<FString> MapNames = TArray<FString>();
+	MapNames.Empty();
 
 	for(FString mapPath : MapPaths)
 	{
 		//remove the path
 		FString mapFile;
+		mapFile.Empty();
 		FString discard;
 		mapPath.Split(levelsFolder, &discard, &mapFile);
 
 		//remove the extension
 		FString mapName;
+		mapName.Empty();
 		mapFile.Split(".", &mapName, &discard);
 
 		//add map name to our array
