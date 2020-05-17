@@ -386,6 +386,7 @@
     <ClCompile Include="..\..\Source\CoopGame\Private\SGrenadeProjectile.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SHealthComponent.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SHealthRegenerationPowerup.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SLevelSelectionBoxWidget.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SPickupActor.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SPickupPowerupActor.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SPickupWeaponActor.cpp" />
@@ -409,6 +410,7 @@
     <ClInclude Include="..\..\Source\CoopGame\Public\SGrenadeProjectile.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SHealthComponent.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SHealthRegenerationPowerup.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SLevelSelectionBoxWidget.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SPickupActor.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SPickupPowerupActor.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SPickupWeaponActor.h" />
