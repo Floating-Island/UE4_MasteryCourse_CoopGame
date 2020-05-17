@@ -31,6 +31,16 @@ void EmptyLinkFunctionForGeneratedCodeSContentSelectionBoxWidget() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsAnyButtonSelected_MetaData[];
+#endif
+		static void NewProp_bIsAnyButtonSelected_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsAnyButtonSelected;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SelectedButton_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FTextPropertyParams NewProp_SelectedButton;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -44,6 +54,28 @@ void EmptyLinkFunctionForGeneratedCodeSContentSelectionBoxWidget() {}
 		{ "ModuleRelativePath", "Public/SContentSelectionBoxWidget.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_bIsAnyButtonSelected_MetaData[] = {
+		{ "Category", "Widget" },
+		{ "ModuleRelativePath", "Public/SContentSelectionBoxWidget.h" },
+	};
+#endif
+	void Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_bIsAnyButtonSelected_SetBit(void* Obj)
+	{
+		((USContentSelectionBoxWidget*)Obj)->bIsAnyButtonSelected = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_bIsAnyButtonSelected = { "bIsAnyButtonSelected", nullptr, (EPropertyFlags)0x0020080000000004, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(USContentSelectionBoxWidget), &Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_bIsAnyButtonSelected_SetBit, METADATA_PARAMS(Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_bIsAnyButtonSelected_MetaData, ARRAY_COUNT(Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_bIsAnyButtonSelected_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_SelectedButton_MetaData[] = {
+		{ "Category", "Widget" },
+		{ "ModuleRelativePath", "Public/SContentSelectionBoxWidget.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FTextPropertyParams Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_SelectedButton = { "SelectedButton", nullptr, (EPropertyFlags)0x0020080000000004, UE4CodeGen_Private::EPropertyGenFlags::Text, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(USContentSelectionBoxWidget, SelectedButton), METADATA_PARAMS(Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_SelectedButton_MetaData, ARRAY_COUNT(Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_SelectedButton_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_USContentSelectionBoxWidget_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_bIsAnyButtonSelected,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USContentSelectionBoxWidget_Statics::NewProp_SelectedButton,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_USContentSelectionBoxWidget_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<USContentSelectionBoxWidget>::IsAbstract,
 	};
@@ -53,11 +85,11 @@ void EmptyLinkFunctionForGeneratedCodeSContentSelectionBoxWidget() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_USContentSelectionBoxWidget_Statics::PropPointers,
 		nullptr,
 		ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		ARRAY_COUNT(Z_Construct_UClass_USContentSelectionBoxWidget_Statics::PropPointers),
 		0,
 		0x00B010A0u,
 		METADATA_PARAMS(Z_Construct_UClass_USContentSelectionBoxWidget_Statics::Class_MetaDataParams, ARRAY_COUNT(Z_Construct_UClass_USContentSelectionBoxWidget_Statics::Class_MetaDataParams))
@@ -71,7 +103,7 @@ void EmptyLinkFunctionForGeneratedCodeSContentSelectionBoxWidget() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(USContentSelectionBoxWidget, 1005135357);
+	IMPLEMENT_CLASS(USContentSelectionBoxWidget, 3578668131);
 	template<> COOPGAME_API UClass* StaticClass<USContentSelectionBoxWidget>()
 	{
 		return USContentSelectionBoxWidget::StaticClass();

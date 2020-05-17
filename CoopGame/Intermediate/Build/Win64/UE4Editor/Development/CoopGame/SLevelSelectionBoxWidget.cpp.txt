@@ -1,5 +1,6 @@
 C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Intermediate\Build\Win64\UE4Editor\Development\CoopGame\Definitions.CoopGame.h
 C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source\CoopGame\Public\SLevelSelectionBoxWidget.h
+C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Source\CoopGame\Public\SContentSelectionBoxWidget.h
 C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\UMG\Public\Blueprint/UserWidget.h
 C:\Program Files\Epic Games\UE_4.22\Engine\Source\Runtime\UMG\Public\Components/SlateWrapperTypes.h
 C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\SlateWrapperTypes.generated.h
@@ -111,4 +112,5 @@ C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\In
 C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\DynamicPropertyPath.generated.h
 C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetBlueprintGeneratedClass.generated.h
 C:\Program Files\Epic Games\UE_4.22\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\UserWidget.generated.h
+C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Intermediate\Build\Win64\UE4Editor\Inc\CoopGame\SContentSelectionBoxWidget.generated.h
 C:\unreal projects\TomLooman\UE4_MasteryCourse_CoopGame\CoopGame\Intermediate\Build\Win64\UE4Editor\Inc\CoopGame\SLevelSelectionBoxWidget.generated.h

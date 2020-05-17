@@ -15,7 +15,7 @@ void EmptyLinkFunctionForGeneratedCodeSLevelSelectionBoxWidget() {}
 // Cross Module References
 	COOPGAME_API UClass* Z_Construct_UClass_USLevelSelectionBoxWidget_NoRegister();
 	COOPGAME_API UClass* Z_Construct_UClass_USLevelSelectionBoxWidget();
-	UMG_API UClass* Z_Construct_UClass_UUserWidget();
+	COOPGAME_API UClass* Z_Construct_UClass_USContentSelectionBoxWidget();
 	UPackage* Z_Construct_UPackage__Script_CoopGame();
 	COOPGAME_API UFunction* Z_Construct_UFunction_USLevelSelectionBoxWidget_GetAllMapNames();
 // End Cross Module References
@@ -78,16 +78,11 @@ void EmptyLinkFunctionForGeneratedCodeSLevelSelectionBoxWidget() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SelectedLevel_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FTextPropertyParams NewProp_SelectedLevel;
-		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_UUserWidget,
+		(UObject* (*)())Z_Construct_UClass_USContentSelectionBoxWidget,
 		(UObject* (*)())Z_Construct_UPackage__Script_CoopGame,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::FuncInfo[] = {
@@ -99,16 +94,6 @@ void EmptyLinkFunctionForGeneratedCodeSLevelSelectionBoxWidget() {}
 		{ "ModuleRelativePath", "Public/SLevelSelectionBoxWidget.h" },
 	};
 #endif
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::NewProp_SelectedLevel_MetaData[] = {
-		{ "Category", "Widget" },
-		{ "ModuleRelativePath", "Public/SLevelSelectionBoxWidget.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FTextPropertyParams Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::NewProp_SelectedLevel = { "SelectedLevel", nullptr, (EPropertyFlags)0x0020080000000004, UE4CodeGen_Private::EPropertyGenFlags::Text, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(USLevelSelectionBoxWidget, SelectedLevel), METADATA_PARAMS(Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::NewProp_SelectedLevel_MetaData, ARRAY_COUNT(Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::NewProp_SelectedLevel_MetaData)) };
-	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::NewProp_SelectedLevel,
-	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<USLevelSelectionBoxWidget>::IsAbstract,
 	};
@@ -118,11 +103,11 @@ void EmptyLinkFunctionForGeneratedCodeSLevelSelectionBoxWidget() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		FuncInfo,
-		Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::PropPointers,
+		nullptr,
 		nullptr,
 		ARRAY_COUNT(DependentSingletons),
 		ARRAY_COUNT(FuncInfo),
-		ARRAY_COUNT(Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::PropPointers),
+		0,
 		0,
 		0x00B010A0u,
 		METADATA_PARAMS(Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::Class_MetaDataParams, ARRAY_COUNT(Z_Construct_UClass_USLevelSelectionBoxWidget_Statics::Class_MetaDataParams))
@@ -136,7 +121,7 @@ void EmptyLinkFunctionForGeneratedCodeSLevelSelectionBoxWidget() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(USLevelSelectionBoxWidget, 4064156348);
+	IMPLEMENT_CLASS(USLevelSelectionBoxWidget, 669772832);
 	template<> COOPGAME_API UClass* StaticClass<USLevelSelectionBoxWidget>()
 	{
 		return USLevelSelectionBoxWidget::StaticClass();

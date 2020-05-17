@@ -13,7 +13,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COOPGAME_SLevelSelectionBoxWidget_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_RPC_WRAPPERS \
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execGetAllMapNames) \
 	{ \
@@ -25,7 +25,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execGetAllMapNames) \
 	{ \
@@ -37,25 +37,25 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_INCLASS_NO_PURE_DECLS \
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUSLevelSelectionBoxWidget(); \
 	friend struct Z_Construct_UClass_USLevelSelectionBoxWidget_Statics; \
 public: \
-	DECLARE_CLASS(USLevelSelectionBoxWidget, UUserWidget, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
+	DECLARE_CLASS(USLevelSelectionBoxWidget, USContentSelectionBoxWidget, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
 	DECLARE_SERIALIZER(USLevelSelectionBoxWidget)
 
 
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_INCLASS \
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_INCLASS \
 private: \
 	static void StaticRegisterNativesUSLevelSelectionBoxWidget(); \
 	friend struct Z_Construct_UClass_USLevelSelectionBoxWidget_Statics; \
 public: \
-	DECLARE_CLASS(USLevelSelectionBoxWidget, UUserWidget, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
+	DECLARE_CLASS(USLevelSelectionBoxWidget, USContentSelectionBoxWidget, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/CoopGame"), NO_API) \
 	DECLARE_SERIALIZER(USLevelSelectionBoxWidget)
 
 
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_STANDARD_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API USLevelSelectionBoxWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(USLevelSelectionBoxWidget) \
@@ -68,7 +68,7 @@ private: \
 public:
 
 
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_ENHANCED_CONSTRUCTORS \
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API USLevelSelectionBoxWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
 private: \
@@ -81,29 +81,26 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(USLevelSelectionBoxWidget); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(USLevelSelectionBoxWidget)
 
 
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__SelectedLevel() { return STRUCT_OFFSET(USLevelSelectionBoxWidget, SelectedLevel); }
-
-
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_12_PROLOG
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_GENERATED_BODY_LEGACY \
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_PRIVATE_PROPERTY_OFFSET
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_11_PROLOG
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_RPC_WRAPPERS \
-	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_INCLASS \
-	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_STANDARD_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_RPC_WRAPPERS \
+	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_INCLASS \
+	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_GENERATED_BODY \
+#define CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_PRIVATE_PROPERTY_OFFSET \
-	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_INCLASS_NO_PURE_DECLS \
-	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_15_ENHANCED_CONSTRUCTORS \
+	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_PRIVATE_PROPERTY_OFFSET \
+	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_INCLASS_NO_PURE_DECLS \
+	CoopGame_Source_CoopGame_Public_SLevelSelectionBoxWidget_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

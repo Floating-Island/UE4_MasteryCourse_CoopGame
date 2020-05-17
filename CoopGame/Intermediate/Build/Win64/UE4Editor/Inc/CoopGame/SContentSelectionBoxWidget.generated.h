@@ -59,7 +59,11 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(USContentSelectionBoxWidget); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(USContentSelectionBoxWidget)
 
 
-#define CoopGame_Source_CoopGame_Public_SContentSelectionBoxWidget_h_15_PRIVATE_PROPERTY_OFFSET
+#define CoopGame_Source_CoopGame_Public_SContentSelectionBoxWidget_h_15_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__SelectedButton() { return STRUCT_OFFSET(USContentSelectionBoxWidget, SelectedButton); } \
+	FORCEINLINE static uint32 __PPO__bIsAnyButtonSelected() { return STRUCT_OFFSET(USContentSelectionBoxWidget, bIsAnyButtonSelected); }
+
+
 #define CoopGame_Source_CoopGame_Public_SContentSelectionBoxWidget_h_12_PROLOG
 #define CoopGame_Source_CoopGame_Public_SContentSelectionBoxWidget_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
