@@ -2,15 +2,14 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "SContentSelectionBoxWidget.h"
 #include "SLevelSelectionBoxWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class COOPGAME_API USLevelSelectionBoxWidget : public UUserWidget
+class COOPGAME_API USLevelSelectionBoxWidget : public USContentSelectionBoxWidget
 {
 	GENERATED_BODY()
 
@@ -18,9 +17,4 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Widget")
 	static TArray<FString> GetAllMapNames(FString levelsFolder);
-	
-protected:
-
-	UPROPERTY(BlueprintReadWrite, Category = "Widget")
-		FText SelectedLevel;
 };

@@ -378,6 +378,7 @@
     <ClCompile Include="..\..\Source\CoopGame\Ai\STrackerBot.cpp" />
     <ClInclude Include="..\..\Source\CoopGame\Ai\STrackerBot.h" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SCharacter.cpp" />
+    <ClCompile Include="..\..\Source\CoopGame\Private\SContentSelectionBoxWidget.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SExplosiveBarrel.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SGameInstance.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SGameMode.cpp" />
@@ -402,6 +403,7 @@
     <ClCompile Include="..\..\Source\CoopGame\Private\STracerWeapon.cpp" />
     <ClCompile Include="..\..\Source\CoopGame\Private\SWeapon.cpp" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SCharacter.h" />
+    <ClInclude Include="..\..\Source\CoopGame\Public\SContentSelectionBoxWidget.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SExplosiveBarrel.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SGameInstance.h" />
     <ClInclude Include="..\..\Source\CoopGame\Public\SGameMode.h" />
