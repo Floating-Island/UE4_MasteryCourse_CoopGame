@@ -40,17 +40,11 @@ void USGameInstance::makeSession()
 
 ///creation and start
 
-void USGameInstance::configureSessionSettings(bool bIsLANSession, bool bIsPresence, int32 playerCapacity)
+
+
+void USGameInstance::createSession(FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity)
 {
-	sessionSettings->bIsLANMatch = bIsLANSession;
-	sessionSettings->bUsesPresence = bIsPresence;
-	sessionSettings->NumPublicConnections = playerCapacity;
-	sessionSettings->NumPrivateConnections = 0;
-	sessionSettings->bAllowInvites = true;
-	sessionSettings->bAllowJoinInProgress = true;
-	sessionSettings->bShouldAdvertise = true;
-	sessionSettings->bAllowJoinViaPresence = true;
-	sessionSettings->bAllowJoinViaPresenceFriendsOnly = false;
+	hostSession(GetPrimaryPlayerUniqueId(), sessionName, bIsLANSession, bIsPresence, playerCapacity);
 }
 
 bool USGameInstance::hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession,
@@ -71,6 +65,19 @@ bool USGameInstance::hostSession(TSharedPtr<const FUniqueNetId> userID, FName se
 
 	UE_LOG(LogTemp, Log, TEXT("Couldn't host session, no Online Subsystem present..."));
 	return false;
+}
+
+void USGameInstance::configureSessionSettings(bool bIsLANSession, bool bIsPresence, int32 playerCapacity)
+{
+	sessionSettings->bIsLANMatch = bIsLANSession;
+	sessionSettings->bUsesPresence = bIsPresence;
+	sessionSettings->NumPublicConnections = playerCapacity;
+	sessionSettings->NumPrivateConnections = 0;
+	sessionSettings->bAllowInvites = true;
+	sessionSettings->bAllowJoinInProgress = true;
+	sessionSettings->bShouldAdvertise = true;
+	sessionSettings->bAllowJoinViaPresence = true;
+	sessionSettings->bAllowJoinViaPresenceFriendsOnly = false;
 }
 
 void USGameInstance::OnCreateSessionComplete(FName sessionName, bool bWasSuccessful)
@@ -105,8 +112,13 @@ void USGameInstance::OnStartOnlineGameComplete(FName sessionName, bool bWasSucce
 }
 
 
-
 ///Searching
+
+void USGameInstance::findGamesSession(bool bIsLANSession, bool bIsPresence)
+{
+	findSession(GetPrimaryPlayerUniqueId(), bIsLANSession, bIsPresence);
+}
+
 
 
 void USGameInstance::findSession(TSharedPtr<const FUniqueNetId> userID, bool bIsLANSession, bool bIsPresence)
@@ -155,8 +167,21 @@ void USGameInstance::onFindSessionComplete(bool bWasSuccessful)
 	}
 }
 
+
+//Joining
+
+void USGameInstance::joinGamesSession(FName sessionName, const FOnlineSessionSearchResult& SearchResult)
+{
+	const TSharedPtr<const FUniqueNetId> primaryUserID = GetPrimaryPlayerUniqueId();
+
+	if(SearchResult.Session.OwningUserId != primaryUserID)
+	{
+		joinSession(primaryUserID, sessionName, SearchResult);
+	}
+}
+
 bool USGameInstance::joinSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName,
-	const FOnlineSessionSearchResult& SearchResult)
+                                 const FOnlineSessionSearchResult& SearchResult)
 {
 	bool bJoinSuccessful = false;
 
