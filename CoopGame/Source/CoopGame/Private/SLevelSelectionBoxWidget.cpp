@@ -17,11 +17,12 @@ TArray<FString> USLevelSelectionBoxWidget::GetAllMapNames(FString levelsFolder)
 	{
 		//remove the path
 		FString mapFile;
-		mapPath.Split(levelsFolder, &FString(), &mapFile);
+		FString discard;
+		mapPath.Split(levelsFolder, &discard, &mapFile);
 
 		//remove the extension
 		FString mapName;
-		mapFile.Split(".", &mapName, &FString());
+		mapFile.Split(".", &mapName, &discard);
 
 		//add map name to our array
 		MapNames.Add(mapName);
