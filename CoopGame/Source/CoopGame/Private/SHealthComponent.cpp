@@ -35,6 +35,7 @@ void USHealthComponent::BeginPlay()
 	Super::BeginPlay();
 	currentHealth = maxHealth;
 	serverAddDamageToHandle();
+	UE_LOG(LogTemp, Log, TEXT("Team number %d. Friendly Fire: %s"), teamNumber, (bFriendlyFireEnabled)? *(FString("Enabled")) : *(FString("disabled")));
 }
 
 void USHealthComponent::currentHealthReplication(float oldHealth)
