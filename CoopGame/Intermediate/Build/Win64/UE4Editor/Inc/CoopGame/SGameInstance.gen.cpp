@@ -258,6 +258,11 @@ void EmptyLinkFunctionForGeneratedCodeSGameInstance() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bNewSessionsFound_MetaData[];
+#endif
+		static void NewProp_bNewSessionsFound_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bNewSessionsFound;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_pingSize_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_pingSize;
@@ -292,6 +297,17 @@ void EmptyLinkFunctionForGeneratedCodeSGameInstance() {}
 	};
 #endif
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USGameInstance_Statics::NewProp_bNewSessionsFound_MetaData[] = {
+		{ "Category", "Session Search" },
+		{ "ModuleRelativePath", "Public/SGameInstance.h" },
+	};
+#endif
+	void Z_Construct_UClass_USGameInstance_Statics::NewProp_bNewSessionsFound_SetBit(void* Obj)
+	{
+		((USGameInstance*)Obj)->bNewSessionsFound = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_USGameInstance_Statics::NewProp_bNewSessionsFound = { "bNewSessionsFound", nullptr, (EPropertyFlags)0x0020080000000014, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(USGameInstance), &Z_Construct_UClass_USGameInstance_Statics::NewProp_bNewSessionsFound_SetBit, METADATA_PARAMS(Z_Construct_UClass_USGameInstance_Statics::NewProp_bNewSessionsFound_MetaData, ARRAY_COUNT(Z_Construct_UClass_USGameInstance_Statics::NewProp_bNewSessionsFound_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USGameInstance_Statics::NewProp_pingSize_MetaData[] = {
 		{ "Category", "Session Search" },
 		{ "ModuleRelativePath", "Public/SGameInstance.h" },
@@ -314,6 +330,7 @@ void EmptyLinkFunctionForGeneratedCodeSGameInstance() {}
 #endif
 	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UClass_USGameInstance_Statics::NewProp_mapName = { "mapName", nullptr, (EPropertyFlags)0x0020080000000004, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(USGameInstance, mapName), METADATA_PARAMS(Z_Construct_UClass_USGameInstance_Statics::NewProp_mapName_MetaData, ARRAY_COUNT(Z_Construct_UClass_USGameInstance_Statics::NewProp_mapName_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_USGameInstance_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USGameInstance_Statics::NewProp_bNewSessionsFound,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USGameInstance_Statics::NewProp_pingSize,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USGameInstance_Statics::NewProp_searchesMaxNumber,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USGameInstance_Statics::NewProp_mapName,
@@ -345,7 +362,7 @@ void EmptyLinkFunctionForGeneratedCodeSGameInstance() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(USGameInstance, 58649275);
+	IMPLEMENT_CLASS(USGameInstance, 1486542661);
 	template<> COOPGAME_API UClass* StaticClass<USGameInstance>()
 	{
 		return USGameInstance::StaticClass();

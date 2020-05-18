@@ -160,7 +160,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(USGameInstance); \
 #define CoopGame_Source_CoopGame_Public_SGameInstance_h_17_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__mapName() { return STRUCT_OFFSET(USGameInstance, mapName); } \
 	FORCEINLINE static uint32 __PPO__searchesMaxNumber() { return STRUCT_OFFSET(USGameInstance, searchesMaxNumber); } \
-	FORCEINLINE static uint32 __PPO__pingSize() { return STRUCT_OFFSET(USGameInstance, pingSize); }
+	FORCEINLINE static uint32 __PPO__pingSize() { return STRUCT_OFFSET(USGameInstance, pingSize); } \
+	FORCEINLINE static uint32 __PPO__bNewSessionsFound() { return STRUCT_OFFSET(USGameInstance, bNewSessionsFound); }
 
 
 #define CoopGame_Source_CoopGame_Public_SGameInstance_h_14_PROLOG
