@@ -164,11 +164,17 @@ void USGameInstance::onFindSessionComplete(bool bWasSuccessful)
 		{
 			UE_LOG(LogTemp, Log, TEXT("%s"), *(sessionFound.Session.OwningUserName));
 		}
+
+		if(searchResults.Num() > 0)
+		{
+			bNewSessionsFound = true;
+		}
 	}
 }
 
 TArray<FString> USGameInstance::getSessionsFound()
 {
+	bNewSessionsFound = false;
 	TArray<FString> sessionsId;
 	for(auto session : sessionSearch->SearchResults)
 	{

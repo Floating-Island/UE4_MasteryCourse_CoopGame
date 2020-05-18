@@ -71,6 +71,9 @@ protected:
 
 	void onFindSessionComplete(bool bWasSuccessful);
 
+	UPROPERTY(BlueprintReadOnly, Category = "Session Search")
+		bool bNewSessionsFound;
+
 	UFUNCTION(BlueprintCallable, Category = "Session Search")
 		TArray<FString> getSessionsFound();
 
