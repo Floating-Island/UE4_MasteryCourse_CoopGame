@@ -13,8 +13,108 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COOPGAME_SGameInstance_generated_h
 
-#define CoopGame_Source_CoopGame_Public_SGameInstance_h_17_RPC_WRAPPERS
-#define CoopGame_Source_CoopGame_Public_SGameInstance_h_17_RPC_WRAPPERS_NO_PURE_DECLS
+#define CoopGame_Source_CoopGame_Public_SGameInstance_h_17_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execonDestroySessionComplete) \
+	{ \
+		P_GET_PROPERTY(UNameProperty,Z_Param_sessionName); \
+		P_GET_UBOOL(Z_Param_bWasSuccessful); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->onDestroySessionComplete(Z_Param_sessionName,Z_Param_bWasSuccessful); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execjoinGamesSession) \
+	{ \
+		P_GET_PROPERTY(UStrProperty,Z_Param_sessionID); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->joinGamesSession(Z_Param_sessionID); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execgetSessionsFound) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(TArray<FString>*)Z_Param__Result=P_THIS->getSessionsFound(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execfindGamesSession) \
+	{ \
+		P_GET_UBOOL(Z_Param_bIsLANSession); \
+		P_GET_UBOOL(Z_Param_bIsPresence); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->findGamesSession(Z_Param_bIsLANSession,Z_Param_bIsPresence); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execcreateSession) \
+	{ \
+		P_GET_UBOOL(Z_Param_bIsLANSession); \
+		P_GET_UBOOL(Z_Param_bIsPresence); \
+		P_GET_PROPERTY(UIntProperty,Z_Param_playerCapacity); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->createSession(Z_Param_bIsLANSession,Z_Param_bIsPresence,Z_Param_playerCapacity); \
+		P_NATIVE_END; \
+	}
+
+
+#define CoopGame_Source_CoopGame_Public_SGameInstance_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execonDestroySessionComplete) \
+	{ \
+		P_GET_PROPERTY(UNameProperty,Z_Param_sessionName); \
+		P_GET_UBOOL(Z_Param_bWasSuccessful); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->onDestroySessionComplete(Z_Param_sessionName,Z_Param_bWasSuccessful); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execjoinGamesSession) \
+	{ \
+		P_GET_PROPERTY(UStrProperty,Z_Param_sessionID); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->joinGamesSession(Z_Param_sessionID); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execgetSessionsFound) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		*(TArray<FString>*)Z_Param__Result=P_THIS->getSessionsFound(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execfindGamesSession) \
+	{ \
+		P_GET_UBOOL(Z_Param_bIsLANSession); \
+		P_GET_UBOOL(Z_Param_bIsPresence); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->findGamesSession(Z_Param_bIsLANSession,Z_Param_bIsPresence); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execcreateSession) \
+	{ \
+		P_GET_UBOOL(Z_Param_bIsLANSession); \
+		P_GET_UBOOL(Z_Param_bIsPresence); \
+		P_GET_PROPERTY(UIntProperty,Z_Param_playerCapacity); \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->createSession(Z_Param_bIsLANSession,Z_Param_bIsPresence,Z_Param_playerCapacity); \
+		P_NATIVE_END; \
+	}
+
+
 #define CoopGame_Source_CoopGame_Public_SGameInstance_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUSGameInstance(); \
@@ -57,7 +157,12 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(USGameInstance); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(USGameInstance)
 
 
-#define CoopGame_Source_CoopGame_Public_SGameInstance_h_17_PRIVATE_PROPERTY_OFFSET
+#define CoopGame_Source_CoopGame_Public_SGameInstance_h_17_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__mapName() { return STRUCT_OFFSET(USGameInstance, mapName); } \
+	FORCEINLINE static uint32 __PPO__searchesMaxNumber() { return STRUCT_OFFSET(USGameInstance, searchesMaxNumber); } \
+	FORCEINLINE static uint32 __PPO__pingSize() { return STRUCT_OFFSET(USGameInstance, pingSize); }
+
+
 #define CoopGame_Source_CoopGame_Public_SGameInstance_h_14_PROLOG
 #define CoopGame_Source_CoopGame_Public_SGameInstance_h_17_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
