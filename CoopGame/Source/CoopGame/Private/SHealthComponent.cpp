@@ -110,4 +110,6 @@ void USHealthComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(USHealthComponent, currentHealth);
+	DOREPLIFETIME(USHealthComponent, teamNumber);
+	DOREPLIFETIME(USHealthComponent, bFriendlyFireEnabled);
 }

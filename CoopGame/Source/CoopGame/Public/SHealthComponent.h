@@ -32,10 +32,10 @@ public:
 	USHealthComponent();
 	void serverAddDamageToHandle();
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player")
-	uint8 teamNumber;
+	UPROPERTY(EditDefaultsOnly, Replicated, BlueprintReadOnly, Category = "Player")
+		uint8 teamNumber;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player")
+	UPROPERTY(EditDefaultsOnly, Replicated, BlueprintReadOnly, Category = "Player")
 		bool bFriendlyFireEnabled;
 
 protected:
