@@ -107,18 +107,7 @@ int ASWeapon::backupAmmo()
 	return availableBackupAmmo;
 }
 
-void ASWeapon::addAmmo(int ammoAmount)
-{	
-	int spaceLeftInBackup = backupAmmoCapacity - availableBackupAmmo;
-	if(spaceLeftInBackup >= ammoAmount)
-	{
-		availableBackupAmmo += ammoAmount;
-	}
-	else
-	{
-		availableBackupAmmo += spaceLeftInBackup;
-	}
-}
+
 
 
 
@@ -215,6 +204,21 @@ bool ASWeapon::serverReload_Validate()
 	return true;
 }
 
+void ASWeapon::addAmmo(int ammoAmount)
+{
+	checkIfServerAddsAmmo(ammoAmount);
+	
+	int spaceLeftInBackup = backupAmmoCapacity - availableBackupAmmo;
+	if (spaceLeftInBackup >= ammoAmount)
+	{
+		availableBackupAmmo += ammoAmount;
+	}
+	else
+	{
+		availableBackupAmmo += spaceLeftInBackup;
+	}
+}
+
 void ASWeapon::checkIfServerAddsAmmo(int ammoAmount)
 {
 	if(Role < ROLE_Authority)
@@ -284,6 +288,4 @@ void ASWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetime
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME_CONDITION(ASWeapon, lastFireTime, COND_SkipOwner);
-	DOREPLIFETIME(ASWeapon, ammoInMagazine);
-	DOREPLIFETIME(ASWeapon, availableBackupAmmo);
 }
