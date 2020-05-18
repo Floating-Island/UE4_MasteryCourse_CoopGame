@@ -256,7 +256,7 @@ void ASCharacter::jump()
 	Jump();
 }
 
-void ASCharacter::reload()
+void ASCharacter::reload()//should call the weapon server to reload
 {
 	if(isHoldingAWeapon())
 	{

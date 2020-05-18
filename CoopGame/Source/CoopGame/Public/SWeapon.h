@@ -33,11 +33,11 @@ public:
 		bool hasAmmoInMagazine();
 	
 	void reduceMagazineAmmo();
-	void reload();
+	void reload();//server should do it
 
 	int magAmmo();
 	int backupAmmo();
-	void addAmmo(int ammoAmount);
+	void addAmmo(int ammoAmount);//server should do it
 
 protected:
 	virtual void BeginPlay() override;
@@ -59,10 +59,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int magazineCapacity;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, Replicated, BlueprintReadOnly, Category = "Weapon")//should replicate
 		int ammoInMagazine;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	UPROPERTY(EditDefaultsOnly, Replicated, BlueprintReadOnly, Category = "Weapon")//should replicate
 		int availableBackupAmmo;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
@@ -116,6 +116,11 @@ protected:
 	UFUNCTION()
 		void firingEffects();
 
+	UFUNCTION(Server, Reliable, WithValidation)
+		void serverReload();
+
+	void checkIfServerReloads();
+
 	//Sounds
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 		USoundCue* fireSound;
@@ -131,6 +136,7 @@ protected:
 		USoundCue* magazineEmptySound;
 
 	void emitEmptyMagazineSound();
+
 	
 };
 

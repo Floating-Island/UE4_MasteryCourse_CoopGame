@@ -198,6 +198,24 @@ void ASWeapon::firingEffects()
 	recoilShakingCamera(weaponOwner);
 }
 
+void ASWeapon::serverReload_Implementation()
+{
+	reload();
+}
+
+bool ASWeapon::serverReload_Validate()
+{
+	return true;
+}
+
+void ASWeapon::checkIfServerReloads()
+{
+	if (Role == ROLE_Authority)
+	{
+		serverReload();
+	}
+}
+
 void ASWeapon::emitFireSound()
 {
 	if(fireSound)
@@ -241,4 +259,6 @@ void ASWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetime
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME_CONDITION(ASWeapon, lastFireTime, COND_SkipOwner);
+	DOREPLIFETIME(ASWeapon, ammoInMagazine);
+	DOREPLIFETIME(ASWeapon, availableBackupAmmo);
 }
