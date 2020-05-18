@@ -98,7 +98,7 @@ void USGameInstance::OnCreateSessionComplete(FName sessionName, bool bWasSuccess
 
 void USGameInstance::OnStartOnlineGameComplete(FName sessionName, bool bWasSuccessful)
 {
-	UE_LOG(LogTemp, Log, TEXT("Session %s creation: %s."), (*sessionName.ToString()), (bWasSuccessful) ? (*FString("Successful")) : (*FString("Unsuccessful")));
+	UE_LOG(LogTemp, Log, TEXT("Session %s starting: %s."), (*sessionName.ToString()), (bWasSuccessful) ? (*FString("Successful")) : (*FString("Unsuccessful")));
 
 	if (session.IsValid())
 	{
