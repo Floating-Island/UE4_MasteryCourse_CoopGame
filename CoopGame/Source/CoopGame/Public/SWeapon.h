@@ -59,10 +59,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int magazineCapacity;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//should replicate
+	UPROPERTY(EditDefaultsOnly, Replicated, BlueprintReadOnly, Category = "Weapon")//should replicate
 		int ammoInMagazine;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//should replicate
+	UPROPERTY(EditDefaultsOnly, Replicated, BlueprintReadOnly, Category = "Weapon")//should replicate
 		int availableBackupAmmo;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
@@ -120,11 +120,6 @@ protected:
 		void serverReload();
 
 	void checkIfServerReloads();
-
-	UFUNCTION(Server, Reliable, WithValidation)
-		void serverAddAmmo(int ammoAmount);
-
-	void checkIfServerAddsAmmo(int ammoAmount);
 
 	//Sounds
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
