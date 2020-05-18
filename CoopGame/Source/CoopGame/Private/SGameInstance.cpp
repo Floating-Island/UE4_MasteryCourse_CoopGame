@@ -200,6 +200,7 @@ void USGameInstance::joinGamesSession(FString sessionID)
 		if (sessionFound.Session.OwningUserName == sessionID)
 		{
 			joinSession(primaryUserID, GameSessionName, sessionFound);
+			break;
 		}
 	}
 }
