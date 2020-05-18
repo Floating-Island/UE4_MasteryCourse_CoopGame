@@ -101,7 +101,7 @@ void EmptyLinkFunctionForGeneratedCodeSTracerMulti() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTracerMulti, 1303172878);
+	IMPLEMENT_CLASS(ASTracerMulti, 86592222);
 	template<> COOPGAME_API UClass* StaticClass<ASTracerMulti>()
 	{
 		return ASTracerMulti::StaticClass();

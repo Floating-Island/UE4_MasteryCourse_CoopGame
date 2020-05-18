@@ -14,8 +14,23 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define COOPGAME_SWeapon_generated_h
 
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_21_RPC_WRAPPERS \
+	virtual bool serverReload_Validate(); \
+	virtual void serverReload_Implementation(); \
 	virtual bool serverFires_Validate(); \
 	virtual void serverFires_Implementation(); \
+ \
+	DECLARE_FUNCTION(execserverReload) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		if (!P_THIS->serverReload_Validate()) \
+		{ \
+			RPC_ValidateFailed(TEXT("serverReload_Validate")); \
+			return; \
+		} \
+		P_THIS->serverReload_Implementation(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execfiringEffects) \
 	{ \
@@ -48,8 +63,23 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual bool serverReload_Validate(); \
+	virtual void serverReload_Implementation(); \
 	virtual bool serverFires_Validate(); \
 	virtual void serverFires_Implementation(); \
+ \
+	DECLARE_FUNCTION(execserverReload) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		if (!P_THIS->serverReload_Validate()) \
+		{ \
+			RPC_ValidateFailed(TEXT("serverReload_Validate")); \
+			return; \
+		} \
+		P_THIS->serverReload_Implementation(); \
+		P_NATIVE_END; \
+	} \
  \
 	DECLARE_FUNCTION(execfiringEffects) \
 	{ \

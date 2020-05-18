@@ -20,6 +20,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASWeapon_firingEffects();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine();
 	COOPGAME_API UFunction* Z_Construct_UFunction_ASWeapon_serverFires();
+	COOPGAME_API UFunction* Z_Construct_UFunction_ASWeapon_serverReload();
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
@@ -32,6 +33,11 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 	{
 		ProcessEvent(FindFunctionChecked(NAME_ASWeapon_serverFires),NULL);
 	}
+	static FName NAME_ASWeapon_serverReload = FName(TEXT("serverReload"));
+	void ASWeapon::serverReload()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_ASWeapon_serverReload),NULL);
+	}
 	void ASWeapon::StaticRegisterNativesASWeapon()
 	{
 		UClass* Class = ASWeapon::StaticClass();
@@ -39,6 +45,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 			{ "firingEffects", &ASWeapon::execfiringEffects },
 			{ "hasAmmoInMagazine", &ASWeapon::exechasAmmoInMagazine },
 			{ "serverFires", &ASWeapon::execserverFires },
+			{ "serverReload", &ASWeapon::execserverReload },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, ARRAY_COUNT(Funcs));
 	}
@@ -121,6 +128,28 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASWeapon_serverFires_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ASWeapon_serverReload_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASWeapon_serverReload_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SWeapon.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASWeapon_serverReload_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASWeapon, nullptr, "serverReload", 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x80280CC0, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASWeapon_serverReload_Statics::Function_MetaDataParams, ARRAY_COUNT(Z_Construct_UFunction_ASWeapon_serverReload_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASWeapon_serverReload()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASWeapon_serverReload_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -219,6 +248,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		{ &Z_Construct_UFunction_ASWeapon_firingEffects, "firingEffects" }, // 3404914412
 		{ &Z_Construct_UFunction_ASWeapon_hasAmmoInMagazine, "hasAmmoInMagazine" }, // 2270773095
 		{ &Z_Construct_UFunction_ASWeapon_serverFires, "serverFires" }, // 127827640
+		{ &Z_Construct_UFunction_ASWeapon_serverReload, "serverReload" }, // 550845649
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::Class_MetaDataParams[] = {
@@ -313,16 +343,18 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData[] = {
 		{ "Category", "Weapon" },
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
+		{ "ToolTip", "should replicate" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo = { "availableBackupAmmo", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, availableBackupAmmo), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo = { "availableBackupAmmo", nullptr, (EPropertyFlags)0x0020080000010035, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, availableBackupAmmo), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_availableBackupAmmo_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData[] = {
 		{ "Category", "Weapon" },
 		{ "ModuleRelativePath", "Public/SWeapon.h" },
+		{ "ToolTip", "should replicate" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine = { "ammoInMagazine", nullptr, (EPropertyFlags)0x0020080000010015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, ammoInMagazine), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine = { "ammoInMagazine", nullptr, (EPropertyFlags)0x0020080000010035, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASWeapon, ammoInMagazine), METADATA_PARAMS(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData, ARRAY_COUNT(Z_Construct_UClass_ASWeapon_Statics::NewProp_ammoInMagazine_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASWeapon_Statics::NewProp_magazineCapacity_MetaData[] = {
 		{ "Category", "Weapon" },
@@ -406,7 +438,7 @@ void EmptyLinkFunctionForGeneratedCodeSWeapon() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASWeapon, 3845780376);
+	IMPLEMENT_CLASS(ASWeapon, 279650508);
 	template<> COOPGAME_API UClass* StaticClass<ASWeapon>()
 	{
 		return ASWeapon::StaticClass();

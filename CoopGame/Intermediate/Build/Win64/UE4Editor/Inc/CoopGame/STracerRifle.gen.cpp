@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeSTracerRifle() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASTracerRifle, 3006053869);
+	IMPLEMENT_CLASS(ASTracerRifle, 2091003601);
 	template<> COOPGAME_API UClass* StaticClass<ASTracerRifle>()
 	{
 		return ASTracerRifle::StaticClass();

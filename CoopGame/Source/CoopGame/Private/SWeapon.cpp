@@ -50,6 +50,14 @@ ASWeapon::ASWeapon()
 	MinNetUpdateFrequency = 33.0f;
 }
 
+void ASWeapon::BeginPlay()
+{
+	Super::BeginPlay();
+
+	timeBetweenShots = 60 / fireRate;//in seconds
+	limitAmmoToCapacitiesSet();
+}
+
 void ASWeapon::limitAmmoToCapacitiesSet()
 {
 	if(ammoInMagazine > magazineCapacity)
@@ -89,26 +97,6 @@ void ASWeapon::reduceMagazineAmmo()
 	}
 }
 
-void ASWeapon::reload()
-{
-	if(availableBackupAmmo > 0 && ammoInMagazine < magazineCapacity)
-	{
-		//start reload animation here.
-		int spaceLeftInMagazine = magazineCapacity - ammoInMagazine;
-		if(spaceLeftInMagazine < availableBackupAmmo)
-		{
-			availableBackupAmmo -= spaceLeftInMagazine;
-			ammoInMagazine += spaceLeftInMagazine;
-		}
-		else
-		{
-			ammoInMagazine += availableBackupAmmo;
-			availableBackupAmmo = 0;
-		}
-		emitReloadSound();
-	}
-}
-
 int ASWeapon::magAmmo()
 {
 	return ammoInMagazine;
@@ -132,13 +120,7 @@ void ASWeapon::addAmmo(int ammoAmount)
 	}
 }
 
-void ASWeapon::BeginPlay()
-{
-	Super::BeginPlay();
 
-	timeBetweenShots = 60 / fireRate;//in seconds
-	limitAmmoToCapacitiesSet();
-}
 
 void ASWeapon::muzzleFireFlash()
 {
@@ -182,20 +164,42 @@ void ASWeapon::recoilShakingCamera(AActor* weaponOwnerActor)
 	}
 }
 
-void ASWeapon::checkIfServerIsFiring()
-{
-	if (Role < ROLE_Authority)
-	{
-		serverFires();
-	}
-}
-
 void ASWeapon::firingEffects()
 {
 	muzzleFireFlash();
 	emitFireSound();
 	AActor* weaponOwner = GetOwner();
 	recoilShakingCamera(weaponOwner);
+}
+
+void ASWeapon::reload()
+{
+	checkIfServerReloads();
+
+	if (availableBackupAmmo > 0 && ammoInMagazine < magazineCapacity)
+	{
+		//start reload animation here.
+		int spaceLeftInMagazine = magazineCapacity - ammoInMagazine;
+		if (spaceLeftInMagazine < availableBackupAmmo)
+		{
+			availableBackupAmmo -= spaceLeftInMagazine;
+			ammoInMagazine += spaceLeftInMagazine;
+		}
+		else
+		{
+			ammoInMagazine += availableBackupAmmo;
+			availableBackupAmmo = 0;
+		}
+		emitReloadSound();
+	}
+}
+
+void ASWeapon::checkIfServerReloads()
+{
+	if (Role < ROLE_Authority)
+	{
+		serverReload();
+	}
 }
 
 void ASWeapon::serverReload_Implementation()
@@ -208,13 +212,7 @@ bool ASWeapon::serverReload_Validate()
 	return true;
 }
 
-void ASWeapon::checkIfServerReloads()
-{
-	if (Role == ROLE_Authority)
-	{
-		serverReload();
-	}
-}
+
 
 void ASWeapon::emitFireSound()
 {
@@ -237,6 +235,14 @@ void ASWeapon::emitEmptyMagazineSound()
 	if (magazineEmptySound)
 	{
 		UGameplayStatics::SpawnSoundAttached(magazineEmptySound, RootComponent);
+	}
+}
+
+void ASWeapon::checkIfServerIsFiring()
+{
+	if (Role < ROLE_Authority)
+	{
+		serverFires();
 	}
 }
 
