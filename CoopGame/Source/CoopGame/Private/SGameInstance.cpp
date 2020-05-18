@@ -42,9 +42,9 @@ void USGameInstance::makeSession()
 
 
 
-void USGameInstance::createSession(FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity)
+void USGameInstance::createSession(bool bIsLANSession, bool bIsPresence, int32 playerCapacity)
 {
-	hostSession(GetPrimaryPlayerUniqueId(), sessionName, bIsLANSession, bIsPresence, playerCapacity);
+	hostSession(GetPrimaryPlayerUniqueId(), GameSessionName, bIsLANSession, bIsPresence, playerCapacity);
 }
 
 bool USGameInstance::hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession,
@@ -167,16 +167,34 @@ void USGameInstance::onFindSessionComplete(bool bWasSuccessful)
 	}
 }
 
+TArray<FString> USGameInstance::getSessionsFound()
+{
+	TArray<FString> sessionsId;
+	for(auto session : sessionSearch->SearchResults)
+	{
+		if(session.Session.OwningUserId != GetPrimaryPlayerUniqueId())
+		{
+			sessionsId.Add(session.GetSessionIdStr());
+		}
+	}
+	return sessionsId;
+}
+
 
 //Joining
 
-void USGameInstance::joinGamesSession(FName sessionName, const FOnlineSessionSearchResult& SearchResult)
+void USGameInstance::joinGamesSession(FString sessionID)
 {
 	const TSharedPtr<const FUniqueNetId> primaryUserID = GetPrimaryPlayerUniqueId();
 
-	if(SearchResult.Session.OwningUserId != primaryUserID)
+	TArray<FOnlineSessionSearchResult> searchResults = sessionSearch->SearchResults;
+	
+	for(auto sessionFound : searchResults)
 	{
-		joinSession(primaryUserID, sessionName, SearchResult);
+		if (sessionFound.GetSessionIdStr() == sessionID)
+		{
+			joinSession(primaryUserID, GameSessionName, sessionFound);
+		}
 	}
 }
 

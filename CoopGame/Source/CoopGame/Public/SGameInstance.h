@@ -34,7 +34,7 @@ protected:
 		FName mapName;
 
 	UFUNCTION(BlueprintCallable, Category = "Session Creation")
-		void createSession(FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
+		void createSession(bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
 	
 	bool hostSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, bool bIsLANSession, bool bIsPresence, int32 playerCapacity);
 
@@ -71,9 +71,12 @@ protected:
 
 	void onFindSessionComplete(bool bWasSuccessful);
 
+	UFUNCTION(BlueprintCallable, Category = "Session Search")
+		TArray<FString> getSessionsFound();
+
 	//Session Join
 	UFUNCTION(BlueprintCallable, Category = "Session Join")
-		void joinGamesSession(FName sessionName, const FOnlineSessionSearchResult& SearchResult);
+		void joinGamesSession(FString sessionID);
 	
 	bool joinSession(TSharedPtr<const FUniqueNetId> userID, FName sessionName, const FOnlineSessionSearchResult& SearchResult);
 
