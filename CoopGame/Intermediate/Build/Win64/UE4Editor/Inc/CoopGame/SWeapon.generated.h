@@ -14,26 +14,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define COOPGAME_SWeapon_generated_h
 
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_21_RPC_WRAPPERS \
-	virtual bool serverAddAmmo_Validate(int32 ); \
-	virtual void serverAddAmmo_Implementation(int32 ammoAmount); \
 	virtual bool serverReload_Validate(); \
 	virtual void serverReload_Implementation(); \
 	virtual bool serverFires_Validate(); \
 	virtual void serverFires_Implementation(); \
- \
-	DECLARE_FUNCTION(execserverAddAmmo) \
-	{ \
-		P_GET_PROPERTY(UIntProperty,Z_Param_ammoAmount); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		if (!P_THIS->serverAddAmmo_Validate(Z_Param_ammoAmount)) \
-		{ \
-			RPC_ValidateFailed(TEXT("serverAddAmmo_Validate")); \
-			return; \
-		} \
-		P_THIS->serverAddAmmo_Implementation(Z_Param_ammoAmount); \
-		P_NATIVE_END; \
-	} \
  \
 	DECLARE_FUNCTION(execserverReload) \
 	{ \
@@ -79,26 +63,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
-	virtual bool serverAddAmmo_Validate(int32 ); \
-	virtual void serverAddAmmo_Implementation(int32 ammoAmount); \
 	virtual bool serverReload_Validate(); \
 	virtual void serverReload_Implementation(); \
 	virtual bool serverFires_Validate(); \
 	virtual void serverFires_Implementation(); \
- \
-	DECLARE_FUNCTION(execserverAddAmmo) \
-	{ \
-		P_GET_PROPERTY(UIntProperty,Z_Param_ammoAmount); \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		if (!P_THIS->serverAddAmmo_Validate(Z_Param_ammoAmount)) \
-		{ \
-			RPC_ValidateFailed(TEXT("serverAddAmmo_Validate")); \
-			return; \
-		} \
-		P_THIS->serverAddAmmo_Implementation(Z_Param_ammoAmount); \
-		P_NATIVE_END; \
-	} \
  \
 	DECLARE_FUNCTION(execserverReload) \
 	{ \
@@ -143,13 +111,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_EVENT_PARMS \
-	struct SWeapon_eventserverAddAmmo_Parms \
-	{ \
-		int32 ammoAmount; \
-	};
-
-
+#define CoopGame_Source_CoopGame_Public_SWeapon_h_21_EVENT_PARMS
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_21_CALLBACK_WRAPPERS
 #define CoopGame_Source_CoopGame_Public_SWeapon_h_21_INCLASS_NO_PURE_DECLS \
 private: \
