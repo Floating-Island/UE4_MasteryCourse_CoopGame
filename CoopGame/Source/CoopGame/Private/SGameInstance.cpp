@@ -174,7 +174,7 @@ TArray<FString> USGameInstance::getSessionsFound()
 	{
 		if(session.Session.OwningUserId != GetPrimaryPlayerUniqueId())
 		{
-			sessionsId.Add(session.GetSessionIdStr());
+			sessionsId.Add(session.Session.OwningUserName);
 		}
 	}
 	return sessionsId;
@@ -191,7 +191,7 @@ void USGameInstance::joinGamesSession(FString sessionID)
 	
 	for(auto sessionFound : searchResults)
 	{
-		if (sessionFound.GetSessionIdStr() == sessionID)
+		if (sessionFound.Session.OwningUserName == sessionID)
 		{
 			joinSession(primaryUserID, GameSessionName, sessionFound);
 		}
