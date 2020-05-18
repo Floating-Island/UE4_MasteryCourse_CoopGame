@@ -108,9 +108,7 @@ int ASWeapon::backupAmmo()
 }
 
 void ASWeapon::addAmmo(int ammoAmount)
-{
-	checkIfServerAddsAmmo(ammoAmount);
-	
+{	
 	int spaceLeftInBackup = backupAmmoCapacity - availableBackupAmmo;
 	if(spaceLeftInBackup >= ammoAmount)
 	{
@@ -286,4 +284,6 @@ void ASWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetime
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME_CONDITION(ASWeapon, lastFireTime, COND_SkipOwner);
+	DOREPLIFETIME(ASWeapon, ammoInMagazine);
+	DOREPLIFETIME(ASWeapon, availableBackupAmmo);
 }

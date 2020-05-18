@@ -33,11 +33,11 @@ public:
 		bool hasAmmoInMagazine();
 	
 	void reduceMagazineAmmo();
-	void reload();//server should do it
+	void reload();
 
 	int magAmmo();
 	int backupAmmo();
-	void addAmmo(int ammoAmount);//server should do it
+	void checkIfServerAddsAmmo(int ammoAmount);
 
 protected:
 	virtual void BeginPlay() override;
@@ -59,10 +59,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 		int magazineCapacity;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//should replicate
+	UPROPERTY(EditDefaultsOnly, Replicated, BlueprintReadOnly, Category = "Weapon")//should replicate
 		int ammoInMagazine;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")//should replicate
+	UPROPERTY(EditDefaultsOnly, Replicated, BlueprintReadOnly, Category = "Weapon")//should replicate
 		int availableBackupAmmo;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
@@ -107,6 +107,8 @@ protected:
 
 	void recoilShakingCamera(AActor* weaponOwnerActor);
 
+	void addAmmo(int ammoAmount);//server should do it
+
 	//networking
 	UFUNCTION(Server, Reliable, WithValidation)
 		void serverFires();
@@ -124,7 +126,7 @@ protected:
 	UFUNCTION(Server, Reliable, WithValidation)
 		void serverAddAmmo(int ammoAmount);
 
-	void checkIfServerAddsAmmo(int ammoAmount);
+	
 
 	//Sounds
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
