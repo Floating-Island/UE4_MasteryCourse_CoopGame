@@ -11,9 +11,9 @@ void ASPickupWeaponActor::pickupObjectOverlaping(AActor* OtherActor)
 	ASCharacter* player = Cast<ASCharacter, AActor>(OtherActor);
 	if (pickupObjectInstance && pickedWeapon && player)
 	{
-		pickedWeapon->SetOwner(OtherActor);
-		player->replaceHeldWeapon(pickedWeapon);
 		pickedWeapon->SetActorHiddenInGame(true);
+		player->replaceHeldWeapon(pickedWeapon);
 		pickupObjectInstance = nullptr;
+		pickedWeapon->Destroy();//should server do it too.
 	}
 }

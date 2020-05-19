@@ -129,14 +129,13 @@ bool ASCharacter::isHoldingAWeapon()
 	return false;
 }
 
-void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)
+void ASCharacter::replaceHeldWeapon(ASWeapon* newWeapon)//old weapon is destroyed here. Shouldn't this be something the server does too?
 {
 	if(isHoldingAWeapon())
 	{
 		if(newWeapon->GetClass() == heldWeapon->GetClass())
 		{
 			int restockAmmo = newWeapon->magAmmo() + newWeapon->backupAmmo();
-			newWeapon->Destroy();
 			heldWeapon->addAmmo(restockAmmo);
 			return;
 		}
